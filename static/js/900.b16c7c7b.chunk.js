@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmodernize=self.webpackChunkmodernize||[]).push([[900],{9900:(e,s,n)=>{n.r(s),n.d(s,{default:()=>c});var r=n(8467),a=n(6417);const c=()=>(0,a.jsx)(a.Fragment,{children:(0,a.jsx)(r.j3,{})})}}]);
