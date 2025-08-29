@@ -16,8 +16,8 @@ navbar-links:
   #Publication: "publication"
   #Blog: "blog"
   Project: "project"
-  GitHub: "https://github.com/lsfGuni"
-
+  #GitHub: "https://github.com/lsfGuni"
+  업무방식: "blog"
 
 
 # title text 대신 이미지 사용하고 싶은 경우 설정
