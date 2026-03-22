@@ -8,14 +8,12 @@ permalink: /project/
 <h1>Project</h1>
 
 <p>
-이 페이지는 제가 수행한 프로젝트 중
-<strong>인프라 운영, 자동화, 모니터링, 보안, 안정성 개선</strong>
-역량을 가장 잘 보여주는 사례들을 정리한 페이지입니다.
+이 페이지는 제가 수행한 대표 프로젝트를 모아둔 메인 페이지입니다.
+각 프로젝트는 <strong>인프라 운영, 자동화, 모니터링, 보안, 안정성 개선</strong> 관점에서 정리되어 있습니다.
 </p>
 
 <p>
-프로젝트 메인 페이지에서는 전체 프로젝트를 한눈에 보고,
-각 항목을 클릭하면 상세 프로젝트 페이지로 이동할 수 있도록 구성했습니다.
+아래 목록에서 프로젝트를 클릭하면 상세 포트폴리오 페이지로 이동할 수 있습니다.
 </p>
 
 <hr>
@@ -29,7 +27,7 @@ permalink: /project/
     {% for post in project_posts %}
       <div class="project-card" style="margin-bottom: 32px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 12px;">
         <h3 style="margin-bottom: 8px;">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <a href="{{ post.url }}">{{ post.title }}</a>
         </h3>
 
         {% if post.subtitle %}
@@ -53,7 +51,7 @@ permalink: /project/
         {% endif %}
 
         <p style="margin: 0;">
-          <a href="{{ post.url | relative_url }}">자세히 보기 →</a>
+          <a href="{{ post.url }}">자세히 보기 →</a>
         </p>
       </div>
     {% endfor %}
@@ -66,11 +64,11 @@ permalink: /project/
 
 <h2>Navigation</h2>
 
-<h3><a href="{{ '/' | relative_url }}">Home</a></h3>
+<h3><a href="/">Home</a></h3>
 <p>자기소개와 핵심 역량 요약</p>
 
-<h3><a href="{{ '/carreer/' | relative_url }}">Career</a></h3>
+<h3><a href="/carreer">Career</a></h3>
 <p>경력 요약, 주요 역할, 강점, 커리어 방향</p>
 
-<h3><a href="{{ '/blog/' | relative_url }}">Work Method</a></h3>
+<h3><a href="/blog">Work Method</a></h3>
 <p>문제 해결 방식, 운영 철학, 협업과 문서화 방식</p>
