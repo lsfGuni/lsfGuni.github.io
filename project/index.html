@@ -2,380 +2,75 @@
 layout: page
 title: Project
 subtitle: Representative Projects, Architecture, and Outcomes
+permalink: /project/
 ---
 
-# Project
-
-이 페이지는 제가 수행한 프로젝트 중  
-**인프라 운영, 자동화, 모니터링, 보안, 안정성 개선** 역량을 가장 잘 보여주는 사례들을 정리한 페이지입니다.
-
-저는 단순히 기능이 동작하는 시스템보다,  
-**운영 가능하고, 관측 가능하며, 안정적이고, 재현 가능한 시스템**을 만드는 데 강점을 가지고 있습니다.
-
-주요 프로젝트는 다음과 같습니다.
-
-- DDoS 대응체계 구축
-- 경량 모니터링 및 알림 시스템 구축
-- 글로벌 개발 인프라 구축
-- VM 서버 백업 시스템 구축
-- 사내용 코드 생성 챗봇 인프라 구축
-- NIPA 의약품 이력 관리 프로젝트
-
----
-
-## Project Overview
-
-### 1. DDoS 대응체계 구축
-AWS WAF, Nginx, iptables를 결합한 3계층 방어 체계를 구성하여  
-비정상 HTTP 트래픽을 차단하고 핵심 API의 안정성을 높인 프로젝트입니다.
-
-### 2. 경량 모니터링 및 알림 시스템 구축
-Prometheus, Grafana, Alertmanager, Blackbox Exporter를 기반으로  
-외부 헬스체크 중심의 경량 모니터링 및 Slack 실시간 알림 체계를 구축한 프로젝트입니다.
-
-### 3. 글로벌 개발 인프라 구축
-AWS와 온프레미스를 연결한 하이브리드 개발 환경을 구축하고,  
-Jenkins와 Slack 기반의 CI/CD 및 협업 체계를 정비한 프로젝트입니다.
-
-### 4. VM 서버 백업 시스템 구축
-ZFS 스냅샷, 증분 백업, UPS 연동 자동 종료 체계를 설계하여  
-개발 자산 보호와 재해 대응 역량을 높인 프로젝트입니다.
-
-### 5. 사내용 코드 생성 챗봇 인프라 구축
-질의응답, 문서 인덱싱, 모델 실행을 하나의 흐름으로 연결한  
-사내용 AI 실행 인프라를 구축한 프로젝트입니다.
-
-### 6. NIPA 의약품 이력 관리 프로젝트
-API 서버, 관리자 시스템, 블록체인 연동 구조, CI/CD, 성능 검증까지 포함한  
-의약품 이력 추적 서비스 구축 프로젝트입니다.
-
----
-
-# 1. DDoS 대응체계 구축
-
-<img src="../assests/ddos_arc.drawio.png"
-     alt="Cloud-Web-WAS 3계층 방어 아키텍처"
-     width="980">
-
-## Summary
-- **기간:** 2025.08
-- **역할:** SRE
-- **기여도:** 100%
-- **목표:** 로그인 관련 핵심 API를 대상으로 한 비정상 HTTP 요청에 대응할 수 있는 지속 가능한 방어 체계 구축
-
-## Background
-분산된 L7 공격으로 인해 비정상 요청이 급격히 증가했고,  
-그 결과 WAS CPU 사용률 상승, 로그 급증, 로그인 지연, 클라우드 트래픽 비용 증가 문제가 발생했습니다.
-
-단일 지점 차단만으로는 대응이 어려워  
-Cloud, Web, WAS를 포함한 다층 방어 체계가 필요했습니다.
-
-## What I Did
-
-### Cloud Layer
-- **AWS WAF**를 구성하고 **ALB**와 연동
-- AWS Managed Rule 적용
-- 로그인 관련 특정 엔드포인트에 대해 Rate-based Custom Rule 추가
-- WAF 로그를 CloudWatch와 연결하여 운영 가시성 확보
-
-### Web Layer
-- **User-Agent 필터링** 적용
-- **Rate Limiting** 설정
-- 공격 대상 엔드포인트를 Nginx 레벨에서 직접 제어
-
-### WAS Layer
-- Tomcat Access Log 분석
-- **iptables 기반 자동 차단 스크립트** 작성 및 운영
-- 단일 IP 차단 방식에서 분산 공격 대응 방식으로 확장
-
-### Operations
-- 의미 있는 차단 로그만 남기도록 로그 운영 방식 정리
-- 대응 가이드, 차단 템플릿, 재사용 가능한 스크립트 문서화
-
-## Outcome
-- 비정상 트래픽이 WAS 자원을 소모하기 전에 선제적으로 차단
-- 핵심 API를 큰 장애 없이 안정화
-- 봇/스캐너 요청으로 인한 불필요한 클라우드 트래픽 비용 감소
-- Cloud, Web, WAS를 아우르는 재사용 가능한 방어 패턴 확보
-
-## Tech Stack
-AWS WAF, ALB, CloudWatch, EC2, Nginx, Tomcat, iptables, Shell Script
-
----
-
-# 2. 경량 모니터링 및 알림 시스템 구축
-
-<img src="../assests/alert_sysytem.drawio.png"
-     alt="경량 모니터링 및 알림 시스템 아키텍처"
-     width="980">
-
-## Summary
-- **기간:** 2025.08
-- **역할:** SRE
-- **기여도:** 100%
-- **목표:** 블록체인 서비스 장애를 조기에 감지하고 실시간으로 알릴 수 있는 경량 모니터링 체계 구축
-
-## Background
-블록체인 노드와 관련 서비스의 장애를 빠르게 감지하고  
-운영자에게 즉시 전달할 수 있는 시스템이 필요했습니다.
-
-초기에는 복잡한 내부 지표 수집보다  
-**외부 헬스체크 중심의 빠른 상태 감지**가 우선이었습니다.
-
-## What I Did
-
-### System Design
-다음 요소를 포함한 Docker 기반 모니터링 스택 구축
-
-- **Prometheus**
-- **Grafana**
-- **Alertmanager**
-- **Blackbox Exporter**
-
-### Monitoring Configuration
-- 외부 서비스 엔드포인트 헬스체크 구성
-- 일정 시간 이상 응답 실패 시 알림이 발생하도록 Alert Rule 설정
-- Alertmanager를 통해 Slack Webhook 연동
-
-### Operations
-- 설정 템플릿 표준화
-- 설치 및 운영 절차 문서화
-- 새로운 대상 URL 추가만으로 모니터링 대상을 확장할 수 있도록 구조 설계
-
-## Outcome
-- 장애 감지 및 초기 대응 속도 향상
-- 신규 서비스 추가 시 손쉽게 모니터링 확장 가능
-- 재현 가능한 운영형 모니터링 환경 확보
-- 수동 상태 점검 감소 및 자동 알림 체계 정착
-
-## Tech Stack
-Prometheus, Grafana, Alertmanager, Blackbox Exporter, Docker, Docker Compose, Ubuntu, Slack Webhook
-
----
-
-# 3. 글로벌 개발 인프라 구축
-
-<img src="../assests/Global_arc.drawio.png"
-     alt="글로벌 개발 인프라 아키텍처"
-     width="980">
-
-## Summary
-- **기간:** 2025.06
-- **역할:** DevOps
-- **기여도:** 100%
-- **목표:** 해외 개발자와 내부 개발자가 동일한 기준으로 사용할 수 있는 하이브리드 개발 및 배포 환경 구축
-
-## Background
-해외 개발자와 내부 개발자가 함께 작업할 수 있도록  
-접근 경로, 배포 구조, 온보딩 기준, 협업 방식이 명확한 환경이 필요했습니다.
-
-단순 서버 개통이 아니라  
-**개발 → 빌드 → 배포 → 알림 → 문서화**까지 이어지는 체계를 만드는 것이 목표였습니다.
-
-## Architecture
-### AWS
-- Route 53
-- ALB
-- EC2 (Nginx Web Proxy)
-
-### On-Premise
-- Docker 기반 Front / API / Colyseus 서비스
-- Redis
-- DB 서버
-
-### CI/CD
-- Git / Bitbucket
-- Jenkins Pipeline
-- 순차 배포 전략
-- Slack 알림 연동
-
-## What I Did
-
-### Infrastructure
-- AWS VPC, Subnet, Security Group 정책 설계
-- Route 53 및 ALB 라우팅 구성
-- EC2 기반 Nginx Web 서버 구축
-- AWS Web Entry Point와 On-Premise WAS 연결
-
-### CI/CD
-- Jenkins 기반 빌드 및 배포 자동화 구성
-- 안전 종료 후 순차 배포 전략 적용
-- Build / Deploy 이벤트를 Slack으로 실시간 전송
-
-### Collaboration
-- Slack 채널 구조 정리
-- Git / Bitbucket 브랜치 전략 표준화
-- 신규 개발자용 온보딩 가이드 및 운영 문서 작성
-
-## Outcome
-- 지역과 환경이 달라도 동일한 기준으로 개발/배포 가능한 환경 구축
-- 구조화된 파이프라인으로 배포 리스크 감소
-- Jenkins + Slack 연동으로 협업 가시성 향상
-- 문서화된 기준으로 온보딩 시간 단축
-
-## Tech Stack
-AWS Route 53, ALB, EC2, Nginx, Docker, Jenkins, Slack, Redis, Bitbucket, Git, On-Premise Infrastructure
-
----
-
-# 4. VM 서버 백업 시스템 구축
-
-<img src="../assests/VM_SERVER.drawio.png"
-     alt="VM 백업 아키텍처"
-     width="980">
-
-## Summary
-- **기간:** 2025.03 ~ 2025.04
-- **역할:** SE
-- **기여도:** 50%
-- **목표:** 개발용 VM 서버 데이터를 보호하고 정전 및 장애 상황에서도 복구 가능한 백업 체계 구축
-
-## Background
-개발 환경 자산을 안정적으로 보관하고,  
-정전이나 장애 발생 시 복구 가능한 구조를 갖추기 위해  
-신뢰성 있는 백업 및 복구 체계가 필요했습니다.
-
-## Architecture
-### Primary Flow
-VM SERVER → BACKUP1 → BACKUP2
-
-### Backup Logic
-- 일 단위 증분 스냅샷 전송
-- 주 단위 증분 아카이브 전송
-
-### Disaster Response
-- UPS 전원 이벤트 감지
-- 안전 종료 트리거
-- 자동 백업 시퀀스 실행
-
-## What I Did
-- ZFS Pool 및 Snapshot 정책 구성
-- Cron 기반 백업 스케줄링 구성
-- UPS 연동 안전 종료 및 백업 트리거 스크립트 작성
-- Ubuntu 설치 및 초기 서버/네트워크 환경 구성
-- 설치 및 복구 절차 문서화
-
-## Outcome
-- 다중 백업 경로를 통한 데이터 내구성 강화
-- 정전 상황을 고려한 재해 대응형 백업 구조 구축
-- 스크립트 및 복구 문서 표준화
-- 재현 가능한 백업 및 복구 운영 모델 확보
-
-## Tech Stack
-Ubuntu, ZFS, Cron, Shell Script, UPS Integration, Linux Server, Network Configuration
-
----
-
-# 5. 사내용 코드 생성 챗봇 인프라 구축
-
-## Summary
-- **기간:** 2025.07
-- **역할:** DevOps
-- **목표:** 문서 적재, 인덱싱, 모델 실행, 질의응답이 하나로 이어지는 재현 가능한 사내용 AI 실행 인프라 구축
-
-## Background
-사내 개발자가 활용할 수 있는 코드 생성 및 질의응답 시스템을 위해  
-문서 준비, 검색, 모델 실행, 응답 생성이 하나의 운영 흐름으로 연결되어야 했습니다.
-
-또한 상시 GPU 서버를 켜두지 않고  
-**필요 시에만 모델 서버를 실행하는 비용 효율 구조**가 필요했습니다.
-
-## Flow
-
-### Data Preparation
-문서 및 질문 데이터  
-→ MCP Chunking  
-→ OpenSearch Indexing  
-→ S3 저장
-
-### Question Answering
-질문  
-→ MCP  
-→ Lambda  
-→ EC2 모델 서버 기동  
-→ S3 모델 로딩  
-→ OpenSearch / S3 참조  
-→ 응답 생성
-
-## What I Did
-- EC2에 MCP 서버 구축 및 배포
-- 네트워크 및 IAM 관련 인프라 구성
-- Lambda를 이용한 EC2 모델 서버 On-demand 기동/종료 자동화
-- S3 Bucket Policy 구성
-- 배포 스크립트 및 운영 가이드 정리
-
-## Outcome
-- 문서 적재부터 응답 생성까지 이어지는 End-to-End 흐름 구축
-- On-demand 모델 서버 실행으로 유휴 인프라 비용 절감
-- 로그와 버전 기반 운영 구조로 추적성 향상
-- 사내 개발용 재현형 AI 실행 인프라 확보
-
-## Tech Stack
-EC2, Lambda, S3, OpenSearch, IAM, Spring, MCP, Node-based Model Server
-
----
-
-# 6. NIPA 의약품 이력 관리 프로젝트
-
-## Summary
-- **기간:** 2024.08 ~ 2024.12
-- **역할:** Full-stack Developer, DevOps
-- **목표:** API 서버, 관리자 시스템, 블록체인 연동 구조, 배포 및 성능 검증을 포함한 의약품 이력 추적 서비스 구축
-
-## Background
-이 프로젝트는 공공 성격의 서비스에 가까운 구조로,  
-API 서버와 관리자 시스템, 블록체인 연동, CI/CD, 성능 검증까지 포함한  
-안정적인 운영형 서비스 구성이 필요했습니다.
-
-## Architecture
-Client  
-↔ Bridge WAS (API)  
-↔ BaaS WAS  
-↔ Blockchain Node
-
-## What I Did
-- 블록체인 연동 복잡도를 분리하기 위한 REST API Bridge WAS 구축
-- 관리자 Web 및 Admin WAS 환경 개발
-- 공통 보안, 권한 처리, 예외 처리, 로깅 정책 적용
-- Docker 기반 서비스 컨테이너화
-- GitHub Actions 기반 CI/CD 파이프라인 구축
-- JMeter 기반 성능 테스트 시나리오 준비
-- 외부 테스트 및 시연 대응 지원
-
-## Outcome
-- Bridge Layer를 통해 블록체인 연동 복잡도 분리
-- CI/CD를 통한 배포 속도 및 일관성 향상
-- 테스트 및 시연 대응을 위한 준비도 향상
-- 배포 및 검증 표준화로 운영 안정성 강화
-
-## Tech Stack
-Java, Spring Boot, Docker, GitHub Actions, JMeter, MySQL, Blockchain Node Environment
-
----
-
-## What These Projects Show
-
-이 프로젝트들은 공통적으로 아래 역량을 보여줍니다.
-
-- **운영 안정성 향상**
-- **배포 재현성 확보**
-- **모니터링 가시성 강화**
-- **보안 대응 체계 구축**
-- **하이브리드 인프라 연결**
-- **문서화 및 표준화**
-
-저는 개발, 인프라, 운영을 분리해서 보기보다  
-**하나의 서비스 시스템으로 연결해 개선하는 역할**에 가장 강합니다.
-
----
-
-## Navigation
-
-### [Home](/)
-자기소개와 핵심 역량 요약
-
-### [Career](/carreer)
-경력 요약, 주요 역할, 강점, 커리어 방향
-
-### [Work Method](/blog)
-문제 해결 방식, 운영 철학, 협업과 문서화 방식
+<h1>Project</h1>
+
+<p>
+이 페이지는 제가 수행한 프로젝트 중
+<strong>인프라 운영, 자동화, 모니터링, 보안, 안정성 개선</strong>
+역량을 가장 잘 보여주는 사례들을 정리한 페이지입니다.
+</p>
+
+<p>
+프로젝트 메인 페이지에서는 전체 프로젝트를 한눈에 보고,
+각 항목을 클릭하면 상세 프로젝트 페이지로 이동할 수 있도록 구성했습니다.
+</p>
+
+<hr>
+
+<h2>Project List</h2>
+
+{% assign project_posts = site.categories.project | sort: 'date' | reverse %}
+
+{% if project_posts.size > 0 %}
+  <div class="project-list">
+    {% for post in project_posts %}
+      <div class="project-card" style="margin-bottom: 32px; padding: 20px; border: 1px solid #2a2a2a; border-radius: 12px;">
+        <h3 style="margin-bottom: 8px;">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h3>
+
+        {% if post.subtitle %}
+          <p style="margin-top: 0; opacity: 0.85;">{{ post.subtitle }}</p>
+        {% endif %}
+
+        <p style="margin: 8px 0;">
+          <strong>기간:</strong> {{ post.period }}
+          {% if post.role %} · <strong>역할:</strong> {{ post.role }}{% endif %}
+          {% if post.contribution %} · <strong>기여도:</strong> {{ post.contribution }}{% endif %}
+        </p>
+
+        {% if post.summary %}
+          <p style="margin: 12px 0 16px 0;">{{ post.summary }}</p>
+        {% endif %}
+
+        {% if post.tech %}
+          <p style="margin: 0 0 16px 0;">
+            <strong>기술:</strong> {{ post.tech | join: ', ' }}
+          </p>
+        {% endif %}
+
+        <p style="margin: 0;">
+          <a href="{{ post.url | relative_url }}">자세히 보기 →</a>
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>등록된 프로젝트가 없습니다.</p>
+{% endif %}
+
+<hr>
+
+<h2>Navigation</h2>
+
+<h3><a href="{{ '/' | relative_url }}">Home</a></h3>
+<p>자기소개와 핵심 역량 요약</p>
+
+<h3><a href="{{ '/carreer/' | relative_url }}">Career</a></h3>
+<p>경력 요약, 주요 역할, 강점, 커리어 방향</p>
+
+<h3><a href="{{ '/blog/' | relative_url }}">Work Method</a></h3>
+<p>문제 해결 방식, 운영 철학, 협업과 문서화 방식</p>
