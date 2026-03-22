@@ -1,60 +1,112 @@
 ---
 layout: page
-title: System Engineer Portfolio
-subtitle: Linux · Hybrid Infrastructure · Automation · Service Operations
+title: Gwonhee Han Portfolio Static Page
+subtitle: System Engineer · DevOps · Hybrid Infrastructure
 ---
 
-<br/>
+# Gwonhee Han
 
-## About me
+안녕하세요.  
+저는 **자동화와 근본 원인 해결로 안정적인 인프라를 만드는 엔지니어** 한권희입니다.
 
-**Kwonhee Han** is a **Linux-based system engineer / backend engineer** with **2 years and 5 months** of experience in backend development, server operations, deployment automation, and hybrid infrastructure support.
+백엔드 개발로 커리어를 시작했고,  
+실무에서는 점차 **Linux 서버 운영, 하이브리드 인프라 구축, CI/CD 자동화, 모니터링, 보안 대응, 장애 분석**까지 역할을 확장해 왔습니다.
 
-현재는 **Java 백엔드 개발 경험**을 기반으로, **AWS와 온프레미스가 혼합된 환경에서 서비스가 실제로 안정적으로 동작하도록 만드는 역할**에 강점을 두고 있습니다.  
-단순히 기능을 개발하는 것보다, **서비스 운영 구조를 이해하고 장애를 분석하며 배포와 운영을 안정화하는 일**에 더 큰 관심과 적성을 가지고 있습니다.
+저는 기능 하나를 만드는 것보다,  
+**서비스가 실제 운영 환경에서 안정적으로 동작하도록 만드는 구조와 흐름**에 더 큰 관심을 가지고 있습니다.
 
-특히 다음과 같은 영역에서 강점을 가지고 있습니다.
+문제가 발생하면 단순 복구에 그치지 않고,  
+**원인 분석 → 해결 → 고도화 → 문서화**까지 연결해  
+재발을 줄이고 재현 가능한 운영 체계를 만드는 것을 중요하게 생각합니다.
 
-- **Linux 기반 서버 운영 및 배포**
-- **AWS + On-Premise 하이브리드 인프라 연계**
-- **Jenkins / GitHub Actions / Docker 기반 배포 자동화**
-- **Apache / Nginx / Tomcat / JBoss 운영 및 장애 분석**
-- **개발자와 인프라 사이를 연결하는 문제 해결**
-- **운영 절차 문서화 및 인수인계 지원**
+---
 
-저는 개발과 인프라를 분리해서 보기보다,  
-**DNS → Web → WAS → DB → Batch → Network** 로 이어지는 전체 흐름 안에서 문제를 파악하고 해결하는 엔지니어를 지향합니다.
+## At a Glance
 
-<br/>
+- System Engineer 지향형 Backend / Server Engineer
+- AWS + On-Premise 하이브리드 인프라 경험
+- Linux 기반 서비스 운영 및 장애 분석 경험
+- Jenkins / GitLab CI / Bitbucket Pipelines 기반 자동화 경험
+- Prometheus / Grafana / Alertmanager 기반 모니터링 구축 경험
+- WAF / Nginx / iptables 기반 보안 대응 및 안정화 경험
 
-## Why me
+---
 
-### 1. Linux 기반 서비스 운영 경험
-AWS EC2, Ubuntu, Amazon Linux, 온프레미스 Linux 환경에서  
-서비스 배포, 로그 분석, 설정 변경, 포트 확인, 장애 대응을 수행했습니다.
+## What I Do
 
-### 2. Hybrid Infrastructure 경험
-Route53, Security Group, EC2, Nginx, On-Premise WAS, Router Port Forwarding이 결합된 환경에서  
-서비스 연결 이슈를 분석하고 복구한 경험이 있습니다.
+### Hybrid Infrastructure
+AWS와 On-Premise를 연결하는 인프라를 설계하고 운영합니다.  
+Route 53, ALB, EC2, Docker 기반의 서비스 구조를 다루며, 개발·운영·네트워크를 하나의 흐름으로 연결해 문제를 해결합니다.
 
-### 3. Automation 중심의 개선 성향
-Jenkins, GitHub Actions, Docker를 활용하여  
-빌드 및 배포 절차를 정리하고 반복 작업을 줄이는 개선을 수행했습니다.
+### Automation & CI/CD
+Jenkins, GitLab CI, Bitbucket Pipelines 기반으로 배포를 자동화합니다.  
+반복 작업을 줄이고, 재현 가능한 배포 흐름과 운영 절차를 만드는 데 집중합니다.
 
-### 4. 개발자와 협업 가능한 시스템 엔지니어
-Spring Boot, JPA, MyBatis, Batch, API 구조를 이해하고 있기 때문에  
-개발팀과 운영팀 사이의 언어를 함께 이해하며 협업할 수 있습니다.
+### Monitoring & Reliability
+Prometheus, Grafana, Alertmanager, Blackbox Exporter, CloudWatch를 활용해  
+운영 가시성과 알림 체계를 구축하고, 장애 탐지와 대응 시간을 줄이는 방향으로 시스템을 개선합니다.
 
-<br/>
+### Security & Troubleshooting
+AWS WAF, Nginx, iptables 기반의 다층 방어 체계를 구성하고,  
+로그와 요청 흐름을 분석해 비정상 트래픽과 장애 원인을 추적합니다.
 
-## Core Skills
+---
 
-```text
-Linux / Ubuntu / Amazon Linux / On-Premise Server
-AWS EC2 / Route53 / ALB / Security Group / WAF
-Apache / Nginx / Tomcat / JBoss
-Docker / Docker Compose / Jenkins / GitHub Actions
-Java / Spring Boot / JPA / MyBatis / Spring Batch
-MySQL / Oracle
-Shell Script / Go / Python (basic)
-Network / Port Forwarding / Reverse Proxy / Service Troubleshooting
+## Core Capabilities
+
+AWS, Route 53, ALB, EC2, Lambda, WAF, CloudWatch, OpenSearch, S3  
+Linux, Ubuntu, Docker, Apache, Tomcat, Nginx  
+Jenkins, GitLab CI, Bitbucket Pipelines, Git  
+Prometheus, Grafana, Alertmanager, Blackbox Exporter  
+Java, Spring, JavaScript  
+Oracle, MySQL, MariaDB, Redis  
+iptables, WireGuard, Hybrid Infrastructure
+
+---
+
+## Highlights
+
+### DDoS 대응체계 구축
+AWS WAF, Nginx, iptables를 결합한 3계층 방어 체계를 구축하여  
+비정상 트래픽을 차단하고 핵심 API의 안정성을 높였습니다.
+
+### 블록체인 노드 모니터링 · 알림 체계 구축
+Prometheus, Grafana, Alertmanager, Blackbox Exporter를 사용해  
+외부 헬스체크 기반의 경량 모니터링 시스템과 Slack 알림 체계를 구축했습니다.
+
+### 글로벌 개발 인프라 구축
+AWS와 온프레미스를 연결한 하이브리드 개발 인프라를 구축하고,  
+Jenkins와 Slack 기반 CI/CD 및 협업 환경을 정비했습니다.
+
+### VM 서버 백업 시스템 구축
+ZFS 스냅샷, 증분 백업, UPS 연동 자동 종료 체계를 설계하여  
+개발 자산 보호와 재해 대응 역량을 높였습니다.
+
+---
+
+## Experience Snapshot
+
+**베리드코리아**  
+개발팀 / 주임  
+2024.08 ~ Present  
+Developer · DevOps · SRE
+
+**아이뱅크컨설턴츠**  
+개발팀 / 대리  
+2023.09 ~ 2024.07  
+Developer
+
+---
+
+## Navigation
+
+### [Career](/carreer)
+경력 요약, 주요 역할, 업무 방향
+
+### [Project](/project)
+대표 프로젝트, 아키텍처, 수행 내용, 성과
+
+### [Work Method](/blog)
+문제 해결 방식, 운영 철학, 협업과 문서화 방식
+
+---
