@@ -22,7 +22,7 @@ tech:
 
 # DDoS 대응체계 구축
 
-<img src="{{ '/assests/ddos_arc.drawio.png' | relative_url }}"
+<img src="{{ '/assets/ddos_arc.drawio.png' | relative_url }}"
      alt="Cloud-Web-WAS 3계층 방어 아키텍처"
      width="980">
 
@@ -91,7 +91,7 @@ AWS WAF, ALB, CloudWatch, EC2, Nginx, Tomcat, iptables, Shell Script
 ### [Home]({{ '/' | relative_url }})
 자기소개와 핵심 역량 요약
 
-### [Career]({{ '/carreer/' | relative_url }})
+### [Career]({{ '/career/' | relative_url }})
 경력 요약, 주요 역할, 강점, 커리어 방향
 
 ### [Work Method]({{ '/blog/' | relative_url }})

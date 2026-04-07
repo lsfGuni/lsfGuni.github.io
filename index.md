@@ -82,6 +82,10 @@ Jenkins와 Slack 기반 CI/CD 및 협업 환경을 정비했습니다.
 ZFS 스냅샷, 증분 백업, UPS 연동 자동 종료 체계를 설계하여  
 개발 자산 보호와 재해 대응 역량을 높였습니다.
 
+### 삼성SDR 내방객 관리시스템 (파견)
+Spring MVC 기반 풀스택 개발, 카드사 연동 API 구현, JBoss 배포 전략 수립으로  
+내방객 출입 관리 자동화와 서비스 운영 안정화를 달성했습니다.
+
 ---
 
 ## Experience Snapshot
@@ -100,7 +104,7 @@ Developer
 
 ## Navigation
 
-### [Career](/carreer)
+### [Career](/career)
 경력 요약, 주요 역할, 업무 방향
 
 ### [Project](/project)

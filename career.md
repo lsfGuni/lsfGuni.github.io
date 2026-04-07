@@ -47,6 +47,7 @@ subtitle: Experience, Strengths, and Engineering Direction
 - 해외 개발자 온보딩을 위한 서버 접근, 레포지토리, 배포 절차 문서화
 - MCP, OpenSearch, S3, Lambda, EC2를 활용한 AI 실행 인프라 구축
 - 온프레미스 서버실 구축 및 VM 백업·재해방지 체계 운영
+- **삼성SDR 파견 (2025.09 ~ 2026.03):** Spring MVC 기반 내방객 관리시스템 풀스택 개발, 카드사 연동 API 구현, JBoss 배포 전략 수립
 
 #### 핵심 성과
 - 하이브리드 인프라 운영 기준 정립
@@ -54,6 +55,7 @@ subtitle: Experience, Strengths, and Engineering Direction
 - 모니터링과 알림 자동화로 대응 속도 향상
 - 재현 가능한 배포 및 운영 절차 문서화
 - 원격·해외 협업 환경의 온보딩 시간 단축
+- 삼성SDR 내방객 관리시스템 카드연동 API 자동화 및 배포 안정화
 
 ---
 
