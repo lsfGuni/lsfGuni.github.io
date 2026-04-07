@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4A90D9"/>
+      <stop offset="100%" stop-color="#357ABD"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5CB85C"/>
+      <stop offset="100%" stop-color="#449D44"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F0AD4E"/>
+      <stop offset="100%" stop-color="#EC971F"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8E6FBF"/>
+      <stop offset="100%" stop-color="#7B5BA6"/>
+    </linearGradient>
+    <linearGradient id="gray" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#6C757D"/>
+      <stop offset="100%" stop-color="#5A6268"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="520" fill="#FAFBFC" rx="12"/>
+
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="18" font-weight="700" fill="#2C3E50">On-Premise VM Management Web System Architecture</text>
+
+  <!-- Layer 1: User -->
+  <rect x="340" y="55" width="220" height="50" rx="8" fill="url(#blue)" filter="url(#shadow)"/>
+  <text x="450" y="76" text-anchor="middle" font-size="13" font-weight="600" fill="#fff">Web Browser (User)</text>
+  <text x="450" y="93" text-anchor="middle" font-size="10" fill="#D6EAF8">VM OS / Network / Snapshot Control</text>
+
+  <!-- Arrow 1 -->
+  <path d="M450,105 L450,135" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="465" y="123" font-size="9" fill="#7F8C8D">HTTPS</text>
+
+  <!-- Layer 2: Claude MCP -->
+  <rect x="280" y="140" width="340" height="60" rx="8" fill="url(#purple)" filter="url(#shadow)"/>
+  <text x="450" y="164" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">Claude MCP Server</text>
+  <text x="450" y="182" text-anchor="middle" font-size="10" fill="#E8DAEF">Model Context Protocol - AI Interface Layer</text>
+
+  <!-- Arrow 2 -->
+  <path d="M450,200 L450,230" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="465" y="218" font-size="9" fill="#7F8C8D">MCP Tools</text>
+
+  <!-- Layer 3: Control Layer -->
+  <rect x="70" y="235" width="760" height="75" rx="8" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
+  <text x="450" y="255" text-anchor="middle" font-size="12" font-weight="600" fill="#2C3E50">Control Layer</text>
+
+  <!-- Control modules -->
+  <rect x="95" y="262" width="160" height="38" rx="6" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="175" y="278" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">OS Management</text>
+  <text x="175" y="293" text-anchor="middle" font-size="9" fill="#D5F5E3">Create / Start / Stop / Delete</text>
+
+  <rect x="275" y="262" width="160" height="38" rx="6" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="355" y="278" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Network Config</text>
+  <text x="355" y="293" text-anchor="middle" font-size="9" fill="#D5F5E3">Bridge / NAT / IP / Firewall</text>
+
+  <rect x="455" y="262" width="160" height="38" rx="6" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="535" y="278" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Snapshot & Backup</text>
+  <text x="535" y="293" text-anchor="middle" font-size="9" fill="#D5F5E3">ZFS Snapshot / Restore</text>
+
+  <rect x="635" y="262" width="170" height="38" rx="6" fill="url(#green)" filter="url(#shadow)"/>
+  <text x="720" y="278" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Monitoring Dashboard</text>
+  <text x="720" y="293" text-anchor="middle" font-size="9" fill="#D5F5E3">CPU / RAM / Disk / Status</text>
+
+  <!-- Arrow 3 -->
+  <path d="M450,310 L450,340" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <text x="465" y="328" font-size="9" fill="#7F8C8D">Shell / API</text>
+
+  <!-- Layer 4: VM Host -->
+  <rect x="180" y="345" width="540" height="50" rx="8" fill="url(#orange)" filter="url(#shadow)"/>
+  <text x="450" y="367" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">VM Host — Linux (KVM / Proxmox)</text>
+  <text x="450" y="383" text-anchor="middle" font-size="10" fill="#FEF9E7">libvirt / qemu / virsh</text>
+
+  <!-- Arrow 4 -->
+  <path d="M300,395 L300,420" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M450,395 L450,420" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M600,395 L600,420" stroke="#7F8C8D" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Layer 5: VMs -->
+  <rect x="120" y="425" width="200" height="70" rx="8" fill="url(#gray)" filter="url(#shadow)"/>
+  <text x="220" y="450" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">VM 1 (Dev Server)</text>
+  <text x="220" y="467" text-anchor="middle" font-size="9" fill="#D5D8DC">Ubuntu 22.04</text>
+  <text x="220" y="480" text-anchor="middle" font-size="9" fill="#D5D8DC">Docker / App / DB</text>
+
+  <rect x="350" y="425" width="200" height="70" rx="8" fill="url(#gray)" filter="url(#shadow)"/>
+  <text x="450" y="450" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">VM 2 (Staging)</text>
+  <text x="450" y="467" text-anchor="middle" font-size="9" fill="#D5D8DC">Ubuntu 22.04</text>
+  <text x="450" y="480" text-anchor="middle" font-size="9" fill="#D5D8DC">Web / WAS / Test</text>
+
+  <rect x="580" y="425" width="200" height="70" rx="8" fill="url(#gray)" filter="url(#shadow)"/>
+  <text x="680" y="450" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">VM N (Service)</text>
+  <text x="680" y="467" text-anchor="middle" font-size="9" fill="#D5D8DC">CentOS / Ubuntu</text>
+  <text x="680" y="480" text-anchor="middle" font-size="9" fill="#D5D8DC">Production Workload</text>
+
+  <!-- Legend -->
+  <text x="40" y="515" font-size="9" fill="#95A5A6">User Interface → AI Orchestration → Control Modules → Hypervisor → Virtual Machines</text>
+
+  <!-- Arrowhead marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/>
+    </marker>
+  </defs>
+</svg>
