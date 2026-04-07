@@ -718,7 +718,7 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
     </div>
   </div>
   <div id="proj-blockchain" class="collapse project-detail" data-parent="#projectAccordion">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:12px 0;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 480" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:12px 0;">
       <defs>
         <filter id="bs" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
         <marker id="ah2" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
@@ -728,58 +728,59 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
         <linearGradient id="bPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
         <linearGradient id="bTeal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#26A69A"/><stop offset="100%" stop-color="#00897B"/></linearGradient>
       </defs>
-      <rect width="900" height="420" fill="#FAFBFC" rx="12"/>
-      <text x="450" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Blockchain Drug Management System Architecture</text>
+      <rect width="920" height="480" fill="#FAFBFC" rx="12"/>
+      <text x="460" y="35" text-anchor="middle" font-size="22" font-weight="700" fill="#2C3E50">Blockchain Drug Management System</text>
       <!-- Frontend App -->
-      <rect x="50" y="60" width="180" height="55" rx="8" fill="url(#bBlue)" filter="url(#bs)"/>
-      <text x="140" y="83" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Frontend App</text>
-      <text x="140" y="100" text-anchor="middle" font-size="9" fill="#D6EAF8">의약품 등록 요청</text>
+      <rect x="40" y="65" width="200" height="65" rx="8" fill="url(#bBlue)" filter="url(#bs)"/>
+      <text x="140" y="93" text-anchor="middle" font-size="17" font-weight="600" fill="#fff">Frontend App</text>
+      <text x="140" y="114" text-anchor="middle" font-size="13" fill="#D6EAF8">Drug Registration Request</text>
       <!-- Admin Page -->
-      <rect x="50" y="140" width="180" height="55" rx="8" fill="url(#bBlue)" filter="url(#bs)"/>
-      <text x="140" y="163" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Admin Page</text>
-      <text x="140" y="180" text-anchor="middle" font-size="9" fill="#D6EAF8">관리자 대시보드 · 데이터 관리</text>
+      <rect x="40" y="160" width="200" height="65" rx="8" fill="url(#bBlue)" filter="url(#bs)"/>
+      <text x="140" y="188" text-anchor="middle" font-size="17" font-weight="600" fill="#fff">Admin Dashboard</text>
+      <text x="140" y="210" text-anchor="middle" font-size="13" fill="#D6EAF8">Master Data · Batch Monitor</text>
       <!-- Arrow: Frontend → API Server -->
-      <path d="M230,87 L330,87" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
-      <text x="280" y="80" text-anchor="middle" font-size="9" fill="#7F8C8D">의약품 데이터</text>
+      <path d="M240,97 L340,97" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
+      <text x="290" y="89" text-anchor="middle" font-size="13" fill="#7F8C8D">REST API</text>
       <!-- Arrow: Admin → API Server -->
-      <path d="M230,167 L330,140" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
-      <!-- Blockchain API Server (중간 서버) -->
-      <rect x="335" y="55" width="230" height="130" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1"/>
-      <text x="450" y="78" text-anchor="middle" font-size="13" font-weight="700" fill="#2C3E50">Blockchain API Server</text>
-      <text x="450" y="95" text-anchor="middle" font-size="9" fill="#555">(중간 API 서버 — 내가 개발)</text>
-      <rect x="355" y="105" width="90" height="32" rx="5" fill="url(#bGreen)" filter="url(#bs)"/>
-      <text x="400" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">데이터 검증</text>
-      <text x="400" y="132" text-anchor="middle" font-size="8" fill="#D5F5E3">공공API 대조</text>
-      <rect x="455" y="105" width="90" height="32" rx="5" fill="url(#bOrange)" filter="url(#bs)"/>
-      <text x="500" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">Batch 업데이트</text>
-      <text x="500" y="132" text-anchor="middle" font-size="8" fill="#FEF9E7">정기 동기화</text>
+      <path d="M240,192 L340,155" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
+      <!-- Blockchain API Server -->
+      <rect x="345" y="58" width="240" height="150" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
+      <text x="465" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#2C3E50">Blockchain API Server</text>
+      <text x="465" y="105" text-anchor="middle" font-size="13" fill="#555">Validation &amp; Relay Gateway</text>
+      <rect x="360" y="118" width="105" height="40" rx="6" fill="url(#bGreen)" filter="url(#bs)"/>
+      <text x="412" y="137" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">Data Validation</text>
+      <text x="412" y="153" text-anchor="middle" font-size="11" fill="#D5F5E3">Public API Verify</text>
+      <rect x="475" y="118" width="105" height="40" rx="6" fill="url(#bOrange)" filter="url(#bs)"/>
+      <text x="527" y="137" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">Batch Sync</text>
+      <text x="527" y="153" text-anchor="middle" font-size="11" fill="#FEF9E7">Scheduled Update</text>
       <!-- Arrow: API Server → 공공API -->
-      <path d="M450,185 L450,230" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
-      <text x="465" y="212" font-size="9" fill="#7F8C8D">조회·검증</text>
+      <path d="M465,208 L465,260" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
+      <text x="490" y="240" font-size="13" fill="#7F8C8D">Query &amp; Verify</text>
       <!-- 공공API -->
-      <rect x="355" y="235" width="190" height="50" rx="8" fill="url(#bPurple)" filter="url(#bs)"/>
-      <text x="450" y="257" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">공공 의약품 API</text>
-      <text x="450" y="273" text-anchor="middle" font-size="9" fill="#E8DAEF">식약처 의약품 데이터</text>
+      <rect x="355" y="265" width="220" height="60" rx="8" fill="url(#bPurple)" filter="url(#bs)"/>
+      <text x="465" y="292" text-anchor="middle" font-size="17" font-weight="600" fill="#fff">Public Drug API</text>
+      <text x="465" y="312" text-anchor="middle" font-size="13" fill="#E8DAEF">MFDS Registered Drug Database</text>
       <!-- Arrow: API Server → BaaS -->
-      <path d="M565,120 L660,120" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
-      <text x="612" y="112" text-anchor="middle" font-size="9" fill="#7F8C8D">검증 완료 데이터</text>
+      <path d="M585,145 L675,145" stroke="#7F8C8D" stroke-width="2" marker-end="url(#ah2)"/>
+      <text x="630" y="135" text-anchor="middle" font-size="13" fill="#7F8C8D">Verified Data</text>
       <!-- Blockchain BaaS -->
-      <rect x="665" y="70" width="190" height="100" rx="10" fill="url(#bTeal)" filter="url(#bs)"/>
-      <text x="760" y="100" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Blockchain BaaS</text>
-      <text x="760" y="118" text-anchor="middle" font-size="10" fill="#E0F2F1">블록체인 원장 기록</text>
-      <text x="760" y="135" text-anchor="middle" font-size="9" fill="#B2DFDB">의약품 이력 무결성 보장</text>
+      <rect x="680" y="80" width="200" height="120" rx="10" fill="url(#bTeal)" filter="url(#bs)"/>
+      <text x="780" y="115" text-anchor="middle" font-size="18" font-weight="700" fill="#fff">Blockchain BaaS</text>
+      <text x="780" y="138" text-anchor="middle" font-size="14" fill="#E0F2F1">Distributed Ledger</text>
+      <text x="780" y="158" text-anchor="middle" font-size="13" fill="#B2DFDB">Drug Traceability Record</text>
       <!-- DB -->
-      <rect x="665" y="220" width="190" height="50" rx="8" fill="#6C757D" filter="url(#bs)"/>
-      <text x="760" y="243" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">MariaDB</text>
-      <text x="760" y="259" text-anchor="middle" font-size="9" fill="#D5D8DC">의약품 마스터 · Batch 이력</text>
+      <rect x="680" y="255" width="200" height="60" rx="8" fill="#6C757D" filter="url(#bs)"/>
+      <text x="780" y="282" text-anchor="middle" font-size="17" font-weight="600" fill="#fff">MariaDB</text>
+      <text x="780" y="303" text-anchor="middle" font-size="13" fill="#D5D8DC">Drug Master · Batch History</text>
       <!-- Arrow: API Server → DB -->
-      <path d="M520,185 L700,230" stroke="#7F8C8D" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#ah2)"/>
-      <!-- Legend -->
-      <text x="50" y="340" font-size="10" font-weight="600" fill="#2C3E50">Data Flow</text>
-      <text x="50" y="358" font-size="9" fill="#666">1. Frontend/Admin → API 서버로 의약품 데이터 전송</text>
-      <text x="50" y="373" font-size="9" fill="#666">2. API 서버: 공공API로 실제 등록 의약품인지 검증</text>
-      <text x="50" y="388" font-size="9" fill="#666">3. 검증 통과 → 블록체인 BaaS로 전송하여 원장에 기록</text>
-      <text x="50" y="403" font-size="9" fill="#666">4. Batch: 공공API에서 최신 의약품 정보를 주기적으로 동기화</text>
+      <path d="M540,208 L720,265" stroke="#7F8C8D" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ah2)"/>
+      <text x="645" y="232" font-size="12" fill="#7F8C8D">Persist</text>
+      <!-- Data Flow Legend -->
+      <rect x="40" y="365" width="840" height="100" rx="8" fill="#F8F9FA" stroke="#E9ECEF" stroke-width="1"/>
+      <text x="60" y="390" font-size="15" font-weight="700" fill="#2C3E50">Data Flow</text>
+      <text x="60" y="413" font-size="14" fill="#555">1. Client → API Server : Drug registration data submitted via REST API</text>
+      <text x="60" y="433" font-size="14" fill="#555">2. API Server → Public API : Validate against MFDS registered drug database</text>
+      <text x="60" y="453" font-size="14" fill="#555">3. API Server → BaaS : Verified data recorded on blockchain ledger | Batch : Periodic sync from public API</text>
     </svg>
 
     <h5>Background</h5>
