@@ -1,116 +1,376 @@
 ---
 layout: page
-title: Gwonhee Han Portfolio Static Page
-subtitle: System Engineer · DevOps · Hybrid Infrastructure
+title: 한권희 | System Engineer · DevOps
+subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드는 엔지니어
 ---
 
-# Gwonhee Han
+<style>
+  .profile-summary { margin-bottom: 2rem; }
+  .badge-skill {
+    display: inline-block;
+    padding: 4px 12px;
+    margin: 3px 4px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    background: #e8f4fd;
+    color: #0069d9;
+    border: 1px solid #b8daff;
+  }
+  .badge-skill.infra { background: #e2f0e8; color: #1a7a3a; border-color: #b8dfc8; }
+  .badge-skill.monitor { background: #fff3e0; color: #e65100; border-color: #ffe0b2; }
+  .badge-skill.security { background: #fce4ec; color: #c62828; border-color: #f8bbd0; }
+  .badge-skill.dev { background: #f3e5f5; color: #6a1b9a; border-color: #e1bee7; }
+  .stat-box {
+    display: inline-block;
+    text-align: center;
+    padding: 12px 20px;
+    margin: 6px 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    min-width: 130px;
+  }
+  .stat-box .stat-num { font-size: 1.4rem; font-weight: 700; color: #008AFF; }
+  .stat-box .stat-label { font-size: 0.8rem; color: #666; margin-top: 2px; }
+  .exp-card {
+    border-left: 3px solid #008AFF;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background: #fafbfc;
+    border-radius: 0 8px 8px 0;
+  }
+  .exp-card h4 { margin: 0 0 4px 0; font-size: 1.05rem; }
+  .exp-card .exp-meta { font-size: 0.85rem; color: #666; margin-bottom: 6px; }
+  .exp-card ul { margin: 4px 0 0 0; padding-left: 18px; font-size: 0.9rem; }
+  .project-toggle {
+    cursor: pointer;
+    padding: 16px 20px;
+    margin-bottom: 8px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    transition: all 0.2s;
+    background: #fff;
+  }
+  .project-toggle:hover { border-color: #008AFF; background: #f8f9ff; }
+  .project-toggle h4 { margin: 0 0 6px 0; font-size: 1.05rem; }
+  .project-toggle .proj-meta { font-size: 0.85rem; color: #555; margin: 0; }
+  .project-toggle .proj-summary { font-size: 0.9rem; margin: 6px 0 0 0; color: #333; }
+  .project-toggle .toggle-icon {
+    float: right;
+    font-size: 0.8rem;
+    color: #008AFF;
+    margin-top: 4px;
+    transition: transform 0.2s;
+  }
+  .project-toggle[aria-expanded="true"] .toggle-icon { transform: rotate(180deg); }
+  .project-detail {
+    padding: 16px 20px;
+    border: 1px solid #e0e8f0;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    margin-top: -9px;
+    margin-bottom: 16px;
+    background: #fdfdfe;
+    font-size: 0.92rem;
+  }
+  .project-detail h5 { font-size: 1rem; margin-top: 16px; color: #0069d9; }
+  .project-detail h6 { font-size: 0.92rem; margin-top: 12px; color: #333; }
+  .project-detail ul { padding-left: 18px; }
+  .project-detail img { max-width: 100%; border-radius: 8px; margin: 12px 0; }
+  .tech-tag {
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 2px 3px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    background: #f1f3f5;
+    color: #495057;
+  }
+  .section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-bottom: 2px solid #008AFF;
+    padding-bottom: 6px;
+    margin: 2rem 0 1rem 0;
+  }
+  .strength-item { margin-bottom: 10px; }
+  .strength-item strong { color: #0069d9; }
+</style>
 
-안녕하세요.  
-저는 **자동화와 근본 원인 해결로 안정적인 인프라를 만드는 엔지니어** 한권희입니다.
+<!-- ====== 핵심 요약 ====== -->
+<div class="profile-summary">
 
-백엔드 개발로 커리어를 시작했고,  
-실무에서는 점차 **Linux 서버 운영, 하이브리드 인프라 구축, CI/CD 자동화, 모니터링, 보안 대응, 장애 분석**까지 역할을 확장해 왔습니다.
+<div style="text-align:center; margin-bottom: 1.5rem;">
+  <div class="stat-box">
+    <div class="stat-num">2년 5개월+</div>
+    <div class="stat-label">총 경력</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">3개+</div>
+    <div class="stat-label">프로젝트</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">DevOps · SRE</div>
+    <div class="stat-label">현재 역할</div>
+  </div>
+</div>
 
-저는 기능 하나를 만드는 것보다,  
-**서비스가 실제 운영 환경에서 안정적으로 동작하도록 만드는 구조와 흐름**에 더 큰 관심을 가지고 있습니다.
+백엔드 개발로 시작하여 **Linux 서버 운영, 하이브리드 인프라, CI/CD, 모니터링, 보안 대응**까지 확장해 온 엔지니어입니다.  
+문제 발생 시 **원인 분석 → 해결 → 고도화 → 문서화**까지 이어가며, 재현 가능한 운영 체계를 만듭니다.
 
-문제가 발생하면 단순 복구에 그치지 않고,  
-**원인 분석 → 해결 → 고도화 → 문서화**까지 연결해  
-재발을 줄이고 재현 가능한 운영 체계를 만드는 것을 중요하게 생각합니다.
+</div>
+
+<!-- ====== 핵심 기술 ====== -->
+<div class="section-title">Core Skills</div>
+
+<span class="badge-skill infra">AWS</span>
+<span class="badge-skill infra">Route 53</span>
+<span class="badge-skill infra">ALB</span>
+<span class="badge-skill infra">EC2</span>
+<span class="badge-skill infra">Docker</span>
+<span class="badge-skill infra">Linux</span>
+<span class="badge-skill infra">Nginx</span>
+<span class="badge-skill">Jenkins</span>
+<span class="badge-skill">GitLab CI</span>
+<span class="badge-skill">Bitbucket Pipelines</span>
+<span class="badge-skill monitor">Prometheus</span>
+<span class="badge-skill monitor">Grafana</span>
+<span class="badge-skill monitor">Alertmanager</span>
+<span class="badge-skill monitor">CloudWatch</span>
+<span class="badge-skill security">AWS WAF</span>
+<span class="badge-skill security">iptables</span>
+<span class="badge-skill security">WireGuard</span>
+<span class="badge-skill dev">Java</span>
+<span class="badge-skill dev">Spring</span>
+<span class="badge-skill dev">JavaScript</span>
+<span class="badge-skill dev">Oracle</span>
+<span class="badge-skill dev">MySQL</span>
+<span class="badge-skill dev">Redis</span>
+
+<!-- ====== 핵심 역량 ====== -->
+<div class="section-title">Core Strengths</div>
+
+<div class="strength-item">
+  <strong>Hybrid Infrastructure</strong> — AWS + On-Premise 연동 인프라 설계·운영. Route 53, ALB, EC2, Docker, Nginx 기반 서비스 구조
+</div>
+<div class="strength-item">
+  <strong>Automation & CI/CD</strong> — Jenkins, GitLab CI, Bitbucket Pipelines 기반 배포 자동화. 반복 작업 스크립트화 및 절차 표준화
+</div>
+<div class="strength-item">
+  <strong>Monitoring & Reliability</strong> — Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반 모니터링·알림 체계 구축
+</div>
+<div class="strength-item">
+  <strong>Security & Troubleshooting</strong> — AWS WAF, Nginx, iptables 다층 방어. 로그 분석으로 장애 원인 추적 및 재발 방지
+</div>
+
+<!-- ====== 경력 ====== -->
+<div class="section-title">Experience</div>
+
+<div class="exp-card">
+  <h4>베리드코리아 <small style="color:#008AFF;">Developer · DevOps · SRE</small></h4>
+  <div class="exp-meta">개발팀 / 주임 · 2024.08 ~ Present</div>
+  <ul>
+    <li>AWS + 온프레미스 하이브리드 인프라 운영 표준화</li>
+    <li>AWS WAF, Nginx, iptables 다층 보안 체계 구축</li>
+    <li>Prometheus/Grafana 기반 모니터링 및 Slack 알림 운영</li>
+    <li>Jenkins 기반 CI/CD 파이프라인 구성</li>
+    <li>온프레미스 서버실 구축 및 VM 백업 체계 운영</li>
+    <li>삼성SDR 파견(2025.09~2026.03): 내방객 관리시스템 풀스택 개발</li>
+  </ul>
+</div>
+
+<div class="exp-card">
+  <h4>아이뱅크컨설턴츠 <small style="color:#008AFF;">Developer</small></h4>
+  <div class="exp-meta">개발팀 / 대리 · 2023.09 ~ 2024.07</div>
+  <ul>
+    <li>React / Thymeleaf / Spring Boot 기반 풀스택 개발</li>
+    <li>GitLab + Jenkins CI/CD 파이프라인 도입</li>
+    <li>SVN → Git 형상관리 전환 및 사내 교육</li>
+  </ul>
+</div>
+
+<!-- ====== 프로젝트 (아코디언) ====== -->
+<div class="section-title">Projects</div>
+
+<p style="font-size:0.88rem; color:#666;">각 프로젝트를 클릭하면 상세 내용을 확인할 수 있습니다.</p>
+
+<div id="projectAccordion">
+
+  <!-- 프로젝트 1: DDoS -->
+  <div class="project-toggle" data-toggle="collapse" data-target="#proj-ddos" aria-expanded="false" aria-controls="proj-ddos">
+    <span class="toggle-icon">▼ 펼치기</span>
+    <h4>DDoS 대응체계 구축</h4>
+    <p class="proj-meta">2025.08 · SRE · 기여도 100%</p>
+    <p class="proj-summary">AWS WAF + Nginx + iptables 3계층 방어 체계로 비정상 트래픽 선제 차단 및 핵심 API 안정화</p>
+    <div>
+      <span class="tech-tag">AWS WAF</span>
+      <span class="tech-tag">ALB</span>
+      <span class="tech-tag">CloudWatch</span>
+      <span class="tech-tag">Nginx</span>
+      <span class="tech-tag">iptables</span>
+      <span class="tech-tag">Shell Script</span>
+    </div>
+  </div>
+  <div id="proj-ddos" class="collapse project-detail" data-parent="#projectAccordion">
+    <img src="{{ '/assets/ddos_arc.drawio.png' | relative_url }}" alt="DDoS 3계층 방어 아키텍처">
+
+    <h5>Background</h5>
+    <p>분산된 L7 공격으로 비정상 요청이 급증하여 WAS CPU 상승, 로그인 지연, 트래픽 비용 증가 문제가 발생했습니다. 단일 지점 차단만으로는 대응이 어려워 Cloud-Web-WAS 다층 방어가 필요했습니다.</p>
+
+    <h5>What I Did</h5>
+    <h6>Cloud Layer</h6>
+    <ul>
+      <li>AWS WAF 구성 및 ALB 연동</li>
+      <li>AWS Managed Rule 적용 + Rate-based Custom Rule 추가</li>
+      <li>WAF 로그를 CloudWatch 연결하여 운영 가시성 확보</li>
+    </ul>
+    <h6>Web Layer</h6>
+    <ul>
+      <li>User-Agent 필터링 및 Rate Limiting 설정</li>
+      <li>공격 대상 엔드포인트를 Nginx 레벨에서 직접 제어</li>
+    </ul>
+    <h6>WAS Layer</h6>
+    <ul>
+      <li>Tomcat Access Log 분석</li>
+      <li>iptables 기반 자동 차단 스크립트 작성 및 운영</li>
+      <li>단일 IP 차단 → 분산 공격 대응으로 확장</li>
+    </ul>
+
+    <h5>Outcome</h5>
+    <ul>
+      <li>비정상 트래픽을 WAS 도달 전 선제 차단</li>
+      <li>핵심 API 무장애 안정화</li>
+      <li>봇/스캐너 요청으로 인한 클라우드 비용 감소</li>
+      <li>재사용 가능한 방어 패턴 확보</li>
+    </ul>
+  </div>
+
+  <!-- 프로젝트 2: 삼성SDR -->
+  <div class="project-toggle" data-toggle="collapse" data-target="#proj-sdr" aria-expanded="false" aria-controls="proj-sdr">
+    <span class="toggle-icon">▼ 펼치기</span>
+    <h4>삼성SDR 내방객 관리시스템</h4>
+    <p class="proj-meta">2025.09 ~ 2026.03 · Full-Stack Developer · 배포 담당</p>
+    <p class="proj-summary">Spring MVC 기반 풀스택 개발, 카드사 연동 API 구현, JBoss 배포 전략 수립으로 내방객 출입 관리 자동화</p>
+    <div>
+      <span class="tech-tag">Java</span>
+      <span class="tech-tag">Spring MVC</span>
+      <span class="tech-tag">JSP</span>
+      <span class="tech-tag">JavaScript</span>
+      <span class="tech-tag">JBoss</span>
+      <span class="tech-tag">REST API</span>
+    </div>
+  </div>
+  <div id="proj-sdr" class="collapse project-detail" data-parent="#projectAccordion">
+    <h5>Background</h5>
+    <p>삼성SDR 사업장에서 내방객 출입을 수기/반자동 관리하던 방식을 개선하기 위해, 등록부터 카드 발급, 출입 이력까지 통합된 웹 관리시스템이 필요했습니다.</p>
+
+    <h5>What I Did</h5>
+    <h6>Backend 개발</h6>
+    <ul>
+      <li>Spring MVC 패턴 기반 서버 아키텍처 설계 및 구현</li>
+      <li>카드연동 API 설계·개발 (카드 발급/회수 상태 동기화)</li>
+      <li>내방객 등록, 조회, 승인, 이력 관리 핵심 비즈니스 로직</li>
+    </ul>
+    <h6>Frontend 개발</h6>
+    <ul>
+      <li>JSP 기반 사용자 화면 개발</li>
+      <li>JavaScript 동적 UI 처리 및 유효성 검증</li>
+    </ul>
+    <h6>배포 및 서버 운영</h6>
+    <ul>
+      <li>JBoss 웹서버 설정 및 환경 구성</li>
+      <li>배포 전략 수립, 절차 문서화, 안정화</li>
+    </ul>
+
+    <h5>Outcome</h5>
+    <ul>
+      <li>카드사 연동 API로 내방객 출입 관리 자동화</li>
+      <li>안정적 배포 전략으로 서비스 운영 안정화</li>
+      <li>수기 관리 대비 내방객 처리 효율 대폭 향상</li>
+    </ul>
+  </div>
+
+  <!-- 프로젝트 3: VM 관리 -->
+  <div class="project-toggle" data-toggle="collapse" data-target="#proj-vm" aria-expanded="false" aria-controls="proj-vm">
+    <span class="toggle-icon">▼ 펼치기</span>
+    <h4>온프레미스 VM 관리 시스템</h4>
+    <p class="proj-meta">2025.03 ~ 진행중 · 설계 및 개발 전체 · 기여도 100%</p>
+    <p class="proj-summary">Claude MCP 기반으로 웹 브라우저에서 VM 생성·조회·수정·삭제 및 스냅샷 백업을 자동화하는 인프라 관리 시스템</p>
+    <div>
+      <span class="tech-tag">Claude MCP</span>
+      <span class="tech-tag">Linux</span>
+      <span class="tech-tag">VM (KVM/Proxmox)</span>
+      <span class="tech-tag">Shell Script</span>
+      <span class="tech-tag">Web Interface</span>
+    </div>
+  </div>
+  <div id="proj-vm" class="collapse project-detail" data-parent="#projectAccordion">
+    <img src="{{ '/assets/VM_SERVER.drawio.png' | relative_url }}" alt="VM 관리 시스템 아키텍처">
+
+    <h5>Background</h5>
+    <p>온프레미스 VM을 관리하기 위해 매번 SSH나 하이퍼바이저 콘솔에 접근해야 하는 불편함이 있었습니다. 반복적인 인프라 작업을 자동화하고 웹 하나로 VM 전체 라이프사이클을 관리할 수 있는 시스템이 필요했습니다.</p>
+
+    <h5>What I Did</h5>
+    <h6>VM OS CRUD</h6>
+    <ul>
+      <li>웹 인터페이스를 통한 VM 생성·조회·수정·삭제</li>
+      <li>VM 상태 모니터링 및 실시간 관리 대시보드</li>
+    </ul>
+    <h6>백업 시스템</h6>
+    <ul>
+      <li>스냅샷 기반 VM 백업 구현</li>
+      <li>백업 스케줄링 및 이력 관리</li>
+      <li>장애 시 복원 절차 자동화</li>
+    </ul>
+    <h6>Claude MCP 연동</h6>
+    <ul>
+      <li>AI 기반 인프라 작업 자동화</li>
+      <li>자연어 명령을 통한 VM 제어</li>
+      <li>MCP 프로토콜을 활용한 외부 시스템 통합</li>
+    </ul>
+
+    <h5>Outcome</h5>
+    <ul>
+      <li>SSH/콘솔 없이 웹에서 VM 전체 라이프사이클 관리</li>
+      <li>AI 기반 자동화로 반복 작업 시간 대폭 단축</li>
+      <li>스냅샷 기반 백업으로 개발 자산 보호 체계 확립</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ====== 업무 스타일 & 방향 ====== -->
+<div class="section-title">Work Style</div>
+
+- 문제를 **서비스 흐름 전체**를 따라가며 원인을 좁혀감
+- 임시 복구보다 **재발 방지**를 더 중요하게 생각
+- 반복 작업은 자동화, 운영 절차는 문서화하여 **재현 가능한 운영 환경** 구축
+- 개발·운영·네트워크를 분리하지 않고 **하나의 시스템**으로 이해
 
 ---
 
-## At a Glance
+<div style="text-align:center; margin-top: 2rem;">
+  <p style="font-size: 0.9rem; color: #666;">
+    <strong>Contact:</strong> lsfguni@gmail.com
+  </p>
+  <p style="font-size: 0.85rem;">
+    <a href="/project">프로젝트 개별 페이지</a> ·
+    <a href="/career">상세 경력</a> ·
+    <a href="/blog">업무 방식</a>
+  </p>
+</div>
 
-- System Engineer 지향형 Backend / Server Engineer
-- AWS + On-Premise 하이브리드 인프라 경험
-- Linux 기반 서비스 운영 및 장애 분석 경험
-- Jenkins / GitLab CI / Bitbucket Pipelines 기반 자동화 경험
-- Prometheus / Grafana / Alertmanager 기반 모니터링 구축 경험
-- WAF / Nginx / iptables 기반 보안 대응 및 안정화 경험
-
----
-
-## What I Do
-
-### Hybrid Infrastructure
-AWS와 On-Premise를 연결하는 인프라를 설계하고 운영합니다.  
-Route 53, ALB, EC2, Docker 기반의 서비스 구조를 다루며, 개발·운영·네트워크를 하나의 흐름으로 연결해 문제를 해결합니다.
-
-### Automation & CI/CD
-Jenkins, GitLab CI, Bitbucket Pipelines 기반으로 배포를 자동화합니다.  
-반복 작업을 줄이고, 재현 가능한 배포 흐름과 운영 절차를 만드는 데 집중합니다.
-
-### Monitoring & Reliability
-Prometheus, Grafana, Alertmanager, Blackbox Exporter, CloudWatch를 활용해  
-운영 가시성과 알림 체계를 구축하고, 장애 탐지와 대응 시간을 줄이는 방향으로 시스템을 개선합니다.
-
-### Security & Troubleshooting
-AWS WAF, Nginx, iptables 기반의 다층 방어 체계를 구성하고,  
-로그와 요청 흐름을 분석해 비정상 트래픽과 장애 원인을 추적합니다.
-
----
-
-## Core Capabilities
-
-AWS, Route 53, ALB, EC2, Lambda, WAF, CloudWatch, OpenSearch, S3  
-Linux, Ubuntu, Docker, Apache, Tomcat, Nginx  
-Jenkins, GitLab CI, Bitbucket Pipelines, Git  
-Prometheus, Grafana, Alertmanager, Blackbox Exporter  
-Java, Spring, JavaScript  
-Oracle, MySQL, MariaDB, Redis  
-iptables, WireGuard, Hybrid Infrastructure
-
----
-
-## Highlights
-
-### DDoS 대응체계 구축
-AWS WAF, Nginx, iptables를 결합한 3계층 방어 체계를 구축하여  
-비정상 트래픽을 차단하고 핵심 API의 안정성을 높였습니다.
-
-### 블록체인 노드 모니터링 · 알림 체계 구축
-Prometheus, Grafana, Alertmanager, Blackbox Exporter를 사용해  
-외부 헬스체크 기반의 경량 모니터링 시스템과 Slack 알림 체계를 구축했습니다.
-
-### 글로벌 개발 인프라 구축
-AWS와 온프레미스를 연결한 하이브리드 개발 인프라를 구축하고,  
-Jenkins와 Slack 기반 CI/CD 및 협업 환경을 정비했습니다.
-
-### VM 서버 백업 시스템 구축
-ZFS 스냅샷, 증분 백업, UPS 연동 자동 종료 체계를 설계하여  
-개발 자산 보호와 재해 대응 역량을 높였습니다.
-
-### 삼성SDR 내방객 관리시스템 (파견)
-Spring MVC 기반 풀스택 개발, 카드사 연동 API 구현, JBoss 배포 전략 수립으로  
-내방객 출입 관리 자동화와 서비스 운영 안정화를 달성했습니다.
-
----
-
-## Experience Snapshot
-
-**베리드코리아**  
-개발팀 / 주임  
-2024.08 ~ Present  
-Developer · DevOps · SRE
-
-**아이뱅크컨설턴츠**  
-개발팀 / 대리  
-2023.09 ~ 2024.07  
-Developer
-
----
-
-## Navigation
-
-### [Career](/career)
-경력 요약, 주요 역할, 업무 방향
-
-### [Project](/project)
-대표 프로젝트, 아키텍처, 수행 내용, 성과
-
-### [Work Method](/blog)
-문제 해결 방식, 운영 철학, 협업과 문서화 방식
-
----
+<script>
+  // 펼치기/접기 텍스트 토글
+  $('#projectAccordion .project-toggle').on('click', function() {
+    var icon = $(this).find('.toggle-icon');
+    var target = $(this).data('target');
+    // 짧은 딜레이 후 상태 확인
+    setTimeout(function() {
+      if ($(target).hasClass('show')) {
+        icon.text('▲ 접기');
+      } else {
+        icon.text('▼ 펼치기');
+      }
+    }, 350);
+  });
+</script>
