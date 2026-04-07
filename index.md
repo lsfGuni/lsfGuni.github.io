@@ -824,8 +824,8 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
 <div class="section-title">Contact</div>
 
 <div class="contact-bar">
-  <a href="mailto:lsfguni@gmail.com" class="btn-primary-contact">
-    <i class="fa fa-envelope"></i> lsfguni@gmail.com
+  <a href="#" class="btn-primary-contact" id="copyEmail" onclick="copyEmail(event)">
+    <i class="fa fa-envelope"></i> <span id="emailText">lsfguni@gmail.com</span>
   </a>
   <a href="https://github.com/lsfGuni" target="_blank">
     <i class="fab fa-github"></i> GitHub
@@ -837,16 +837,26 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
 
 
 <script>
-  // 펼치기/접기 텍스트 토글 (화살표는 CSS transform으로 회전)
-  $('#projectAccordion .project-toggle').on('click', function() {
-    var textEl = $(this).find('.toggle-text');
-    var target = $(this).data('target');
-    setTimeout(function() {
-      if ($(target).hasClass('show')) {
-        textEl.text('접기');
-      } else {
-        textEl.text('펼치기');
-      }
-    }, 350);
+  // 펼치기/접기: Bootstrap collapse 이벤트 기반
+  $('#projectAccordion').on('show.bs.collapse', function(e) {
+    var toggle = $('[data-target="#' + e.target.id + '"]');
+    toggle.find('.toggle-text').text('접기');
+    toggle.attr('aria-expanded', 'true');
   });
+  $('#projectAccordion').on('hide.bs.collapse', function(e) {
+    var toggle = $('[data-target="#' + e.target.id + '"]');
+    toggle.find('.toggle-text').text('펼치기');
+    toggle.attr('aria-expanded', 'false');
+  });
+
+  // 이메일 클립보드 복사
+  function copyEmail(e) {
+    e.preventDefault();
+    var email = 'lsfguni@gmail.com';
+    navigator.clipboard.writeText(email).then(function() {
+      var el = document.getElementById('emailText');
+      el.textContent = '복사 완료!';
+      setTimeout(function() { el.textContent = email; }, 2000);
+    });
+  }
 </script>
