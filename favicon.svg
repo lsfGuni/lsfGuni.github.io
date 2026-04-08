@@ -1,43 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#326cba"/>
-  <!-- Docker whale body -->
-  <ellipse cx="28" cy="38" rx="20" ry="11" fill="#fff"/>
+  <rect width="64" height="64" rx="12" fill="#2496ED"/>
+  <!-- Whale body -->
+  <ellipse cx="30" cy="38" rx="20" ry="10" fill="#fff"/>
   <!-- Whale head -->
-  <circle cx="44" cy="33" r="8" fill="#fff"/>
+  <circle cx="46" cy="33" r="7.5" fill="#fff"/>
   <!-- Whale tail -->
-  <polygon points="10,38 5,28 7,31 9,35 7,40 5,44 10,41" fill="#fff"/>
+  <polygon points="12,38 6,28 8,32 11,35 8,41 6,46 12,42" fill="#fff"/>
   <!-- Whale eye -->
-  <circle cx="45.5" cy="32.5" r="1.2" fill="#326cba"/>
-  <!-- Containers row 1 -->
-  <rect x="16" y="30" width="5" height="3.5" rx="0.5" fill="#469be6"/>
-  <rect x="22" y="30" width="5" height="3.5" rx="0.5" fill="#469be6"/>
-  <rect x="28" y="30" width="5" height="3.5" rx="0.5" fill="#469be6"/>
-  <rect x="34" y="30" width="5" height="3.5" rx="0.5" fill="#469be6"/>
-  <!-- Containers row 2 -->
-  <rect x="22" y="25.5" width="5" height="3.5" rx="0.5" fill="#469be6"/>
-  <rect x="28" y="25.5" width="5" height="3.5" rx="0.5" fill="#469be6"/>
+  <circle cx="47.5" cy="31.5" r="1.3" fill="#2496ED"/>
+  <!-- Containers row 1 (bottom) -->
+  <rect x="18" y="31" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
+  <rect x="24" y="31" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
+  <rect x="30" y="31" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
+  <rect x="36" y="31" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
+  <!-- Containers row 2 (top) -->
+  <rect x="24" y="26.5" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
+  <rect x="30" y="26.5" width="5" height="3.8" rx="0.6" fill="#2496ED" stroke="#fff" stroke-width="0.3"/>
   <!-- Water waves -->
-  <path d="M10,46 q4,-2 8,0 q4,2 8,0 q4,-2 8,0 q4,2 8,0" fill="none" stroke="#b4d7ff" stroke-width="1.2"/>
-  <!-- K8s helm wheel -->
-  <circle cx="50" cy="16" r="9" fill="none" stroke="#fff" stroke-width="1.5"/>
-  <circle cx="50" cy="16" r="2.5" fill="#fff"/>
-  <circle cx="50" cy="16" r="1.2" fill="#326cba"/>
-  <!-- Helm spokes with bumps -->
-  <g stroke="#fff" stroke-width="1.8" stroke-linecap="round">
-    <line x1="50" y1="13.5" x2="50" y2="7"/>
-    <line x1="52.2" y1="14" x2="57" y2="9.5"/>
-    <line x1="53.3" y1="16" x2="59" y2="16"/>
-    <line x1="52.2" y1="18" x2="57" y2="22.5"/>
-    <line x1="50" y1="18.5" x2="50" y2="25"/>
-    <line x1="47.8" y1="18" x2="43" y2="22.5"/>
-    <line x1="46.7" y1="16" x2="41" y2="16"/>
-  </g>
-  <!-- Helm handle bumps -->
-  <circle cx="50" cy="6.5" r="1.8" fill="#fff"/>
-  <circle cx="57.5" cy="9" r="1.8" fill="#fff"/>
-  <circle cx="59.5" cy="16" r="1.8" fill="#fff"/>
-  <circle cx="57.5" cy="23" r="1.8" fill="#fff"/>
-  <circle cx="50" cy="25.5" r="1.8" fill="#fff"/>
-  <circle cx="42.5" cy="23" r="1.8" fill="#fff"/>
-  <circle cx="40.5" cy="16" r="1.8" fill="#fff"/>
+  <path d="M8,48 q4,-2.5 8,0 q4,2.5 8,0 q4,-2.5 8,0 q4,2.5 8,0 q4,-2.5 8,0" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.5"/>
+  <path d="M5,52 q4,-2 8,0 q4,2 8,0 q4,-2 8,0 q4,2 8,0 q4,-2 8,0 q4,2 8,0" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.3"/>
 </svg>
