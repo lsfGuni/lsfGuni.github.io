@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 한권희 | System Engineer · DevOps
+title: 한권희 | Server Engineer · DevOps
 subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드는 엔지니어
 ---
 
@@ -859,28 +859,33 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
 
 
 <script>
-  $(document).ready(function() {
-    // 펼치기/접기: jQuery slideToggle 직접 제어 (화살표만 표시)
-    $('.project-toggle').on('click', function() {
-      var $this = $(this);
-      var targetId = $this.attr('data-target');
-      var $target = $(targetId);
-      var isOpen = $this.attr('aria-expanded') === 'true';
+  // 펼치기/접기: vanilla JS (이벤트 위임, jQuery 미의존)
+  document.addEventListener('click', function(e) {
+    var toggle = e.target.closest('.project-toggle');
+    if (!toggle) return;
 
-      if (isOpen) {
-        $target.slideUp(300);
-        $this.attr('aria-expanded', 'false');
-      } else {
-        // 다른 열린 패널 먼저 닫기 (아코디언)
-        $('.project-toggle[aria-expanded="true"]').each(function() {
-          var $other = $(this);
-          $($other.attr('data-target')).slideUp(300);
-          $other.attr('aria-expanded', 'false');
-        });
-        $target.slideDown(300);
-        $this.attr('aria-expanded', 'true');
-      }
-    });
+    var targetId = toggle.getAttribute('data-target');
+    var target = document.querySelector(targetId);
+    if (!target) return;
+
+    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
+
+    if (isOpen) {
+      // 닫기
+      target.style.display = 'none';
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      // 다른 열린 패널 먼저 닫기 (아코디언)
+      document.querySelectorAll('.project-toggle[aria-expanded="true"]').forEach(function(other) {
+        var otherId = other.getAttribute('data-target');
+        var otherTarget = document.querySelector(otherId);
+        if (otherTarget) otherTarget.style.display = 'none';
+        other.setAttribute('aria-expanded', 'false');
+      });
+      // 열기
+      target.style.display = 'block';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
   });
 
   // 이메일 클립보드 복사
