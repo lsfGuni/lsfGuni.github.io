@@ -70,6 +70,7 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
   }
   .project-toggle[aria-expanded="true"] .toggle-arrow { transform: rotate(180deg); }
   .project-detail {
+    display: none;
     padding: 16px 20px;
     border: 1px solid #e0e8f0;
     border-top: none;
@@ -859,9 +860,6 @@ subtitle: 자동화와 근본 원인 해결로 안정적인 인프라를 만드�
 
 <script>
   $(document).ready(function() {
-    // 초기 상태: 모든 상세 패널 숨김
-    $('.project-detail').hide();
-
     // 펼치기/접기: jQuery slideToggle 직접 제어 (화살표만 표시)
     $('.project-toggle').on('click', function() {
       var $this = $(this);
