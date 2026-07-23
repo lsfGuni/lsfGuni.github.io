@@ -7,17 +7,43 @@ subtitle: Experience, Strengths, and Engineering Direction
 # Career
 
 안녕하세요.  
-저는 **배포 자동화와 근본 원인 분석(RCA)으로 안정적인 인프라를 만드는 엔지니어** 한권희입니다.
+저는 **배포 자동화와 근본 원인 분석(RCA)으로 안정적인 인프라를 만드는 DevOps 엔지니어** 한권희입니다.
+
+현재는 **자사 블록체인 BaaS 서비스의 AWS·온프레미스 하이브리드 인프라를 상시 운영**하며,  
+CI/CD 파이프라인, 모니터링·알림 체계, 그리고 상시 유입되는 봇·무차별 대입 공격 방어를 담당하고 있습니다.
 
 Spring 기반 백엔드 개발자로 커리어를 시작해,  
 실무에서는 **Linux 서버 구축·운영, AWS·온프레미스 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계 구축을 통한 관측성(Observability) 확보, 보안 대응, 장애 대응 및 재발 방지, 운영 절차 문서화·표준화**까지 역할을 확장해 왔습니다.
 
 최근에는 **폐쇄망(air-gapped) 환경의 LLM 서빙 인프라 구축**, 금융권 망분리 환경 연동 트러블슈팅 등  
-**제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루고 있습니다.
+**제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루면서,  
+동시에 **Kubernetes(k3s·kubeadm)와 Terraform·Ansible 기반 IaC**로 운영 방식을 전환하는 작업을 진행하고 있습니다.
 
 문제가 발생했을 때는 단순 복구에 그치지 않고,  
 **근본 원인 분석 → 해결 → 고도화 → 문서화**로 이어지는 방식으로  
 재발을 방지하고 재현 가능한 운영 체계를 만드는 것을 중요하게 생각합니다.
+
+---
+
+## Current Operations — 자사 서비스 상시 운영
+
+### ⛓️ Berith 블록체인 서비스(BaaS·Wallet·Scan) 하이브리드 인프라 운영
+
+**2024.08 ~ 현재 · DevOps / SRE 담당**
+
+> 기업용 블록체인 기록 서비스(BaaS)와 B2C 지갑·익스플로러 서비스를  
+> **AWS(EC2 7대 + RDS + OpenSearch) + 온프레미스 이중화**의 하이브리드 구성으로 상시 운영합니다.
+
+#### 운영 대상
+- **BaaS (주력, B2B)**: 삼성디스플레이 보안서약서, 롯데이노베이츠 물품관리 이력을 블록체인에 기록하는 기업용 서비스
+- **Berith Wallet / Berith Scan (B2C)**: 코인 지갑과 블록체인 익스플로러 — 지갑 서비스 특성상 **계정 탈취를 노리는 무차별 대입·봇 공격이 상시 유입**되는 환경
+- **인프라 구성**: 부트노드 2대·메인넷 노드(이더리움 계열 자체 메인넷) 포함 AWS EC2 7대, RDS, OpenSearch(체인 데이터 인덱싱·Scan 연동), Nginx 웹 계층(Route 53 기반으로 AWS와 온프레미스에 요청 라우팅), 온프레미스 이중화 서버
+
+#### 주요 성과
+- 모니터링·알림 체계 구축으로 **장애 트러블슈팅 소요 시간 1주일 → 30분 이내 단축**
+- WAF·Nginx·iptables 3계층 차단 룰로 봇 트래픽을 선제 차단하여 **AWS 비용 20% 이상 절감**
+- 이중화 구성 일부를 온프레미스로 이관하는 하이브리드 재설계로 AWS 비용 추가 절감
+- 대규모 트랜잭션 유입 시 메인넷 노드 다운, 봇 트래픽 급증 시 OS 응답 불능 등 **반복 장애를 로그 기반 RCA로 추적**하고, 차단 룰·알림 체계로 재발 방지
 
 ---
 
@@ -100,6 +126,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
+- **전환 진행 중:** Kubernetes(k3s·kubeadm) 기반 운영, Terraform·Ansible 기반 IaC — 사내 AI 에이전트 실행 플랫폼 프로젝트 참여 및 홈랩 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
 ---
@@ -112,10 +139,12 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 **Role:** Developer · DevOps · SRE
 
 #### 주요 업무
+- 자사 블록체인 서비스(BaaS·Berith Wallet·Berith Scan)의 AWS·온프레미스 하이브리드 인프라 상시 운영 — 메인넷·부트노드 노드 운영, EC2 7대·RDS·OpenSearch, 온프레미스 이중화
 - AWS(Route 53, ALB, EC2)와 온프레미스를 연동하는 하이브리드 인프라 설계·구축·운영 및 운영 절차 표준화
 - Docker 기반 Web / WAS / DB 컨테이너 운영 체계 구축·운영
-- AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 비정상 트래픽 대응
+- AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 무차별 대입·봇 트래픽 상시 대응
 - 외부 헬스체크와 내부 지표를 결합한 모니터링·알림 체계 구축으로 관측성(Observability) 확보, Slack 실시간 알림 운영
+- k3s 위 gVisor 샌드박스 기반 AI 에이전트 실행 플랫폼 구축 참여 — RuntimeClass 기반 컨테이너 격리 (진행 중)
 - Jenkins 및 스크립트 기반 CI/CD 파이프라인 구축과 빌드·테스트·배포 자동화
 - 장애 대응 시 로그 기반 근본 원인 분석(RCA) 및 재발 방지 대책 수립
 - 해외 개발자 온보딩을 위한 서버 접근, 레포지토리, 배포 절차 문서화
@@ -128,8 +157,9 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 #### 핵심 성과
 - 하이브리드 인프라 운영 기준 정립 및 운영 절차 문서화·표준화
-- 다층 보안 방어 체계 구축으로 비정상 트래픽 선제 차단, 서비스 안정성 확보
-- 모니터링·알림 자동화로 장애 인지·대응 시간 단축
+- 다층 보안 방어 체계로 봇 트래픽 선제 차단 — **AWS 비용 20% 이상 절감**, 서비스 안정성 확보
+- 모니터링·알림 자동화로 **장애 트러블슈팅 소요 시간 1주일 → 30분 이내 단축**
+- 이중화 구성 일부 온프레미스 이관으로 AWS 비용 추가 절감
 - 재현 가능한 배포 파이프라인과 운영 절차 확립
 - 원격·해외 협업 환경의 온보딩 시간 단축
 - 삼성SDR 내방객 관리시스템 카드연동 API 자동화 및 배포 안정화
@@ -161,6 +191,11 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - 폐쇄망(망분리) 환경에서 LLM 서빙 스택(게이트웨이·Text-to-SQL·STT·임베딩) 오프라인 배포·운영 경험
 - 오프라인 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 사전 빌드, 물리 반입(내부망 반입 프로세스) 절차 설계
 - LLM 게이트웨이(litellm)·IBM watsonx API 연동 구성, 토큰 만료·SSL 인증서 체인 등 제약 환경 특화 트러블슈팅
+
+### Kubernetes & IaC (전환 진행 중)
+- kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
+- 사내 AI 에이전트 실행 플랫폼 프로젝트 참여 — k3s 위 gVisor 샌드박스, RuntimeClass 기반 컨테이너 격리
+- 물리 서버 3대에 Proxmox 프라이빗 클라우드를 직접 구축하고, Terraform(VM 프로비저닝) + Ansible(k3s 설치·설정)로 **클러스터 전체를 명령 두 번으로 재현**하는 IaC 전환 진행
 
 ### CI/CD & Automation
 - Jenkins, GitLab CI, Bitbucket Pipelines 기반 CI/CD 파이프라인 구축·개선 및 배포 자동화 경험
@@ -197,11 +232,15 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ### DDoS 대응체계 구축
 AWS WAF, Nginx, iptables를 결합한 **3계층 방어 아키텍처**로  
-비정상 트래픽을 애플리케이션 도달 전에 차단하고 핵심 API의 안정성을 확보했습니다.
+무차별 대입·봇 트래픽을 애플리케이션 도달 전에 차단하여 **AWS 비용을 20% 이상 절감**하고 핵심 API의 안정성을 확보했습니다.
 
 ### 모니터링 · 알림 체계 구축
 Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반  
-외부 헬스체크 결합 모니터링과 Slack 실시간 알림으로 **장애를 사용자보다 먼저 인지**하는 체계를 만들었습니다.
+외부 헬스체크 결합 모니터링과 Slack 실시간 알림으로 **장애 트러블슈팅 소요 시간을 1주일에서 30분 이내로** 단축했습니다.
+
+### 홈랩 프라이빗 클라우드 & IaC 전환 (개인 프로젝트, 진행 중)
+물리 서버 3대에 Proxmox 프라이빗 클라우드를 구축하고,  
+Terraform + Ansible로 k3s 멀티노드 클러스터 전체를 **명령 두 번(terraform apply + ansible-playbook)으로 재현**하는 IaC 체계를 만들고 있습니다.
 
 ### 글로벌 개발 인프라 구축
 AWS와 온프레미스를 연결한 하이브리드 개발 인프라를 구축하고,  
@@ -224,6 +263,12 @@ AWS, Route 53, ALB, EC2, ECS, ECR, CodeDeploy(Blue/Green), CloudFront, Lambda, V
 
 ### AI / LLM Infrastructure
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
+
+### Container / Orchestration / IaC
+Docker, Kubernetes(k3s·kubeadm), gVisor(RuntimeClass), Terraform, Ansible, Proxmox
+
+### Blockchain Infrastructure
+이더리움 계열 자체 메인넷·부트노드 노드 운영, OpenSearch 기반 체인 데이터 인덱싱
 
 ### Server / Network
 Linux, Ubuntu, Docker, Apache HTTP Server, Apache Tomcat, Nginx, iptables, WireGuard
