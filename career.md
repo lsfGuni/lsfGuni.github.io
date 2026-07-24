@@ -137,7 +137,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, **격리 실패는 곧 시크릿 유출**이었습니다.
 
 #### 구축 내용
-- 사내 VM에 **쿠버네티스 클러스터 구축**(경량 배포판 k8s) — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
+- 사내 VM에 **쿠버네티스 클러스터 구축** — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
 - **에이전트 실행 1건 = Job 1개**로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단
 - **egress NetworkPolicy**로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관
 - **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 자동 실행
@@ -218,7 +218,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - LLM 게이트웨이(litellm)·IBM watsonx API 연동 구성, 토큰 만료·SSL 인증서 체인 등 제약 환경 특화 트러블슈팅
 
 ### Kubernetes & GitOps
-- **쿠버네티스 클러스터 직접 구축·운영**(경량 배포판 k8s) — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
+- **쿠버네티스 클러스터 직접 구축·운영** — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
 - **ArgoCD app-of-apps GitOps** — 클러스터 상태를 Git 단일 소스로 선언적 관리, 서비스별 Helm 차트와 Bitbucket Pipelines + self-hosted runner 연동
 - **워크로드 격리 설계 적용** — 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, egress NetworkPolicy 화이트리스트로 시크릿 반출 경로 차단
 - kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
