@@ -300,7 +300,7 @@ AWS, Route 53, ALB, EC2, ECS, ECR, CodeDeploy(Blue/Green), CloudFront, Lambda, V
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
 
 ### Container / Orchestration / IaC
-Docker, Kubernetes(k3s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, gVisor(RuntimeClass), Harbor, Terraform, Ansible, Proxmox
+Docker, Kubernetes(k3s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, Harbor, Terraform, Ansible, Proxmox
 
 ### Blockchain Infrastructure
 이더리움 계열 자체 메인넷·부트노드 노드 운영, OpenSearch 기반 체인 데이터 인덱싱
