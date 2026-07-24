@@ -18,7 +18,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 최근에는 **폐쇄망(air-gapped) 환경의 LLM 서빙 인프라 구축**, 금융권 망분리 환경 연동 트러블슈팅 등  
 **제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루고 있습니다.
 
-또한 사내 AI 에이전트 실행 플랫폼에서 **쿠버네티스 클러스터(k3s)와 ArgoCD GitOps 기반 배포 체계를 구축**하여,  
+또한 사내 AI 에이전트 실행 플랫폼에서 **쿠버네티스 클러스터(k8s)와 ArgoCD GitOps 기반 배포 체계를 구축**하여,  
 **Job·NetworkPolicy·RBAC로 신뢰할 수 없는 워크로드를 격리**하는 실행 인프라를 운영하고 있습니다.
 
 문제가 발생했을 때는 단순 복구에 그치지 않고,  
@@ -137,7 +137,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, **격리 실패는 곧 시크릿 유출**이었습니다.
 
 #### 구축 내용
-- 사내 VM에 **쿠버네티스 클러스터 구축**(경량 배포판 k3s) — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
+- 사내 VM에 **쿠버네티스 클러스터 구축**(경량 배포판 k8s) — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
 - **에이전트 실행 1건 = Job 1개**로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단
 - **egress NetworkPolicy**로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관
 - **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 자동 실행
@@ -150,7 +150,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
-- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 쿠버네티스 클러스터(k3s) 구축 및 ArgoCD GitOps 기반 운영 — Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
+- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 쿠버네티스 클러스터(k8s) 구축 및 ArgoCD GitOps 기반 운영 — Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
 - **전환 진행 중:** Terraform·Ansible 기반 IaC — 홈랩(Proxmox 3대) 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
@@ -218,14 +218,14 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - LLM 게이트웨이(litellm)·IBM watsonx API 연동 구성, 토큰 만료·SSL 인증서 체인 등 제약 환경 특화 트러블슈팅
 
 ### Kubernetes & GitOps
-- **쿠버네티스 클러스터 직접 구축·운영**(경량 배포판 k3s) — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
+- **쿠버네티스 클러스터 직접 구축·운영**(경량 배포판 k8s) — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
 - **ArgoCD app-of-apps GitOps** — 클러스터 상태를 Git 단일 소스로 선언적 관리, 서비스별 Helm 차트와 Bitbucket Pipelines + self-hosted runner 연동
 - **워크로드 격리 설계 적용** — 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, egress NetworkPolicy 화이트리스트로 시크릿 반출 경로 차단
 - kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
 - (관리형 쿠버네티스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터를 컨트롤플레인부터 직접 구성한 경험 기준)
 
 ### IaC (전환 진행 중)
-- 물리 서버 3대에 Proxmox 프라이빗 클라우드를 직접 구축하고, Terraform(VM 프로비저닝) + Ansible(k3s 설치·설정)로 **클러스터 전체를 명령 두 번으로 재현**하는 IaC 전환 진행
+- 물리 서버 3대에 Proxmox 프라이빗 클라우드를 직접 구축하고, Terraform(VM 프로비저닝) + Ansible(k8s 설치·설정)로 **클러스터 전체를 명령 두 번으로 재현**하는 IaC 전환 진행
 
 ### CI/CD & Automation
 - Jenkins, GitLab CI, Bitbucket Pipelines 기반 CI/CD 파이프라인 구축·개선 및 배포 자동화 경험
@@ -269,13 +269,13 @@ Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반
 외부 헬스체크 결합 모니터링과 Slack 실시간 알림으로 **장애 트러블슈팅 소요 시간을 1주일에서 30분 이내로** 단축했습니다.
 
 ### Kubernetes 기반 AI 에이전트 격리 실행 인프라
-쿠버네티스 클러스터(k3s)에서 **에이전트 실행 1건을 Job 1개로 격리**하고,  
+쿠버네티스 클러스터(k8s)에서 **에이전트 실행 1건을 Job 1개로 격리**하고,  
 전용 ServiceAccount·최소 권한 RBAC와 **egress NetworkPolicy 화이트리스트**로 시크릿 반출 경로를 차단했습니다.  
 ArgoCD app-of-apps GitOps로 **클러스터 상태를 Git 단일 소스에서 선언적으로 관리**합니다.
 
 ### 홈랩 프라이빗 클라우드 & IaC 전환 (개인 프로젝트, 진행 중)
 물리 서버 3대에 Proxmox 프라이빗 클라우드를 구축하고,  
-Terraform + Ansible로 k3s 멀티노드 클러스터 전체를 **명령 두 번(terraform apply + ansible-playbook)으로 재현**하는 IaC 체계를 만들고 있습니다.
+Terraform + Ansible로 k8s 멀티노드 클러스터 전체를 **명령 두 번(terraform apply + ansible-playbook)으로 재현**하는 IaC 체계를 만들고 있습니다.
 
 ### 글로벌 개발 인프라 구축
 AWS와 온프레미스를 연결한 하이브리드 개발 인프라를 구축하고,  
@@ -300,7 +300,7 @@ AWS, Route 53, ALB, EC2, ECS, ECR, CodeDeploy(Blue/Green), CloudFront, Lambda, V
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
 
 ### Container / Orchestration / IaC
-Docker, Kubernetes(k3s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, Harbor, Terraform, Ansible, Proxmox
+Docker, Kubernetes(k8s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, Harbor, Terraform, Ansible, Proxmox
 
 ### Blockchain Infrastructure
 이더리움 계열 자체 메인넷·부트노드 노드 운영, OpenSearch 기반 체인 데이터 인덱싱
