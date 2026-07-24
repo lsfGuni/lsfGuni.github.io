@@ -130,7 +130,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 **2026.05 ~ 진행 중 · 클러스터 구축·GitOps 배포 파이프라인 담당**
 
 > 스스로 코드를 수정하는 AI 에이전트를 안전하게 실행하기 위해,  
-> **실행 1건을 k8s Job 1개로 격리**하는 Kubernetes 인프라를 구축하고 **ArgoCD GitOps로 앱 19개를 운영**하고 있습니다.
+> **실행 1건을 k8s Job 1개로 격리**하는 Kubernetes 기반 인프라를 구축하고 있습니다.
 
 #### 문제 상황
 이전 POC에서 에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 있었습니다.  
@@ -140,13 +140,8 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - 사내 VM에 **k3s 클러스터 구축** — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
 - **에이전트 실행 1건 = k8s Job 1개**로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단
 - **egress NetworkPolicy**로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관
-- **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트 14종, 앱 19개). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 23종을 자동 실행
+- **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 자동 실행
 - 레지스트리(Harbor·Kellnr·Verdaccio)를 전량 self-host하고, Prometheus·Grafana·Tempo로 관측성 확보
-
-#### 남긴 것
-- 설계는 AI 페어 프로그래밍으로 도출하고, 구축·배포·장애 대응은 직접 수행 — 이미지 pull 시크릿 누락, NetworkPolicy가 서비스 메시 통신까지 막던 문제 등 **배포 함정을 사전 점검 체크리스트로 정리**
-- 아키텍처 의사결정 **29건을 ADR로 기록**해 대안과 채택 사유를 남김
-- 현재는 더 강한 격리인 **gVisor 샌드박스**로 전환 중
 
 ---
 
