@@ -16,8 +16,10 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 실무에서는 **Linux 서버 구축·운영, AWS·온프레미스 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계 구축을 통한 관측성(Observability) 확보, 보안 대응, 장애 대응 및 재발 방지, 운영 절차 문서화·표준화**까지 역할을 확장해 왔습니다.
 
 최근에는 **폐쇄망(air-gapped) 환경의 LLM 서빙 인프라 구축**, 금융권 망분리 환경 연동 트러블슈팅 등  
-**제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루면서,  
-동시에 **Kubernetes(k3s·kubeadm)와 Terraform·Ansible 기반 IaC**로 운영 방식을 전환하는 작업을 진행하고 있습니다.
+**제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루고 있습니다.
+
+또한 사내 AI 에이전트 실행 플랫폼에서 **k3s 클러스터와 ArgoCD GitOps 기반 배포 체계를 구축**하여,  
+**k8s Job·NetworkPolicy·RBAC로 신뢰할 수 없는 워크로드를 격리**하는 실행 인프라를 운영하고 있습니다.
 
 문제가 발생했을 때는 단순 복구에 그치지 않고,  
 **근본 원인 분석 → 해결 → 고도화 → 문서화**로 이어지는 방식으로  
@@ -123,20 +125,28 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ---
 
-### 🤖 AI 에이전트 실행 플랫폼 — k3s·gVisor 샌드박스 (진행 중)
+### 🤖 AI 에이전트 실행 플랫폼 — Kubernetes 기반 격리 실행 인프라 (사내 프로젝트, 진행 중)
 
-**진행 중 · 사내 프로젝트 · 샌드박스 실행 환경 설계·구축**
+**2026.05 ~ 진행 중 · 클러스터 구축·GitOps 배포 파이프라인 담당**
 
-> 스스로 코드를 수정하는 멀티에이전트의 특성 때문에 발생한 **"에이전트가 호스트 파일을 건드려 자기 자신을 망가뜨리는" 문제**를,  
-> k3s 위 gVisor 샌드박스 격리로 해결하는 실행 플랫폼을 설계·구축하고 있습니다.
+> 스스로 코드를 수정하는 AI 에이전트를 안전하게 실행하기 위해,  
+> **실행 1건을 k8s Job 1개로 격리**하는 Kubernetes 인프라를 구축하고 **ArgoCD GitOps로 앱 19개를 운영**하고 있습니다.
 
 #### 문제 상황
-- 이전 POC에서 멀티에이전트가 자율적으로 코드를 수정·실행하는 과정에서, 격리 공간이 없어 **에이전트가 호스트 파일을 변경해 자기 자신의 코드와 실행 환경을 훼손**하는 부작용 발생
-- 일반 컨테이너 런타임 수준의 격리로는 부족하다고 판단, 커널 수준 샌드박스 격리 아키텍처 필요
+이전 POC에서 에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 있었습니다.  
+에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, **격리 실패는 곧 시크릿 유출**이었습니다.
 
-#### 진행 중인 작업
-- k3s 클러스터 위 gVisor 샌드박스 실행 환경 구성 — **RuntimeClass로 에이전트 워크로드만 샌드박스 런타임에서 실행**하도록 분리
-- 에이전트 실행 환경의 격리 아키텍처 설계·구축 (초기 단계)
+#### 구축 내용
+- 사내 VM에 **k3s 클러스터 구축** — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
+- **에이전트 실행 1건 = k8s Job 1개**로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단
+- **egress NetworkPolicy**로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관
+- **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트 14종, 앱 19개). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 23종을 자동 실행
+- 레지스트리(Harbor·Kellnr·Verdaccio)를 전량 self-host하고, Prometheus·Grafana·Tempo로 관측성 확보
+
+#### 남긴 것
+- 설계는 AI 페어 프로그래밍으로 도출하고, 구축·배포·장애 대응은 직접 수행 — 이미지 pull 시크릿 누락, NetworkPolicy가 서비스 메시 통신까지 막던 문제 등 **배포 함정을 사전 점검 체크리스트로 정리**
+- 아키텍처 의사결정 **29건을 ADR로 기록**해 대안과 채택 사유를 남김
+- 현재는 더 강한 격리인 **gVisor 샌드박스**로 전환 중
 
 ---
 
@@ -145,7 +155,8 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
-- **전환 진행 중:** Kubernetes(k3s·kubeadm) 기반 운영, Terraform·Ansible 기반 IaC — 사내 AI 에이전트 실행 플랫폼 프로젝트 참여 및 홈랩 실습 병행
+- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 k3s 클러스터 구축 및 ArgoCD GitOps 기반 19개 애플리케이션 운영 — k8s Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
+- **전환 진행 중:** Terraform·Ansible 기반 IaC — 홈랩(Proxmox 3대) 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
 ---
@@ -163,7 +174,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - Docker 기반 Web / WAS / DB 컨테이너 운영 체계 구축·운영
 - AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 무차별 대입·봇 트래픽 상시 대응
 - 외부 헬스체크와 내부 지표를 결합한 모니터링·알림 체계 구축으로 관측성(Observability) 확보, Slack 실시간 알림 운영
-- k3s 위 gVisor 샌드박스 기반 AI 에이전트 실행 플랫폼 구축 참여 — RuntimeClass 기반 컨테이너 격리 (진행 중)
+- 사내 AI 에이전트 실행 플랫폼 인프라 구축 — k3s 클러스터, ArgoCD GitOps(Helm 차트 14종·앱 19개), k8s Job + NetworkPolicy + RBAC 기반 에이전트 격리, Linkerd mTLS, self-host 레지스트리 3종, Prometheus·Grafana·Tempo 관측성 (2026.05~, gVisor 샌드박스 전환 진행 중)
 - Jenkins 및 스크립트 기반 CI/CD 파이프라인 구축과 빌드·테스트·배포 자동화
 - 장애 대응 시 로그 기반 근본 원인 분석(RCA) 및 재발 방지 대책 수립
 - 해외 개발자 온보딩을 위한 서버 접근, 레포지토리, 배포 절차 문서화
@@ -211,9 +222,14 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - 오프라인 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 사전 빌드, 물리 반입(내부망 반입 프로세스) 절차 설계
 - LLM 게이트웨이(litellm)·IBM watsonx API 연동 구성, 토큰 만료·SSL 인증서 체인 등 제약 환경 특화 트러블슈팅
 
-### Kubernetes & IaC (전환 진행 중)
+### Kubernetes & GitOps
+- **k3s 클러스터 구축·운영** — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
+- **ArgoCD app-of-apps GitOps** — Helm 차트 14종·애플리케이션 19개를 Git 단일 소스로 선언적 관리, Bitbucket Pipelines + self-hosted runner 연동
+- **워크로드 격리 설계 적용** — 실행 1건 = k8s Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, egress NetworkPolicy 화이트리스트로 시크릿 반출 경로 차단
 - kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
-- 사내 AI 에이전트 실행 플랫폼 프로젝트 참여 — k3s 위 gVisor 샌드박스, RuntimeClass 기반 컨테이너 격리
+- (관리형 쿠버네티스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터를 컨트롤플레인부터 직접 구성한 경험 기준)
+
+### IaC (전환 진행 중)
 - 물리 서버 3대에 Proxmox 프라이빗 클라우드를 직접 구축하고, Terraform(VM 프로비저닝) + Ansible(k3s 설치·설정)로 **클러스터 전체를 명령 두 번으로 재현**하는 IaC 전환 진행
 
 ### CI/CD & Automation
@@ -257,6 +273,11 @@ AWS WAF, Nginx, iptables를 결합한 **3계층 방어 아키텍처**로
 Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반  
 외부 헬스체크 결합 모니터링과 Slack 실시간 알림으로 **장애 트러블슈팅 소요 시간을 1주일에서 30분 이내로** 단축했습니다.
 
+### Kubernetes 기반 AI 에이전트 격리 실행 인프라
+k3s 클러스터에서 **에이전트 실행 1건을 k8s Job 1개로 격리**하고,  
+전용 ServiceAccount·최소 권한 RBAC와 **egress NetworkPolicy 화이트리스트**로 시크릿 반출 경로를 차단했습니다.  
+ArgoCD app-of-apps GitOps로 **Helm 차트 14종·애플리케이션 19개**를 Git 단일 소스에서 운영합니다.
+
 ### 홈랩 프라이빗 클라우드 & IaC 전환 (개인 프로젝트, 진행 중)
 물리 서버 3대에 Proxmox 프라이빗 클라우드를 구축하고,  
 Terraform + Ansible로 k3s 멀티노드 클러스터 전체를 **명령 두 번(terraform apply + ansible-playbook)으로 재현**하는 IaC 체계를 만들고 있습니다.
@@ -284,7 +305,7 @@ AWS, Route 53, ALB, EC2, ECS, ECR, CodeDeploy(Blue/Green), CloudFront, Lambda, V
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
 
 ### Container / Orchestration / IaC
-Docker, Kubernetes(k3s·kubeadm), gVisor(RuntimeClass), Terraform, Ansible, Proxmox
+Docker, Kubernetes(k3s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, gVisor(RuntimeClass), Harbor, Terraform, Ansible, Proxmox
 
 ### Blockchain Infrastructure
 이더리움 계열 자체 메인넷·부트노드 노드 운영, OpenSearch 기반 체인 데이터 인덱싱
@@ -296,7 +317,7 @@ Linux, Ubuntu, Docker, Apache HTTP Server, Apache Tomcat, Nginx, iptables, WireG
 Jenkins, GitLab CI, Bitbucket Pipelines, Docker Compose, Git
 
 ### Monitoring / Observability
-Prometheus, Grafana, Alertmanager, Blackbox Exporter, CloudWatch
+Prometheus, Grafana, Alertmanager, Blackbox Exporter, Tempo, OpenTelemetry, CloudWatch
 
 ### Backend / Development
 Java, JavaScript, Spring
