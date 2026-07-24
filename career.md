@@ -150,7 +150,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
-- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 k3s 클러스터 구축 및 ArgoCD GitOps 기반 19개 애플리케이션 운영 — Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
+- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 쿠버네티스 클러스터(k3s) 구축 및 ArgoCD GitOps 기반 운영 — Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
 - **전환 진행 중:** Terraform·Ansible 기반 IaC — 홈랩(Proxmox 3대) 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
@@ -169,7 +169,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - Docker 기반 Web / WAS / DB 컨테이너 운영 체계 구축·운영
 - AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 무차별 대입·봇 트래픽 상시 대응
 - 외부 헬스체크와 내부 지표를 결합한 모니터링·알림 체계 구축으로 관측성(Observability) 확보, Slack 실시간 알림 운영
-- 사내 AI 에이전트 실행 플랫폼 인프라 구축 — k3s 클러스터, ArgoCD GitOps(Helm 차트 14종·앱 19개), Job + NetworkPolicy + RBAC 기반 에이전트 격리, Linkerd mTLS, self-host 레지스트리 3종, Prometheus·Grafana·Tempo 관측성 (2026.05~, gVisor 샌드박스 전환 진행 중)
+- 사내 AI 에이전트 실행 플랫폼 인프라 구축 — 쿠버네티스 클러스터(k3s), ArgoCD GitOps + Helm 배포, Job + NetworkPolicy + RBAC 기반 에이전트 격리, Linkerd mTLS, self-host 레지스트리 3종, Prometheus·Grafana·Tempo 관측성 (2026.05~, gVisor 샌드박스 전환 진행 중)
 - Jenkins 및 스크립트 기반 CI/CD 파이프라인 구축과 빌드·테스트·배포 자동화
 - 장애 대응 시 로그 기반 근본 원인 분석(RCA) 및 재발 방지 대책 수립
 - 해외 개발자 온보딩을 위한 서버 접근, 레포지토리, 배포 절차 문서화
@@ -219,7 +219,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ### Kubernetes & GitOps
 - **쿠버네티스 클러스터 직접 구축·운영**(경량 배포판 k3s) — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
-- **ArgoCD app-of-apps GitOps** — Helm 차트 14종·애플리케이션 19개를 Git 단일 소스로 선언적 관리, Bitbucket Pipelines + self-hosted runner 연동
+- **ArgoCD app-of-apps GitOps** — 클러스터 상태를 Git 단일 소스로 선언적 관리, 서비스별 Helm 차트와 Bitbucket Pipelines + self-hosted runner 연동
 - **워크로드 격리 설계 적용** — 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, egress NetworkPolicy 화이트리스트로 시크릿 반출 경로 차단
 - kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
 - (관리형 쿠버네티스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터를 컨트롤플레인부터 직접 구성한 경험 기준)
@@ -271,7 +271,7 @@ Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반
 ### Kubernetes 기반 AI 에이전트 격리 실행 인프라
 쿠버네티스 클러스터(k3s)에서 **에이전트 실행 1건을 Job 1개로 격리**하고,  
 전용 ServiceAccount·최소 권한 RBAC와 **egress NetworkPolicy 화이트리스트**로 시크릿 반출 경로를 차단했습니다.  
-ArgoCD app-of-apps GitOps로 **Helm 차트 14종·애플리케이션 19개**를 Git 단일 소스에서 운영합니다.
+ArgoCD app-of-apps GitOps로 **클러스터 상태를 Git 단일 소스에서 선언적으로 관리**합니다.
 
 ### 홈랩 프라이빗 클라우드 & IaC 전환 (개인 프로젝트, 진행 중)
 물리 서버 3대에 Proxmox 프라이빗 클라우드를 구축하고,  
