@@ -56,7 +56,8 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 **2026.05 ~ 2026.06 · 폐쇄망 인프라 단독 담당 (총 5인 중 인프라 1인)**
 
 > 인터넷이 차단되고 **USB 반입이 단방향(반출 불가)** 인 환경에 AI 서비스 5종과 게이트웨이를 배포했습니다.  
-> 실패 한 번이 하루를 날리는 조건에서 **"내부에서는 빌드하지 않는다"** 로 전략을 바꿔, 반입-배포 1사이클을 **1일 → 30분**으로 줄였습니다.
+> 번들 누락 하나가 사이클 전체를 되돌리는 조건에서 **"내부에서는 빌드하지 않는다"** 로 전략을 바꿔,  
+> 반입-배포 1사이클을 **5시간+ → 30분**으로 줄였습니다.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -84,85 +85,94 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
   <text x="442" y="124" text-anchor="middle" font-size="10" fill="#FDF2E0">타깃 아키텍처 linux/amd64 명시</text>
   <path d="M572,111 L616,111" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
   <rect x="625" y="80" width="230" height="62" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
-  <text x="740" y="105" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">USB 물리 반입</text>
+  <text x="740" y="105" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">USB 적재 · 물리 반입</text>
   <text x="740" y="124" text-anchor="middle" font-size="10" fill="#DDE1E3">단방향 — 한 번 들어가면 반출 불가</text>
 
   <path d="M20,182 L900,182" stroke="#C0392B" stroke-width="2" stroke-dasharray="8 5"/>
   <text x="30" y="176" font-size="11" font-weight="700" fill="#C0392B">에어갭 경계</text>
-  <text x="898" y="176" text-anchor="end" font-size="10.5" fill="#C0392B">반입 실패 1건 = 재빌드 후 하루 왕복 → “내부에서는 빌드하지 않는다”</text>
+  <text x="898" y="176" text-anchor="end" font-size="10.5" fill="#C0392B">번들 누락 1건 = 사이클 전체 재실행 → “내부에서는 빌드하지 않는다”</text>
   <path d="M740,144 L740,202" stroke="#C0392B" stroke-width="2" marker-end="url(#agArrowR)"/>
 
   <rect x="30" y="208" width="700" height="360" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
   <text x="46" y="228" font-size="11" font-weight="700" fill="#1B4F72">폐쇄망 워크스테이션 1대 · GPU 16GB VRAM</text>
 
-  <rect x="55" y="244" width="150" height="46" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
-  <text x="130" y="272" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">사용자</text>
-  <path d="M130,292 L130,320" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <rect x="48" y="246" width="118" height="44" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
+  <text x="107" y="273" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">사용자</text>
+  <path d="M107,292 L107,324" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
 
-  <rect x="55" y="328" width="150" height="58" rx="8" fill="url(#agPurple)" filter="url(#agShadow)"/>
-  <text x="130" y="352" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">DevAX 프런트엔드</text>
-  <text x="130" y="370" text-anchor="middle" font-size="9.5" fill="#E8DAEF">멀티 에이전트 플랫폼 · 진입점</text>
-  <path d="M207,357 L241,357" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <rect x="48" y="330" width="118" height="58" rx="8" fill="url(#agPurple)" filter="url(#agShadow)"/>
+  <text x="107" y="354" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">DevAX</text>
+  <text x="107" y="371" text-anchor="middle" font-size="9.5" fill="#E8DAEF">프런트엔드 · 진입점</text>
 
-  <rect x="245" y="328" width="150" height="58" rx="8" fill="url(#agOrange)" filter="url(#agShadow)"/>
-  <text x="320" y="352" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">litellm 게이트웨이</text>
-  <text x="320" y="370" text-anchor="middle" font-size="9.5" fill="#FDF2E0">모델 호출 단일 창구</text>
+  <path d="M168,359 L184,359" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M184,266 L184,422" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M184,266 L196,266" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <path d="M184,318 L196,318" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <path d="M184,370 L196,370" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <path d="M184,422 L196,422" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
 
-  <path d="M397,357 L415,357" stroke="#7F8C8D" stroke-width="2"/>
-  <path d="M415,262 L415,418" stroke="#7F8C8D" stroke-width="2"/>
-  <path d="M415,262 L431,262" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
-  <path d="M415,314 L431,314" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
-  <path d="M415,366 L431,366" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
-  <path d="M415,418 L431,418" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <rect x="200" y="244" width="230" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+  <text x="315" y="263" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">WrenAI</text>
+  <text x="315" y="279" text-anchor="middle" font-size="9.5" fill="#D6EAF8">SQL 분석·질의 자동생성 · systemd</text>
+  <rect x="200" y="296" width="230" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+  <text x="315" y="315" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">보안성검토 에이전트</text>
+  <text x="315" y="331" text-anchor="middle" font-size="9.5" fill="#D6EAF8">애플리케이션 보안성 검토 · systemd</text>
+  <rect x="200" y="348" width="230" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+  <text x="315" y="367" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">ai-gateway</text>
+  <text x="315" y="383" text-anchor="middle" font-size="9.5" fill="#D6EAF8">문서 업로드 기반 보안성 검토 · systemd</text>
+  <rect x="200" y="400" width="230" height="44" rx="7" fill="url(#agGray)" filter="url(#agShadow)"/>
+  <text x="315" y="419" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">chat-bot</text>
+  <text x="315" y="435" text-anchor="middle" font-size="9.5" fill="#DDE1E3">현장 개발 서비스 — watsonx 연동·배포 담당 · Docker</text>
 
-  <rect x="435" y="240" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
-  <text x="570" y="259" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">WrenAI</text>
-  <text x="570" y="275" text-anchor="middle" font-size="9.5" fill="#D6EAF8">SQL 분석·질의 자동생성 · systemd</text>
-  <rect x="435" y="292" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
-  <text x="570" y="311" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">보안성검토 에이전트</text>
-  <text x="570" y="327" text-anchor="middle" font-size="9.5" fill="#D6EAF8">애플리케이션 보안성 검토 · systemd</text>
-  <rect x="435" y="344" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
-  <text x="570" y="363" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">ai-gateway</text>
-  <text x="570" y="379" text-anchor="middle" font-size="9.5" fill="#D6EAF8">문서 업로드 기반 보안성 검토 · systemd</text>
-  <rect x="435" y="396" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
-  <text x="570" y="415" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">chat-bot</text>
-  <text x="570" y="431" text-anchor="middle" font-size="9.5" fill="#D6EAF8">사내 정보보안 서비스 안내 · Docker</text>
+  <path d="M432,266 L448,266" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M432,318 L448,318" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M432,370 L448,370" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M432,422 L448,422" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M448,266 L448,432" stroke="#7F8C8D" stroke-width="2"/>
+  <path d="M448,306 L466,306" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <path d="M448,432 L466,432" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
 
-  <path d="M570,440 L570,464" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
-  <rect x="435" y="470" width="270" height="54" rx="7" fill="url(#agGreen)" filter="url(#agShadow)"/>
-  <text x="570" y="491" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">STT 서빙 (로컬 GPU)</text>
-  <text x="570" y="509" text-anchor="middle" font-size="9.5" fill="#DFF0D8">유일한 자체 서빙 모델 — 16GB VRAM 전량 배분</text>
+  <rect x="468" y="276" width="162" height="60" rx="8" fill="url(#agOrange)" filter="url(#agShadow)"/>
+  <text x="549" y="301" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">litellm 게이트웨이</text>
+  <text x="549" y="319" text-anchor="middle" font-size="9.5" fill="#FDF2E0">모델 호출 단일 창구</text>
 
-  <text x="46" y="552" font-size="10" fill="#1B4F72">상시 기동 4종 = systemd 서비스 · chat-bot = Docker 컨테이너 (모든 의존성 포함 이미지)</text>
+  <rect x="468" y="402" width="162" height="60" rx="8" fill="url(#agGreen)" filter="url(#agShadow)"/>
+  <text x="549" y="427" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">STT 서빙 (로컬 GPU)</text>
+  <text x="549" y="445" text-anchor="middle" font-size="9.5" fill="#DFF0D8">유일한 자체 서빙 모델</text>
+
+  <text x="46" y="497" font-size="10" fill="#1B4F72">DevAX·WrenAI·보안성검토·ai-gateway = systemd 서비스 · chat-bot = Docker 컨테이너 (모든 의존성 포함 이미지)</text>
+  <text x="46" y="524" font-size="10" fill="#7B5BA6">※ POC 시점 DevAX는 격리 인프라 없이 systemd 구동 — 여기서 드러난 “에이전트가 자기 실행 환경을 수정” 문제가</text>
+  <text x="46" y="540" font-size="10" fill="#7B5BA6">   이후 사내 Kubernetes 샌드박스(실행 1건 = Job 1개) 구축의 출발점이 됨</text>
 
   <rect x="752" y="208" width="148" height="360" rx="10" fill="#F4F6F7" stroke="#B2BABB" stroke-width="1.5" stroke-dasharray="6 4"/>
   <text x="768" y="228" font-size="11" font-weight="700" fill="#566573">협력사망</text>
   <text x="768" y="244" font-size="9.5" fill="#7F8C8D">스위치 허브 연동</text>
-  <path d="M707,330 L764,330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
-  <rect x="768" y="296" width="116" height="80" rx="8" fill="url(#agTeal)" filter="url(#agShadow)"/>
-  <text x="826" y="330" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">IBM watsonx</text>
-  <text x="826" y="348" text-anchor="middle" font-size="9.5" fill="#D6F0EE">LLM 추론 API</text>
+  <path d="M632,306 L764,306" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+  <rect x="768" y="266" width="116" height="80" rx="8" fill="url(#agTeal)" filter="url(#agShadow)"/>
+  <text x="826" y="300" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">IBM watsonx</text>
+  <text x="826" y="318" text-anchor="middle" font-size="9.5" fill="#D6F0EE">LLM 추론 API</text>
 
   <text x="460" y="588" text-anchor="middle" font-size="10.5" fill="#566573">GPU 16GB 제약 → LLM 추론은 전량 watsonx API로 위임하고, GPU는 STT 전용으로 배분</text>
 </svg>
 
 #### 문제 상황
 - 인터넷·패키지 저장소·CI/CD가 모두 없는 환경 — `pip install` 한 줄도 동작하지 않는 곳에서 AI 서비스 5종을 구동해야 했습니다.
-- **USB는 한 번 반입하면 반출할 수 없어**, 번들에 하나라도 빠지면 외부에서 다시 만들어 재반입하는 하루 왕복이 발생했습니다. 사전 조사도 제한돼 워크스테이션 사양을 미리 확인할 수 없었습니다.
-- 결정적으로 **개발 환경(ARM)과 실제 배정된 워크스테이션(x86_64)의 CPU 아키텍처가 달랐고**, 이 사실이 반입 후에야 드러났습니다.
+- 1사이클은 **빌드 → USB 적재 → 물리 반입 → 기동**인데, **USB는 한 번 반입하면 반출할 수 없습니다.** 기동 단계에서 번들 누락이 발견되면 사외로 나가 처음부터 다시 돌려야 했고, 초기에는 한 사이클에 5시간 이상이 걸렸습니다.
+- 사전 조사도 제한돼 워크스테이션 사양을 미리 확인할 수 없었고, 결정적으로 **개발 환경(ARM)과 실제 배정된 워크스테이션(x86_64)의 CPU 아키텍처가 달랐다는 사실이 반입 후에야 드러났습니다.**
 
 #### 해결 과정
-- **"내부에서 빌드하지 않는다"로 전략 전환** — 실패 비용이 비대칭인 환경(반입 실패 = 하루 왕복)에서는 내부 빌드가 최대 리스크였습니다. 외부에서 **모든 의존성이 포함된 즉시 구동 가능한 이미지**를 완성해 반입하고 내부 작업은 적재·기동만 남기는 방식으로 바꿔, 1사이클을 **30분**으로 단축
+- **"내부에서 빌드하지 않는다"로 전략 전환** — 실패 비용이 비대칭인 환경에서는 내부 빌드가 최대 리스크였습니다. 외부에서 **모든 의존성이 포함된 즉시 구동 가능한 이미지**를 완성해 반입하고 내부 작업은 적재·기동만 남기는 방식으로 바꿔, 1사이클을 **최소 30분**까지 단축
 - **CPU 아키텍처 불일치 규명·해결** — ARM에서 빌드한 이미지와 wheel은 x86_64에서 실행 자체가 불가능(`exec format error`)합니다. 이를 원인으로 특정하고 **타깃 아키텍처(linux/amd64)를 명시해 전 산출물을 재빌드**
 - **16GB VRAM 한 장에 맞춘 워크로드 배치** — 5개 서비스의 모델을 모두 로컬에 올릴 수 없어, **LLM 추론은 전량 watsonx API로 위임하고 GPU는 STT 전용으로 배분**. litellm을 모델 호출 단일 창구로 두어 서비스별 연동 코드를 분리
-- **서비스 성격에 맞춘 배포 방식 선택** — 상시 기동이 필요한 4종(DevAX·WrenAI·보안성검토·ai-gateway)은 systemd 서비스로, 의존성이 무거운 chat-bot은 컨테이너로 배포
+- **서비스 성격에 맞춘 배포 방식 선택** — 상시 기동이 필요한 4종(DevAX·WrenAI·보안성검토·ai-gateway)은 systemd 서비스로, 현장 개발자가 만들던 chat-bot은 컨테이너로 배포하고 **watsonx 연동을 담당**
 - 외부 빌드 환경조차 제공되지 않아 **개인 장비를 사외로 반출해 LTE 테더링으로 빌드**하는 방식으로 반입 파이프라인을 유지
 - 도입에 회의적이던 현장 이해관계자와 **신뢰 관계를 먼저 구축**하고, 고객사 PM과 기존 개발진 사이의 커뮤니케이션을 조율하여 프로젝트를 정상 궤도로 복원
 
 #### 성과
 - **POC 완료** — 전 서비스 정상 동작 시연, 고객사 임원 보고 긍정 평가로 **2026년 9월 후속 단계 진행 확정**
-- 반입-배포 1사이클 **1일 → 30분 (약 95% 단축)**
+- 반입-배포 1사이클 **5시간+ → 30분 (약 90% 단축)**
 - 폐쇄망 AI 서비스 5종 + 게이트웨이 전체를 **단독으로 배포·기동**
+- **다음 프로젝트의 출발점을 만듦** — 이 POC에서 DevAX는 격리 인프라 없이 systemd로 구동했는데, 여기서 **에이전트가 자기 실행 환경을 수정하는 문제**가 드러났습니다. 이 경험이 아래 **Kubernetes 샌드박스 구축**으로 이어졌습니다.
 
 **Tech:** litellm(LLM Gateway), IBM watsonx API, WrenAI, STT 모델 로컬 서빙, Docker(멀티 아키텍처 빌드), systemd, Linux(x86_64), GPU/CUDA, deb·wheel 오프라인 번들링, Yarn Berry 오프라인 빌드
 
@@ -229,8 +239,9 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 > **실행 1건을 Job 1개로 격리**하는 쿠버네티스 기반 인프라를 구축하고 있습니다.
 
 #### 문제 상황
-이전 POC에서 에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 있었습니다.  
-에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, sandbox 인프라가 필요했습니다.
+**위 삼성디스플레이 POC에서 이어진 과제입니다.** 그때 DevAX는 격리 인프라 없이 systemd로 구동했는데,  
+에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 발생했습니다.  
+에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, 실행 단위를 격리하는 sandbox 인프라가 필요했습니다.
 
 #### 구축 내용
 - 사내 VM에 **쿠버네티스 클러스터 구축** — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
@@ -273,7 +284,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - 온프레미스 서버실 구축 및 VM 백업·재해복구(DR) 체계 운영
 - **삼성SDR 파견 (2025.09 ~ 2026.03):** Spring MVC 기반 내방객 관리시스템 풀스택 개발, 카드사 연동 REST API 설계·개발, JBoss 배포 전략 수립
 - 하나증권 AI 협업솔루션 POC 그룹웨어 어댑터 엔지니어링 — 금융권 망분리 환경 SSO/DRM/인사연동 (2026.05~07, 완료)
-- 삼성디스플레이 폐쇄망 AI 플랫폼 구축 — AI POC (2026.05~06), 반입-배포 사이클 1일→30분 단축, 9월 후속 단계 확정
+- 삼성디스플레이 폐쇄망 AI 플랫폼 구축 — AI POC (2026.05~06), 반입-배포 사이클 5시간+→30분 단축, 9월 후속 단계 확정
 - KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 문서 없는 운영 계정을 CLI로 역분석해 동등 환경 재현, ECS Fargate·CodeDeploy Blue/Green, IAM 최소권한, DNS 위임 이슈 규명
 
 #### 핵심 성과
@@ -355,7 +366,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ### 폐쇄망 AI 플랫폼 구축
 USB 반입이 단방향인 폐쇄망에 AI 서비스 5종을 배포하면서, 실패 비용이 비대칭인 조건에서  
-**"내부에서는 빌드하지 않는다"** 로 전략을 바꿔 반입-배포 사이클을 **1일 → 30분으로 단축**했습니다.
+**"내부에서는 빌드하지 않는다"** 로 전략을 바꿔 반입-배포 사이클을 **5시간+ → 30분으로 단축**했습니다.
 
 ### 운영 환경 역분석 기반 스테이징 구축
 아는 사람도 문서도 없는 운영 AWS 계정을 CLI로 역분석해 **동등한 스테이징 환경을 혼자 구축**하고,  
