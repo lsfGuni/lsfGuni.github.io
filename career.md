@@ -15,11 +15,11 @@ CI/CD 파이프라인, 모니터링·알림 체계, 그리고 상시 유입되�
 Spring 기반 백엔드 개발자로 커리어를 시작해,  
 실무에서는 **Linux 서버 구축·운영, AWS·온프레미스 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계 구축을 통한 관측성(Observability) 확보, 보안 대응, 장애 대응 및 재발 방지, 운영 절차 문서화·표준화**까지 역할을 확장해 왔습니다.
 
-최근에는 **폐쇄망(air-gapped) 환경의 LLM 서빙 인프라 구축**, 금융권 망분리 환경 연동 트러블슈팅 등  
+최근에는 **폐쇄망(air-gapped) 환경의 AI 플랫폼 배포**, 금융권 망분리 환경 연동 트러블슈팅 등  
 **제약이 큰 환경에서 서비스를 안정적으로 동작시키는 문제**를 주로 다루고 있습니다.
 
 또한 사내 AI 에이전트 실행 플랫폼에서 **쿠버네티스 클러스터(k8s)와 ArgoCD GitOps 기반 배포 체계를 구축**하여,  
-**Job·NetworkPolicy·RBAC로 신뢰할 수 없는 워크로드를 격리**하는 실행 인프라를 운영하고 있습니다.
+**실행 1건 = Job 1개**로 신뢰할 수 없는 워크로드를 격리하는 실행 인프라를 구축하고 있습니다.
 
 문제가 발생했을 때는 단순 복구에 그치지 않고,  
 **근본 원인 분석 → 해결 → 고도화 → 문서화**로 이어지는 방식으로  
@@ -231,12 +231,12 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ---
 
-### 🤖 AI 에이전트 실행 플랫폼 — Kubernetes 기반 격리 실행 인프라 (사내 프로젝트, 진행 중)
+### 🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라 (사내 프로젝트, 구축 중)
 
-**2026.05 ~ 진행 중 · 클러스터 구축·GitOps 배포 파이프라인 담당**
+**2026.05 ~ 진행 중 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 서비스 오픈 전 단계**
 
-> 스스로 코드를 수정하는 AI 에이전트를 안전하게 실행하기 위해,  
-> **실행 1건을 Job 1개로 격리**하는 쿠버네티스 기반 인프라를 구축하고 있습니다.
+> 위 삼성디스플레이 POC에서 드러난 **"에이전트가 자기 실행 환경을 수정하는"** 문제를 풀기 위해,  
+> **실행 1건을 Job 1개로 격리**하는 쿠버네티스 인프라를 구축하고 있습니다.
 
 #### 문제 상황
 **위 삼성디스플레이 POC에서 이어진 과제입니다.** 그때 DevAX는 격리 인프라 없이 systemd로 구동했는데,  
@@ -244,11 +244,16 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, 실행 단위를 격리하는 sandbox 인프라가 필요했습니다.
 
 #### 구축 내용
-- 사내 VM에 **쿠버네티스 클러스터 구축** — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용
-- **에이전트 실행 1건 = Job 1개**로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단
-- **egress NetworkPolicy**로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관
-- **ArgoCD app-of-apps**로 클러스터 상태를 Git에서 관리(Helm 차트). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크 검증 자동 실행
-- 레지스트리(Harbor·Kellnr·Verdaccio)를 전량 self-host하고, Prometheus·Grafana·Tempo로 관측성 확보
+- **k3s 클러스터 직접 구축** — 사내 VM에 컨트롤플레인·워커를 분리 구성, 기본 traefik을 ingress-nginx로 교체하고 Linkerd 서비스 메시로 서비스 간 mTLS 적용
+- **에이전트 실행 1건 = Job 1개**로 격리 — 전용 네임스페이스(`agent-jobs`)와 전용 ServiceAccount를 부여하고, Job 생성 시 `backoffLimit=0`(실패 재시도 없음) · `activeDeadlineSeconds`(무한 대기 차단) · `ttlSecondsAfterFinished`(완료 Job 자동 정리)를 지정
+- **ArgoCD app-of-apps GitOps** — 루트 Application 1개가 자식 18개를 관리하고, Helm 차트 14종을 Git 단일 소스에서 선언적으로 배포. Bitbucket Pipelines + self-hosted runner 연동
+- **레지스트리 3종 self-host** — Harbor(컨테이너 이미지)·Kellnr(Rust crate)·Verdaccio(npm)를 사내에 직접 운영
+- **설계 판단을 ADR 28건으로 문서화** — Linkerd 도입, app-of-apps finalizer 표준화, Sealed Secrets 도입, 멀티테넌시 스키마 분리 등
+
+#### 현재 상태 — 서비스 오픈 전 단계입니다
+- **에이전트 실행 1차 관통 완료** (2026-05-29) — 자동 검증 23종 전체 통과
+- **egress NetworkPolicy는 적용 후 의도적으로 비활성** — 화이트리스트에 **Linkerd 컨트롤 플레인 포트**(destination 8086 / policy 8090 / identity 8080)를 넣지 않아 사이드카가 막히면서, 컨트롤러가 JWKS를 가져오지 못해 hang → 포트 바인딩 실패 → liveness 실패 → **`Exit 137`(SIGKILL)**. 원인을 여기까지 추적한 뒤 **재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서화**하고 현재는 끈 상태로 관리하고 있습니다
+- **실격리(microVM)와 사용자 화면은 미착수** — 현재는 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 남겨두고 리스크로 명시 관리 중입니다
 
 ---
 
@@ -257,7 +262,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
-- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 쿠버네티스 클러스터(k8s) 구축 및 ArgoCD GitOps 기반 운영 — Job·NetworkPolicy·RBAC 기반 워크로드 격리 (관리형 서비스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터 구축·운영 기준)
+- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 **k3s 클러스터 직접 구축 + ArgoCD app-of-apps GitOps 배포 체계 구성** — 실행 1건 = Job 1개 격리, 전용 네임스페이스·ServiceAccount·RBAC (관리형 서비스(EKS·GKE) 경험은 없으며 self-managed 클러스터 구축 기준. 서비스 오픈 전 단계로, 상용 운영 경험은 아닙니다)
 - **전환 진행 중:** Terraform·Ansible 기반 IaC — 홈랩(Proxmox 3대) 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
@@ -326,10 +331,10 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - 제한된 GPU 자원에서 로컬 서빙과 원격 API 위임을 나누는 **워크로드 배치 판단** 경험
 
 ### Kubernetes & GitOps
-- **쿠버네티스 클러스터 직접 구축·운영** — ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), Sealed Secrets, Prometheus·Grafana·Tempo·OpenTelemetry 관측성 스택
+- **k3s 클러스터 직접 구축** — 컨트롤플레인·워커 분리, ingress-nginx 교체 구성, Linkerd 서비스 메시(mTLS), OpenTelemetry·Tempo 트레이싱
 - **ArgoCD app-of-apps GitOps** — 클러스터 상태를 Git 단일 소스로 선언적 관리, 서비스별 Helm 차트와 Bitbucket Pipelines + self-hosted runner 연동
-- **워크로드 격리 설계 적용** — 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, egress NetworkPolicy 화이트리스트로 시크릿 반출 경로 차단
-- kubeadm으로 컨트롤플레인·워커 클러스터를 직접 구축한 경험 — 관리형 서비스에 가려진 클러스터 내부 구조를 손으로 익힘
+- **워크로드 격리 구성** — 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·최소 권한 RBAC, `backoffLimit=0`·`activeDeadlineSeconds`·`ttlSecondsAfterFinished`로 재시도·무한 대기·잔여 리소스 차단
+- **egress NetworkPolicy 트러블슈팅** — 화이트리스트에 Linkerd 컨트롤 플레인 포트가 빠져 사이드카가 막히며 `Exit 137`로 죽는 현상을 추적, 재활성 조건을 문서화 (현재 비활성 상태로 관리)
 - (관리형 쿠버네티스(EKS·GKE) 운영 경험은 없으며, self-managed 클러스터를 컨트롤플레인부터 직접 구성한 경험 기준)
 
 ### IaC (전환 진행 중)
@@ -383,7 +388,7 @@ Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반
 
 ### Kubernetes 기반 AI 에이전트 격리 실행 인프라
 쿠버네티스 클러스터(k8s)에서 **에이전트 실행 1건을 Job 1개로 격리**하고,  
-전용 ServiceAccount·최소 권한 RBAC와 **egress NetworkPolicy 화이트리스트**로 시크릿 반출 경로를 차단했습니다.  
+전용 네임스페이스·ServiceAccount·최소 권한 RBAC와 Job 옵션(`backoffLimit=0`·deadline·TTL)으로 실행 단위를 봉인했습니다.  
 ArgoCD app-of-apps GitOps로 **클러스터 상태를 Git 단일 소스에서 선언적으로 관리**합니다.
 
 ### 홈랩 프라이빗 클라우드 & IaC 전환 (개인 프로젝트, 진행 중)
@@ -413,7 +418,7 @@ AWS, Route 53(Reusable Delegation Set, Alias Record), ACM, ALB, EC2, ECS(Fargate
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
 
 ### Container / Orchestration / IaC
-Docker, Kubernetes(k8s·kubeadm), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC·Sealed Secrets, Harbor, Terraform, Ansible, Proxmox
+Docker, Kubernetes(k3s), Helm, ArgoCD(GitOps·app-of-apps), Linkerd(mTLS), NetworkPolicy·RBAC, Harbor·Kellnr·Verdaccio, Terraform, Ansible, Proxmox
 
 ### Blockchain Infrastructure
 이더리움 계열 자체 메인넷·부트노드 노드 운영, OpenSearch 기반 체인 데이터 인덱싱

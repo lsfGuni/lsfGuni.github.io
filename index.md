@@ -206,7 +206,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 폐쇄망 AI 플랫폼 배포부터 DDoS 3계층 방어, Blue/Green 무중단 배포까지 단독 수행해 온 DevOps 엔지니어
 </p>
 
-Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. 사내 AI 에이전트 실행 플랫폼에서는 쿠버네티스 클러스터와 ArgoCD GitOps 배포 체계를 구축하여, Job·NetworkPolicy·RBAC로 신뢰할 수 없는 워크로드를 격리하는 실행 인프라를 운영하고 있습니다.
+Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축하며, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들고 있습니다(서비스 오픈 전 단계).
 
 </div>
 
@@ -262,7 +262,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <strong>CI/CD & Automation</strong> — Jenkins, GitLab CI, Bitbucket Pipelines 기반 CI/CD 파이프라인 구축·개선, CodeDeploy Blue/Green 무중단 배포, 반복 작업 자동화 및 절차 표준화
 </div>
 <div class="strength-item">
-  <strong>Kubernetes &amp; GitOps</strong> — 쿠버네티스 클러스터 구축, ArgoCD app-of-apps로 클러스터 상태를 Git에서 선언적 관리, Job + RBAC + egress NetworkPolicy 기반 워크로드 격리. 관리형(EKS·GKE)이 아닌 self-managed 클러스터를 직접 구성한 경험
+  <strong>Kubernetes &amp; GitOps</strong> — k3s 클러스터 직접 구축(컨트롤플레인·워커 분리), ArgoCD app-of-apps로 루트 1개 + 자식 18개 앱을 Git에서 선언적 관리, 실행 1건 = Job 1개 + 전용 네임스페이스·ServiceAccount·RBAC 격리. 관리형(EKS·GKE)이 아닌 self-managed 기준이며, 서비스 오픈 전 구축 단계
 </div>
 <div class="strength-item">
   <strong>IaC (전환 진행 중)</strong> — Proxmox 3대 홈랩을 Terraform(VM 프로비저닝) + Ansible(k8s 설치·설정)로 코드화, 명령 두 번으로 클러스터 전체 재현
@@ -356,18 +356,18 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (진행 중) -->
   <div class="project-toggle" data-target="#proj-ai-agent" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 기반 격리 실행 인프라</h4>
-    <p class="proj-meta">2026.05 ~ 진행 중 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당</p>
-    <p class="proj-summary">스스로 코드를 수정하는 AI 에이전트를 안전하게 실행하기 위해, 실행 건당 Job 1개로 격리하는 쿠버네티스 기반 인프라 구축</p>
+    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라 (구축 중)</h4>
+    <p class="proj-meta">2026.05 ~ 진행 중 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 서비스 오픈 전 단계</p>
+    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, 실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축 중. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱 선언적 배포</p>
     <div>
-      <span class="tech-tag">Kubernetes</span>
-      <span class="tech-tag">k8s</span>
-      <span class="tech-tag">ArgoCD</span>
+      <span class="tech-tag">Kubernetes (k3s)</span>
+      <span class="tech-tag">ArgoCD (app-of-apps)</span>
       <span class="tech-tag">Helm</span>
       <span class="tech-tag">NetworkPolicy</span>
       <span class="tech-tag">RBAC</span>
-      <span class="tech-tag">Linkerd</span>
-      <span class="tech-tag">Sealed Secrets</span>
+      <span class="tech-tag">Linkerd (mTLS)</span>
+      <span class="tech-tag">Harbor</span>
+      <span class="tech-tag">OpenTelemetry</span>
     </div>
   </div>
   <div id="proj-ai-agent" class="project-detail">
@@ -376,13 +376,19 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
     <h5>What I Did</h5>
     <ul>
-      <li>사내 VM에 <strong>쿠버네티스 클러스터 구축</strong> — 기본 traefik을 ingress-nginx로 교체하고, Linkerd 서비스 메시로 서비스 간 mTLS 적용</li>
-      <li><strong>에이전트 실행 1건 = Job 1개</strong>로 격리. 전용 네임스페이스와 최소 권한 ServiceAccount를 부여하고, 실패 재실행·무한 대기·잔여 리소스를 Job 옵션으로 차단</li>
-      <li><strong>egress NetworkPolicy</strong>로 에이전트 Pod의 아웃바운드를 사내 서비스와 모델 API로만 제한해 시크릿이 밖으로 나갈 경로를 차단. API 키는 Sealed Secrets로 Git에 암호문 보관</li>
-      <li><strong>ArgoCD app-of-apps</strong>로 클러스터 상태를 Git에서 관리(Helm 차트). Bitbucket Pipelines + self-hosted runner로 배포하고, 배포 후 스모크검증 자동 실행</li>
-      <li>레지스트리(Harbor·Kellnr·Verdaccio)를 전량 self-host하고, Prometheus·Grafana·Tempo로 관측성 확보</li>
+      <li><strong>k3s 클러스터 직접 구축</strong> — 사내 VM에 컨트롤플레인·워커를 분리 구성, 기본 traefik을 ingress-nginx로 교체하고 Linkerd 서비스 메시로 서비스 간 mTLS 적용</li>
+      <li><strong>에이전트 실행 1건 = Job 1개</strong>로 격리 — 전용 네임스페이스(<code>agent-jobs</code>)와 전용 ServiceAccount를 부여하고, Job 생성 시 <code>backoffLimit=0</code>(실패 재시도 없음) · <code>activeDeadlineSeconds</code>(무한 대기 차단) · <code>ttlSecondsAfterFinished</code>(완료 Job 자동 정리)를 지정</li>
+      <li><strong>egress NetworkPolicy 적용 후 트러블슈팅</strong> — 화이트리스트에 Linkerd 컨트롤 플레인 포트(destination 8086 / policy 8090 / identity 8080)를 넣지 않아 사이드카가 막히며 컨트롤러가 hang → liveness 실패 → <code>Exit 137</code>(SIGKILL). 원인을 추적해 <strong>재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서화</strong>하고, 현재는 비활성 상태로 관리 중</li>
+      <li><strong>ArgoCD app-of-apps GitOps</strong> — 루트 Application 1개가 자식 18개를 관리하고, Helm 차트 14종을 Git 단일 소스에서 선언적 배포. Bitbucket Pipelines + self-hosted runner 연동</li>
+      <li>레지스트리 3종(Harbor·Kellnr·Verdaccio)을 전량 self-host하고, OpenTelemetry·Tempo로 분산 트레이싱 구성. 설계 판단은 ADR 28건으로 문서화</li>
     </ul>
 
+    <h5>현재 상태 — 서비스 오픈 전 단계입니다</h5>
+    <ul>
+      <li><strong>에이전트 실행 1차 관통 완료</strong> (2026-05-29) — 자동 검증 23종 전체 통과</li>
+      <li><strong>egress NetworkPolicy는 위 사유로 현재 비활성</strong> — 재활성 조건을 정의해 두고 관리 중</li>
+      <li><strong>실격리(microVM)와 사용자 화면은 미착수</strong> — 현재는 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 리스크에 명시 관리 중</li>
+    </ul>
   </div>
 
   <!-- 프로젝트 0-1: 하나증권 그룹웨어 어댑터 (2026.05 ~ 진행중) -->
