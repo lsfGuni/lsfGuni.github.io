@@ -203,7 +203,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 
 <p class="hook-text" style="text-align:center;">
 자사 블록체인 서비스를 AWS·온프레미스 하이브리드로 상시 운영하며,<br>
-폐쇄망 LLM 서빙 인프라부터 DDoS 3계층 방어, Blue/Green 무중단 배포까지 단독 수행해 온 DevOps 엔지니어
+폐쇄망 AI 플랫폼 배포부터 DDoS 3계층 방어, Blue/Green 무중단 배포까지 단독 수행해 온 DevOps 엔지니어
 </p>
 
 Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. 사내 AI 에이전트 실행 플랫폼에서는 쿠버네티스 클러스터와 ArgoCD GitOps 배포 체계를 구축하여, Job·NetworkPolicy·RBAC로 신뢰할 수 없는 워크로드를 격리하는 실행 인프라를 운영하고 있습니다.
@@ -256,7 +256,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 <div class="section-title">Core Strengths</div>
 
 <div class="strength-item">
-  <strong>Air-gapped / AI Platform</strong> — 폐쇄망(망분리) 환경 LLM 서빙 스택 오프라인 배포·운영. deb/wheel/Docker/Yarn Berry 번들링, GPU 드라이버 반입, litellm·watsonx 연동
+  <strong>Air-gapped / AI Platform</strong> — 폐쇄망(망분리) 환경 AI 서비스 스택 오프라인 배포·기동. deb/wheel/Docker/Yarn Berry 번들링, CPU 아키텍처(ARM↔x86_64) 불일치 해결, 제한된 GPU에서 로컬 서빙과 원격 API 위임을 나누는 워크로드 배치, litellm·watsonx 연동
 </div>
 <div class="strength-item">
   <strong>CI/CD & Automation</strong> — Jenkins, GitLab CI, Bitbucket Pipelines 기반 CI/CD 파이프라인 구축·개선, CodeDeploy Blue/Green 무중단 배포, 반복 작업 자동화 및 절차 표준화
@@ -287,7 +287,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) AWS·온프레미스 하이브리드 인프라 상시 운영 — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 차단으로 AWS 비용 20%+ 절감</li>
     <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 컨테이너로 분리하고 외부로 나가는 통신을 차단해 API 키 유출 경로 제거, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
-    <li>삼성디스플레이 폐쇄망 LLM 서빙 인프라 구축(2026.05~06): 5개 서비스 오프라인 배포, 반입-배포 사이클 1일 → 30분 단축</li>
+    <li>삼성디스플레이 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 사이클 1일 → 30분 단축, 9월 후속 단계 확정</li>
     <li>KBS 재난방송 STG 인프라(2026.04~06): 문서도 담당자도 없는 운영 AWS 계정을 CLI로 역분석해 동등한 스테이징 환경을 혼자 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
     <li>AWS + 온프레미스 하이브리드 인프라 운영 절차 표준화 → 팀 누구나 동일한 절차로 배포·운영 가능</li>
     <li>AWS WAF + Nginx + iptables 3계층 방어 아키텍처 구축 → 2일 1회 서버 중단을 장애 제로화</li>
@@ -429,51 +429,129 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <!-- 프로젝트 0-2: 삼성디스플레이 폐쇄망 AI POC (2026.05 ~ 2026.06) -->
   <div class="project-toggle" data-target="#proj-sdc-poc" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🔒 삼성디스플레이 폐쇄망 LLM 서빙 인프라 구축 (AI POC)</h4>
-    <p class="proj-meta">2026.05 ~ 2026.06 · 폐쇄망 인프라 담당 (인프라 1인 / 총 5인)</p>
-    <p class="proj-summary">인터넷 완전 차단(air-gapped) 망분리 환경에 LLM 서빙 스택 5종을 오프라인 배포. 반입-배포 사이클 1일 → 30분 단축, POC 성공 완료</p>
+    <h4>🔒 삼성디스플레이 폐쇄망 AI 플랫폼 구축 (AI POC)</h4>
+    <p class="proj-meta">2026.05 ~ 2026.06 · 폐쇄망 인프라 단독 담당 (인프라 1인 / 총 5인)</p>
+    <p class="proj-summary">인터넷 차단 + USB 단방향 반입(반출 불가) 환경에 AI 서비스 5종 배포. "내부에서는 빌드하지 않는다"로 전략을 바꿔 반입-배포 사이클 1일 → 30분 단축, 9월 후속 단계 확정</p>
     <div>
       <span class="tech-tag">Air-gapped</span>
-      <span class="tech-tag">Python</span>
       <span class="tech-tag">litellm</span>
       <span class="tech-tag">IBM watsonx</span>
-      <span class="tech-tag">Docker</span>
+      <span class="tech-tag">WrenAI</span>
+      <span class="tech-tag">STT 로컬 서빙</span>
+      <span class="tech-tag">Docker (multi-arch)</span>
+      <span class="tech-tag">systemd</span>
+      <span class="tech-tag">GPU / CUDA</span>
       <span class="tech-tag">Yarn Berry</span>
       <span class="tech-tag">Linux</span>
-      <span class="tech-tag">GPU Driver</span>
     </div>
   </div>
   <div id="proj-sdc-poc" class="project-detail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:12px 0;">
+      <defs>
+        <filter id="agShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
+        <marker id="agArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
+        <marker id="agArrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C0392B"/></marker>
+        <linearGradient id="agBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#357ABD"/></linearGradient>
+        <linearGradient id="agGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5CB85C"/><stop offset="100%" stop-color="#449D44"/></linearGradient>
+        <linearGradient id="agOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0AD4E"/><stop offset="100%" stop-color="#EC971F"/></linearGradient>
+        <linearGradient id="agPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
+        <linearGradient id="agGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
+        <linearGradient id="agTeal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3AAFA9"/><stop offset="100%" stop-color="#2B8A85"/></linearGradient>
+      </defs>
+      <rect width="920" height="600" fill="#FAFBFC" rx="12"/>
+      <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">폐쇄망 AI 플랫폼 — 반입 파이프라인 · 서비스 구성</text>
+
+      <rect x="30" y="48" width="860" height="112" rx="10" fill="#FFF7E6" stroke="#F0AD4E" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="46" y="68" font-size="11" font-weight="700" fill="#B9770E">외부 인터넷 구간 (사외)</text>
+      <rect x="55" y="80" width="205" height="62" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
+      <text x="157" y="105" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">개인 로컬 PC</text>
+      <text x="157" y="124" text-anchor="middle" font-size="10" fill="#DDE1E3">사외 반출 후 LTE 테더링으로 빌드</text>
+      <path d="M262,111 L306,111" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <rect x="315" y="80" width="255" height="62" rx="8" fill="url(#agOrange)" filter="url(#agShadow)"/>
+      <text x="442" y="105" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">즉시 구동 이미지 · 오프라인 번들 빌드</text>
+      <text x="442" y="124" text-anchor="middle" font-size="10" fill="#FDF2E0">타깃 아키텍처 linux/amd64 명시</text>
+      <path d="M572,111 L616,111" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <rect x="625" y="80" width="230" height="62" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
+      <text x="740" y="105" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">USB 물리 반입</text>
+      <text x="740" y="124" text-anchor="middle" font-size="10" fill="#DDE1E3">단방향 — 한 번 들어가면 반출 불가</text>
+
+      <path d="M20,182 L900,182" stroke="#C0392B" stroke-width="2" stroke-dasharray="8 5"/>
+      <text x="30" y="176" font-size="11" font-weight="700" fill="#C0392B">에어갭 경계</text>
+      <text x="898" y="176" text-anchor="end" font-size="10.5" fill="#C0392B">반입 실패 1건 = 재빌드 후 하루 왕복 → “내부에서는 빌드하지 않는다”</text>
+      <path d="M740,144 L740,202" stroke="#C0392B" stroke-width="2" marker-end="url(#agArrowR)"/>
+
+      <rect x="30" y="208" width="700" height="360" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
+      <text x="46" y="228" font-size="11" font-weight="700" fill="#1B4F72">폐쇄망 워크스테이션 1대 · GPU 16GB VRAM</text>
+
+      <rect x="55" y="244" width="150" height="46" rx="8" fill="url(#agGray)" filter="url(#agShadow)"/>
+      <text x="130" y="272" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">사용자</text>
+      <path d="M130,292 L130,320" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+
+      <rect x="55" y="328" width="150" height="58" rx="8" fill="url(#agPurple)" filter="url(#agShadow)"/>
+      <text x="130" y="352" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">DevAX 프런트엔드</text>
+      <text x="130" y="370" text-anchor="middle" font-size="9.5" fill="#E8DAEF">멀티 에이전트 플랫폼 · 진입점</text>
+      <path d="M207,357 L241,357" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+
+      <rect x="245" y="328" width="150" height="58" rx="8" fill="url(#agOrange)" filter="url(#agShadow)"/>
+      <text x="320" y="352" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">litellm 게이트웨이</text>
+      <text x="320" y="370" text-anchor="middle" font-size="9.5" fill="#FDF2E0">모델 호출 단일 창구</text>
+
+      <path d="M397,357 L415,357" stroke="#7F8C8D" stroke-width="2"/>
+      <path d="M415,262 L415,418" stroke="#7F8C8D" stroke-width="2"/>
+      <path d="M415,262 L431,262" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <path d="M415,314 L431,314" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <path d="M415,366 L431,366" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <path d="M415,418 L431,418" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+
+      <rect x="435" y="240" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+      <text x="570" y="259" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">WrenAI</text>
+      <text x="570" y="275" text-anchor="middle" font-size="9.5" fill="#D6EAF8">SQL 분석·질의 자동생성 · systemd</text>
+      <rect x="435" y="292" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+      <text x="570" y="311" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">보안성검토 에이전트</text>
+      <text x="570" y="327" text-anchor="middle" font-size="9.5" fill="#D6EAF8">애플리케이션 보안성 검토 · systemd</text>
+      <rect x="435" y="344" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+      <text x="570" y="363" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">ai-gateway</text>
+      <text x="570" y="379" text-anchor="middle" font-size="9.5" fill="#D6EAF8">문서 업로드 기반 보안성 검토 · systemd</text>
+      <rect x="435" y="396" width="270" height="44" rx="7" fill="url(#agBlue)" filter="url(#agShadow)"/>
+      <text x="570" y="415" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">chat-bot</text>
+      <text x="570" y="431" text-anchor="middle" font-size="9.5" fill="#D6EAF8">사내 정보보안 서비스 안내 · Docker</text>
+
+      <path d="M570,440 L570,464" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <rect x="435" y="470" width="270" height="54" rx="7" fill="url(#agGreen)" filter="url(#agShadow)"/>
+      <text x="570" y="491" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">STT 서빙 (로컬 GPU)</text>
+      <text x="570" y="509" text-anchor="middle" font-size="9.5" fill="#DFF0D8">유일한 자체 서빙 모델 — 16GB VRAM 전량 배분</text>
+
+      <text x="46" y="552" font-size="10" fill="#1B4F72">상시 기동 4종 = systemd 서비스 · chat-bot = Docker 컨테이너 (모든 의존성 포함 이미지)</text>
+
+      <rect x="752" y="208" width="148" height="360" rx="10" fill="#F4F6F7" stroke="#B2BABB" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="768" y="228" font-size="11" font-weight="700" fill="#566573">협력사망</text>
+      <text x="768" y="244" font-size="9.5" fill="#7F8C8D">스위치 허브 연동</text>
+      <path d="M707,330 L764,330" stroke="#7F8C8D" stroke-width="2" marker-end="url(#agArrow)"/>
+      <rect x="768" y="296" width="116" height="80" rx="8" fill="url(#agTeal)" filter="url(#agShadow)"/>
+      <text x="826" y="330" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">IBM watsonx</text>
+      <text x="826" y="348" text-anchor="middle" font-size="9.5" fill="#D6F0EE">LLM 추론 API</text>
+
+      <text x="460" y="588" text-anchor="middle" font-size="10.5" fill="#566573">GPU 16GB 제약 → LLM 추론은 전량 watsonx API로 위임하고, GPU는 STT 전용으로 배분</text>
+    </svg>
+
     <h5>Background</h5>
-    <p>인터넷이 완전히 차단된(air-gapped) 삼성디스플레이 폐쇄망 환경에서 LLM 서빙 스택(LLM 게이트웨이, Text-to-SQL 엔진, STT, 임베딩 서버 등 5개 서비스)의 오프라인 배포 파이프라인을 설계하고 POC를 완수해야 했습니다. CI/CD 구성이 불가능하고, 모든 산출물은 내부망 반입 프로세스(물리 반입)로만 전달할 수 있는 환경이었습니다.</p>
+    <p>인터넷·패키지 저장소·CI/CD가 모두 없는 삼성디스플레이 폐쇄망에 AI 서비스 5종(DevAX 멀티 에이전트 플랫폼, WrenAI, 보안성검토 에이전트, ai-gateway, chat-bot)과 litellm 게이트웨이를 구동해야 했습니다. USB는 한 번 반입하면 반출할 수 없어 번들에 하나라도 빠지면 하루 왕복이 발생했고, 사전 조사도 제한돼 워크스테이션 사양을 미리 확인할 수 없었습니다. 결정적으로 개발 환경(ARM)과 실제 배정된 워크스테이션(x86_64)의 CPU 아키텍처가 달랐고, 이 사실은 반입 후에야 드러났습니다.</p>
 
     <h5>What I Did</h5>
-    <h6>3단계 반입 아키텍처 설계·운영</h6>
     <ul>
-      <li>외부 빌드 서버 → 오프라인 번들링 → USB 물리 반입 → 폐쇄망 워크스테이션 배포로 이어지는 반입 체계 설계 (총 번들 규모 1TB 이상)</li>
-      <li>빌드·배포 파이프라인 전 과정을 직접 수행하고, 반입 이력·시행착오를 체계적으로 문서화하여 반복 배포 절차 표준화</li>
-    </ul>
-    <h6>연동 장애 분석·해결</h6>
-    <ul>
-      <li>Python 애플리케이션과 IBM watsonx API 연동: LLM 게이트웨이(litellm) 설정, 토큰 만료(12h) 대응 체계, SSL 인증서 체인 구성</li>
-      <li>연동 장애의 원인 분석과 설정 레벨 해결</li>
-    </ul>
-    <h6>오프라인 환경 특화 문제 해결</h6>
-    <ul>
-      <li>Yarn Berry 기반 프런트엔드 오프라인 빌드</li>
-      <li>GPU 드라이버 사전 빌드 반입, deb/wheel 오프라인 패키지 번들링</li>
-    </ul>
-    <h6>이해관계자 조율</h6>
-    <ul>
-      <li>프로젝트 초기 현장의 도입 반대와 제한적 협조 상황에서 신뢰 관계를 먼저 구축</li>
-      <li>고객사 PM·기존 개발진 사이의 커뮤니케이션을 조율하여 프로젝트를 정상 궤도로 복원</li>
+      <li><strong>"내부에서 빌드하지 않는다"로 전략 전환</strong> — 실패 비용이 비대칭인 환경(반입 실패 = 하루 왕복)에서는 내부 빌드가 최대 리스크였습니다. 외부에서 <strong>모든 의존성이 포함된 즉시 구동 가능한 이미지</strong>를 완성해 반입하고, 내부 작업은 적재·기동만 남기는 방식으로 바꿔 1사이클을 <strong>30분</strong>으로 단축</li>
+      <li><strong>CPU 아키텍처 불일치 규명·해결</strong> — ARM에서 빌드한 컨테이너 이미지와 wheel은 x86_64에서 실행 자체가 불가능(<code>exec format error</code>)합니다. 이를 원인으로 특정하고 <strong>타깃 아키텍처(linux/amd64)를 명시해 전 산출물을 재빌드</strong></li>
+      <li><strong>16GB VRAM 한 장에 맞춘 워크로드 배치</strong> — 5개 서비스의 모델을 모두 로컬에 올릴 수 없어, <strong>LLM 추론은 전량 watsonx API로 위임하고 GPU는 STT 전용으로 배분</strong>. litellm을 모델 호출 단일 창구로 두어 서비스별 연동 코드를 분리</li>
+      <li><strong>서비스 성격에 맞춘 배포 방식 선택</strong> — 상시 기동이 필요한 4종(DevAX·WrenAI·보안성검토·ai-gateway)은 systemd 서비스로, 의존성이 무거운 chat-bot은 컨테이너로 배포</li>
+      <li>외부 빌드 환경조차 제공되지 않아 <strong>개인 장비를 사외로 반출해 LTE 테더링으로 빌드</strong>하는 방식으로 반입 파이프라인을 유지. Yarn Berry 기반 프런트엔드 오프라인 빌드, deb/wheel 오프라인 번들링으로 의존성을 사전 확보</li>
+      <li>도입에 회의적이던 현장 이해관계자와 <strong>신뢰 관계를 먼저 구축</strong>하고, 고객사 PM·기존 개발진 사이의 커뮤니케이션을 조율하여 프로젝트를 정상 궤도로 복원</li>
     </ul>
 
     <h5>Outcome</h5>
     <ul>
-      <li><strong>POC 성공적 완료</strong> — 전 애플리케이션 정상 동작 시연, 고객사 임원 보고 긍정 평가 → 후속 AI 프로젝트 협업으로 연결</li>
-      <li>반입-배포 1사이클 소요 시간 <strong>1일 → 30분으로 단축</strong> (이력관리 기반 절차 개선)</li>
-      <li>폐쇄망 5개 서비스 스택 전체를 단독으로 배포·운영</li>
+      <li><strong>POC 완료</strong> — 전 서비스 정상 동작 시연, 고객사 임원 보고 긍정 평가로 <strong>2026년 9월 후속 단계 진행 확정</strong></li>
+      <li>반입-배포 1사이클 <strong>1일 → 30분 (약 95% 단축)</strong></li>
+      <li>폐쇄망 AI 서비스 5종 + 게이트웨이 전체를 <strong>단독으로 배포·기동</strong></li>
     </ul>
   </div>
 
