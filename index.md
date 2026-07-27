@@ -214,10 +214,12 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 <div class="section-title">Core Skills</div>
 
 <span class="badge-skill infra">AWS</span>
-<span class="badge-skill infra">Route 53</span>
+<span class="badge-skill infra">Route 53 · DNS</span>
+<span class="badge-skill infra">CloudFront</span>
+<span class="badge-skill infra">ACM</span>
 <span class="badge-skill infra">ALB</span>
 <span class="badge-skill infra">EC2</span>
-<span class="badge-skill infra">ECS</span>
+<span class="badge-skill infra">ECS (Fargate)</span>
 <span class="badge-skill infra">Docker</span>
 <span class="badge-skill infra">Kubernetes (k8s)</span>
 <span class="badge-skill infra">Helm</span>
@@ -272,7 +274,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <strong>Observability & Reliability</strong> — Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반 모니터링·로깅·알림 체계 구축으로 관측성 확보
 </div>
 <div class="strength-item">
-  <strong>Security & Troubleshooting</strong> — AWS WAF, Nginx, iptables 다층 방어. 로그 기반 근본 원인 분석(RCA)과 재발 방지, 금융권 망분리 환경 장애 진단
+  <strong>Security & Troubleshooting</strong> — AWS WAF, CloudFront Functions 기반 IP 접근제어, Nginx, iptables 다층 방어. 로그 기반 근본 원인 분석(RCA)과 재발 방지, 금융권 망분리 환경 장애 진단, dig 기반 DNS 위임 계층 추적
 </div>
 
 <!-- ====== 경력 ====== -->
@@ -286,7 +288,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 컨테이너로 분리하고 외부로 나가는 통신을 차단해 API 키 유출 경로 제거, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
     <li>삼성디스플레이 폐쇄망 LLM 서빙 인프라 구축(2026.05~06): 5개 서비스 오프라인 배포, 반입-배포 사이클 1일 → 30분 단축</li>
-    <li>KBS 재난방송 STG 인프라(2026.04~05): ECS·CodeDeploy Blue/Green 기반 AWS 스테이징 환경 단독 설계·구축</li>
+    <li>KBS 재난방송 STG 인프라(2026.04~06): 문서도 담당자도 없는 운영 AWS 계정을 CLI로 역분석해 동등한 스테이징 환경을 혼자 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
     <li>AWS + 온프레미스 하이브리드 인프라 운영 절차 표준화 → 팀 누구나 동일한 절차로 배포·운영 가능</li>
     <li>AWS WAF + Nginx + iptables 3계층 방어 아키텍처 구축 → 2일 1회 서버 중단을 장애 제로화</li>
     <li>Prometheus/Grafana 모니터링·알림 체계 구축(관측성 확보) + Slack 실시간 알림 → 장애 인지 시간 대폭 단축</li>
@@ -475,52 +477,52 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
   </div>
 
-  <!-- 프로젝트 0-3: KBS 재난방송 STG 인프라 (2026.04 ~ 2026.05) -->
+  <!-- 프로젝트 0-3: KBS 재난방송 STG 인프라 (2026.04 ~ 2026.06) -->
   <div class="project-toggle" data-target="#proj-kbs-stg" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>📡 KBS 통합재난방송시스템 STG 인프라 구축</h4>
-    <p class="proj-meta">2026.04 ~ 2026.05 · 인프라 설계·구축 단독 담당 (1인)</p>
-    <p class="proj-summary">ECS·CodeDeploy Blue/Green 기반 AWS 스테이징 환경 단독 설계·구축, 실 작업 2주 내 전 리소스 구축 완료 및 Jenkins 배포 파이프라인 검증</p>
+    <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)</p>
+    <p class="proj-summary">아는 사람도 문서도 없는 운영 AWS 계정을 CLI로 역분석해 동등한 스테이징 환경을 혼자 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. 5일간 멈춰 있던 도메인 이슈는 DNS 위임 계층 추적으로 원인을 증거로 증명</p>
     <div>
       <span class="tech-tag">AWS</span>
-      <span class="tech-tag">ECS</span>
+      <span class="tech-tag">ECS Fargate</span>
       <span class="tech-tag">ECR</span>
       <span class="tech-tag">ALB</span>
       <span class="tech-tag">CodeDeploy</span>
       <span class="tech-tag">Blue/Green</span>
       <span class="tech-tag">CloudFront</span>
+      <span class="tech-tag">CloudFront Functions</span>
+      <span class="tech-tag">WAF</span>
+      <span class="tech-tag">Route 53</span>
+      <span class="tech-tag">ACM</span>
       <span class="tech-tag">S3</span>
       <span class="tech-tag">DynamoDB</span>
       <span class="tech-tag">IAM</span>
+      <span class="tech-tag">AWS CLI</span>
+      <span class="tech-tag">dig / DNS</span>
       <span class="tech-tag">Jenkins</span>
     </div>
   </div>
   <div id="proj-kbs-stg" class="project-detail">
     <h5>Background</h5>
-    <p>KBS 통합재난방송시스템 클라우드 플랫폼의 스테이징(STG) 환경을 AWS 상에 신규 구축해야 했습니다. 인수인계가 최소화된 상황에서 기존 운영(PRD) 인프라를 역분석하여 동등한 환경을 재현하는 것이 과제였습니다.</p>
+    <p>재난 유형별 페이지를 제공하는 대국민 서비스인데 검증 환경 없이 운영만 존재해, 프론트 변경도 백엔드 배포도 운영에서 직접 확인해야 했습니다. 운영 환경의 구성을 아는 담당자도, 인수인계 문서도 없는 상태에서 동등한 스테이징 환경을 재현하는 것이 과제였습니다.</p>
 
     <h5>What I Did</h5>
-    <h6>STG 환경 신규 구축</h6>
     <ul>
-      <li>기존 운영(PRD) 인프라 분석 후 보안그룹/네트워크, ECR, ECS 클러스터·태스크·서비스 구축</li>
-      <li>ALB·타겟그룹·CodeDeploy(Blue/Green), CloudFront·S3(IP 접근 제한), DynamoDB 구성</li>
-      <li>IAM 개발자 계정 권한 설계</li>
-    </ul>
-    <h6>아키텍처 의사결정 주도</h6>
-    <ul>
-      <li>환경 분리 방식, 도메인·인증서 체계 등 비용과 운영 부담에 직결되는 사안을 대안 비교로 직접 검토·제안하여, 불필요한 추가 비용과 관리 복잡도 없이 구축 방향 확정</li>
-    </ul>
-    <h6>고객사 직접 협의</h6>
-    <ul>
-      <li>KBS 인프라팀과 직접 미팅·유선·메일로 도메인 발급, DNS(A/CNAME) 신청, 일정 협의 수행</li>
-      <li>무리한 일정에 대해 근거를 들어 재조정을 건의하고 관철</li>
+      <li><strong>운영 환경 역분석</strong> — AWS CLI로 리소스를 전수 조회해 ECS 태스크 정의·ALB 리스너·CloudFront 동작·DynamoDB 키 스키마·VPC 서브넷 구성을 복원하고, 이를 기준으로 구축 순서를 설계</li>
+      <li><strong>ECS Fargate + CodeDeploy Blue/Green 무중단 배포 구축</strong> — ALB 이중 리스너·타겟그룹 2조·ECR 연동, Jenkins 배포 파이프라인 동작까지 검증</li>
+      <li><strong>CloudFront 7개 경로 분기 구성</strong> — v1·v2(Next.js)·별도 포털이 한 도메인에서 병행되는 구조를 그대로 재현(S3 4버킷 + ALB 라우팅), DynamoDB 3테이블(GSI 포함)·IP 화이트리스트 접근제어 구성</li>
+      <li><strong>비용과 제약이 걸린 판단 3건을 근거로 결정</strong> — ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 <strong>인증서 추가 발급 비용을 사전 차단</strong>, 계정 분리 대신 <strong>단일 계정 + 네이밍·태그 분리</strong>로 cross-account 관리 부담 제거, WAF를 붙일 수 없는 요금제 제약은 <strong>CloudFront Functions로 IP 접근제어를 대체 구현</strong></li>
+      <li><strong>IAM 최소권한 설계</strong> — STG 전용 역할을 분리해, 개발자가 <strong>운영 리소스는 조회만 가능</strong>하도록 통제</li>
+      <li><strong>5일간 원인 미상이던 도메인 이슈 규명</strong> — <code>dig +trace</code>로 위임 계층을 따라가고 정상 도메인과 응답 코드를 대조(NOERROR vs NXDOMAIN)해 <strong>상위 존의 NS 위임 레코드 누락</strong>임을 증명. 호스팅존 네임서버를 바꿀 수 없는 AWS 제약은 <strong>Reusable Delegation Set으로 존을 재생성</strong>해 우회</li>
     </ul>
 
     <h5>Outcome</h5>
     <ul>
-      <li>분석 10일 + 구축 4일, <strong>실 작업 2주 내 STG 전 리소스 구축 완료</strong></li>
-      <li>Jenkins 배포 테스트 정상 동작 확인으로 프로젝트 마무리</li>
-      <li>인수인계 최소화 상황에서 기존 운영 환경을 역분석하여 동등 환경 재현</li>
+      <li><strong>STG 전 리소스 구축 완료</strong> — PRD-STG 전 항목을 CLI로 대조 검증, <strong>불일치 0건</strong></li>
+      <li><strong>운영에서 직접 배포를 검증하던 구조를 제거</strong> — 개발팀이 안전하게 테스트할 환경 확보</li>
+      <li>원인 미상으로 정체되던 이슈를 <strong>추측이 아닌 증거로 정리</strong>해, 발주처가 무엇을 조치해야 하는지 명확히 정의</li>
+      <li>구축 가이드·체크리스트·인계 문서로 <strong>담당자가 바뀌어도 이어갈 수 있는 상태</strong> 유지</li>
     </ul>
   </div>
 

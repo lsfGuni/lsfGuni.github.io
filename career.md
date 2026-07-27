@@ -102,26 +102,30 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ### 📡 KBS 통합재난방송시스템 STG(스테이징) 인프라 구축
 
-**2026.04 ~ 2026.05 · 인프라 설계·구축 단독 담당 (1인)**
+**2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)**
 
-> 인수인계가 거의 없는 상태에서 운영 인프라를 역분석하여, **실 작업 2주 만에  
-> ECS·CodeDeploy 기반 Blue/Green 무중단 배포를 갖춘 스테이징 환경을 단독 구축**했습니다.
+> 아는 사람도 문서도 없는 운영 AWS 계정을 **CLI로 역분석해 동등한 스테이징 환경을 혼자 처음부터 구축**했습니다.  
+> 5일간 멈춰 있던 도메인 이슈는 **DNS 위임 계층을 추적해 원인이 어디에 있는지 증거로 증명**했습니다.
 
 #### 문제 상황
-- 기존 운영(PRD) 환경에 대한 문서·인수인계가 최소화된 상태에서 동등한 STG 환경을 신규로 재현해야 하는 조건
-- 환경 분리 방식, 도메인·인증서 등 비용·일정에 직결되는 아키텍처 의사결정이 미확정
+재난 유형별 페이지를 제공하는 대국민 서비스인데 검증 환경 없이 운영만 존재해, 프론트 변경도 백엔드 배포도 운영에서 직접 확인해야 했습니다.
+운영 환경의 구성을 아는 담당자도, 인수인계 문서도 없는 상태에서 동등한 환경을 재현하는 것이 과제였습니다.
 
 #### 해결 과정
-- STG 전 리소스 신규 구축: 보안그룹/네트워크, ECR, ECS 클러스터·태스크·서비스, ALB·타겟그룹·CodeDeploy(Blue/Green), CloudFront·S3(IP 접근 제한), DynamoDB, IAM 개발자 권한 설계
-- **자사 샌드박스 AWS 계정에 동일 구성을 먼저 구축해 절차를 검증한 뒤 실 환경을 구축** — 시행착오를 리허설 단계에서 소진하고 실 구축은 검증된 절차로만 진행
-- 반복 작업은 **AWS CLI 스크립트로 자동화**(ECS 서비스 생성, DynamoDB 적재, CloudFront 설정 수정, 단계별 리소스 정리)하고, 구축 절차를 **설정값 단위까지 문서화한 가이드**로 정리하여 동일 환경을 누구나 재현 가능하게 유지
-- **아키텍처 의사결정 주도**: 환경 분리 방식, 도메인·인증서 체계 등 비용과 운영 부담에 직결되는 사안을 대안 비교로 직접 검토·제안하여, 불필요한 추가 비용과 관리 복잡도 없이 구축 방향을 확정
-- KBS 인프라팀과 도메인·DNS 신청, 일정 협의를 직접 수행 — 무리한 일정에는 근거를 들어 재조정을 건의하고 관철
+- **운영 환경 역분석** — AWS CLI로 리소스를 전수 조회해 ECS 태스크 정의·ALB 리스너·CloudFront 동작·DynamoDB 키 스키마·VPC 서브넷 구성을 복원하고, 이를 기준으로 구축 순서를 설계
+- **ECS Fargate + CodeDeploy Blue/Green 무중단 배포 구축** — ALB 이중 리스너·타겟그룹 2조·ECR 연동, Jenkins 배포 파이프라인 동작까지 검증
+- **CloudFront 7개 경로 분기 구성** — v1·v2(Next.js)·별도 포털이 한 도메인에서 병행되는 구조를 그대로 재현(S3 4버킷 + ALB 라우팅), DynamoDB 3테이블(GSI 포함)·IP 화이트리스트 접근제어 구성
+- **비용과 제약이 걸린 판단 3건을 근거로 결정** — ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 **인증서 추가 발급 비용을 사전 차단**, 계정 분리 대신 **단일 계정 + 네이밍·태그 분리**로 cross-account 관리 부담 제거, WAF를 붙일 수 없는 요금제 제약은 **CloudFront Functions로 IP 접근제어를 대체 구현**
+- **IAM 최소권한 설계** — STG 전용 역할을 분리해, 개발자가 **운영 리소스는 조회만 가능**하도록 통제
+- **5일간 원인 미상이던 도메인 이슈 규명** — `dig +trace`로 위임 계층을 따라가고 정상 도메인과 응답 코드를 대조(NOERROR vs NXDOMAIN)해 **상위 존의 NS 위임 레코드 누락**임을 증명. 호스팅존 네임서버를 바꿀 수 없는 AWS 제약은 **Reusable Delegation Set으로 존을 재생성**해 우회
 
 #### 성과
-- 분석 10일 + 구축 4일, **실 작업 2주 내 STG 전 리소스 구축 완료**
-- Jenkins 배포 파이프라인 정상 동작 검증까지 완료하여 프로젝트 마무리
-- 역분석만으로 운영 환경과 **동등한 환경을 재현** — 이후 팀이 그대로 사용할 수 있는 상태로 인계
+- **STG 전 리소스 구축 완료** — PRD-STG 전 항목을 CLI로 대조 검증, **불일치 0건**
+- **운영에서 직접 배포를 검증하던 구조를 제거** — 개발팀이 안전하게 테스트할 환경 확보
+- 원인 미상으로 정체되던 이슈를 **추측이 아닌 증거로 정리**해, 발주처가 무엇을 조치해야 하는지 명확히 정의
+- 구축 가이드·체크리스트·인계 문서로 **담당자가 바뀌어도 이어갈 수 있는 상태** 유지
+
+**Tech:** AWS ECS(Fargate), ECR, CodeDeploy(Blue/Green), ALB, CloudFront, CloudFront Functions, WAF, Route 53(Reusable Delegation Set, Alias Record), ACM, S3, DynamoDB(GSI), IAM, AWS CLI, dig/DNS
 
 ---
 
@@ -178,7 +182,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **삼성SDR 파견 (2025.09 ~ 2026.03):** Spring MVC 기반 내방객 관리시스템 풀스택 개발, 카드사 연동 REST API 설계·개발, JBoss 배포 전략 수립
 - 하나증권 AI 협업솔루션 POC 그룹웨어 어댑터 엔지니어링 — 금융권 망분리 환경 SSO/DRM/인사연동 (2026.05~07, 완료)
 - 삼성디스플레이 폐쇄망 LLM 서빙 인프라 구축 — AI POC (2026.05~06)
-- KBS 통합재난방송시스템 STG 인프라 단독 구축 — ECS·CodeDeploy Blue/Green (2026.04~05)
+- KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 문서 없는 운영 계정을 CLI로 역분석해 동등 환경 재현, ECS Fargate·CodeDeploy Blue/Green, IAM 최소권한, DNS 위임 이슈 규명
 
 #### 핵심 성과
 - 하이브리드 인프라 운영 기준 정립 및 운영 절차 문서화·표준화
@@ -260,6 +264,11 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 인터넷이 차단된 폐쇄망에 LLM 서빙 스택 5종(총 1TB+)을 오프라인 배포하고,  
 반입-배포 사이클을 **1일 → 30분으로 단축**하는 표준 절차를 확립했습니다.
 
+### 운영 환경 역분석 기반 스테이징 구축
+아는 사람도 문서도 없는 운영 AWS 계정을 CLI로 역분석해 **동등한 스테이징 환경을 혼자 구축**하고,  
+PRD-STG 전 항목을 대조 검증해 **불일치 0건**으로 인계했습니다.  
+5일간 멈춰 있던 도메인 이슈는 `dig +trace` 계층 추적과 정상 도메인 응답 코드 대조로 **원인이 어디에 있는지 증거로 증명**했습니다.
+
 ### DDoS 대응체계 구축
 AWS WAF, Nginx, iptables를 결합한 **3계층 방어 아키텍처**로  
 일 50GB 이상의 공격 로그를 남기던 무차별 대입·봇 트래픽을 **하루 평균 1,000개 이상 IP 자동 차단**으로 선제 대응하여, **AWS 비용을 20% 이상 절감**하고 핵심 API의 안정성을 확보했습니다.
@@ -294,7 +303,7 @@ MCP, OpenSearch, S3, Lambda, EC2를 연결해
 ## Technical Environment
 
 ### Cloud / Infra
-AWS, Route 53, ALB, EC2, ECS, ECR, CodeDeploy(Blue/Green), CloudFront, Lambda, VPC, WAF, CloudWatch, OpenSearch, S3, DynamoDB, IAM
+AWS, Route 53(Reusable Delegation Set, Alias Record), ACM, ALB, EC2, ECS(Fargate), ECR, CodeDeploy(Blue/Green), CloudFront, CloudFront Functions, Lambda, VPC, WAF, CloudWatch, OpenSearch, S3, DynamoDB(GSI), IAM, AWS CLI
 
 ### AI / LLM Infrastructure
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
