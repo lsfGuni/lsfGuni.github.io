@@ -6,6 +6,20 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 
 <p style="text-align:right; font-size:0.9rem;"><a href="{{ '/career-en/' | relative_url }}">English résumé →</a></p>
 
+<style>
+  /* PDF 인쇄용 — 지원서 첨부 시 사용 */
+  @media print {
+    .intro-header, nav, footer, .navbar, .iso-embed, .iso-note, .iso-btn { display: none !important; }
+    body { font-size: 10.5pt; }
+    a { color: #333 !important; text-decoration: none !important; }
+    h2 { break-before: page; }
+    h2:first-of-type { break-before: auto; }
+    h3, h4, table, svg { break-inside: avoid; }
+    svg { max-height: 320px; }
+    .container-md, .col-xl-10, .col-lg-10 { max-width: 100% !important; flex: 0 0 100% !important; margin: 0 !important; padding: 0 !important; }
+  }
+</style>
+
 # Career
 
 안녕하세요.  
