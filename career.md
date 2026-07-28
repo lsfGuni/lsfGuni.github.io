@@ -414,7 +414,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 **2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)**
 
-> 아는 사람도 문서도 없는 운영 AWS 계정을 **CLI로 역분석해 동등한 스테이징 환경을 혼자 처음부터 구축**했습니다.  
+> 검증 환경 없이 운영만 존재하던 시스템에 **운영과 동등한 스테이징을 신규 구축**했습니다.  
 > 5일간 멈춰 있던 도메인 이슈는 **DNS 위임 계층을 추적해 원인이 어디에 있는지 증거로 증명**했습니다.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 700" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
@@ -430,7 +430,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
     <linearGradient id="kbTeal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3AAFA9"/><stop offset="100%" stop-color="#2B8A85"/></linearGradient>
   </defs>
   <rect width="920" height="700" fill="#FAFBFC" rx="12"/>
-  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">KBS 재난방송 STG — 운영 계정 역분석으로 재현한 AWS 스테이징</text>
+  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">KBS 재난방송 STG — 운영 환경과 동등하게 구축한 스테이징</text>
 
   <rect x="30" y="48" width="860" height="122" rx="10" fill="#F4ECF7" stroke="#BB8FCE" stroke-width="1.5"/>
   <text x="46" y="68" font-size="11" font-weight="700" fill="#6C3483">진입 계층 — 단일 도메인</text>
@@ -512,7 +512,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
   <rect x="449" y="412" width="198" height="56" rx="8" fill="url(#kbBlue)" filter="url(#kbShadow)"/>
   <text x="548" y="437" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">ECS Fargate</text>
-  <text x="548" y="455" text-anchor="middle" font-size="9.5" fill="#D6EAF8">태스크 정의 역분석 복원</text>
+  <text x="548" y="455" text-anchor="middle" font-size="9.5" fill="#D6EAF8">운영 태스크 정의와 동일 구성</text>
   <path d="M647,440 L663,440" stroke="#7F8C8D" stroke-width="2" marker-end="url(#kbArrow)"/>
 
   <rect x="665" y="412" width="205" height="56" rx="8" fill="url(#kbOrange)" filter="url(#kbShadow)"/>
@@ -548,10 +548,11 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 #### 문제 상황
 재난 유형별 페이지를 제공하는 대국민 서비스인데 검증 환경 없이 운영만 존재해, 프론트 변경도 백엔드 배포도 운영에서 직접 확인해야 했습니다.
-운영 환경의 구성을 아는 담당자도, 인수인계 문서도 없는 상태에서 동등한 환경을 재현하는 것이 과제였습니다.
+운영 담당자로부터 "운영 환경은 구축되어 있으나 스테이징이 없어 지금 구축하려 한다"는 현황을 전달받아 착수했고,
+상세 구성 문서는 없는 상태여서 AWS CLI로 실제 리소스를 확인해 가며 동등한 환경을 재현하는 것이 과제였습니다.
 
 #### 해결 과정
-- **운영 환경 역분석** — AWS CLI로 리소스를 전수 조회해 ECS 태스크 정의·ALB 리스너·CloudFront 동작·DynamoDB 키 스키마·VPC 서브넷 구성을 복원하고, 이를 기준으로 구축 순서를 설계
+- **운영 환경 구성 파악** — AWS CLI로 리소스를 전수 조회해 ECS 태스크 정의·ALB 리스너·CloudFront 동작·DynamoDB 키 스키마·VPC 서브넷 구성을 복원하고, 이를 기준으로 구축 순서를 설계
 - **ECS Fargate + CodeDeploy Blue/Green 무중단 배포 구축** — ALB 이중 리스너·타겟그룹 2조·ECR 연동, Jenkins 배포 파이프라인 동작까지 검증
 - **CloudFront 7개 경로 분기 구성** — v1·v2(Next.js)·별도 포털이 한 도메인에서 병행되는 구조를 그대로 재현(S3 4버킷 + ALB 라우팅), DynamoDB 3테이블(GSI 포함)·IP 화이트리스트 접근제어 구성
 - **비용과 제약이 걸린 판단 3건을 근거로 결정** — ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 **인증서 추가 발급 비용을 사전 차단**, 계정 분리 대신 **단일 계정 + 네이밍·태그 분리**로 cross-account 관리 부담 제거, WAF를 붙일 수 없는 요금제 제약은 **CloudFront Functions로 IP 접근제어를 대체 구현**
@@ -651,7 +652,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **삼성SDR 파견 (2025.09 ~ 2026.03):** Spring MVC 기반 내방객 관리시스템 풀스택 개발, 카드사 연동 REST API 설계·개발, JBoss 배포 전략 수립
 - 하나증권 AI 협업솔루션 POC 그룹웨어 어댑터 엔지니어링 — 금융권 망분리 환경 SSO/DRM/인사연동 (2026.05~07, 완료)
 - 삼성디스플레이 폐쇄망 AI 플랫폼 구축 — AI POC (2026.05~06), 반입-배포 사이클 5시간+→30분 단축, 9월 후속 단계 확정
-- KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 문서 없는 운영 계정을 CLI로 역분석해 동등 환경 재현, ECS Fargate·CodeDeploy Blue/Green, IAM 최소권한, DNS 위임 이슈 규명
+- KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 검증 환경이 없던 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 재현, ECS Fargate·CodeDeploy Blue/Green, IAM 최소권한, DNS 위임 이슈 규명
 
 #### 핵심 성과
 - 하이브리드 인프라 운영 기준 정립 및 운영 절차 문서화·표준화
@@ -734,8 +735,8 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 USB 반입이 단방향인 폐쇄망에 AI 서비스 5종을 배포하면서, 실패 비용이 비대칭인 조건에서  
 **"내부에서는 빌드하지 않는다"** 로 전략을 바꿔 반입-배포 사이클을 **5시간+ → 30분으로 단축**했습니다.
 
-### 운영 환경 역분석 기반 스테이징 구축
-아는 사람도 문서도 없는 운영 AWS 계정을 CLI로 역분석해 **동등한 스테이징 환경을 혼자 구축**하고,  
+### 검증 환경이 없던 서비스의 스테이징 구축
+AWS CLI로 운영 환경 구성을 확인해 가며 **운영과 동등한 스테이징을 구축**하고,  
 PRD-STG 전 항목을 대조 검증해 **불일치 0건**으로 인계했습니다.  
 5일간 멈춰 있던 도메인 이슈는 `dig +trace` 계층 추적과 정상 도메인 응답 코드 대조로 **원인이 어디에 있는지 증거로 증명**했습니다.
 
