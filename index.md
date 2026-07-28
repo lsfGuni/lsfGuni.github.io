@@ -400,7 +400,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 하이브리드 인프라 상시 운영</h4>
     <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE</p>
-    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 차단, AWS 비용 20%+ 절감. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중 — 실적 약 20% 절감, 1단계 목표 56~70%</p>
+    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 자동 차단. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중 — 실적 약 20% 절감, 1단계 목표 56~70%</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">EC2</span>
@@ -615,7 +615,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <ul>
       <li>장애 트러블슈팅 소요 시간 <strong>1주일 → 30분 이내 단축</strong></li>
       <li>봇 트래픽 <strong>하루 평균 1,000개 이상 IP 자동 차단</strong>, <strong>AWS 비용 20% 이상 절감</strong></li>
-      <li>이중화 일부 온프레미스 이관으로 AWS 비용 추가 절감, 비용 증설 없이 I/O 병목 해소</li>
+      <li>장비 증설 없이 구조 변경만으로 I/O 병목 해소</li>
     </ul>
   </div>
 
