@@ -4,7 +4,7 @@ title: Career
 subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 ---
 
-<p style="text-align:right; font-size:0.9rem;"><a href="{{ '/career-en/' | relative_url }}">English résumé →</a></p>
+<p style="text-align:right; font-size:0.9rem;"><a href="{{ '/resume/' | relative_url }}">이력서(요약본) →</a> · <a href="{{ '/career-en/' | relative_url }}">English →</a></p>
 
 <style>
   /* PDF 인쇄용 — 지원서 첨부 시 사용 */

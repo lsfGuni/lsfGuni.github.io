@@ -4,7 +4,7 @@ title: Career
 subtitle: DevOps Engineer — infrastructure that holds up under constraints
 ---
 
-<p style="text-align:right; font-size:0.9rem;"><a href="{{ '/career/' | relative_url }}">한국어 경력기술서 →</a></p>
+<p style="text-align:right; font-size:0.9rem;"><a href="{{ '/resume-en/' | relative_url }}">Resume (2-page) →</a> · <a href="{{ '/career/' | relative_url }}">한국어 →</a></p>
 
 <style>
   .iso-btn { display:inline-block; padding:7px 15px; border-radius:8px; font-size:0.85rem; font-weight:600;
