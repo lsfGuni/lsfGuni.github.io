@@ -250,6 +250,30 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **레지스트리 3종 self-host** — Harbor(컨테이너 이미지)·Kellnr(Rust crate)·Verdaccio(npm)를 사내에 직접 운영
 - **설계 판단을 ADR 28건으로 문서화** — Linkerd 도입, app-of-apps finalizer 표준화, Sealed Secrets 도입, 멀티테넌시 스키마 분리 등
 
+#### 인터랙티브 아키텍처 도면 (직접 제작)
+
+클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다.
+**일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성** 6개 모드로 관점을 바꿔 볼 수 있고,
+컴포넌트를 클릭하면 역할 설명이 나옵니다. **구현 완료 / 스캐폴드 / 목표**를 색으로 구분해 진행 상황을 있는 그대로 표시합니다.
+
+<style>
+  .iso-embed { margin: 12px 0 6px 0; border: 1px solid #dee2e6; border-radius: 10px; overflow: hidden; background: #040d1e; }
+  .iso-embed iframe { display: block; width: 100%; height: 600px; border: 0; }
+  .iso-note { font-size: 0.85rem; color: #666; line-height: 2.1; }
+  .iso-btn { display: inline-block; margin-left: 4px; padding: 7px 15px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; text-decoration: none; background: #0b1b3a; color: #7dd3fc !important; border: 1px solid #1e3a6a; }
+  .iso-btn:hover { background: #12264f; color: #bae6fd !important; text-decoration: none; }
+  @media (max-width: 820px) { .iso-embed { display: none; } }
+  @media print { .iso-embed { display: none !important; } }
+</style>
+
+<div class="iso-embed">
+  <iframe src="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" title="DevAX Kubernetes 인프라 아이소메트릭 도면" loading="lazy"></iframe>
+</div>
+
+<p class="iso-note">드래그로 시점 이동 · 컴포넌트 클릭 시 상세 설명 · 1~6 키로 모드 전환(전체 화면 권장)
+  <a class="iso-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ 전체 화면으로 열기</a>
+</p>
+
 #### 현재 상태 — 서비스 오픈 전 단계입니다
 - **에이전트 실행 1차 관통 완료** (2026-05-29) — 자동 검증 23종 전체 통과
 - **egress NetworkPolicy는 적용 후 의도적으로 비활성** — 화이트리스트에 **Linkerd 컨트롤 플레인 포트**(destination 8086 / policy 8090 / identity 8080)를 넣지 않아 사이드카가 막히면서, 컨트롤러가 JWKS를 가져오지 못해 hang → 포트 바인딩 실패 → liveness 실패 → **`Exit 137`(SIGKILL)**. 원인을 여기까지 추적한 뒤 **재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서화**하고 현재는 끈 상태로 관리하고 있습니다

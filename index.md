@@ -84,6 +84,29 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
   .project-detail h6 { font-size: 0.92rem; margin-top: 12px; color: #333; }
   .project-detail ul { padding-left: 18px; }
   .project-detail img { max-width: 100%; border-radius: 8px; margin: 12px 0; }
+  /* 인터랙티브 도면 임베드 */
+  .demo-embed {
+    margin: 12px 0 8px 0;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #040d1e;
+  }
+  .demo-embed iframe { display: block; width: 100%; height: 620px; border: 0; }
+  .demo-note { font-size: 0.82rem; color: #666; margin: 0 0 14px 2px; line-height: 2.1; }
+  .demo-btn {
+    display: inline-block;
+    padding: 7px 15px;
+    margin-left: 4px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: #0b1b3a;
+    color: #7dd3fc !important;
+    border: 1px solid #1e3a6a;
+  }
+  .demo-btn:hover { background: #12264f; color: #bae6fd !important; text-decoration: none; }
   .tech-tag {
     display: inline-block;
     padding: 2px 10px;
@@ -155,10 +178,15 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
     .project-detail { display: block !important; height: auto !important; }
     .project-detail { border: 1px solid #ccc !important; break-inside: avoid; }
     .project-detail svg { max-height: 300px; }
+    .demo-embed { display: none !important; }
     .badge-skill, .tech-tag { border: 1px solid #999 !important; }
     body { font-size: 11pt; }
     a { color: #333 !important; text-decoration: none !important; }
     .open-to-work { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+  /* 작은 화면에서는 임베드 대신 새 창 링크만 노출 */
+  @media (max-width: 820px) {
+    .demo-embed { display: none; }
   }
   /* 모바일 반응형 */
   @media (max-width: 576px) {
@@ -382,6 +410,15 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>ArgoCD app-of-apps GitOps</strong> — 루트 Application 1개가 자식 18개를 관리하고, Helm 차트 14종을 Git 단일 소스에서 선언적 배포. Bitbucket Pipelines + self-hosted runner 연동</li>
       <li>레지스트리 3종(Harbor·Kellnr·Verdaccio)을 전량 self-host하고, OpenTelemetry·Tempo로 분산 트레이싱 구성. 설계 판단은 ADR 28건으로 문서화</li>
     </ul>
+
+    <h5>인터랙티브 아키텍처 도면 (직접 제작)</h5>
+    <p>클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다. 상단 6개 모드(<strong>일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성</strong>)로 관점을 바꿔 볼 수 있고, 컴포넌트를 클릭하면 역할 설명이 나옵니다. <strong>구현 완료 / 스캐폴드 / 목표</strong>를 색으로 구분해 진행 상황을 있는 그대로 표시합니다.</p>
+    <div class="demo-embed">
+      <iframe src="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" title="DevAX Kubernetes 인프라 아이소메트릭 도면" loading="lazy"></iframe>
+    </div>
+    <p class="demo-note">드래그로 시점 이동 · 컴포넌트 클릭 시 상세 설명 · 1~6 키로 모드 전환(전체 화면 권장)
+      <a class="demo-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ 전체 화면으로 열기</a>
+    </p>
 
     <h5>현재 상태 — 서비스 오픈 전 단계입니다</h5>
     <ul>
