@@ -363,7 +363,8 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="exp-meta">개발팀 / 주임 · 2024.08 ~ Present</div>
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) AWS·온프레미스 하이브리드 인프라 상시 운영 — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 차단으로 AWS 비용 20%+ 절감</li>
-    <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 컨테이너로 분리하고 외부로 나가는 통신을 차단해 API 키 유출 경로 제거, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
+    <li>AWS 비용 절감을 위한 온프레미스 이관(FinOps, 2026.04~): 이관 순번을 리스크 기준으로 설계하고 롤백 경로를 먼저 확보한 뒤 전환 — BaaS API 2노드 이중화 후 실트래픽 전환 완료, 실적 약 20% 절감(1단계 목표 56~70%)</li>
+      <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 컨테이너로 분리하고 외부로 나가는 통신을 차단해 API 키 유출 경로 제거, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
     <li>삼성디스플레이 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</li>
     <li>KBS 재난방송 STG 인프라(2026.04~06): 검증 환경이 없던 대국민 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 신규 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
@@ -399,7 +400,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 하이브리드 인프라 상시 운영</h4>
     <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE</p>
-    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 차단, AWS 비용 20%+ 절감. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중</p>
+    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 차단, AWS 비용 20%+ 절감. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중 — 실적 약 20% 절감, 1단계 목표 56~70%</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">EC2</span>
@@ -415,7 +416,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </div>
   </div>
   <div id="proj-berith-ops" class="project-detail">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 748" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 762" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
       <defs>
         <filter id="brShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
         <marker id="brArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
@@ -427,7 +428,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
         <linearGradient id="brGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
         <linearGradient id="brPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
       </defs>
-      <rect width="920" height="748" fill="#FAFBFC" rx="12"/>
+      <rect width="920" height="762" fill="#FAFBFC" rx="12"/>
       <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith 하이브리드 인프라 — AWS + 온프레미스 상시 운영</text>
 
       <rect x="48" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
@@ -536,25 +537,26 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="779" y="547" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Slack 실시간 알림</text>
       <text x="779" y="561" text-anchor="middle" font-size="8.5" fill="#DFF0D8">대응 가능한 경보만 남김</text>
 
-      <rect x="30" y="598" width="860" height="132" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
-      <text x="46" y="618" font-size="11" font-weight="700" fill="#1A5276">진행 중 — AWS 월 고정비 절감을 위한 온프레미스 이관 (FinOps)</text>
+      <rect x="30" y="598" width="860" height="146" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
+      <text x="46" y="618" font-size="11" font-weight="700" fill="#1A5276">진행 중 — AWS 월 고정비 절감을 위한 온프레미스 이관 (FinOps) · 실적 약 20% 절감 / 1단계 목표 56~70%</text>
 
       <rect x="48" y="628" width="256" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-      <text x="176" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS — 이관 · 가동 완료</text>
+      <text x="176" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS API — 실트래픽 전환 완료</text>
 
       <rect x="316" y="628" width="268" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-      <text x="450" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">OpenSearch — 물리 머신 구축 후 구동</text>
+      <text x="450" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">캐시 · 스캔 · 검색엔진 · 스토리지 이관</text>
 
-      <rect x="596" y="628" width="274" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-      <text x="733" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Redis — 온프레미스 서버 구축 완료</text>
+      <rect x="596" y="628" width="274" height="36" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
+      <text x="733" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">지갑 — 이관·검증 완료, 전환 대기</text>
 
-      <rect x="48" y="672" width="400" height="36" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-      <text x="248" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Wallet · Scan — 이관 완료, 호스트 메모리 부족으로 가동 대기</text>
+      <rect x="48" y="672" width="400" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+      <text x="248" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">WAS 계열 17개 · RDB 3종 · 블록체인 노드 — 미착수</text>
 
-      <rect x="460" y="672" width="410" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-      <text x="665" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">S3 · 메인넷 · 부트노드 · RDS — 데이터 이관 리스크로 후순위</text>
+      <rect x="460" y="672" width="410" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+      <text x="665" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">정리한 AWS 리소스 — EC2 3대 정지 · 탄력 IP 3개 반납</text>
 
-      <text x="46" y="722" font-size="9.5" fill="#1A5276">Web Tier는 의도적으로 AWS 유지(DDoS 방어 · 사무실 IP 미노출) · WireGuard Site-to-Site VPN으로 연결 · nginx ProxyPass 원복으로 즉시 롤백 가능</text>
+      <text x="46" y="722" font-size="9.5" fill="#1A5276">웹 계층은 의도적으로 AWS 유지 — DNS·로드밸런서를 그대로 두고 업스트림 한 줄만 바꾸므로 전환과 롤백이 설정 수준으로 축소되고, 서비스별 점진 전환이 가능</text>
+      <text x="46" y="738" font-size="9.5" fill="#943126">순절감(TCO)은 전력·하드웨어 감가 미반영으로 아직 미산정 — 남은 과제로 관리 중</text>
     </svg>
     <h5>Background</h5>
     <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이츠 물품관리 이력)와 B2C 서비스(<strong>Berith Wallet·Berith Scan</strong>)를 AWS와 온프레미스를 연동한 하이브리드 구성으로 상시 운영합니다. 부트노드 2대·메인넷 노드(이더리움 계열 자체 메인넷) 포함 EC2 7대, RDS, OpenSearch(체인 데이터 인덱싱), 온프레미스 이중화 서버로 구성되며, 지갑 서비스 특성상 <strong>계정 탈취를 노리는 무차별 대입·봇 공격이 상시 유입</strong>되는 환경입니다.</p>
@@ -568,13 +570,45 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
 
     <h5>현재 진행 과제 — AWS 비용 절감을 위한 온프레미스 이관 (FinOps)</h5>
-    <p>서비스 구성이 BaaS 중심으로 정리되면서, 매월 고정 지출되는 AWS 비용을 줄이는 것이 최우선 과제가 되었습니다. 사내 유휴 물리 서버(Xeon 10C/20T·62GB)를 활용해 <strong>AWS 월 고정비의 약 80% 절감을 목표로</strong> 이관을 진행하고 있습니다.</p>
+    <p>매월 고정 지출되는 AWS 비용을 줄이기 위해 사내 유휴 물리 서버(20코어 2대)로 워크로드를 단계적으로 이관하고 있습니다. <strong>현재 실적은 약 20% 절감, 1단계 완료 시 목표는 56~70%</strong>이며 실적과 목표를 분리해 관리합니다.</p>
+    <h6>설계 판단</h6>
     <ul>
-      <li><strong>비용이 아니라 리스크 순서로 이관 순번을 결정</strong> — stateless 애플리케이션을 먼저 옮기고 데이터 티어(RDS·S3·체인 노드)는 최후로 유예. 앱은 되돌리면 그만이지만 데이터는 되돌릴 수 없기 때문</li>
-      <li><strong>롤백 경로를 먼저 확보한 뒤 전환</strong> — AWS 웹 계층의 nginx ProxyPass 대상만 바꾸는 방식이라, 문제 발생 시 설정 원복만으로 즉시 AWS 복귀 가능</li>
-      <li><strong>웹 계층은 의도적으로 AWS에 유지</strong> — DDoS 방어와 사무실 IP 미노출이 절감액보다 크다고 판단. AWS와 온프레미스는 WireGuard Site-to-Site VPN으로 연결</li>
-      <li><strong>이관 절차를 스크립트로 고정</strong> — VM 생성 → 런타임 설치 → 저장소 clone → 빌드 → systemd 등록까지 단계별 스크립트화해 다음 서비스에 재사용. 설정 암호화(Jasypt)·키 파일 이관 절차도 함께 정리</li>
-      <li><strong>진행 상황</strong> — BaaS 이관·가동 완료 / OpenSearch는 물리 머신을 직접 구축해 구동 완료 / Redis 온프레미스 구축 완료 / Wallet·Scan은 이관 완료했으나 <strong>호스트 메모리 부족으로 가동 대기</strong> / S3·메인넷·부트노드·RDS는 데이터 이관 리스크로 후순위</li>
+      <li><strong>쿠버네티스 계획을 중단하고 VM + systemd를 채택</strong> — 대상 서비스가 실시간 고객 트래픽을 받고 있었고, 한 호스트는 가용 RAM 6GB 수준이라 컨트롤플레인 오버헤드(약 4GB)를 흡수할 여력이 없었음. <strong>더 나은 방식이 아니라 지금 자원과 리스크 조건에서 실행 가능한 방식</strong>을 택하되, Dockerfile·매니페스트는 미리 준비해 이후 systemd를 Pod로 교체만 하면 되는 상태로 유지</li>
+      <li><strong>이관 순번을 세 기준으로 결정</strong> — ① 상태 의존도가 낮은 것부터 ② <strong>의존성 역방향</strong>(의존하는 쪽을 먼저 옮겨 클라우드에 남은 자원을 참조하게 함 — 반대는 불가) ③ 원본 호스트 부하가 위험 수준인 서비스는 순번을 앞당김</li>
+      <li><strong>웹 계층은 의도적으로 AWS에 유지</strong> — DNS·로드밸런서를 그대로 두고 업스트림만 바꾸므로 전환·롤백이 설정 한 줄 수준으로 축소되고 서비스별 점진 전환이 가능. 최종 진입점이 사내 회선이 되면 회선 장애가 곧 서비스 장애가 된다는 점도 고려</li>
+      <li><strong>되돌릴 경로를 남긴 채 전환</strong> — 원본 인스턴스를 삭제하지 않고 정지 상태로 보존해 업스트림 원복만으로 30초 내 복귀 가능</li>
+    </ul>
+    <h6>검증 기준을 "떴다"가 아니라 "이전과 같다"로 설정</h6>
+    <ul>
+      <li>재빌드하지 않고 바이너리 복사 후 <strong>sha256 전량 대조</strong> — 재빌드하면 브랜치 변동으로 두 노드가 다른 코드를 돌 수 있기 때문. JDK 빌드 문자열·systemd 유닛 해시·기동 시간(143초 vs 144초)까지 대조</li>
+      <li><strong>분산 락 소유자 식별자를 0.3초 간격으로 추적</strong>해 두 노드가 실제로 작업 파티션을 나눠 갖는지 실측(60초간 36:36 균등). 한쪽만 재기동시켜 식별자 하나만 바뀌는 것으로 노드를 확정하는 교차검증 사용</li>
+      <li><strong>장애를 실제로 유발해 확인</strong> — 2노드 중 1대 정지 후 30건 요청 전부 정상(5건은 웹 계층이 실패를 감지해 다른 노드로 자동 재시도), 프로세스 강제 종료 후 <strong>2분 34초 만에 자동 복구</strong></li>
+    </ul>
+    <h6>트러블슈팅 — 캐시의 성격을 다시 규정해 이중화를 하지 않기로 판단</h6>
+    <p>소스 코드를 읽어 보니 이 캐시는 데이터 저장소가 아니라 <strong>분산 락 코디네이터</strong>였습니다. 락 백엔드를 standalone·Redis·ZooKeeper 중에서 고를 수 있게 설계돼 있었고, ZooKeeper와 교체 가능한 자리는 데이터 저장소가 아닙니다. 실측에서도 저장된 키는 0개, 락 키만 수백 ms 단위로 생겼다 사라졌습니다.</p>
+    <ul>
+      <li>영속 데이터가 없으므로 <strong>데이터를 옮기지 않고</strong> IP를 승계시켜 애플리케이션 설정 변경·재시작 없이 전환</li>
+      <li>온라인 스냅샷 → 가동 중 대용량 복사 → 정지 후 변경분만 전송의 2단계 설계로 <strong>실제 중단 약 2분</strong></li>
+      <li>중단 시 애플리케이션이 fail-safe로 동작함을 <strong>코드로 먼저 확인</strong> — 락을 얻지 못하면 아무것도 처리하지 않음. 블록체인 전송에서 "멈춤"은 복구 가능하지만 "중복 전송"은 되돌릴 수 없으므로 올바른 방향</li>
+      <li><strong>이중화는 의도적으로 하지 않음</strong> — 비동기 복제 HA를 락에 붙이면 마스터 장애 시 복제 전 락 정보가 유실돼 두 노드가 같은 파티션을 동시 처리할 수 있음. 가용성을 올리려다 정합성을 깨는 교환이라 판단하고, <strong>"안 죽게"가 아니라 "빨리 살아나게"</strong>(호스트 분리 + 자동 기동 + 프로세스 자동 재시작)에 투자</li>
+    </ul>
+    <h6>트러블슈팅 — 이중화가 드러낸 설정 불일치</h6>
+    <p>BaaS API를 2노드로 이중화한 직후 신규 노드에서 트랜잭션 처리가 8분간 멈췄습니다. 스레드 덤프에서 스케줄러가 카운트다운 래치에 대기 중이었고, 소켓은 특정 블록체인 노드로 SYN-SENT 3건이 응답 없이 매달려 있었습니다. 원인은 <strong>기존 노드에만 존재하던 DNAT 규칙</strong>이었습니다.</p>
+    <ul>
+      <li>같은 조사에서 <strong>신규 노드에 기존 노드의 방화벽 정책이 적용되지 않아 서비스 포트가 외부에 노출될 수 있는 상태</strong>임을 발견. 원격 작업이라 <strong>240초 자동 롤백 타이머를 먼저 걸고</strong> 허용 목록 적용 → 외부 도달성 검증 → 타이머 취소 순서로 잠금 사고를 예방</li>
+      <li><strong>연결 타임아웃과 래치 타임아웃이 모두 없어</strong> 블록체인 노드 하나가 응답을 멈추면 인스턴스의 트랜잭션 처리기 전체가 정지하고, 그 사이 락 자동 갱신이 끊겨 다른 노드가 같은 파티션을 가져가는 동시 처리 창이 열린다는 구조적 결함을 확인 — 코드 수정 과제로 등록하고 기존 문서의 "해당 노드 ping 실패는 서비스 영향 없음" 판단을 정정</li>
+      <li><strong>복제했다고 믿은 노드가 실제로는 동일하지 않았습니다.</strong> 애플리케이션 아티팩트는 해시까지 대조했지만 OS 계층 설정은 비교 대상에서 빠져 있었습니다 — 이중화하지 않았다면 두 문제 모두 드러나지 않았을 것</li>
+    </ul>
+    <h6>호스트 자원 병목 — 증설을 기다리지 않고 재배치로 해소</h6>
+    <p>한 물리 호스트가 RAM 62GB 중 55GB 사용에 스왑까지 진입해 가용 5.9GB였습니다. 문서상 선결 조건은 "메모리 증설"이었지만 두 호스트의 가용 RAM이 5.9GB와 90GB로 심하게 불균형했기 때문에, <strong>증설을 기다리는 대신 재배치를 먼저 택했습니다.</strong> 캐시·VPN·홈페이지 3대를 여유 호스트로 옮겨 <strong>가용 RAM 5.9GB → 22GB(약 3.7배) 회복</strong>, 캐시가 앱 노드와 같은 호스트에 있어 동시 장애 지점이 되던 문제도 함께 해소했습니다.</p>
+    <h6>현재 상태</h6>
+    <ul>
+      <li><strong>실트래픽 전환 완료 — BaaS API</strong>: 웹 계층 2대의 업스트림이 온프레미스 2노드로 균등 분산되는 것을 실측 확인</li>
+      <li><strong>이관·가동 완료</strong>: 캐시, 스캔(API·Web·Batch), 검색엔진, 오브젝트 스토리지</li>
+      <li><strong>전환 대기</strong>: 지갑 — 이관·검증 완료, QA 통과 후 트래픽 전환 예정</li>
+      <li><strong>미착수</strong>: WAS 계열 약 17개, RDB 3종, 블록체인 노드</li>
+      <li><strong>정리한 AWS 리소스</strong>: EC2 3대 정지, 탄력 IP 3개 반납(삭제는 후속 단계로 보류)</li>
+      <li><strong>남은 과제</strong>: 순절감(TCO)에 전력·하드웨어 감가가 미반영 상태 — 절감률만 보면 과대평가될 수 있어 산정 보완을 과제로 관리 중. 온프레미스 노드의 모니터링 편입, 전사 runbook 정비도 미완</li>
     </ul>
 
     <h5>Outcome</h5>
