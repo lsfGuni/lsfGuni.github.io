@@ -16,7 +16,13 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
     h2:first-of-type { break-before: auto; }
     h3, h4, table, svg { break-inside: avoid; }
     svg { max-height: 320px; }
-    .container-md, .col-xl-10, .col-lg-10 { max-width: 100% !important; flex: 0 0 100% !important; margin: 0 !important; padding: 0 !important; }
+    /* Bootstrap 그리드 리셋 — .row 음수 마진이 인쇄 시 좌측을 잘라내므로 함께 0으로 */
+    .container-md, .container, .row, .col-xl-10, .col-lg-10, [class*="col-"] {
+      max-width: 100% !important; width: 100% !important; flex: 0 0 100% !important;
+      margin-left: 0 !important; margin-right: 0 !important;
+      padding-left: 0 !important; padding-right: 0 !important;
+    }
+    html, body { width: auto !important; overflow: visible !important; }
   }
 </style>
 
