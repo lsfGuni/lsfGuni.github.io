@@ -252,6 +252,9 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
   <a href="https://github.com/lsfGuni" target="_blank" rel="noopener">
     <i class="fab fa-github"></i> GitHub
   </a>
+  <a href="{{ '/career-en/' | relative_url }}" title="English résumé">
+    <i class="fa fa-globe"></i> EN
+  </a>
   <a href="#" onclick="window.print(); return false;" title="이 페이지를 PDF로 저장">
     <i class="fa fa-print"></i> PDF
   </a>
@@ -364,7 +367,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) AWS·온프레미스 하이브리드 인프라 상시 운영 — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 차단으로 AWS 비용 20%+ 절감</li>
     <li>AWS 비용 절감을 위한 온프레미스 이관(FinOps, 2026.04~): 이관 순번을 리스크 기준으로 설계하고 롤백 경로를 먼저 확보한 뒤 전환 — BaaS API 2노드 이중화 후 실트래픽 전환 완료, 실적 약 20% 절감(1단계 목표 56~70%)</li>
-      <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 컨테이너로 분리하고 외부로 나가는 통신을 차단해 API 키 유출 경로 제거, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
+      <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 Job으로 분리하고 전용 네임스페이스·ServiceAccount·RBAC 부여, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
     <li>삼성디스플레이 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</li>
     <li>KBS 재난방송 STG 인프라(2026.04~06): 검증 환경이 없던 대국민 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 신규 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
