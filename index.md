@@ -352,7 +352,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <strong>Observability & Reliability</strong> — Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반 모니터링·로깅·알림 체계 구축으로 관측성 확보
 </div>
 <div class="strength-item">
-  <strong>Security & Troubleshooting</strong> — AWS WAF, CloudFront Functions 기반 IP 접근제어, Nginx, iptables 다층 방어. 로그 기반 근본 원인 분석(RCA)과 재발 방지, 금융권 망분리 환경 장애 진단, dig 기반 DNS 위임 계층 추적
+  <strong>Security & Troubleshooting</strong> — AWS WAF, CloudFront Functions 기반 IP 접근제어, Nginx, iptables 다층 방어. 로그 기반 근본 원인 분석(RCA)과 재발 방지, 금융권 망분리 환경 장애 진단
 </div>
 
 <!-- ====== 경력 ====== -->
@@ -868,7 +868,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>📡 KBS 통합재난방송시스템 STG 인프라 구축</h4>
     <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)</p>
-    <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. 5일간 멈춰 있던 도메인 이슈는 DNS 위임 계층 추적으로 원인을 규명</p>
+    <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. PRD-STG 전 항목을 CLI로 대조 검증해 불일치 0건으로 인계</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">ECS Fargate</span>
@@ -885,7 +885,6 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <span class="tech-tag">DynamoDB</span>
       <span class="tech-tag">IAM</span>
       <span class="tech-tag">AWS CLI</span>
-      <span class="tech-tag">dig / DNS</span>
       <span class="tech-tag">Jenkins</span>
     </div>
   </div>
@@ -915,7 +914,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
       <rect x="211" y="80" width="180" height="58" rx="8" fill="url(#kbPurple)" filter="url(#kbShadow)"/>
       <text x="301" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">Route 53</text>
-      <text x="301" y="124" text-anchor="middle" font-size="9.5" fill="#E8DAEF">Alias 레코드 · 위임 세트</text>
+      <text x="301" y="124" text-anchor="middle" font-size="9.5" fill="#E8DAEF">STG 도메인 Alias 레코드</text>
       <path d="M391,109 L409,109" stroke="#7F8C8D" stroke-width="2" marker-end="url(#kbArrow)"/>
 
       <rect x="414" y="80" width="205" height="58" rx="8" fill="url(#kbPurple)" filter="url(#kbShadow)"/>
@@ -1012,10 +1011,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="767" y="532" text-anchor="middle" font-size="9" fill="#DDE1E3">STG 전용 역할 · 운영은 조회만</text>
 
       <rect x="30" y="584" width="860" height="102" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
-      <text x="46" y="604" font-size="11" font-weight="700" fill="#9A7D0A">5일간 정체된 도메인 이슈 — 추측이 아니라 증거로 규명</text>
-      <text x="46" y="624" font-size="9.5" fill="#5D4E07">dig +trace로 위임 계층을 한 단계씩 추적 → 정상 도메인과 응답 코드 대조(NOERROR vs NXDOMAIN) → 상위 존의 NS 위임 레코드 누락으로 특정</text>
-      <text x="46" y="643" font-size="9.5" fill="#5D4E07">호스팅존 네임서버를 바꿀 수 없는 제약은 Reusable Delegation Set으로 존을 재생성해 우회</text>
-      <text x="46" y="666" font-size="9.5" font-weight="600" fill="#9A7D0A">판단 3건 — ACM 와일드카드 1레벨 매칭(RFC 6125) 검증으로 인증서 추가 발급 비용 차단 · 단일 계정 + 네이밍/태그 분리 · WAF 제약을 CloudFront Functions로 대체</text>
+      <text x="46" y="604" font-size="11" font-weight="700" fill="#9A7D0A">제약 조건 아래에서 내린 판단 3건</text>
+      <text x="46" y="625" font-size="9.5" fill="#5D4E07">① ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 인증서 추가 발급 비용을 사전 차단</text>
+      <text x="46" y="643" font-size="9.5" fill="#5D4E07">② 계정 분리 대신 단일 계정 + 네이밍·태그 분리로 cross-account 관리 부담 제거</text>
+      <text x="46" y="661" font-size="9.5" fill="#5D4E07">③ WAF를 붙일 수 없는 요금제 제약은 CloudFront Functions로 IP 접근제어를 대체 구현</text>
       <text x="46" y="681" font-size="9.5" font-weight="600" fill="#1E8449">PRD–STG 전 항목 CLI 대조 검증 — 불일치 0건</text>
     </svg>
     <h5>Background</h5>
@@ -1028,14 +1027,12 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>CloudFront 7개 경로 분기 구성</strong> — v1·v2(Next.js)·별도 포털이 한 도메인에서 병행되는 구조를 그대로 재현(S3 4버킷 + ALB 라우팅), DynamoDB 3테이블(GSI 포함)·IP 화이트리스트 접근제어 구성</li>
       <li><strong>비용과 제약이 걸린 판단 3건을 근거로 결정</strong> — ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 <strong>인증서 추가 발급 비용을 사전 차단</strong>, 계정 분리 대신 <strong>단일 계정 + 네이밍·태그 분리</strong>로 cross-account 관리 부담 제거, WAF를 붙일 수 없는 요금제 제약은 <strong>CloudFront Functions로 IP 접근제어를 대체 구현</strong></li>
       <li><strong>IAM 최소권한 설계</strong> — STG 전용 역할을 분리해, 개발자가 <strong>운영 리소스는 조회만 가능</strong>하도록 통제</li>
-      <li><strong>5일간 원인 미상이던 도메인 이슈 규명</strong> — <code>dig +trace</code>로 위임 계층을 따라가고 정상 도메인과 응답 코드를 대조(NOERROR vs NXDOMAIN)해 <strong>상위 존의 NS 위임 레코드 누락</strong>임을 증명. 호스팅존 네임서버를 바꿀 수 없는 AWS 제약은 <strong>Reusable Delegation Set으로 존을 재생성</strong>해 우회</li>
     </ul>
 
     <h5>Outcome</h5>
     <ul>
       <li><strong>STG 전 리소스 구축 완료</strong> — PRD-STG 전 항목을 CLI로 대조 검증, <strong>불일치 0건</strong></li>
       <li><strong>운영에서 직접 배포를 검증하던 구조를 제거</strong> — 개발팀이 안전하게 테스트할 환경 확보</li>
-      <li>원인 미상으로 정체되던 이슈를 <strong>추측이 아닌 증거로 정리</strong>해, 발주처가 무엇을 조치해야 하는지 명확히 정의</li>
       <li>구축 가이드·체크리스트·인계 문서로 <strong>담당자가 바뀌어도 이어갈 수 있는 상태</strong> 유지</li>
     </ul>
   </div>

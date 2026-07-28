@@ -415,7 +415,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 **2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)**
 
 > 검증 환경 없이 운영만 존재하던 시스템에 **운영과 동등한 스테이징을 신규 구축**했습니다.  
-> 5일간 멈춰 있던 도메인 이슈는 **DNS 위임 계층을 추적해 원인이 어디에 있는지 증거로 증명**했습니다.
+> PRD-STG 전 항목을 CLI로 대조 검증해 **불일치 0건**으로 인계했습니다.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 700" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -442,7 +442,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
   <rect x="211" y="80" width="180" height="58" rx="8" fill="url(#kbPurple)" filter="url(#kbShadow)"/>
   <text x="301" y="106" text-anchor="middle" font-size="12.5" font-weight="600" fill="#fff">Route 53</text>
-  <text x="301" y="124" text-anchor="middle" font-size="9.5" fill="#E8DAEF">Alias 레코드 · 위임 세트</text>
+  <text x="301" y="124" text-anchor="middle" font-size="9.5" fill="#E8DAEF">STG 도메인 Alias 레코드</text>
   <path d="M391,109 L409,109" stroke="#7F8C8D" stroke-width="2" marker-end="url(#kbArrow)"/>
 
   <rect x="414" y="80" width="205" height="58" rx="8" fill="url(#kbPurple)" filter="url(#kbShadow)"/>
@@ -539,10 +539,10 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
   <text x="767" y="532" text-anchor="middle" font-size="9" fill="#DDE1E3">STG 전용 역할 · 운영은 조회만</text>
 
   <rect x="30" y="584" width="860" height="102" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
-  <text x="46" y="604" font-size="11" font-weight="700" fill="#9A7D0A">5일간 정체된 도메인 이슈 — 추측이 아니라 증거로 규명</text>
-  <text x="46" y="624" font-size="9.5" fill="#5D4E07">dig +trace로 위임 계층을 한 단계씩 추적 → 정상 도메인과 응답 코드 대조(NOERROR vs NXDOMAIN) → 상위 존의 NS 위임 레코드 누락으로 특정</text>
-  <text x="46" y="643" font-size="9.5" fill="#5D4E07">호스팅존 네임서버를 바꿀 수 없는 제약은 Reusable Delegation Set으로 존을 재생성해 우회</text>
-  <text x="46" y="666" font-size="9.5" font-weight="600" fill="#9A7D0A">판단 3건 — ACM 와일드카드 1레벨 매칭(RFC 6125) 검증으로 인증서 추가 발급 비용 차단 · 단일 계정 + 네이밍/태그 분리 · WAF 제약을 CloudFront Functions로 대체</text>
+  <text x="46" y="604" font-size="11" font-weight="700" fill="#9A7D0A">제약 조건 아래에서 내린 판단 3건</text>
+  <text x="46" y="625" font-size="9.5" fill="#5D4E07">① ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 인증서 추가 발급 비용을 사전 차단</text>
+  <text x="46" y="643" font-size="9.5" fill="#5D4E07">② 계정 분리 대신 단일 계정 + 네이밍·태그 분리로 cross-account 관리 부담 제거</text>
+  <text x="46" y="661" font-size="9.5" fill="#5D4E07">③ WAF를 붙일 수 없는 요금제 제약은 CloudFront Functions로 IP 접근제어를 대체 구현</text>
   <text x="46" y="681" font-size="9.5" font-weight="600" fill="#1E8449">PRD–STG 전 항목 CLI 대조 검증 — 불일치 0건</text>
 </svg>
 
@@ -557,15 +557,13 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **CloudFront 7개 경로 분기 구성** — v1·v2(Next.js)·별도 포털이 한 도메인에서 병행되는 구조를 그대로 재현(S3 4버킷 + ALB 라우팅), DynamoDB 3테이블(GSI 포함)·IP 화이트리스트 접근제어 구성
 - **비용과 제약이 걸린 판단 3건을 근거로 결정** — ACM 와일드카드가 한 레벨만 매칭한다는 점(RFC 6125)을 실제 인증서로 검증해 **인증서 추가 발급 비용을 사전 차단**, 계정 분리 대신 **단일 계정 + 네이밍·태그 분리**로 cross-account 관리 부담 제거, WAF를 붙일 수 없는 요금제 제약은 **CloudFront Functions로 IP 접근제어를 대체 구현**
 - **IAM 최소권한 설계** — STG 전용 역할을 분리해, 개발자가 **운영 리소스는 조회만 가능**하도록 통제
-- **5일간 원인 미상이던 도메인 이슈 규명** — `dig +trace`로 위임 계층을 따라가고 정상 도메인과 응답 코드를 대조(NOERROR vs NXDOMAIN)해 **상위 존의 NS 위임 레코드 누락**임을 증명. 호스팅존 네임서버를 바꿀 수 없는 AWS 제약은 **Reusable Delegation Set으로 존을 재생성**해 우회
 
 #### 성과
 - **STG 전 리소스 구축 완료** — PRD-STG 전 항목을 CLI로 대조 검증, **불일치 0건**
 - **운영에서 직접 배포를 검증하던 구조를 제거** — 개발팀이 안전하게 테스트할 환경 확보
-- 원인 미상으로 정체되던 이슈를 **추측이 아닌 증거로 정리**해, 발주처가 무엇을 조치해야 하는지 명확히 정의
 - 구축 가이드·체크리스트·인계 문서로 **담당자가 바뀌어도 이어갈 수 있는 상태** 유지
 
-**Tech:** AWS ECS(Fargate), ECR, CodeDeploy(Blue/Green), ALB, CloudFront, CloudFront Functions, WAF, Route 53(Reusable Delegation Set, Alias Record), ACM, S3, DynamoDB(GSI), IAM, AWS CLI, dig/DNS
+**Tech:** AWS ECS(Fargate), ECR, CodeDeploy(Blue/Green), ALB, CloudFront, CloudFront Functions, WAF, Route 53(Alias Record), ACM, S3, DynamoDB(GSI), IAM, AWS CLI
 
 ---
 
@@ -652,7 +650,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 - **삼성SDR 파견 (2025.09 ~ 2026.03):** Spring MVC 기반 내방객 관리시스템 풀스택 개발, 카드사 연동 REST API 설계·개발, JBoss 배포 전략 수립
 - 하나증권 AI 협업솔루션 POC 그룹웨어 어댑터 엔지니어링 — 금융권 망분리 환경 SSO/DRM/인사연동 (2026.05~07, 완료)
 - 삼성디스플레이 폐쇄망 AI 플랫폼 구축 — AI POC (2026.05~06), 반입-배포 사이클 5시간+→30분 단축, 9월 후속 단계 확정
-- KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 검증 환경이 없던 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 재현, ECS Fargate·CodeDeploy Blue/Green, IAM 최소권한, DNS 위임 이슈 규명
+- KBS 통합재난방송시스템 STG 인프라 단독 구축 (2026.04~06) — 검증 환경이 없던 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 재현, ECS Fargate·CodeDeploy Blue/Green, CloudFront 경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건
 
 #### 핵심 성과
 - 하이브리드 인프라 운영 기준 정립 및 운영 절차 문서화·표준화
@@ -737,8 +735,7 @@ USB 반입이 단방향인 폐쇄망에 AI 서비스 5종을 배포하면서, �
 
 ### 검증 환경이 없던 서비스의 스테이징 구축
 AWS CLI로 운영 환경 구성을 확인해 가며 **운영과 동등한 스테이징을 구축**하고,  
-PRD-STG 전 항목을 대조 검증해 **불일치 0건**으로 인계했습니다.  
-5일간 멈춰 있던 도메인 이슈는 `dig +trace` 계층 추적과 정상 도메인 응답 코드 대조로 **원인이 어디에 있는지 증거로 증명**했습니다.
+PRD-STG 전 항목을 대조 검증해 **불일치 0건**으로 인계했습니다.
 
 ### DDoS 대응체계 구축
 AWS WAF, Nginx, iptables를 결합한 **3계층 방어 아키텍처**로  
@@ -774,7 +771,7 @@ MCP, OpenSearch, S3, Lambda, EC2를 연결해
 ## Technical Environment
 
 ### Cloud / Infra
-AWS, Route 53(Reusable Delegation Set, Alias Record), ACM, ALB, EC2, ECS(Fargate), ECR, CodeDeploy(Blue/Green), CloudFront, CloudFront Functions, Lambda, VPC, WAF, CloudWatch, OpenSearch, S3, DynamoDB(GSI), IAM, AWS CLI
+AWS, Route 53(Alias Record), ACM, ALB, EC2, ECS(Fargate), ECR, CodeDeploy(Blue/Green), CloudFront, CloudFront Functions, Lambda, VPC, WAF, CloudWatch, OpenSearch, S3, DynamoDB(GSI), IAM, AWS CLI
 
 ### AI / LLM Infrastructure
 litellm(LLM Gateway), IBM watsonx, MCP, 오프라인 모델·패키지 번들링(deb/wheel/Docker/Yarn Berry), GPU 드라이버 반입
