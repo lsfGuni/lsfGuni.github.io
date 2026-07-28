@@ -171,9 +171,42 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
     border-color: #008AFF;
   }
   .contact-bar .btn-primary-contact:hover { background: #0069d9; color: #fff; }
+  /* 상단 우측 고정 Contact — navbar(fixed-top) 아래로 오프셋 */
+  .floating-contact {
+    position: fixed;
+    top: 68px;
+    right: 16px;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #dee2e6;
+    border-radius: 24px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(4px);
+  }
+  .floating-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border-radius: 18px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.15s;
+  }
+  .floating-contact a:hover { background: #f1f5fb; color: #008AFF; text-decoration: none; }
+  .floating-contact .fc-primary { background: #008AFF; color: #fff; }
+  .floating-contact .fc-primary:hover { background: #0069d9; color: #fff; }
   /* PDF 인쇄용 */
   @media print {
-    .intro-header, nav, footer, .contact-bar, .toggle-wrap { display: none !important; }
+    .intro-header, nav, footer, .contact-bar, .toggle-wrap, .floating-contact { display: none !important; }
     .project-toggle { border: 1px solid #ccc !important; break-inside: avoid; }
     .project-detail { display: block !important; height: auto !important; }
     .project-detail { border: 1px solid #ccc !important; break-inside: avoid; }
@@ -187,6 +220,10 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
   /* 작은 화면에서는 임베드 대신 새 창 링크만 노출 */
   @media (max-width: 820px) {
     .demo-embed { display: none; }
+  }
+  /* 좁은 화면에서는 고정 Contact를 숨김 — 하단 Contact 섹션으로 대체 */
+  @media (max-width: 767px) {
+    .floating-contact { display: none; }
   }
   /* 모바일 반응형 */
   @media (max-width: 576px) {
@@ -206,6 +243,19 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
     .strength-item { font-size: 0.88rem; }
   }
 </style>
+
+<!-- ====== 상단 우측 고정 Contact ====== -->
+<div class="floating-contact">
+  <a href="#" class="fc-primary" onclick="copyEmail(event)" title="클릭하면 이메일 주소가 복사됩니다">
+    <i class="fa fa-envelope"></i> <span class="email-text">lsfguni@gmail.com</span>
+  </a>
+  <a href="https://github.com/lsfGuni" target="_blank" rel="noopener">
+    <i class="fab fa-github"></i> GitHub
+  </a>
+  <a href="#" onclick="window.print(); return false;" title="이 페이지를 PDF로 저장">
+    <i class="fa fa-print"></i> PDF
+  </a>
+</div>
 
 <!-- ====== 핵심 요약 ====== -->
 <div class="profile-summary">
@@ -1542,7 +1592,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
 <div class="contact-bar">
   <a href="#" class="btn-primary-contact" id="copyEmail" onclick="copyEmail(event)">
-    <i class="fa fa-envelope"></i> <span id="emailText">lsfguni@gmail.com</span>
+    <i class="fa fa-envelope"></i> <span class="email-text">lsfguni@gmail.com</span>
   </a>
   <a href="https://github.com/lsfGuni" target="_blank">
     <i class="fab fa-github"></i> GitHub
@@ -1583,14 +1633,32 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     }
   });
 
-  // 이메일 클립보드 복사
+  // 이메일 클립보드 복사 — 상단 고정 Contact와 하단 Contact 양쪽에서 호출
   function copyEmail(e) {
     e.preventDefault();
     var email = 'lsfguni@gmail.com';
-    navigator.clipboard.writeText(email).then(function() {
-      var el = document.getElementById('emailText');
-      el.textContent = '이메일 주소가 복사되었습니다';
-      setTimeout(function() { el.textContent = email; }, 2000);
-    });
+    var link = e.target.closest('a');
+    var el = link ? link.querySelector('.email-text') : null;
+
+    function done() {
+      if (!el) return;
+      var prev = el.textContent;
+      el.textContent = '복사되었습니다';
+      setTimeout(function() { el.textContent = prev; }, 2000);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(email).then(done);
+    } else {
+      // 클립보드 API를 쓸 수 없는 환경 대비 (구형 브라우저 등)
+      var ta = document.createElement('textarea');
+      ta.value = email;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (err) { /* 복사 실패 시 무시 */ }
+      document.body.removeChild(ta);
+    }
   }
 </script>
