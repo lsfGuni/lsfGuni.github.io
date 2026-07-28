@@ -346,7 +346,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <strong>IaC (전환 진행 중)</strong> — Proxmox 3대 홈랩을 Terraform(VM 프로비저닝) + Ansible(k8s 설치·설정)로 코드화, 명령 두 번으로 클러스터 전체 재현
 </div>
 <div class="strength-item">
-  <strong>Hybrid Infrastructure</strong> — AWS + On-Premise 연동 인프라 설계·구축·운영. Route 53, ALB, EC2, ECS, Docker, Nginx 기반 서비스 아키텍처
+  <strong>Hybrid Infrastructure &amp; FinOps</strong> — AWS + On-Premise 연동 인프라 설계·구축·운영. Route 53, ALB, EC2, ECS, Docker, Nginx 기반 서비스 아키텍처. 클라우드 비용 구조를 근거로 온프레미스 이관을 설계·실행 — 이관 순번을 리스크 기준으로 정하고 롤백 경로를 먼저 확보
 </div>
 <div class="strength-item">
   <strong>Observability & Reliability</strong> — Prometheus, Grafana, Alertmanager, Blackbox Exporter 기반 모니터링·로깅·알림 체계 구축으로 관측성 확보
@@ -399,7 +399,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 하이브리드 인프라 상시 운영</h4>
     <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE</p>
-    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS(EC2 7대 + RDS + OpenSearch) + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 차단, AWS 비용 20%+ 절감</p>
+    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 차단, AWS 비용 20%+ 절감. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">EC2</span>
@@ -409,10 +409,13 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <span class="tech-tag">Nginx</span>
       <span class="tech-tag">On-Premise</span>
       <span class="tech-tag">Blockchain Node</span>
+      <span class="tech-tag">FinOps</span>
+      <span class="tech-tag">WireGuard VPN</span>
+      <span class="tech-tag">systemd</span>
     </div>
   </div>
   <div id="proj-berith-ops" class="project-detail">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 748" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
       <defs>
         <filter id="brShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
         <marker id="brArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
@@ -424,7 +427,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
         <linearGradient id="brGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
         <linearGradient id="brPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
       </defs>
-      <rect width="920" height="600" fill="#FAFBFC" rx="12"/>
+      <rect width="920" height="748" fill="#FAFBFC" rx="12"/>
       <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith 하이브리드 인프라 — AWS + 온프레미스 상시 운영</text>
 
       <rect x="48" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
@@ -532,6 +535,26 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <rect x="687" y="528" width="185" height="40" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
       <text x="779" y="547" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Slack 실시간 알림</text>
       <text x="779" y="561" text-anchor="middle" font-size="8.5" fill="#DFF0D8">대응 가능한 경보만 남김</text>
+
+      <rect x="30" y="598" width="860" height="132" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
+      <text x="46" y="618" font-size="11" font-weight="700" fill="#1A5276">진행 중 — AWS 월 고정비 절감을 위한 온프레미스 이관 (FinOps)</text>
+
+      <rect x="48" y="628" width="256" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+      <text x="176" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS — 이관 · 가동 완료</text>
+
+      <rect x="316" y="628" width="268" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+      <text x="450" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">OpenSearch — 물리 머신 구축 후 구동</text>
+
+      <rect x="596" y="628" width="274" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+      <text x="733" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Redis — 온프레미스 서버 구축 완료</text>
+
+      <rect x="48" y="672" width="400" height="36" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
+      <text x="248" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Wallet · Scan — 이관 완료, 호스트 메모리 부족으로 가동 대기</text>
+
+      <rect x="460" y="672" width="410" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+      <text x="665" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">S3 · 메인넷 · 부트노드 · RDS — 데이터 이관 리스크로 후순위</text>
+
+      <text x="46" y="722" font-size="9.5" fill="#1A5276">Web Tier는 의도적으로 AWS 유지(DDoS 방어 · 사무실 IP 미노출) · WireGuard Site-to-Site VPN으로 연결 · nginx ProxyPass 원복으로 즉시 롤백 가능</text>
     </svg>
     <h5>Background</h5>
     <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이츠 물품관리 이력)와 B2C 서비스(<strong>Berith Wallet·Berith Scan</strong>)를 AWS와 온프레미스를 연동한 하이브리드 구성으로 상시 운영합니다. 부트노드 2대·메인넷 노드(이더리움 계열 자체 메인넷) 포함 EC2 7대, RDS, OpenSearch(체인 데이터 인덱싱), 온프레미스 이중화 서버로 구성되며, 지갑 서비스 특성상 <strong>계정 탈취를 노리는 무차별 대입·봇 공격이 상시 유입</strong>되는 환경입니다.</p>
@@ -542,6 +565,16 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li>모니터링·알림 체계 구축과 장애별 RCA 문서화 — "뭔가 안 된다" 수준의 신고에서 시작하던 트러블슈팅을 체계화</li>
       <li>단일 봇 차단 후 다수 IP가 로테이션하며 공격하는 패턴으로 진화하자 WAF·Nginx·iptables 3계층 차단 룰을 단계적으로 고도화</li>
       <li>메인넷 노드 다운의 근본 원인을 디스크 I/O 병목 + 체인 데이터 용량 부족으로 특정 — EBS 증설과 함께, 장비 증설 없이 BaaS 요청을 온프레미스 메인넷으로 분산(Wallet은 AWS 유지)하는 구조 변경으로 해소</li>
+    </ul>
+
+    <h5>현재 진행 과제 — AWS 비용 절감을 위한 온프레미스 이관 (FinOps)</h5>
+    <p>서비스 구성이 BaaS 중심으로 정리되면서, 매월 고정 지출되는 AWS 비용을 줄이는 것이 최우선 과제가 되었습니다. 사내 유휴 물리 서버(Xeon 10C/20T·62GB)를 활용해 <strong>AWS 월 고정비의 약 80% 절감을 목표로</strong> 이관을 진행하고 있습니다.</p>
+    <ul>
+      <li><strong>비용이 아니라 리스크 순서로 이관 순번을 결정</strong> — stateless 애플리케이션을 먼저 옮기고 데이터 티어(RDS·S3·체인 노드)는 최후로 유예. 앱은 되돌리면 그만이지만 데이터는 되돌릴 수 없기 때문</li>
+      <li><strong>롤백 경로를 먼저 확보한 뒤 전환</strong> — AWS 웹 계층의 nginx ProxyPass 대상만 바꾸는 방식이라, 문제 발생 시 설정 원복만으로 즉시 AWS 복귀 가능</li>
+      <li><strong>웹 계층은 의도적으로 AWS에 유지</strong> — DDoS 방어와 사무실 IP 미노출이 절감액보다 크다고 판단. AWS와 온프레미스는 WireGuard Site-to-Site VPN으로 연결</li>
+      <li><strong>이관 절차를 스크립트로 고정</strong> — VM 생성 → 런타임 설치 → 저장소 clone → 빌드 → systemd 등록까지 단계별 스크립트화해 다음 서비스에 재사용. 설정 암호화(Jasypt)·키 파일 이관 절차도 함께 정리</li>
+      <li><strong>진행 상황</strong> — BaaS 이관·가동 완료 / OpenSearch는 물리 머신을 직접 구축해 구동 완료 / Redis 온프레미스 구축 완료 / Wallet·Scan은 이관 완료했으나 <strong>호스트 메모리 부족으로 가동 대기</strong> / S3·메인넷·부트노드·RDS는 데이터 이관 리스크로 후순위</li>
     </ul>
 
     <h5>Outcome</h5>
