@@ -273,7 +273,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
     <div class="stat-label">총 경력</div>
   </div>
   <div class="stat-box">
-    <div class="stat-num">13개</div>
+    <div class="stat-num">14개</div>
     <div class="stat-label">프로젝트</div>
   </div>
   <div class="stat-box">
@@ -664,6 +664,152 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>에이전트 실행 1차 관통 완료</strong> (2026-05-29) — 자동 검증 23종 전체 통과</li>
       <li><strong>egress NetworkPolicy는 위 사유로 현재 비활성</strong> — 재활성 조건을 정의해 두고 관리 중</li>
       <li><strong>실격리(microVM)와 사용자 화면은 미착수</strong> — 현재는 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 리스크에 명시 관리 중</li>
+    </ul>
+  </div>
+
+  <!-- 프로젝트 0-0b: 사내 문서관리 시스템 CI/CD 배포 체계 구축 (2026.07) -->
+  <div class="project-toggle" data-target="#proj-devax-drive" aria-expanded="false">
+    <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
+    <h4>🗂️ 사내 문서관리 시스템 — 스테이징·운영 분리 및 CI/CD 배포 체계 구축</h4>
+    <p class="proj-meta">2026.07 (완료) · 사내 프로젝트 · 서버 구축·CI/CD·인수인계 단독 수행</p>
+    <p class="proj-summary">검증 환경 없이 운영 서버 한 대에 수작업으로 배포되던 사내 문서관리 시스템(Google Drive 대체)에 <strong>스테이징·운영 2서버 체계와 자동 배포 파이프라인을 신규 구축</strong>. 운영 배포는 재빌드 없이 스테이징이 검증한 이미지를 그대로 승격(Build Once, Promote)하고 직전 DB를 자동 백업 — 배포가 "push 후 2분 + 말 한마디"로 표준화</p>
+    <div>
+      <span class="tech-tag">Jenkins (JCasC)</span>
+      <span class="tech-tag">사설 Docker Registry</span>
+      <span class="tech-tag">Docker Compose</span>
+      <span class="tech-tag">Nginx</span>
+      <span class="tech-tag">PostgreSQL · Flyway</span>
+      <span class="tech-tag">Bitbucket</span>
+      <span class="tech-tag">KVM · VirtualBox</span>
+      <span class="tech-tag">Smoke Test</span>
+      <span class="tech-tag">AI 에이전트 운영 연동</span>
+    </div>
+  </div>
+  <div id="proj-devax-drive" class="project-detail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 596" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
+      <defs>
+        <filter id="dvShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
+        <marker id="dvArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
+        <marker id="dvArrowP" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7B5BA6"/></marker>
+        <linearGradient id="dvBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#357ABD"/></linearGradient>
+        <linearGradient id="dvGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5CB85C"/><stop offset="100%" stop-color="#449D44"/></linearGradient>
+        <linearGradient id="dvGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
+        <linearGradient id="dvPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
+        <linearGradient id="dvOrange" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0AD4E"/><stop offset="100%" stop-color="#EC971F"/></linearGradient>
+      </defs>
+      <rect width="920" height="596" fill="#FAFBFC" rx="12"/>
+      <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">devax-drive 배포 체계 — 스테이징 자동 · 운영은 검증 이미지 승격</text>
+
+      <rect x="30" y="48" width="860" height="160" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
+      <text x="46" y="68" font-size="11" font-weight="700" fill="#1B4F72">스테이징 (전 구간 자동) — main push 후 사람이 할 일 없음</text>
+
+      <rect x="46" y="80" width="118" height="52" rx="8" fill="url(#dvGray)" filter="url(#dvShadow)"/>
+      <text x="105" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">개발 PC</text>
+      <text x="105" y="120" text-anchor="middle" font-size="9" fill="#DDE1E3">git push origin main</text>
+      <path d="M164,106 L182,106" stroke="#7F8C8D" stroke-width="2" marker-end="url(#dvArrow)"/>
+
+      <rect x="186" y="80" width="118" height="52" rx="8" fill="url(#dvGray)" filter="url(#dvShadow)"/>
+      <text x="245" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Bitbucket</text>
+      <text x="245" y="120" text-anchor="middle" font-size="9" fill="#DDE1E3">Jenkins 2분 폴링</text>
+      <path d="M304,106 L322,106" stroke="#7F8C8D" stroke-width="2" marker-end="url(#dvArrow)"/>
+
+      <rect x="326" y="80" width="130" height="52" rx="8" fill="url(#dvBlue)" filter="url(#dvShadow)"/>
+      <text x="391" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Test (병렬)</text>
+      <text x="391" y="120" text-anchor="middle" font-size="9" fill="#D6EAF8">실패 시 여기서 멈춤</text>
+      <path d="M456,106 L474,106" stroke="#7F8C8D" stroke-width="2" marker-end="url(#dvArrow)"/>
+
+      <rect x="478" y="80" width="130" height="52" rx="8" fill="url(#dvBlue)" filter="url(#dvShadow)"/>
+      <text x="543" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Build → Push</text>
+      <text x="543" y="120" text-anchor="middle" font-size="9" fill="#D6EAF8">사설 레지스트리 보관</text>
+      <path d="M608,106 L626,106" stroke="#7F8C8D" stroke-width="2" marker-end="url(#dvArrow)"/>
+
+      <rect x="630" y="80" width="130" height="52" rx="8" fill="url(#dvBlue)" filter="url(#dvShadow)"/>
+      <text x="695" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">STG 배포</text>
+      <text x="695" y="120" text-anchor="middle" font-size="9" fill="#D6EAF8">compose 자동 반영</text>
+      <path d="M760,106 L778,106" stroke="#7F8C8D" stroke-width="2" marker-end="url(#dvArrow)"/>
+
+      <rect x="782" y="80" width="94" height="52" rx="8" fill="url(#dvGreen)" filter="url(#dvShadow)"/>
+      <text x="829" y="103" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Smoke</text>
+      <text x="829" y="120" text-anchor="middle" font-size="9" fill="#DFF0D8">동작 확인</text>
+
+      <text x="46" y="158" font-size="9.5" fill="#1B4F72">태그 = 빌드번호-커밋SHA · 테스트(프론트 typecheck·lint·test / 백엔드 gradle test) 실패 시 배포되지 않음</text>
+      <text x="46" y="176" font-size="9.5" fill="#1B4F72">Jenkins 설정 전체를 JCasC(코드)로 관리 — UI 변경 금지, 컨테이너를 다시 만들어도 상태가 재현됨</text>
+      <text x="46" y="194" font-size="9.5" fill="#1B4F72">스테이징·운영은 완전 동일 구성 — 환경 차이는 .env 파일 하나뿐</text>
+
+      <rect x="30" y="224" width="860" height="150" rx="10" fill="#F4ECF7" stroke="#BB8FCE" stroke-width="1.5"/>
+      <text x="46" y="244" font-size="11" font-weight="700" fill="#6C3483">운영 (수동 승격 게이트) — "운영서버 배포해 줘" 한 마디, 약 40초</text>
+
+      <rect x="46" y="258" width="160" height="52" rx="8" fill="url(#dvPurple)" filter="url(#dvShadow)"/>
+      <text x="126" y="281" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">배포 지시</text>
+      <text x="126" y="298" text-anchor="middle" font-size="9" fill="#E8DAEF">사람 또는 AI 에이전트</text>
+      <path d="M206,284 L224,284" stroke="#7B5BA6" stroke-width="2" marker-end="url(#dvArrowP)"/>
+
+      <rect x="228" y="258" width="160" height="52" rx="8" fill="url(#dvPurple)" filter="url(#dvShadow)"/>
+      <text x="308" y="281" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">태그 결정 · 이미지 검증</text>
+      <text x="308" y="298" text-anchor="middle" font-size="9" fill="#E8DAEF">스테이징 검증 태그 승격</text>
+      <path d="M388,284 L406,284" stroke="#7B5BA6" stroke-width="2" marker-end="url(#dvArrowP)"/>
+
+      <rect x="410" y="258" width="160" height="52" rx="8" fill="url(#dvOrange)" filter="url(#dvShadow)"/>
+      <text x="490" y="281" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">DB 자동 백업</text>
+      <text x="490" y="298" text-anchor="middle" font-size="9" fill="#FDEBD0">pg_dump · 최근 20개 보관</text>
+      <path d="M570,284 L588,284" stroke="#7B5BA6" stroke-width="2" marker-end="url(#dvArrowP)"/>
+
+      <rect x="592" y="258" width="140" height="52" rx="8" fill="url(#dvPurple)" filter="url(#dvShadow)"/>
+      <text x="662" y="281" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">운영 배포</text>
+      <text x="662" y="298" text-anchor="middle" font-size="9" fill="#E8DAEF">재빌드 없음</text>
+      <path d="M732,284 L750,284" stroke="#7B5BA6" stroke-width="2" marker-end="url(#dvArrowP)"/>
+
+      <rect x="754" y="258" width="122" height="52" rx="8" fill="url(#dvGreen)" filter="url(#dvShadow)"/>
+      <text x="815" y="281" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Smoke</text>
+      <text x="815" y="298" text-anchor="middle" font-size="9" fill="#DFF0D8">응답 200 확인</text>
+
+      <text x="46" y="336" font-size="9.5" fill="#6C3483">운영만 수동인 이유 — 백엔드 기동 시 Flyway DB 마이그레이션이 자동 적용되므로, 사람의 실행이 스키마 변경의 확인 지점</text>
+      <text x="46" y="354" font-size="9.5" fill="#6C3483">Build Once, Promote — 운영에서 다시 빌드하지 않아 "스테이징에선 됐는데 운영에선 안 되네"가 원리적으로 발생하지 않음</text>
+
+      <rect x="30" y="390" width="860" height="186" rx="10" fill="#E9F7EF" stroke="#A9DFBF" stroke-width="1.5"/>
+      <text x="46" y="410" font-size="11" font-weight="700" fill="#186A3B">구축 중 사고를 자산으로 — 재발 방지 문서화와 3중 롤백 경로</text>
+      <text x="46" y="432" font-size="9.5" fill="#145A32">· 레지스트리 매니페스트 수동 삭제로 저장소가 통째로 비워진 사고 2회 → 여러 태그가 같은 매니페스트를 공유하는 원리를 규명하고,</text>
+      <text x="56" y="449" font-size="9.5" fill="#145A32">  자동 정리 스크립트로만 정리하도록 금지사항 문서화 (환경변수 충돌·공유폴더 소유권 등 사고 전부 원인과 함께 기록)</text>
+      <text x="46" y="470" font-size="9.5" fill="#145A32">· 롤백 경로 3중 확보 — ① 레지스트리 태그 승격 롤백 ② 전환 전 운영 VM 무손상 보존 ③ 전환 전 전체 백업(DB·설정·계정)</text>
+      <text x="46" y="491" font-size="9.5" fill="#145A32">· 인수인계 문서 이원화 — 사람용 가이드(그림·이유 중심) + AI 에이전트용 참조 문서(명령 매핑·사실 정보) 분리 작성,</text>
+      <text x="56" y="508" font-size="9.5" fill="#145A32">  미검증 항목(대용량 업로드 등)도 정직하게 기록해 인수자가 우선 확인할 지점을 명시</text>
+      <text x="46" y="535" font-size="11" font-weight="700" fill="#1E8449">결과 — 수작업 배포가 "push 후 2분 대기 + 말 한마디"로 표준화, 배포마다 DB 백업 자동 확보</text>
+      <text x="46" y="555" font-size="9.5" fill="#145A32">테스트를 통과하지 못한 코드는 배포될 수 없고, 운영 반영 직전 상태로 언제든 복원 가능한 체계</text>
+    </svg>
+    <h5>Background</h5>
+    <p>Google Drive를 대체하는 사내 문서관리 시스템이 <strong>검증 환경 없이 운영 서버 한 대에서 수작업으로 배포</strong>되고 있었습니다. 서버 전환 시점에 맞춰 <strong>스테이징·운영 2서버 체계와 CI/CD 파이프라인을 1주 안에 신규 구축</strong>하고, 이어받을 개발자를 위한 인수인계까지 완료하는 것이 과제였습니다.</p>
+
+    <h5>What I Did</h5>
+    <h6>스테이징·운영 분리 및 파이프라인 구축</h6>
+    <ul>
+      <li>스테이징(+CI+사설 레지스트리)과 운영 VM을 <strong>완전 동일 구성</strong>으로 구축 — 환경 차이를 <code>.env</code> 파일 하나로 수렴시켜 "환경이 달라서 생기는 장애"를 구조적으로 차단</li>
+      <li>Jenkins 파이프라인 구축: main push → 2분 폴링 → 테스트(프론트 typecheck·lint·test / 백엔드 gradle test 병렬) → 이미지 빌드 → 레지스트리 푸시 → 스테이징 배포 → smoke — <strong>테스트 실패 시 배포되지 않으며, push 이후 사람 개입 없음</strong></li>
+      <li>운영 배포는 <strong>재빌드 없이 스테이징 검증 이미지를 태그로 승격</strong>(약 40초), 배포 직전 <code>pg_dump</code> 자동 백업(최근 20개 보관)</li>
+      <li>Jenkins 설정 전체를 JCasC로 코드화하고 파이프라인·compose·nginx 설정을 전부 저장소에서 관리 — 서버를 다시 만들어도 상태가 재현됨</li>
+    </ul>
+    <h6>운영을 "말 한마디"로 — AI 에이전트 연동 설계</h6>
+    <ul>
+      <li>"운영서버 배포해 줘" / "〈태그〉로 롤백해 줘" 발화를 배포 스크립트로 매핑해 <strong>Claude Code 등 코딩 에이전트가 운영 배포·롤백·상태 확인을 수행</strong>하도록 설계 — 자격증명은 저장소 밖에 분리</li>
+      <li>인수인계 문서를 <strong>사람용 가이드와 에이전트용 참조 문서로 이원화</strong> — 사람용은 그림과 "왜 이렇게 만들었나" 중심, 에이전트용은 명령 매핑·사실 정보·금지사항 중심</li>
+    </ul>
+    <h6>사고의 재발 방지 문서화</h6>
+    <ul>
+      <li>구축 중 발생한 사고 전부를 원인과 함께 금지사항으로 문서화 — 레지스트리 매니페스트 수동 삭제로 저장소가 비워진 사고 2회(여러 태그가 같은 매니페스트를 공유하는 원리 규명), compose 환경변수가 Jenkins 환경에 덮여 기동 실패한 사례, 공유폴더(vboxsf) 소유권 제약으로 DB 배치 위치를 결정한 근거 등</li>
+      <li>미검증 항목(대용량 업로드 등)도 정직하게 기록해 인수자가 우선 확인할 지점을 명시</li>
+    </ul>
+
+    <h5>설계 판단</h5>
+    <ul>
+      <li><strong>운영 배포만 수동으로 남긴 이유</strong> — 백엔드 기동 시 Flyway DB 마이그레이션이 자동 적용되므로, 스키마 변경이 확인 없이 운영 DB에 반영되는 것을 막는 확인 지점으로 사람의 실행을 배치</li>
+      <li><strong>Build Once, Promote</strong> — 운영에서 다시 빌드하지 않고 스테이징이 검증한 이미지를 그대로 옮겨 "스테이징에선 됐는데 운영에선 안 되네"를 원리적으로 제거</li>
+      <li><strong>롤백 경로 3중 확보 후 전환</strong> — 레지스트리 태그 승격 롤백 + 전환 전 운영 VM 무손상 보존 + 전체 백업(DB·설정·계정)을 먼저 갖춘 뒤 신규 체계로 전환</li>
+    </ul>
+
+    <h5>Outcome</h5>
+    <ul>
+      <li>수작업 배포가 <strong>"push 후 2분 대기 + 말 한마디"</strong>로 표준화 — 테스트를 통과하지 못한 코드는 배포될 수 없는 구조</li>
+      <li>배포마다 운영 DB 백업이 자동 확보되고, 운영 반영 직전 상태로 언제든 복원 가능</li>
+      <li>파이프라인 전 구간 검증 완료 후 인수인계 문서 2종과 함께 이관 — 다음 담당자가 첫날부터 배포 가능한 상태로 전달</li>
     </ul>
   </div>
 
