@@ -48,7 +48,7 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 ### ⛓️ Berith Blockchain Services — Hybrid Infrastructure (BaaS · Wallet · Explorer)
 
-**Aug 2024 – Present · DevOps / SRE · sole infrastructure owner**
+**Aug 2024 – Present · DevOps / SRE · sole infrastructure owner** *(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
 
 > I run an enterprise blockchain recording service (BaaS) and consumer wallet/explorer services across **AWS (7 × EC2, RDS, OpenSearch) and on-premise servers**, and I'm currently leading a **FinOps migration to in-house hardware** to cut recurring cloud spend. (~20% realized, 56–70% target at stage one.)
 
@@ -707,7 +707,7 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 ## Professional Experience
 
 ### Berith Korea — Developer · DevOps · SRE
-**Aug 2024 – Present**
+**Feb 2025 – Present**
 
 - Sole owner of the hybrid infrastructure for the company's blockchain services (BaaS, Wallet, Explorer) — mainnet and boot node operations, 7 EC2 instances, RDS, OpenSearch, on-premise redundancy
 - Designed, built and operated AWS (Route 53, ALB, EC2) to on-premise connectivity, and standardized the operational procedures
@@ -722,6 +722,14 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 - Built AI execution infrastructure integrating MCP, OpenSearch, S3, Lambda and EC2
 - Built the on-premise server room and operate VM backup and disaster recovery
 - **On-site at Samsung SDR (Sep 2025 – Mar 2026):** full-stack development of a visitor management system on Spring MVC, card-company REST API integration, JBoss deployment strategy
+
+### iBiz Software — Backend Developer · DevOps (project contract)
+**Aug 2024 – Jan 2025** *(affiliate of Berith Korea — same site; joined Berith Korea full-time in Feb 2025)*
+
+- NIPA government blockchain project — sole owner of the backend and infrastructure for a **pharmaceutical traceability system**
+- Designed and built Spring Boot REST APIs consumed by a Flutter mobile app (built by a dedicated iOS developer)
+- Built the admin console (Thymeleaf) and modeled the MariaDB schema; developed blockchain-backed history recording and lookup features
+- Built and operated the AWS EC2 servers and deployment automation
 
 ### iBank Consultants — Developer
 **Sep 2023 – Jul 2024**

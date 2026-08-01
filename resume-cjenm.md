@@ -66,7 +66,7 @@ Spring 백엔드 개발로 시작해 **AWS 컨테이너 기반 서비스 운영,
 
 ## 경력
 
-### 베리드코리아 <span class="meta">| DevOps · SRE · 인프라 단독 운영 | 2024.08 ~ 현재</span>
+### 베리드코리아 <span class="meta">| DevOps · SRE · 인프라 단독 운영 | 2025.02 ~ 현재</span>
 
 자사 블록체인 서비스(BaaS·지갑·익스플로러)의 AWS + 온프레미스 하이브리드 인프라를 단독으로 운영.
 
@@ -77,6 +77,15 @@ Spring 백엔드 개발로 시작해 **AWS 컨테이너 기반 서비스 운영,
 - **AWS 비용 절감을 위한 온프레미스 이관(FinOps) 진행 중** — 이관 순번을 리스크 기준으로 설계하고 롤백 경로를 먼저 확보한 뒤 전환. BaaS API 2노드 이중화 후 실트래픽 전환 완료 (**실적 약 20% 절감, 1단계 목표 56~70%**)
 - **Kubernetes(k3s) 격리 실행 인프라 구축 중** — 에이전트 실행 1건 = Job 1개, 전용 네임스페이스·ServiceAccount·RBAC, ArgoCD app-of-apps로 Helm 차트 14종 선언적 배포 *(서비스 오픈 전 단계)*
 - Jenkins·스크립트 기반 CI/CD 구축, Docker 기반 Web/WAS/DB 운영, 온프레미스 서버실 구축 및 **VM 백업·재해복구(DR) 체계 운영**
+
+### 아이비즈소프트웨어 <span class="meta">| Backend Developer · DevOps (프로젝트 계약) | 2024.08 ~ 2025.01</span>
+
+베리드코리아 관계사(동일 사업장)에서 NIPA 블록체인 정부과제 수행 후 2025.02 베리드코리아 정규 입사.
+
+- NIPA 블록체인 정부과제 — **의약품 이력관리 시스템** 백엔드·인프라 1인 담당
+- Spring Boot 기반 REST API 설계·개발 — Flutter 모바일 앱(iOS 개발자 협업) 연동
+- 관리자 페이지(Thymeleaf) 개발, MariaDB 데이터 모델링, 블록체인 연계 이력 기록·조회 기능 개발
+- AWS EC2 서버 구축·운영 및 배포 자동화 — 개발과 인프라 겸임
 
 ### 아이뱅크컨설턴츠 <span class="meta">| Developer | 2023.09 ~ 2024.07</span>
 

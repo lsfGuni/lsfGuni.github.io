@@ -363,7 +363,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
 <div class="exp-card">
   <h4>(주)베리드코리아 <small style="color:#008AFF;">Developer · DevOps · SRE</small></h4>
-  <div class="exp-meta">개발팀 / 주임 · 2024.08 ~ Present</div>
+  <div class="exp-meta">개발팀 / 주임 · 2025.02 ~ Present</div>
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) AWS·온프레미스 하이브리드 인프라 상시 운영 — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 차단으로 AWS 비용 20%+ 절감</li>
     <li>AWS 비용 절감을 위한 온프레미스 이관(FinOps, 2026.04~): 이관 순번을 리스크 기준으로 설계하고 롤백 경로를 먼저 확보한 뒤 전환 — BaaS API 2노드 이중화 후 실트래픽 전환 완료, 실적 약 20% 절감(1단계 목표 56~70%)</li>
@@ -378,6 +378,17 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <li>온프레미스 서버실 구축, VM 백업·복원 자동화 → 재해복구(DR) 체계 확립</li>
     <li>MCP + OpenSearch + Lambda 기반 AI 실행 인프라 → 재현 가능한 질의응답 파이프라인 구축</li>
     <li>삼성SDR 파견(2025.09~2026.03): 내방객 관리시스템 풀스택 개발 + 카드사 연동 REST API 설계·개발</li>
+  </ul>
+</div>
+
+<div class="exp-card">
+  <h4>(주)아이비즈소프트웨어 <small style="color:#008AFF;">Backend Developer · DevOps</small></h4>
+  <div class="exp-meta">프로젝트 계약 · 2024.08 ~ 2025.01 (베리드코리아 관계사 — 2025.02 정규 입사)</div>
+  <ul>
+    <li>NIPA 블록체인 정부과제 — 의약품 이력관리 시스템 백엔드·인프라 1인 담당</li>
+    <li>Spring Boot REST API 설계·개발 — Flutter 모바일 앱(iOS 개발자 협업) 연동</li>
+    <li>관리자 페이지(Thymeleaf) 개발, MariaDB 데이터 모델링, 블록체인 연계 이력 기록·조회 기능 개발</li>
+    <li>AWS EC2 서버 구축·운영 및 배포 자동화</li>
   </ul>
 </div>
 

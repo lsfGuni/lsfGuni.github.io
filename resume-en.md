@@ -66,7 +66,7 @@ Most of my work has been in environments where the usual tools are unavailable �
 
 ## Experience
 
-### Berith Korea <span class="meta">| DevOps · SRE · sole infrastructure owner | Aug 2024 – Present</span>
+### Berith Korea <span class="meta">| DevOps · SRE · sole infrastructure owner | Feb 2025 – Present</span>
 
 Sole owner of the hybrid AWS + on-premise infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer).
 
@@ -76,6 +76,15 @@ Sole owner of the hybrid AWS + on-premise infrastructure behind the company's bl
 - **Leading a FinOps migration from AWS to in-house hardware.** Migration order follows risk rather than cost, and the rollback path is secured before every cutover. BaaS API cut over to two on-prem nodes; **~20% of monthly spend eliminated, 56–70% targeted at stage one**
 - **Building a Kubernetes (k3s) isolation platform** — one Job per agent execution with a dedicated namespace, ServiceAccount and RBAC, deployed declaratively via ArgoCD app-of-apps across 14 Helm charts *(pre-launch)*
 - Built CI/CD on Jenkins and scripts, ran Docker-based web/WAS/DB tiers, and set up the on-premise server room with VM backup and disaster recovery
+
+### iBiz Software <span class="meta">| Backend Developer · DevOps (project contract) | Aug 2024 – Jan 2025</span>
+
+Affiliate of Berith Korea (same site, separate entity); joined Berith Korea full-time in Feb 2025.
+
+- NIPA government blockchain project — sole owner of the backend and infrastructure for a **pharmaceutical traceability system**
+- Designed and built Spring Boot REST APIs consumed by a Flutter mobile app (built by a dedicated iOS developer)
+- Built the admin console (Thymeleaf), modeled the MariaDB schema, and developed blockchain-backed history recording and lookup features
+- Built and operated the AWS EC2 servers and deployment automation
 
 ### iBank Consultants <span class="meta">| Developer | Sep 2023 – Jul 2024</span>
 
