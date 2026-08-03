@@ -413,7 +413,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-berith-ops" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 하이브리드 인프라 상시 운영</h4>
-    <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE · 인프라 단독 운영</p>
+    <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE · 인프라 운영 전담</p>
     <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 AWS + 온프레미스 이중화로 상시 운영 — 트러블슈팅 1주일 → 30분, 봇 트래픽 일평균 1,000+ IP 자동 차단. 현재는 <strong>AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps)</strong>을 단계적으로 진행 중 — 실적 약 20% 절감, 1단계 목표 56~70%</p>
     <div>
       <span class="tech-tag">AWS</span>
