@@ -54,8 +54,8 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 > I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **alone for two years**.
 > I moved every service **off AWS onto in-house hardware** and replaced the entire AWS edge with **Cloudflare Tunnel** —
 > bringing monthly spend from **$1,497 to about $330 (−78%)**.
-> With no successor named, I also built **self-healing and a three-tier backup chain**, then handed over
-> the documentation, access and incident procedures.
+> With no successor named, I built a platform that **repairs itself without a person on site**, and set it up so an
+> **AI session can carry out incident response** — diagnostics and runbooks included — before handing it over.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -289,7 +289,7 @@ With no successor named, I focused on leaving **things that run**, not just thin
 
 - **Five handover documents** — architecture, backup, credentials, decommissioning, operations
 - **One SSH key covering all 18 in-house machines** — consolidating two key types across two accounts into a single file while leaving existing authentication intact, with deploy, verify and revoke scripts
-- **An incident-response set** — a diagnostic script that captures full system state, plus nine symptom-based runbooks, arranged so a successor typing "the explorer is down" is still walked through **establish facts → isolate cause → act**
+- **An AI-driven incident-response set** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, packaged with entry rules so **a Claude Code session reads them and executes directly**. A successor typing "the explorer is down" is still walked through **establish facts → isolate cause → act** — the rules explicitly forbid restarting on a guess
 - **A log of reversed judgements** — on one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact"
 
 I also documented **what was still open** at handover:

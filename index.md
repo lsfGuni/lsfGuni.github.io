@@ -415,7 +415,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
     <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 (1인) · 인계 완료</p>
-    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>혼자 맡아 2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>자가복구 체계와 백업 3계층</strong>을 만들고 문서·키·대응 절차까지 정리해 인계했습니다.</p>
+    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>혼자 맡아 2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성해 인계했습니다.</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">Cloudflare</span>
@@ -616,7 +616,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <ul>
       <li><strong>인수인계 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션</li>
       <li><strong>사내 18대 통합 SSH 키</strong> — 키 2종·계정 2개로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지), 배포·확인·폐기 스크립트 포함</li>
-      <li><strong>장애 대응 세트</strong> — 시스템 상태를 한 번에 찍는 진단 스크립트와 증상별 런북 9종. 인수자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟게 구성</li>
+      <li><strong>AI 기반 장애 대응 세트</strong> — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, <strong>Claude Code 세션이 읽고 그대로 수행하도록</strong> 진입 규칙과 함께 묶었습니다. 인수자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다</li>
       <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>후임이 같은 오판을 반복하지 않도록</strong> 했습니다</li>
     </ul>
     <p><strong>인계 시점에 남아 있던 것</strong>도 그대로 적어 넘겼습니다 — 운영 DB는 데이터 티어를 최후로 둔 설계에 따라 아직 AWS에 있고(이관 방식 설계 단계), 전력·하드웨어 감가를 넣은 순절감(TCO)은 미산정이며, 부트노드는 지갑 재배포 전까지 폐기할 수 없습니다.</p>
