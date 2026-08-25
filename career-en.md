@@ -53,9 +53,9 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 > I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **for two years**.
 > I moved every service **off AWS onto in-house hardware** and replaced the entire AWS edge with **Cloudflare Tunnel** —
-> bringing monthly spend from **$1,497 to about $330 (−78%)**.
+> bringing monthly spend **down by 78%**.
 > Because it had to run without anyone on site, I built a platform that **repairs itself**, and set it up so an
-> **AI session can carry out incident response** — diagnostics and runbooks included — before handing it over.
+> **AI session can carry out incident response**, with diagnostics and runbooks included.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -88,7 +88,7 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
   <rect x="722" y="60" width="158" height="44" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
   <text x="801" y="79" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AWS monthly bill</text>
-  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">$1,497 &#8594; ~$330</text>
+  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">down 78%</text>
 
   <path d="M165,104 L165,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
   <path d="M400,104 L400,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
@@ -154,7 +154,7 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
   <rect x="422" y="430" width="192" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
   <text x="518" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Elasticsearch (replaces OpenSearch)</text>
-  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; $262/mo recovered</text>
+  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; search brought in-house</text>
 
   <text x="46" y="490" font-size="9.5" fill="#1B4F72">5 standalone machines &#8212; 4 chain nodes (1 RPC &#183; 2 validators &#183; 1 ETH) + Elasticsearch</text>
 
@@ -204,14 +204,14 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
   <text x="46" y="659" font-size="11" font-weight="700" fill="#2C3E50">Cost &#8212; based on actual invoices, not list-price estimates</text>
 
   <rect x="46" y="668" width="700" height="26" rx="5" fill="#E74C3C"/>
-  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">Before &#8212; $1,497 / mo</text>
+  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">Before &#8212; 100% of monthly spend</text>
   <text x="700" y="686" font-size="9.5" fill="#FADBD8">Aug 2026 invoice</text>
 
   <rect x="46" y="700" width="154" height="26" rx="5" fill="#27AE60"/>
-  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">Now &#8212; ~$330 / mo</text>
-  <text x="212" y="718" font-size="9.5" fill="#196F3D">~78% reduction &#183; ~$14,000 / yr</text>
+  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">Now &#8212; ~22%</text>
+  <text x="212" y="718" font-size="9.5" fill="#196F3D">~78% reduction</text>
 
-  <text x="46" y="742" font-size="9.5" fill="#566573">Decommissioned &#8212; 2 OpenSearch domains ($262) &#183; WAF ($104) &#183; 7 ALBs &#183; all ElastiCache &#183; 2 RDS &#183; 9 EC2 &#183; elastic IPs 23&#8594;4</text>
+  <text x="46" y="742" font-size="9.5" fill="#566573">Decommissioned &#8212; 2 OpenSearch domains &#183; WAF &#183; 7 ALBs &#183; all ElastiCache &#183; 2 RDS &#183; 9 EC2 &#183; elastic IPs 23&#8594;4</text>
   <text x="46" y="757" font-size="9.5" fill="#943126">2,874GB of snapshots are retained as recovery insurance, offsetting part of this until they expire (Feb 2027). Net TCO including power and hardware depreciation is still unmeasured</text>
 </svg>
 
@@ -224,7 +224,7 @@ and being a wallet, it absorbed constant credential-stuffing traffic.
 
 Two problems had to be solved:
 
-- **① Recurring AWS spend.** The actual invoices came to **$1,497/month** — 3.7× the "$400+" the company believed. The gap was in line items nobody tracked, including WAF at $104/month
+- **① Recurring AWS spend.** The actual invoices came to **3.7× what the company believed**. The gap sat in line items nobody had ever costed, including the web application firewall
 - **② No dedicated operator.** The platform had to keep running without anyone on site
 
 #### What I did
@@ -277,7 +277,7 @@ I kept only the verified part: six false-positive-heavy rules disabled, 81% of d
 
 #### Results
 
-- **AWS spend $1,497 → ~$330/month (−78%, ~$14,000/yr)** — retired 2 OpenSearch domains, WAF, 7 ALBs, all ElastiCache, 2 RDS instances, 9 EC2 instances, and 19 of 23 elastic IPs
+- **AWS monthly spend down 78%** — retired 2 OpenSearch domains, WAF, 7 ALBs, all ElastiCache, 2 RDS instances, 9 EC2 instances, and 19 of 23 elastic IPs
 - **Removed the single point of failure at the edge** — replaced an EOL, never-rebooted, unbacked-up proxy with two connectors on separate physical hosts
 - **Incident triage from a week to under 30 minutes** — built from nothing, with monitoring, alerting and per-incident RCA writeups
 - **Auto-blocking 1,000+ IPs per day**, hardened in stages as attacks moved from a single bot to rotating IPs
@@ -290,7 +290,7 @@ So the platform keeps running without someone on site, I focused on leaving **th
 - **Five operations documents** — architecture, backup, credentials, decommissioning, incident response
 - **One SSH key covering all 18 in-house machines** — consolidating two key types across two accounts into a single file while leaving existing authentication intact, with deploy, verify and revoke scripts
 - **An AI-driven incident-response set** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, packaged with entry rules so **a Claude Code session reads them and executes directly**. An operator typing "the explorer is down" is still walked through **establish facts → isolate cause → act** — the rules explicitly forbid restarting on a guess
-- **A log of reversed judgements** — on one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact"
+- **A change log with the reasoning behind it** — a record of why the setup looks the way it does and what was verified before each change, so **someone without that history does not revert to an earlier approach**
 
 ---
 
@@ -543,7 +543,7 @@ So the platform keeps running without someone on site, I focused on leaving **th
 **Apr – Jun 2026 · infrastructure engineer**
 
 > A public service that existed only in production, with no environment to verify changes.
-> I built **staging equivalent to production** and handed it over with **zero mismatches** after comparing every resource via CLI.
+> I built **staging equivalent to production** and closed it out with **zero mismatches** after comparing every resource via CLI.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 700" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -749,7 +749,7 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 
 - **Owned the infrastructure** for the company's blockchain services (BaaS, Wallet, Explorer) — an in-house Ethereum-based mainnet, 11 VMs across 2 physical servers, and 5 standalone machines
 - **Replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a reverse-proxy EC2 — with Cloudflare Tunnel**, removing inbound firewall exposure and putting two connectors on separate physical hosts for redundancy
-- **Migrated the platform off AWS onto in-house hardware — $1,497 → ~$330/month (−78%, ~$14,000/yr).** Sequenced by risk with the rollback path secured before each cutover; 8 domain cutovers with zero regressions. Decommissioning decisions came from measurement — 14 days of zero-traffic data, full index comparison — not assumption
+- **Migrated the platform off AWS onto in-house hardware — monthly spend down 78%.** Sequenced by risk with the rollback path secured before each cutover; 8 domain cutovers with zero regressions. Decommissioning decisions came from measurement — 14 days of zero-traffic data, full index comparison — not assumption
 - **Built a two-tier self-healing system for an unstaffed platform** — 11 local watchdogs plus 2 host supervisors, judging health by whether data advances rather than whether a process is up, after indexing once stalled 5 days while reporting healthy. Backed by a three-tier backup chain with a verified restore drill
 - **Handed over five documents, a single SSH key covering all 18 in-house machines, and a working incident-response setup** so the platform can be run by someone new
 - Built and ran Docker-based web / WAS / DB containers

@@ -287,7 +287,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 담당자 없이도 돌아가는 <strong>자가복구 체계</strong>까지 만든 DevOps 엔지니어
 </p>
 
-Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 판단이 뒤집힌 이력을 남겨 다음 담당자가 같은 오판을 반복하지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들었습니다.
+Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 결정의 근거와 변경 이력을 남겨 다음 사람이 배경을 모른 채 손대지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들었습니다.
 
 </div>
 
@@ -366,7 +366,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="exp-meta">개발팀 / 주임 · 2025.02 ~ Present</div>
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) 인프라 <strong>운영 전담</strong> — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 자동 차단</li>
-    <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 청구 $1,497 → 약 $330 (78%↓)</strong></li>
+    <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 고정비 78% 절감</strong></li>
     <li><strong>담당자 부재 전제의 무인 운영 체계 구축</strong> — 2계층 자가복구(워치독 11대 + 감시자 2대), 백업 3계층(복원 실증), 운영 문서 5권 + AI 장애 대응 세트 구축</li>
       <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 Job으로 분리하고 전용 네임스페이스·ServiceAccount·RBAC 부여, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
@@ -415,7 +415,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
     <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담</p>
-    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 상시 담당자 없이도 돌아가야 했기에 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성했습니다.</p>
+    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 고정비 78% 절감</strong>. 상시 담당자 없이도 돌아가야 했기에 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성했습니다.</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">Cloudflare</span>
@@ -463,7 +463,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
       <rect x="722" y="60" width="158" height="44" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
       <text x="801" y="79" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AWS 월 청구</text>
-      <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">$1,497 &#8594; 약 $330</text>
+      <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">78% 절감</text>
 
       <path d="M165,104 L165,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
       <path d="M400,104 L400,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
@@ -529,7 +529,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
       <rect x="422" y="430" width="192" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
       <text x="518" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Elasticsearch (OpenSearch 대체)</text>
-      <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; 월 $262 회수</text>
+      <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; 검색 인프라 내재화</text>
 
       <text x="46" y="490" font-size="9.5" fill="#1B4F72">별도 물리 5대 &#8212; 블록체인 노드 4대(RPC 1 &#183; 검증자 2 &#183; ETH 1) + Elasticsearch 1</text>
 
@@ -579,19 +579,19 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="659" font-size="11" font-weight="700" fill="#2C3E50">비용 &#8212; 실청구 기준 (정가 추정이 아니라 청구서 확보 후 재산정)</text>
 
       <rect x="46" y="668" width="700" height="26" rx="5" fill="#E74C3C"/>
-      <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">이전 $1,497 / 월</text>
+      <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">이전 &#8212; 월 고정비 100%</text>
       <text x="700" y="686" font-size="9.5" fill="#FADBD8">2026-08 실청구</text>
 
       <rect x="46" y="700" width="154" height="26" rx="5" fill="#27AE60"/>
-      <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">현재 약 $330 / 월</text>
-      <text x="212" y="718" font-size="9.5" fill="#196F3D">약 78% 감소 &#183; 연 $14,000 규모</text>
+      <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">현재 &#8212; 약 22%</text>
+      <text x="212" y="718" font-size="9.5" fill="#196F3D">약 78% 감소</text>
 
-      <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 $262 &#183; WAF $104 &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
+      <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 &#183; WAF &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
       <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
     </svg>
     <h5>어떤 일이었나</h5>
     <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라 운영을 맡았습니다. 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
-    <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 $1,497로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다. <strong>② 상시 담당자 부재</strong> — 사람이 붙어 있지 않아도 서비스가 유지되어야 했습니다.</p>
+    <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 <strong>회사가 알고 있던 금액의 3.7배</strong>였습니다. 비용으로 한 번도 계산된 적 없던 항목(웹 방화벽 등)이 원인이었습니다. <strong>② 상시 담당자 부재</strong> — 사람이 붙어 있지 않아도 서비스가 유지되어야 했습니다.</p>
 
     <h5>한 일</h5>
     <ul>
@@ -605,7 +605,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
     <h5>결과</h5>
     <ul>
-      <li><strong>AWS 월 청구 $1,497 → 약 $330 (78%↓, 연 $14,000 규모)</strong> — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리</li>
+      <li><strong>AWS 월 고정비 78% 절감</strong> — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리</li>
       <li><strong>진입 계층 단일 장애점 제거</strong> — EOL·무재기동·백업 0건이던 EC2 의존을 걷어내고 물리 호스트가 다른 커넥터 2대로 이중화</li>
       <li><strong>장애 트러블슈팅 1주일 → 30분 이내</strong> — 지표도 장애 이력도 없던 상태에서 모니터링·알림과 RCA 문서를 쌓아 만든 결과</li>
       <li><strong>대부분의 장애가 사람이 인지하기 전에 자동 복구</strong>되는 상태로 전환</li>
@@ -617,7 +617,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>운영 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션</li>
       <li><strong>사내 18대 통합 SSH 키</strong> — 키 2종·계정 2개로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지), 배포·확인·폐기 스크립트 포함</li>
       <li><strong>AI 기반 장애 대응 세트</strong> — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, <strong>Claude Code 세션이 읽고 그대로 수행하도록</strong> 진입 규칙과 함께 묶었습니다. 담당자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다</li>
-      <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>다음 담당자가 같은 오판을 반복하지 않도록</strong> 했습니다</li>
+      <li><strong>변경 이력과 결정 근거 기록</strong> — 지금 구성이 왜 이 형태가 됐는지, 무엇을 확인하고 바꿨는지를 변경할 때마다 남겼습니다. <strong>배경을 모르는 사람이 예전 방식으로 되돌리는 일</strong>을 막기 위한 것입니다</li>
     </ul>
 
   </div>
@@ -780,7 +780,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="555" font-size="9.5" fill="#145A32">테스트를 통과하지 못한 코드는 배포될 수 없고, 운영 반영 직전 상태로 언제든 복원 가능한 체계</text>
     </svg>
     <h5>Background</h5>
-    <p>Google Drive를 대체하는 사내 문서관리 시스템이 <strong>검증 환경 없이 운영 서버 한 대에서 수작업으로 배포</strong>되고 있었습니다. 서버 전환 시점에 맞춰 <strong>스테이징·운영 2서버 체계와 CI/CD 파이프라인을 1주 안에 신규 구축</strong>하고, 이어받을 개발자를 위한 인수인계까지 완료하는 것이 과제였습니다.</p>
+    <p>Google Drive를 대체하는 사내 문서관리 시스템이 <strong>검증 환경 없이 운영 서버 한 대에서 수작업으로 배포</strong>되고 있었습니다. 서버 전환 시점에 맞춰 <strong>스테이징·운영 2서버 체계와 CI/CD 파이프라인을 1주 안에 신규 구축</strong>하고, 이어받을 개발자를 위한 문서화까지 마치는 것이 과제였습니다.</p>
 
     <h5>What I Did</h5>
     <h6>스테이징·운영 분리 및 파이프라인 구축</h6>
@@ -1085,7 +1085,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>📡 KBS 통합재난방송시스템 STG 인프라 구축</h4>
     <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 담당</p>
-    <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. PRD-STG 전 항목을 CLI로 대조 검증해 불일치 0건으로 인계</p>
+    <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. PRD-STG 전 항목을 CLI로 대조 검증해 불일치 0건으로 마무리</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">ECS Fargate</span>
@@ -1250,7 +1250,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <ul>
       <li><strong>STG 전 리소스 구축 완료</strong> — PRD-STG 전 항목을 CLI로 대조 검증, <strong>불일치 0건</strong></li>
       <li><strong>운영에서 직접 배포를 검증하던 구조를 제거</strong> — 개발팀이 안전하게 테스트할 환경 확보</li>
-      <li>구축 가이드·체크리스트·인계 문서로 <strong>담당자가 바뀌어도 이어갈 수 있는 상태</strong> 유지</li>
+      <li>구축 가이드·체크리스트·참조 문서로 <strong>담당자가 바뀌어도 이어갈 수 있는 상태</strong> 유지</li>
     </ul>
   </div>
 

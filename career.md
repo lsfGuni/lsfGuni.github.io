@@ -58,7 +58,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 > 블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 **2년간 운영**하며,
 > AWS에 있던 서비스를 **사내 물리서버로 전량 이관**하고 진입 계층을 **Cloudflare Tunnel**로 교체했습니다.
-> **월 청구 $1,497 → 약 $330 (78%↓)**.
+> **월 고정비 78% 절감**.
 > 상시 담당자 없이도 돌아가야 했기에 **사람 없이 스스로 복구하는 무인 운영 체계**를 만들고,
 > **AI 세션이 장애 대응을 수행할 수 있도록** 진단 스크립트와 런북까지 구성했습니다.
 
@@ -93,7 +93,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
   <rect x="722" y="60" width="158" height="44" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
   <text x="801" y="79" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AWS 월 청구</text>
-  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">$1,497 &#8594; 약 $330</text>
+  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">78% 절감</text>
 
   <path d="M165,104 L165,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
   <path d="M400,104 L400,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
@@ -159,7 +159,7 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
   <rect x="422" y="430" width="192" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
   <text x="518" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Elasticsearch (OpenSearch 대체)</text>
-  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; 월 $262 회수</text>
+  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; 검색 인프라 내재화</text>
 
   <text x="46" y="490" font-size="9.5" fill="#1B4F72">별도 물리 5대 &#8212; 블록체인 노드 4대(RPC 1 &#183; 검증자 2 &#183; ETH 1) + Elasticsearch 1</text>
 
@@ -209,14 +209,14 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
   <text x="46" y="659" font-size="11" font-weight="700" fill="#2C3E50">비용 &#8212; 실청구 기준 (정가 추정이 아니라 청구서 확보 후 재산정)</text>
 
   <rect x="46" y="668" width="700" height="26" rx="5" fill="#E74C3C"/>
-  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">이전 $1,497 / 월</text>
+  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">이전 &#8212; 월 고정비 100%</text>
   <text x="700" y="686" font-size="9.5" fill="#FADBD8">2026-08 실청구</text>
 
   <rect x="46" y="700" width="154" height="26" rx="5" fill="#27AE60"/>
-  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">현재 약 $330 / 월</text>
-  <text x="212" y="718" font-size="9.5" fill="#196F3D">약 78% 감소 &#183; 연 $14,000 규모</text>
+  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">현재 &#8212; 약 22%</text>
+  <text x="212" y="718" font-size="9.5" fill="#196F3D">약 78% 감소</text>
 
-  <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 $262 &#183; WAF $104 &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
+  <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 &#183; WAF &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
   <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
 </svg>
 
@@ -229,7 +229,7 @@ B2C 서비스(**지갑 · 블록체인 익스플로러**)의 인프라 운영을
 
 풀어야 할 문제는 두 가지였습니다.
 
-- **① AWS 월 고정비** — 실청구서를 확보해 보니 **$1,497**로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다
+- **① AWS 월 고정비** — 실청구서를 확보해 보니 **회사가 알고 있던 금액의 3.7배**였습니다. 비용으로 한 번도 계산된 적 없던 항목(웹 방화벽 등)이 원인이었습니다
 - **② 상시 담당자 부재** — 사람이 붙어 있지 않아도 서비스가 유지되어야 했습니다
 
 #### 한 일
@@ -284,7 +284,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 
 #### 결과
 
-- **AWS 월 청구 $1,497 → 약 $330 (78%↓, 연 $14,000 규모)** — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리
+- **AWS 월 고정비 78% 절감** — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리
 - **진입 계층 단일 장애점 제거** — EOL·무재기동·백업 0건이던 EC2 의존을 걷어내고 물리 호스트가 다른 커넥터 2대로 이중화
 - **장애 트러블슈팅 1주일 → 30분 이내** — 지표도 장애 이력도 없던 상태에서 모니터링·알림과 RCA 문서를 쌓아 만든 결과
 - **봇 트래픽 하루 평균 1,000개 이상 IP 자동 차단** — 단일 봇에서 다수 IP 로테이션으로 진화한 공격에 맞춰 3계층 방어를 단계적으로 고도화
@@ -297,7 +297,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 - **운영 문서 5권** — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션
 - **사내 18대 통합 SSH 키** — 키 2종·계정 2개로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지). 배포·확인·폐기 스크립트 포함
 - **AI 기반 장애 대응 세트** — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, **Claude Code 세션이 읽고 그대로 수행하도록** 진입 규칙과 함께 묶었습니다. 담당자가 "스캔이 안 된다" 수준으로 말해도 **사실 확보 → 원인 특정 → 조치** 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다
-- **뒤집힌 판단 이력** — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, **다음 담당자가 같은 오판을 반복하지 않도록** 했습니다
+- **변경 이력과 결정 근거 기록** — 지금 구성이 왜 이 형태가 됐는지, 무엇을 확인하고 바꿨는지를 변경할 때마다 남겼습니다. **배경을 모르는 사람이 예전 방식으로 되돌리는 일**을 막기 위한 것입니다
 
 ---
 
@@ -640,7 +640,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 
 #### 문제 상황
 - Google Drive를 대체하는 사내 문서관리 시스템이 **검증 환경 없이 운영 서버 한 대에서 수작업으로 배포**되는 상태
-- 서버 전환 시점에 맞춰 스테이징·운영 2서버 체계와 CI/CD 파이프라인을 신규 구축하고, 이어받을 개발자를 위한 인수인계까지 완료해야 하는 과제
+- 서버 전환 시점에 맞춰 스테이징·운영 2서버 체계와 CI/CD 파이프라인을 신규 구축하고, 이어받을 개발자를 위한 문서화까지 마쳐야 하는 과제
 
 #### 해결 과정
 - 스테이징(+CI+사설 레지스트리)과 운영 VM을 **완전 동일 구성**으로 구축 — 환경 차이를 `.env` 파일 하나로 수렴시켜 "환경이 달라서 생기는 장애"를 구조적으로 차단
@@ -815,7 +815,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 #### 성과
 - **STG 전 리소스 구축 완료** — PRD-STG 전 항목을 CLI로 대조 검증, **불일치 0건**
 - **운영에서 직접 배포를 검증하던 구조를 제거** — 개발팀이 안전하게 테스트할 환경 확보
-- 구축 가이드·체크리스트·인계 문서로 **담당자가 바뀌어도 이어갈 수 있는 상태** 유지
+- 구축 가이드·체크리스트·참조 문서로 **담당자가 바뀌어도 이어갈 수 있는 상태** 유지
 
 **Tech:** AWS ECS(Fargate), ECR, CodeDeploy(Blue/Green), ALB, CloudFront, CloudFront Functions, WAF, Route 53(Alias Record), ACM, S3, DynamoDB(GSI), IAM, AWS CLI
 
@@ -878,7 +878,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 - **총 경력:** 2년 11개월+
 - **핵심 분야:** DevOps, AI Platform Infrastructure(LLM Serving), Backend Development
 - **중심 역량:** CI/CD 파이프라인 구축·개선, Air-gapped(폐쇄망) 배포, Hybrid Infrastructure, **비용 최적화(FinOps) 기반 클라우드 → 온프레미스 이관**, 관측성(Observability), 장애 대응·RCA, 운영 절차 문서화·표준화
-- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 **k3s 클러스터 직접 구축 + ArgoCD app-of-apps GitOps 배포 체계 구성 후 인계** — 실행 1건 = Job 1개 격리, 전용 네임스페이스·ServiceAccount·RBAC (관리형 서비스(EKS·GKE) 경험은 없으며 self-managed 클러스터 구축 기준. 상용 트래픽 운영 경험은 아닙니다)
+- **Kubernetes:** 사내 AI 에이전트 실행 플랫폼에서 **k3s 클러스터 직접 구축 + ArgoCD app-of-apps GitOps 배포 체계 구성** — 실행 1건 = Job 1개 격리, 전용 네임스페이스·ServiceAccount·RBAC (관리형 서비스(EKS·GKE) 경험은 없으며 self-managed 클러스터 구축 기준. 상용 트래픽 운영 경험은 아닙니다)
 - **전환 진행 중:** Terraform·Ansible 기반 IaC — 홈랩(Proxmox 3대) 실습 병행
 - **관심 방향:** AI 플랫폼 인프라(LLM 서빙, GPU), 배포 자동화, 신뢰성 엔지니어링(SRE), 플랫폼 엔지니어링
 
@@ -894,7 +894,7 @@ WAF 규칙을 Log에서 Block으로 올렸다가 **3분 만에 되돌렸습니�
 #### 주요 업무
 - 자사 블록체인 서비스(BaaS·Berith Wallet·Berith Scan) 인프라 **운영 전담** — 자체 메인넷 노드, 사내 물리서버 2대 위 VM 11대 + 별도 물리 5대
 - **진입 계층을 AWS(Route 53 + ALB 8개 + WAF + 리버스프록시 EC2)에서 Cloudflare Tunnel로 전면 이전** — 인바운드 포트 개방 0, 커넥터 2대를 서로 다른 물리 호스트에 배치해 이중화
-- **AWS 월 고정비 절감(FinOps) — $1,497 → 약 $330 (78%↓, 연 $14,000 규모)** — 리스크 기준으로 이관 순번을 설계하고 롤백 경로를 먼저 확보한 뒤 전환. 폐기 판단은 추정이 아니라 14일 실측·인덱스 전수 대조 같은 근거로 수행
+- **AWS 월 고정비 78% 절감 (FinOps)** — 리스크 기준으로 이관 순번을 설계하고 롤백 경로를 먼저 확보한 뒤 전환. 폐기 판단은 추정이 아니라 14일 실측·인덱스 전수 대조 같은 근거로 수행
 - **담당자 부재를 전제로 한 무인 운영 체계 구축** — L1 워치독 11대 + L2 호스트 감시자 2대의 2계층 자가복구, 백업 3계층(복원 리허설 실증), 운영 문서 5권과 AI 장애 대응 세트 구축
 - Docker 기반 Web / WAS / DB 컨테이너 운영 체계 구축·운영
 - AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 무차별 대입·봇 트래픽 상시 대응
