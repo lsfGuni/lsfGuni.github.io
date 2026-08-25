@@ -413,7 +413,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <!-- 프로젝트 0-0: Berith 서비스 운영 + AWS 이관 (2024.08 ~ 2026.08, 완료) -->
   <div class="project-toggle" data-target="#proj-berith-ops" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축 <small style="color:#1a7a3a;">완료</small></h4>
+    <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
     <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 (1인) · 인계 완료</p>
     <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>혼자 맡아 2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>자가복구 체계와 백업 3계층</strong>을 만들고 문서·키·대응 절차까지 정리해 인계했습니다.</p>
     <div>
@@ -625,7 +625,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (2026.05 ~ 2026.08, 구축 완료·인계) -->
   <div class="project-toggle" data-target="#proj-ai-agent" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라 <small style="color:#1a7a3a;">구축 완료</small></h4>
+    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라</h4>
     <p class="proj-meta">2026.05 ~ 2026.08 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 인계 완료</p>
     <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마친 뒤 인계했습니다</p>
     <div>
