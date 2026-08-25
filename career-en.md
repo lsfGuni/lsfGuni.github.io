@@ -767,9 +767,11 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 ### Berith Korea — Developer · DevOps · SRE
 **Feb 2025 – Present**
 
-- Sole owner of the hybrid infrastructure for the company's blockchain services (BaaS, Wallet, Explorer) — mainnet and boot node operations, 7 EC2 instances, RDS, OpenSearch, on-premise redundancy
-- Designed, built and operated AWS (Route 53, ALB, EC2) to on-premise connectivity, and standardized the operational procedures
-- **Leading a FinOps migration to on-premise (Apr 2026 – )** — sequenced by risk, rollback path secured before each cutover, procedures scripted for reuse. BaaS API cut over to two on-prem nodes; ~20% of monthly spend eliminated, 56–70% targeted at stage one
+- **Sole owner** of the infrastructure for the company's blockchain services (BaaS, Wallet, Explorer) — an in-house Ethereum-based mainnet, 11 VMs across 2 physical servers, and 5 standalone machines
+- **Replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a reverse-proxy EC2 — with Cloudflare Tunnel**, removing inbound firewall exposure and putting two connectors on separate physical hosts for redundancy
+- **Migrated the platform off AWS onto in-house hardware — $1,497 → ~$330/month (−78%, ~$14,000/yr).** Sequenced by risk with the rollback path secured before each cutover; 8 domain cutovers with zero regressions. Decommissioning decisions came from measurement — 14 days of zero-traffic data, full index comparison — not assumption
+- **Built a two-tier self-healing system for an unstaffed platform** — 11 local watchdogs plus 2 host supervisors, judging health by whether data advances rather than whether a process is up, after indexing once stalled 5 days while reporting healthy. Backed by a three-tier backup chain with a verified restore drill
+- **Handed over five documents, a single SSH key covering all 18 in-house machines, and a working incident-response setup** so the platform can be run by someone new
 - Built and ran Docker-based web / WAS / DB containers
 - Built a layered security architecture across AWS WAF, Nginx and iptables, handling continuous brute-force and bot traffic
 - Built monitoring and alerting that combines external health checks with internal metrics, with real-time Slack notifications
