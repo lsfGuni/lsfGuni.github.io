@@ -292,15 +292,6 @@ So the platform keeps running without someone on site, I focused on leaving **th
 - **An AI-driven incident-response set** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, packaged with entry rules so **a Claude Code session reads them and executes directly**. An operator typing "the explorer is down" is still walked through **establish facts → isolate cause → act** — the rules explicitly forbid restarting on a guess
 - **A log of reversed judgements** — on one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact"
 
-I also documented **what was still open**:
-
-| Item | State |
-| --- | --- |
-| Production DB | **Still on AWS** — putting the data tier last was deliberate; the cutover design was unfinished |
-| Net TCO | **Unmeasured** — power and hardware depreciation excluded, and 2,874GB of retained snapshots offset part of the saving |
-| Boot node | **Cannot be retired** until wallets are re-released |
-| One client | Pins our IP in their internal DNS, so still on the old path — a direct-line path was built and left ready |
-
 ---
 
 ## Featured Projects

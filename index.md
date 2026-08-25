@@ -619,10 +619,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>AI 기반 장애 대응 세트</strong> — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, <strong>Claude Code 세션이 읽고 그대로 수행하도록</strong> 진입 규칙과 함께 묶었습니다. 담당자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다</li>
       <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>다음 담당자가 같은 오판을 반복하지 않도록</strong> 했습니다</li>
     </ul>
-    <p><strong>완료하지 못한 것</strong>도 근거와 함께 기록으로 남겼습니다 — 운영 DB는 데이터 티어를 최후로 둔 설계에 따라 아직 AWS에 있고(이관 방식 설계 단계), 전력·하드웨어 감가를 넣은 순절감(TCO)은 미산정이며, 부트노드는 지갑 재배포 전까지 폐기할 수 없습니다.</p>
+
   </div>
 
-  <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (2026.05 ~ 2026.08, 구축 완료·인계) -->
+  <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (2026.05 ~ 2026.08, 구축 완료) -->
   <div class="project-toggle" data-target="#proj-ai-agent" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라</h4>
