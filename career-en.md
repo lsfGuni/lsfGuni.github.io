@@ -222,10 +222,10 @@ asset-custody history on-chain) and consumer services (**wallet and chain explor
 It ran on AWS — multiple EC2 instances, RDS and OpenSearch — including an in-house Ethereum-based mainnet,
 and being a wallet, it absorbed constant credential-stuffing traffic.
 
-Two problems had to be solved:
+There were two objectives:
 
-- **① Recurring AWS spend.** The actual invoices came to **3.7× what the company believed**. The gap sat in line items nobody had ever costed, including the web application firewall
-- **② No dedicated operator.** The platform had to keep running without anyone on site
+- **① Cost structure — a FinOps-driven move on-premise.** I judged the AWS footprint to be **over-provisioned relative to actual usage**, and set the direction of moving workloads onto idle in-house hardware
+- **② Migrating safely and keeping it running.** It was carrying live traffic, so it had to move **without downtime and stay stable afterwards**
 
 #### What I did
 
