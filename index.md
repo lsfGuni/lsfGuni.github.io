@@ -365,7 +365,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <h4>(주)베리드코리아 <small style="color:#008AFF;">Developer · DevOps · SRE</small></h4>
   <div class="exp-meta">개발팀 / 주임 · 2025.02 ~ Present</div>
   <ul>
-    <li>자사 블록체인 서비스(BaaS·Wallet·Scan) 인프라 <strong>1인 운영</strong> — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 자동 차단</li>
+    <li>자사 블록체인 서비스(BaaS·Wallet·Scan) 인프라 <strong>운영 전담</strong> — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 자동 차단</li>
     <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 청구 $1,497 → 약 $330 (78%↓)</strong></li>
     <li><strong>담당자 부재 전제의 무인 운영 체계 구축</strong> — 2계층 자가복구(워치독 11대 + 감시자 2대), 백업 3계층(복원 실증), 인수인계 문서 5권 + 장애 대응 세션 이양</li>
       <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 Job으로 분리하고 전용 네임스페이스·ServiceAccount·RBAC 부여, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
@@ -386,7 +386,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <h4>(주)아이비즈소프트웨어 <small style="color:#008AFF;">Backend Developer · DevOps</small></h4>
   <div class="exp-meta">프로젝트 계약 · 2024.08 ~ 2025.01 (베리드코리아 관계사 — 2025.02 정규 입사)</div>
   <ul>
-    <li>NIPA 블록체인 정부과제 — 의약품 이력관리 시스템 백엔드·인프라 1인 담당</li>
+    <li>NIPA 블록체인 정부과제 — 의약품 이력관리 시스템 백엔드·인프라 담당</li>
     <li>Spring Boot REST API 설계·개발 — Flutter 모바일 앱(iOS 개발자 협업) 연동</li>
     <li>관리자 페이지(Thymeleaf) 개발, MariaDB 데이터 모델링, 블록체인 연계 이력 기록·조회 기능 개발</li>
     <li>AWS EC2 서버 구축·운영 및 배포 자동화</li>
@@ -414,8 +414,8 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-berith-ops" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
-    <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 (1인) · 인계 완료</p>
-    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>혼자 맡아 2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성해 인계했습니다.</p>
+    <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 · 인계 완료</p>
+    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성해 인계했습니다.</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">Cloudflare</span>
@@ -590,7 +590,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
     </svg>
     <h5>어떤 일이었나</h5>
-    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라를 <strong>혼자 맡았습니다.</strong> 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
+    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라 운영을 맡았습니다. 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
     <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 $1,497로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다. <strong>② 후임 부재</strong> — 인수인계 대상이 정해지지 않은 상태에서, 사람이 없어도 서비스가 유지되어야 했습니다.</p>
 
     <h5>한 일</h5>
@@ -674,7 +674,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-devax-drive" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🗂️ 사내 문서관리 시스템 — 스테이징·운영 분리 및 CI/CD 배포 체계 구축</h4>
-    <p class="proj-meta">2026.07 (완료) · 사내 프로젝트 · 서버 구축·CI/CD·인수인계 단독 수행</p>
+    <p class="proj-meta">2026.07 (완료) · 사내 프로젝트 · 서버 구축·CI/CD·인수인계 담당</p>
     <p class="proj-summary">검증 환경 없이 운영 서버 한 대에 수작업으로 배포되던 사내 문서관리 시스템(Google Drive 대체)에 <strong>스테이징·운영 2서버 체계와 자동 배포 파이프라인을 신규 구축</strong>. 운영 배포는 재빌드 없이 스테이징이 검증한 이미지를 그대로 승격(Build Once, Promote)하고 직전 DB를 자동 백업 — 배포가 "push 후 2분 + 말 한마디"로 표준화</p>
     <div>
       <span class="tech-tag">Jenkins (JCasC)</span>
@@ -946,7 +946,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-sdc-poc" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🔒 삼성디스플레이 폐쇄망 AI 플랫폼 구축 (AI POC)</h4>
-    <p class="proj-meta">2026.05 ~ 2026.06 · 폐쇄망 인프라 단독 담당 (인프라 1인 / 총 5인)</p>
+    <p class="proj-meta">2026.05 ~ 2026.06 · 폐쇄망 인프라 담당 (총 5인)</p>
     <p class="proj-summary">인터넷 차단 + USB 단방향 반입(반출 불가) 환경에 AI 서비스 5종 배포. "내부에서는 빌드하지 않는다"로 전략을 바꿔 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</p>
     <div>
       <span class="tech-tag">Air-gapped</span>
@@ -1075,7 +1075,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <ul>
       <li><strong>POC 완료</strong> — 전 서비스 정상 동작 시연, 고객사 임원 보고 긍정 평가로 <strong>2026년 9월 후속 단계 진행 확정</strong></li>
       <li>반입-배포 1사이클 <strong>5시간+ → 30분 (약 90% 단축)</strong></li>
-      <li>폐쇄망 AI 서비스 5종 + 게이트웨이 전체를 <strong>단독으로 배포·기동</strong></li>
+      <li>폐쇄망 AI 서비스 5종 + 게이트웨이 전체를 <strong>직접 배포·기동</strong></li>
       <li><strong>다음 프로젝트의 출발점을 만듦</strong> — 이 POC에서 DevAX는 격리 인프라 없이 systemd로 구동했는데, 여기서 <strong>에이전트가 자기 실행 환경을 수정하는 문제</strong>가 드러났고, 이 경험이 사내 Kubernetes 샌드박스 구축으로 이어졌습니다</li>
     </ul>
   </div>
@@ -1084,7 +1084,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-kbs-stg" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>📡 KBS 통합재난방송시스템 STG 인프라 구축</h4>
-    <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 단독 (1인)</p>
+    <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 담당</p>
     <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. PRD-STG 전 항목을 CLI로 대조 검증해 불일치 0건으로 인계</p>
     <div>
       <span class="tech-tag">AWS</span>

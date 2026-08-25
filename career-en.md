@@ -48,10 +48,10 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 ### ⛓️ Berith Blockchain Services — Migrating off AWS and Running Unattended *(completed)*
 
-**Aug 2024 – Aug 2026 (2 yrs 1 mo) · DevOps / SRE · sole infrastructure owner · handed over**
+**Aug 2024 – Aug 2026 (2 yrs 1 mo) · DevOps / SRE · infrastructure owner · handed over**
 *(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
 
-> I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **alone for two years**.
+> I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **for two years**.
 > I moved every service **off AWS onto in-house hardware** and replaced the entire AWS edge with **Cloudflare Tunnel** —
 > bringing monthly spend from **$1,497 to about $330 (−78%)**.
 > With no successor named, I built a platform that **repairs itself without a person on site**, and set it up so an
@@ -217,7 +217,7 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 #### What this was
 
-I was the sole owner of the infrastructure for **BaaS** (recording Samsung Display security pledges and Lotte Innovate
+I owned the infrastructure for **BaaS** (recording Samsung Display security pledges and Lotte Innovate
 asset-custody history on-chain) and consumer services (**wallet and chain explorer**).
 It ran on AWS — multiple EC2 instances, RDS and OpenSearch — including an in-house Ethereum-based mainnet,
 and being a wallet, it absorbed constant credential-stuffing traffic.
@@ -307,7 +307,7 @@ I also documented **what was still open** at handover:
 
 ### 🔒 Air-gapped AI Platform — Samsung Display (POC)
 
-**May – Jun 2026 · sole infrastructure engineer (1 of 5 on the project)**
+**May – Jun 2026 · infrastructure engineer (1 of 5 on the project)**
 
 > Deployed five AI services and a model gateway into a facility with no internet, where **USB media can be carried in but never carried out**.
 > With one missing dependency costing an entire cycle, I changed the strategy to **"never build on the inside"** and cut the transfer-to-boot cycle from **5+ hours to 30 minutes**.
@@ -427,7 +427,7 @@ I also documented **what was still open** at handover:
 
 - **POC completed** — all services demonstrated working; a positive executive review confirmed the **next phase for September 2026**
 - Transfer-to-deploy cycle **5+ hours → 30 minutes (~90% reduction)**
-- Deployed and operated all five services plus the gateway **single-handedly**
+- Deployed and operated all five services plus the gateway **end to end**
 - **This created the next project.** DevAX ran on systemd with no isolation here, and agents modifying their own runtime surfaced as a real problem — which led directly to the Kubernetes sandbox below
 
 **Tech:** litellm (LLM gateway), IBM watsonx API, WrenAI, local STT serving, Docker (multi-arch builds), systemd, Linux (x86_64), GPU/CUDA, offline bundling (deb / wheel / Docker / Yarn Berry)
@@ -549,7 +549,7 @@ I also documented **what was still open** at handover:
 
 ### 📡 Staging Environment for a National Disaster Broadcasting System — KBS
 
-**Apr – Jun 2026 · sole infrastructure engineer**
+**Apr – Jun 2026 · infrastructure engineer**
 
 > A public service that existed only in production, with no environment to verify changes.
 > I built **staging equivalent to production** and handed it over with **zero mismatches** after comparing every resource via CLI.
@@ -756,7 +756,7 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 ### Berith Korea — Developer · DevOps · SRE
 **Feb 2025 – Present**
 
-- **Sole owner** of the infrastructure for the company's blockchain services (BaaS, Wallet, Explorer) — an in-house Ethereum-based mainnet, 11 VMs across 2 physical servers, and 5 standalone machines
+- **Owned the infrastructure** for the company's blockchain services (BaaS, Wallet, Explorer) — an in-house Ethereum-based mainnet, 11 VMs across 2 physical servers, and 5 standalone machines
 - **Replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a reverse-proxy EC2 — with Cloudflare Tunnel**, removing inbound firewall exposure and putting two connectors on separate physical hosts for redundancy
 - **Migrated the platform off AWS onto in-house hardware — $1,497 → ~$330/month (−78%, ~$14,000/yr).** Sequenced by risk with the rollback path secured before each cutover; 8 domain cutovers with zero regressions. Decommissioning decisions came from measurement — 14 days of zero-traffic data, full index comparison — not assumption
 - **Built a two-tier self-healing system for an unstaffed platform** — 11 local watchdogs plus 2 host supervisors, judging health by whether data advances rather than whether a process is up, after indexing once stalled 5 days while reporting healthy. Backed by a three-tier backup chain with a verified restore drill
@@ -775,7 +775,7 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 ### iBiz Software — Backend Developer · DevOps (project contract)
 **Aug 2024 – Jan 2025** *(affiliate of Berith Korea — same site; joined Berith Korea full-time in Feb 2025)*
 
-- NIPA government blockchain project — sole owner of the backend and infrastructure for a **pharmaceutical traceability system**
+- NIPA government blockchain project — owned the backend and infrastructure for a **pharmaceutical traceability system**
 - Designed and built Spring Boot REST APIs consumed by a Flutter mobile app (built by a dedicated iOS developer)
 - Built the admin console (Thymeleaf) and modeled the MariaDB schema; developed blockchain-backed history recording and lookup features
 - Built and operated the AWS EC2 servers and deployment automation

@@ -53,7 +53,7 @@ subtitle: Resume
 ## Summary
 
 DevOps engineer with 3 years of experience, starting in Spring backend development and moving into **hybrid AWS/on-premise operations, CI/CD, observability and security response**.
-**Sole infrastructure owner** for a blockchain service platform, where I moved every service off AWS onto in-house hardware and cut monthly spend by **78%**.
+**Infrastructure owner** for a blockchain service platform, where I moved every service off AWS onto in-house hardware and cut monthly spend by **78%**.
 Most of my work has been in environments where the usual tools are unavailable — air-gapped facilities, segmented financial networks, undocumented production accounts. I don't stop at restoring service: root cause, fix, then documentation.
 
 ## Core Strengths
@@ -66,9 +66,9 @@ Most of my work has been in environments where the usual tools are unavailable �
 
 ## Experience
 
-### Berith Korea <span class="meta">| DevOps · SRE · sole infrastructure owner | Feb 2025 – Present</span>
+### Berith Korea <span class="meta">| DevOps · SRE · infrastructure owner | Feb 2025 – Present</span>
 
-Sole owner of the infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer), migrated from AWS to in-house hardware.
+Owned the infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer), migrated from AWS to in-house hardware.
 
 - Inherited the platform with no handover; built monitoring and alerting from nothing and documented an RCA for every failure, **cutting incident troubleshooting from about a week to under 30 minutes**
 - As attacks evolved from a single bot to rotating IPs, hardened a **three-layer defense across WAF, Nginx and iptables** — **auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs
@@ -83,7 +83,7 @@ Sole owner of the infrastructure behind the company's blockchain services (BaaS,
 
 Affiliate of Berith Korea (same site, separate entity); joined Berith Korea full-time in Feb 2025.
 
-- NIPA government blockchain project — sole owner of the backend and infrastructure for a **pharmaceutical traceability system**
+- NIPA government blockchain project — owned the backend and infrastructure for a **pharmaceutical traceability system**
 - Designed and built Spring Boot REST APIs consumed by a Flutter mobile app (built by a dedicated iOS developer)
 - Built the admin console (Thymeleaf), modeled the MariaDB schema, and developed blockchain-backed history recording and lookup features
 - Built and operated the AWS EC2 servers and deployment automation
@@ -97,8 +97,8 @@ Affiliate of Berith Korea (same site, separate entity); joined Berith Korea full
 
 ## Selected Projects
 
-- **Air-gapped AI platform, Samsung Display** (2026, sole infrastructure engineer) — deployed five AI services into a facility with no internet and one-way USB transfer. Eliminating the causes of re-entry, starting with an ARM ↔ x86_64 architecture mismatch, cut one cycle from **5+ hours to 30 minutes (~90%)**. Next phase confirmed for September 2026
-- **Staging for a national disaster broadcasting system** (2026, sole engineer) — built staging equivalent to production for a public service that had none: ECS Fargate with CodeDeploy blue/green, 7-path CloudFront routing, least-privilege IAM. **Every resource compared via CLI — zero mismatches**
+- **Air-gapped AI platform, Samsung Display** (2026, infrastructure engineer) — deployed five AI services into a facility with no internet and one-way USB transfer. Eliminating the causes of re-entry, starting with an ARM ↔ x86_64 architecture mismatch, cut one cycle from **5+ hours to 30 minutes (~90%)**. Next phase confirmed for September 2026
+- **Staging for a national disaster broadcasting system** (2026, infrastructure engineer) — built staging equivalent to production for a public service that had none: ECS Fargate with CodeDeploy blue/green, 7-path CloudFront routing, least-privilege IAM. **Every resource compared via CLI — zero mismatches**
 - **Groupware SSO/DRM adapter in a segmented financial network, Hana Securities** (2026) — isolated integration failures hop by hop across five vendors. **Launched on schedule with no open issues**
 - **Home lab private cloud & IaC** (personal, ongoing) — Proxmox across three physical servers, with Terraform and Ansible reproducing the whole cluster in two commands
 
