@@ -53,12 +53,12 @@ subtitle: Resume
 ## Summary
 
 DevOps engineer with 3 years of experience, starting in Spring backend development and moving into **hybrid AWS/on-premise operations, CI/CD, observability and security response**.
-Currently the **sole infrastructure owner** for a blockchain service platform, leading a FinOps migration from AWS to in-house hardware.
+**Sole infrastructure owner** for a blockchain service platform, where I moved every service off AWS onto in-house hardware and cut monthly spend by **78%**.
 Most of my work has been in environments where the usual tools are unavailable — air-gapped facilities, segmented financial networks, undocumented production accounts. I don't stop at restoring service: root cause, fix, then documentation.
 
 ## Core Strengths
 
-- **Hybrid infrastructure & FinOps** — operating AWS (EC2, RDS, OpenSearch) alongside on-premise servers; planning and executing a cloud-to-on-premise migration from the cost structure up
+- **Cloud-to-on-premise migration & FinOps** — planned and executed a full migration off AWS from the cost structure up, including replacing the AWS edge (Route 53, ALB, WAF) with Cloudflare Tunnel
 - **Air-gapped delivery** — offline deployment of an AI service stack with no internet or package registry; multi-architecture builds and offline bundling
 - **Kubernetes & GitOps** — k3s cluster built from scratch, ArgoCD app-of-apps, workload isolation by namespace, ServiceAccount and RBAC *(self-managed only; no managed EKS/GKE experience)*
 - **Observability & incident response** — Prometheus, Grafana, Alertmanager and Blackbox Exporter; log-based root cause analysis and prevention
@@ -68,12 +68,13 @@ Most of my work has been in environments where the usual tools are unavailable �
 
 ### Berith Korea <span class="meta">| DevOps · SRE · sole infrastructure owner | Feb 2025 – Present</span>
 
-Sole owner of the hybrid AWS + on-premise infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer).
+Sole owner of the infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer), migrated from AWS to in-house hardware.
 
 - Inherited the platform with no handover; built monitoring and alerting from nothing and documented an RCA for every failure, **cutting incident troubleshooting from about a week to under 30 minutes**
-- As attacks evolved from a single bot to rotating IPs, hardened a **three-layer defense across AWS WAF, Nginx and iptables** — **auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs and **cutting AWS cost by over 20%**
+- As attacks evolved from a single bot to rotating IPs, hardened a **three-layer defense across WAF, Nginx and iptables** — **auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs
 - Traced repeated mainnet node crashes under transaction spikes to **disk I/O contention and chain data growth**, then split traffic across on-premise nodes — resolved **without buying hardware**
-- **Leading a FinOps migration from AWS to in-house hardware.** Migration order follows risk rather than cost, and the rollback path is secured before every cutover. BaaS API cut over to two on-prem nodes; **~20% of monthly spend eliminated, 56–70% targeted at stage one**
+- **Migrated the platform off AWS onto in-house hardware — $1,497 → ~$330/month (−78%).** Replaced the entire AWS edge (Route 53, 8 ALBs, WAF, reverse-proxy EC2) with **Cloudflare Tunnel**, eliminating inbound firewall exposure. Migration order followed risk, rollback was secured before every cutover — 8 domain cutovers, zero regressions
+- **Built a two-tier self-healing system for an unstaffed platform** — 11 local watchdogs plus 2 host supervisors, judging health by whether data advances rather than whether the process is up, after indexing once stalled 5 days while reporting healthy
 - **Building a Kubernetes (k3s) isolation platform** — one Job per agent execution with a dedicated namespace, ServiceAccount and RBAC, deployed declaratively via ArgoCD app-of-apps across 14 Helm charts *(pre-launch)*
 - Built CI/CD on Jenkins and scripts, ran Docker-based web/WAS/DB tiers, and set up the on-premise server room with VM backup and disaster recovery
 

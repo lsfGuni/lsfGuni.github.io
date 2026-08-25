@@ -46,16 +46,21 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 ## Current Operations
 
-### ⛓️ Berith Blockchain Services — Hybrid Infrastructure (BaaS · Wallet · Explorer)
+### ⛓️ Berith Blockchain Services — Migrating off AWS and Running Unattended
 
 **Aug 2024 – Present · DevOps / SRE · sole infrastructure owner** *(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
 
-> I run an enterprise blockchain recording service (BaaS) and consumer wallet/explorer services across **AWS (7 × EC2, RDS, OpenSearch) and on-premise servers**, and I'm currently leading a **FinOps migration to in-house hardware** to cut recurring cloud spend. (~20% realized, 56–70% target at stage one.)
+> I moved an enterprise blockchain recording service (BaaS) and consumer wallet/explorer services
+> **off AWS onto in-house hardware**, and replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a
+> reverse-proxy EC2 — with **Cloudflare Tunnel**. Monthly spend went from **$1,497 to about $330 (−78%)**.
+> Because no successor was named, I also built a **two-tier self-healing system** and a three-tier backup
+> chain, then handed over five documents and a working incident-response setup.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 762" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
     <filter id="brShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
     <marker id="brArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
+    <marker id="brArrowO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#E8890C"/></marker>
     <marker id="brArrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C0392B"/></marker>
     <linearGradient id="brBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#357ABD"/></linearGradient>
     <linearGradient id="brGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5CB85C"/><stop offset="100%" stop-color="#449D44"/></linearGradient>
@@ -64,197 +69,250 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
     <linearGradient id="brGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
     <linearGradient id="brPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
   </defs>
-  <rect width="920" height="762" fill="#FAFBFC" rx="12"/>
-  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith Hybrid Infrastructure — AWS + On-Premise</text>
+  <rect width="920" height="790" fill="#FAFBFC" rx="12"/>
+  <text x="460" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith Infrastructure &#8212; Full Migration off the AWS Edge (Aug 2026)</text>
+  <text x="460" y="46" text-anchor="middle" font-size="10.5" fill="#7F8C8D">Route 53 + 8 ALBs + WAF + reverse-proxy EC2 &#8594; Cloudflare + 2 in-house connectors</text>
 
-  <rect x="48" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="148" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">BaaS enterprise clients (B2B)</text>
-  <text x="148" y="88" text-anchor="middle" font-size="9" fill="#DDE1E3">NDA &amp; asset history on-chain</text>
+  <rect x="40" y="60" width="250" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="165" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">End users &#183; BaaS enterprise clients</text>
+  <text x="165" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">Wallet &#183; Explorer &#183; Samsung Display &#183; Lotte Innovate</text>
 
-  <rect x="262" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="362" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Wallet · Scan users (B2C)</text>
-  <text x="362" y="88" text-anchor="middle" font-size="9" fill="#DDE1E3">Crypto wallet · chain explorer</text>
+  <rect x="302" y="60" width="196" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="400" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Desktop wallet users</text>
+  <text x="400" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">Join the chain as full nodes</text>
 
-  <rect x="476" y="50" width="230" height="50" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="591" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Brute-force · bot traffic</text>
-  <text x="591" y="88" text-anchor="middle" font-size="9" fill="#FADBD8">Constant account-takeover attempts</text>
+  <rect x="510" y="60" width="200" height="44" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
+  <text x="610" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Bots &#183; credential stuffing</text>
+  <text x="610" y="96" text-anchor="middle" font-size="9" fill="#FADBD8">140-200M req/mo (derived from WAF billing)</text>
 
-  <rect x="720" y="50" width="152" height="50" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="796" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">Troubleshooting time</text>
-  <text x="796" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1 week → under 30 min</text>
+  <rect x="722" y="60" width="158" height="44" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="801" y="79" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AWS monthly bill</text>
+  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">$1,497 &#8594; ~$330</text>
 
-  <path d="M148,100 L148,124" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M362,100 L362,124" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M591,100 L591,124" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <path d="M165,104 L165,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <path d="M400,104 L400,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <path d="M610,104 L610,126" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
 
-  <rect x="30" y="130" width="860" height="96" rx="10" fill="#FDEDEC" stroke="#E6B0AA" stroke-width="1.5"/>
-  <text x="46" y="150" font-size="11" font-weight="700" fill="#943126">Three-layer defense — hardened step by step as attacks moved from a single IP to rotating IPs</text>
+  <rect x="30" y="132" width="860" height="96" rx="10" fill="#FEF5E7" stroke="#F5CBA7" stroke-width="1.5"/>
+  <text x="46" y="152" font-size="11" font-weight="700" fill="#9C640C">Cloudflare &#8212; edge tier (replacing Route 53 + 8 ALBs + WAF)</text>
 
-  <rect x="48" y="160" width="200" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="148" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">AWS WAF</text>
-  <text x="148" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">Rule-based blocking at the edge</text>
-  <path d="M248,186 L266,186" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <rect x="48" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="146" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">DNS &#183; TLS termination</text>
+  <text x="146" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">5 zones &#183; auto-renewed certs</text>
 
-  <rect x="271" y="160" width="200" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="371" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Nginx</text>
-  <text x="371" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">Request pattern &amp; path blocking</text>
-  <path d="M471,186 L489,186" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <rect x="254" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="352" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">WAF &#183; bots &#183; DDoS</text>
+  <text x="352" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">per-request &#8594; flat rate (attack volume irrelevant)</text>
 
-  <rect x="494" y="160" width="212" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="600" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">iptables</text>
-  <text x="600" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">1,000+ IPs auto-blocked daily</text>
+  <rect x="460" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="558" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Pages + R2</text>
+  <text x="558" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">Static site &#183; 119MB wallet installer</text>
 
-  <rect x="726" y="160" width="146" height="52" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="799" y="181" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">AWS cost −20%</text>
-  <text x="799" y="199" text-anchor="middle" font-size="9" fill="#DFF0D8">50GB+ attack logs per day</text>
+  <rect x="666" y="162" width="206" height="52" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="769" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Tunnel</text>
+  <text x="769" y="201" text-anchor="middle" font-size="9" fill="#DFF0D8">Outbound-only &#8594; zero inbound ports</text>
 
-  <path d="M460,226 L460,248" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <rect x="360" y="252" width="200" height="46" rx="8" fill="url(#brPurple)" filter="url(#brShadow)"/>
-  <text x="460" y="273" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Route 53</text>
-  <text x="460" y="290" text-anchor="middle" font-size="9" fill="#E8DAEF">Routes AWS ↔ on-prem</text>
+  <path d="M769,214 L769,238 L460,238 L460,258" stroke="#E8890C" stroke-width="2" fill="none" marker-end="url(#brArrowO)"/>
 
-  <path d="M400,298 L280,322" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M520,298 L680,322" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="230" y="262" width="460" height="66" rx="10" fill="#E9F7EF" stroke="#A9DFBF" stroke-width="1.5"/>
+  <text x="246" y="281" font-size="11" font-weight="700" fill="#186A3B">2 connectors on separate physical hosts (survives one host failure)</text>
+  <rect x="246" y="288" width="200" height="32" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="346" y="308" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">cf-connector-01 (R740-2)</text>
+  <rect x="458" y="288" width="216" height="32" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="566" y="308" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">cf-connector-02 (R740-1)</text>
 
-  <rect x="40" y="330" width="470" height="152" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
-  <text x="56" y="350" font-size="11" font-weight="700" fill="#1B4F72">AWS — 7 × EC2 · RDS · OpenSearch</text>
+  <path d="M460,328 L460,348" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <text x="472" y="343" font-size="9" fill="#5A6268">nginx :8080 &#8212; per-domain routing &#183; upstream health checks</text>
 
-  <rect x="56" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="126" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">2 × boot node</text>
-  <text x="126" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">Peer discovery</text>
+  <rect x="30" y="352" width="600" height="150" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
+  <text x="46" y="371" font-size="11" font-weight="700" fill="#1B4F72">2 in-house physical servers &#8212; 11 VMs (VirtualBox + systemd)</text>
 
-  <rect x="206" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="276" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Mainnet node</text>
-  <text x="276" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">In-house Ethereum chain</text>
+  <rect x="46" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="114" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Wallet</text>
+  <text x="114" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">zero-downtime cutover</text>
 
-  <rect x="356" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="426" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Web / WAS</text>
-  <text x="426" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">Docker containers</text>
+  <rect x="190" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="258" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Scan</text>
+  <text x="258" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">explorer + indexing</text>
 
-  <rect x="56" y="414" width="215" height="44" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="163" y="434" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">RDS</text>
-  <text x="163" y="449" text-anchor="middle" font-size="9" fill="#FDF2E0">Service data</text>
+  <rect x="334" y="380" width="136" height="42" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="402" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS API &#215;2</text>
+  <text x="402" y="414" text-anchor="middle" font-size="8.5" fill="#DFF0D8">2-node HA</text>
 
-  <rect x="281" y="414" width="215" height="44" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="388" y="434" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">OpenSearch</text>
-  <text x="388" y="449" text-anchor="middle" font-size="9" fill="#FDF2E0">Chain indexing · powers Scan</text>
+  <rect x="478" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="546" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Admin</text>
+  <text x="546" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">rebuilt from source</text>
 
-  <rect x="530" y="330" width="350" height="152" rx="10" fill="#E9F7EF" stroke="#A9DFBF" stroke-width="1.5"/>
-  <text x="546" y="350" font-size="11" font-weight="700" fill="#186A3B">On-premise — redundancy tier</text>
+  <rect x="46" y="430" width="180" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="136" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Redis (replaces ElastiCache)</text>
+  <text x="136" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">12 nodes &#8594; 1</text>
 
-  <rect x="546" y="360" width="160" height="44" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="626" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Redundancy server</text>
-  <text x="626" y="395" text-anchor="middle" font-size="9" fill="#DFF0D8">Moved to cut AWS spend</text>
+  <rect x="234" y="430" width="180" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="324" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">MinIO &#215;2 (replaces S3)</text>
+  <text x="324" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">backup redundancy</text>
 
-  <rect x="716" y="360" width="148" height="44" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="790" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Mainnet node</text>
-  <text x="790" y="395" text-anchor="middle" font-size="9" fill="#DFF0D8">Dedicated to BaaS traffic</text>
+  <rect x="422" y="430" width="192" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="518" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Elasticsearch (replaces OpenSearch)</text>
+  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; $262/mo recovered</text>
 
-  <rect x="546" y="414" width="318" height="44" rx="7" fill="#FFFFFF" stroke="#A9DFBF" stroke-width="1.2"/>
-  <text x="558" y="431" font-size="9.5" fill="#186A3B">Node crashes under load — disk I/O contention and</text>
-  <text x="558" y="447" font-size="9.5" fill="#186A3B">chain data growth → BaaS moved here, Wallet on AWS</text>
+  <text x="46" y="490" font-size="9.5" fill="#1B4F72">5 standalone machines &#8212; 4 chain nodes (1 RPC &#183; 2 validators &#183; 1 ETH) + Elasticsearch</text>
 
-  <rect x="30" y="498" width="860" height="86" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
-  <text x="46" y="518" font-size="11" font-weight="700" fill="#9A7D0A">Observability — external health checks combined with internal metrics</text>
+  <rect x="644" y="352" width="246" height="150" rx="10" fill="#FDEDEC" stroke="#E6B0AA" stroke-width="1.5"/>
+  <text x="660" y="371" font-size="11" font-weight="700" fill="#943126">AWS &#8212; deliberately kept</text>
 
-  <rect x="48" y="528" width="185" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="140" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Blackbox Exporter</text>
-  <path d="M233,548 L251,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="660" y="380" width="214" height="40" rx="7" fill="url(#brRed)" filter="url(#brShadow)"/>
+  <text x="767" y="397" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">RDS (production DB)</text>
+  <text x="767" y="411" text-anchor="middle" font-size="8.5" fill="#FADBD8">data tier last &#183; migration being designed</text>
 
-  <rect x="256" y="528" width="200" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="356" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Prometheus · Grafana</text>
-  <path d="M456,548 L474,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="660" y="426" width="214" height="40" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="767" y="443" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">1 boot node</text>
+  <text x="767" y="457" text-anchor="middle" font-size="8.5" fill="#FDF2E0">IP hardcoded into wallet binaries</text>
 
-  <rect x="479" y="528" width="185" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="571" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Alertmanager</text>
-  <path d="M664,548 L682,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <text x="660" y="482" font-size="9" fill="#943126">Shutting it down blocks new users from the chain</text>
+  <text x="660" y="495" font-size="9" fill="#943126">&#8594; ruled undecommissionable without a wallet re-release</text>
 
-  <rect x="687" y="528" width="185" height="40" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="779" y="547" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Slack real-time alerts</text>
-  <text x="779" y="561" text-anchor="middle" font-size="8.5" fill="#DFF0D8">Only actionable alerts kept</text>
+  <rect x="30" y="512" width="430" height="118" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
+  <text x="46" y="531" font-size="11" font-weight="700" fill="#9A7D0A">Unattended operation &#8212; designed for no on-site owner</text>
+  <rect x="46" y="540" width="184" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="138" y="556" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">L1 local watchdogs &#215;11</text>
+  <text x="138" y="569" text-anchor="middle" font-size="8.5" fill="#DDE1E3">every 2 min &#183; self-healing</text>
+  <rect x="240" y="540" width="204" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="342" y="556" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">L2 host supervisors &#215;2</text>
+  <text x="342" y="569" text-anchor="middle" font-size="8.5" fill="#DDE1E3">VM power tier + L1 liveness</text>
+  <text x="46" y="594" font-size="9.5" font-weight="600" fill="#9A7D0A">Health is judged by &#8220;is data advancing&#8221; &#8212; not &#8220;is the process up&#8221;</text>
+  <text x="46" y="609" font-size="9" fill="#7D6608">Changed after indexing silently stalled 5 days while the service reported active</text>
+  <text x="46" y="623" font-size="9" fill="#7D6608">3 consecutive checks &#183; 30-min cooldown &#183; daily cap &#183; halt all action if a majority fails at once</text>
 
-  <rect x="30" y="598" width="860" height="146" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
-  <text x="46" y="618" font-size="11" font-weight="700" fill="#1A5276">In progress — FinOps migration to on-premise · ~20% realized / 56–70% target at stage one</text>
+  <rect x="474" y="512" width="416" height="118" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
+  <text x="490" y="531" font-size="11" font-weight="700" fill="#1A5276">3-tier backup &#8212; replacing OpenSearch's automatic S3 snapshots</text>
+  <rect x="490" y="540" width="126" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="553" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">Snapshot / 6h</text>
+  <text x="553" y="569" text-anchor="middle" font-size="8" fill="#D6EAF8">&#8594; MinIO #1</text>
+  <path d="M616,558 L628,558" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="632" y="540" width="126" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="695" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">Mirror / 6h</text>
+  <text x="695" y="569" text-anchor="middle" font-size="8" fill="#D6EAF8">&#8594; MinIO #2 (pull)</text>
+  <rect x="766" y="540" width="110" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="821" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">Logical / hourly</text>
+  <text x="821" y="569" text-anchor="middle" font-size="8" fill="#DFF0D8">both hosts, independent</text>
+  <text x="490" y="594" font-size="9.5" font-weight="600" fill="#1A5276">Designed as a pull so the source never holds the replica's credentials</text>
+  <text x="490" y="609" font-size="9" fill="#21618C">&#8594; deletion or compromise at the source cannot propagate to the copy</text>
+  <text x="490" y="623" font-size="9" fill="#21618C">After the mirror logged &#8220;done&#8221; while failing for 9 days, health moved from log freshness to actual object-count comparison</text>
 
-  <rect x="48" y="628" width="256" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="176" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS API — live traffic cut over</text>
+  <rect x="30" y="640" width="860" height="128" rx="10" fill="#F4F6F7" stroke="#D5DBDB" stroke-width="1.5"/>
+  <text x="46" y="659" font-size="11" font-weight="700" fill="#2C3E50">Cost &#8212; based on actual invoices, not list-price estimates</text>
 
-  <rect x="316" y="628" width="268" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="450" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Cache · Scan · search · storage moved</text>
+  <rect x="46" y="668" width="700" height="26" rx="5" fill="#E74C3C"/>
+  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">Before &#8212; $1,497 / mo</text>
+  <text x="700" y="686" font-size="9.5" fill="#FADBD8">Aug 2026 invoice</text>
 
-  <rect x="596" y="628" width="274" height="36" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="733" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Wallet — migrated, cutover pending</text>
+  <rect x="46" y="700" width="154" height="26" rx="5" fill="#27AE60"/>
+  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">Now &#8212; ~$330 / mo</text>
+  <text x="212" y="718" font-size="9.5" fill="#196F3D">~78% reduction &#183; ~$14,000 / yr</text>
 
-  <rect x="48" y="672" width="400" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="248" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">17 WAS apps · 3 RDBs · chain nodes — not started</text>
-
-  <rect x="460" y="672" width="410" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="665" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Reclaimed — 3 EC2 stopped · 3 elastic IPs released</text>
-
-  <text x="46" y="722" font-size="9.5" fill="#1A5276">Web tier deliberately stays on AWS — DNS and load balancer untouched, so a cutover or rollback is a one-line upstream change and services move one at a time</text>
-  <text x="46" y="738" font-size="9.5" fill="#943126">Net saving (TCO) not yet calculated — power and hardware depreciation still excluded; tracked as an open item</text>
+  <text x="46" y="742" font-size="9.5" fill="#566573">Decommissioned &#8212; 2 OpenSearch domains ($262) &#183; WAF ($104) &#183; 7 ALBs &#183; all ElastiCache &#183; 2 RDS &#183; 9 EC2 &#183; elastic IPs 23&#8594;4</text>
+  <text x="46" y="757" font-size="9.5" fill="#943126">2,874GB of snapshots are retained as recovery insurance, offsetting part of this until they expire (Feb 2027). Net TCO including power and hardware depreciation is still unmeasured</text>
 </svg>
 
-**What I operate**
+#### What I operate
 
-- **BaaS (primary, B2B)** — records NDA signatures and asset-management history on-chain for enterprise customers
-- **Wallet / Explorer (B2C)** — a crypto wallet and a chain explorer, which attract continuous credential-stuffing and bot traffic
-- **Infrastructure** — 7 EC2 instances including 2 boot nodes and a mainnet node (an in-house Ethereum-based chain), RDS, OpenSearch for chain indexing, an Nginx web tier routing between AWS and on-premise via Route 53, and on-premise redundancy servers
+- **BaaS (primary, B2B)** — records Samsung Display security pledges and Lotte Innovate asset-custody history on-chain
+- **Berith Wallet / Berith Explorer (B2C)** — a coin wallet and chain explorer. Being a wallet, it takes **constant credential-stuffing and bot traffic**
+- **Infrastructure** — 11 VMs across 2 in-house physical servers, plus 5 standalone machines (4 chain nodes, 1 Elasticsearch). Includes an in-house Ethereum-based mainnet
 
-#### Current focus — FinOps migration from AWS to on-premise
+#### The problem was twofold
 
-Moving workloads onto idle in-house hardware to cut the monthly bill.
-**~20% realized so far, 56–70% targeted at stage one** — I track the realized number and the target separately.
+**① Recurring AWS spend.** Once I pulled the actual invoices, it was **$1,497/month** — 3.7× the "$400+" everyone had assumed.
+The gap was in line items nobody was tracking: EBS and snapshots, OpenSearch, and **WAF at $104/month, which had never once been costed**.
 
-**Design decisions**
+**② No owner.** With no successor named, the platform had to keep running without anyone on site.
 
-- **The web tier stays on AWS on purpose.** DNS and the load balancer are untouched, so a cutover — or a rollback — is a one-line upstream change, and services can move one at a time.
-- **Originals are stopped, not deleted.** If something goes wrong we're back on AWS in under 30 seconds.
-- **Migration order follows risk, not cost.** Stateless services first, dependents before their dependencies, data tier last.
-- **Running on VM + systemd today; Kubernetes stays open as an option.** These services carry live customer traffic, so lowering migration risk came first. Container assets are already built, which keeps the systemd-to-Pod path available.
+#### 1. Moved the entire edge to Cloudflare
 
-**I verified "same as before", not "it started"**
+A single reverse-proxy EC2 sat behind **Route 53 + 8 ALBs + WAF** and was the only entry point for every service.
+That box was **Ubuntu 16.04 (EOL), 5.5 years without a reboot, and had zero snapshots** — a liability before it was ever a cost problem.
 
-- Binaries were copied rather than rebuilt, then **compared by sha256** — a rebuild can leave two nodes running different code
-- **Traced distributed-lock ownership at 0.3s intervals** to confirm both nodes actually split the work (36:36 over 60 seconds)
-- **Induced a real failure** — stopped one of two nodes and sent 30 requests, all served; killed the process and it recovered automatically in 2m34s
+- **Chose Cloudflare Tunnel.** Connectors dial outbound, so the office firewall needs **zero inbound ports** and the on-premise public IP is never exposed
+- **Two connectors on separate physical hosts**, so one host failing doesn't take the platform down. Nginx on each connector handles per-domain routing and upstream health checks, which means **backends can change without touching Cloudflare config**
+- **The billing model was the real win.** AWS WAF charges per request, so bot traffic *was* the bill — $104/month, implying 140–200M requests. Cloudflare is flat-rate with unmetered DDoS, so **an attack no longer raises the invoice**
+- Cut over **one domain at a time**, recording the rollback value before each step — 8 cutovers, zero regressions
 
-**The cache wasn't migrated, and I chose not to make it redundant**
+#### 2. Moved every service in-house
 
-This cache is not a datastore. It's the **distributed lock backend that coordinates work distribution across instances** — the lock backend is selectable between standalone, Redis and ZooKeeper, and it holds no resident keys, only lock keys acquired and released in hundreds of milliseconds.
+- **Wallet — zero downtime.** Replicated Redis to carry sessions across, so **nobody had to log in again**. The move from AJP to HTTP + Nginx also **closed the exposed AJP (Ghostcat) surface** as a side effect
+- **BaaS — two-node HA**, with unhealthy nodes dropped automatically by Nginx upstream checks
+- **Admin console and API docs — rebuilt from source.** Both were recorded as "migrated," but only the routing had moved; **the backend had been missing for three years**. Two services had the same defect, so I added a step that verifies "done" against an actual response
+- **ElastiCache 12 nodes → 1 Redis · 2 OpenSearch domains → 1 Elasticsearch · S3 → 2 MinIO**
 
-- With no persistent data, I **inherited the IP** instead of moving data — no config change, no application restart (about 2 minutes of downtime)
-- **Redundancy was deliberately skipped.** Attaching asynchronous replication to a lock means that on master failure two nodes can process the same partition. That trades correctness for availability. Instead of making it hard to kill, I made it **fast to come back** — separate host, auto-start, process supervision.
+#### 3. Decommissioning decisions came from measurement, not assumption
 
-**Adding the second node exposed problems that had been invisible**
+- **ElastiCache** — confirmed **zero commands on both clusters over 14 days**, then swept configs and code for references before deleting ($37/mo)
+- **OpenSearch** — compared every index first and confirmed **on-premise held equal or more in all of them**. For the one index that existed only on AWS, I sampled and proved it was a subset ($262/mo)
+- **Releasing elastic IPs is irreversible**, so I swept every DNS zone, on-premise config and chain node for references first. That sweep found the only live reference sat in **an unused profile**, which is what made the release safe
+- **I also documented what cannot be turned off.** The boot node's **IP is compiled into wallet binaries** — shutting it down would cut new users off from the chain. I ruled it undecommissionable without a wallet re-release rather than leaving it as an open question
 
-Right after scaling BaaS API to two nodes, transaction processing on the new node stalled for 8 minutes. A thread dump showed the scheduler blocked on a latch; socket state showed unanswered SYN-SENT to a specific chain node. The cause was a **DNAT rule that existed only on the original node**.
+#### 4. Two-tier self-healing, designed for an empty chair
 
-- The same investigation surfaced a **missing firewall policy on the new node**. Since this was remote work, I armed a **240-second auto-rollback timer** before applying the rules, confirmed reachability, then cancelled the timer.
-- I also confirmed a structural defect: neither the connection nor the latch had a timeout, so **one unresponsive chain node stalls the entire transaction processor**. Filed as a code fix.
-- **A node I treated as an identical copy wasn't.** Application artifacts were compared down to the hash, but OS-level configuration was never in the comparison. It is now.
+The goal was to narrow human involvement to **power loss and hardware failure**.
+Where Prometheus and Grafana produce **graphs**, this system's output is **a restarted service**.
 
-**Memory pressure solved by rebalancing rather than buying RAM**
+- **L1 local watchdogs on 11 hosts** (every 2 min) — check services, data progress and disk, then repair locally
+- **L2 host supervisors on 2 machines** (every 5 min) — cover the VM power tier and whether L1 itself is alive
+- 🔑 **Health is judged by "is data advancing," not "is the process up."** I changed this after indexing stalled for **five days** while the service reported `active (running)`. Block heights and document counts are **sampled twice to confirm they increase**
+- Guardrails — act only after 3 consecutive failures · 30-minute cooldown · daily cap · **skip action when a dependency is unreadable** (so someone else's outage isn't misread as ours) · **halt everything if a majority fails at once** (so a common cause doesn't trigger mass remediation)
+- That last gate fired for real and **prevented a forced restart of all 6 VMs**
 
-One host was using 55GB of 62GB and had entered swap, leaving 5.9GB free. The other host had 90GB idle. Moving 3 VMs across **restored 22GB of free RAM** and removed a shared-failure point where the cache and the application sat on the same host.
+#### 5. Backup — "we have one" and "it restores" are different claims
 
-**Status**
+Migrating away from OpenSearch removed the automatic S3 snapshots it had been doing for us.
+I treated that not as one feature but as five guarantees — **automatic cadence, media separation, generation retention, failure visibility, and confidence that a restore actually works** — and replaced each.
 
-| | |
+- Three tiers — 6-hourly snapshots to MinIO #1, a 6-hourly mirror to MinIO #2 on a different physical host, and **hourly logical backups** of the indices that cannot be re-derived, taken independently by both hosts
+- **Built as a pull**, so the source never holds the replica's credentials. **Deletion or compromise at the source cannot propagate to the copy**
+- 🔴 **The mirror failed 36 times over 9 days while logging "done" each time.** I moved the health check from log freshness to **actual object-count comparison**. The watchdog's own principle had quietly been violated by the backup layer
+- **Ran a real restore drill** and reconciled record counts — which is also how I learned that an index holding a moving cursor has to be judged by count, not content
+
+#### 6. A call I got wrong, and reversed
+
+I tried promoting the WAF ruleset from Log to Block. Twenty-four hours of data showed **zero threshold-exceeded events**, so it looked safe. Blocking started immediately after the change.
+Overriding the action on a managed ruleset makes **each individual rule block on its own, bypassing score aggregation** — which I only confirmed by doing it.
+
+- **Reverted within three minutes** and kept only the part that was verified — six false-positive-heavy rules disabled (81% of daily log volume), action left at Log
+- The same investigation showed that **a response I had read as a block was actually the application's own 403**. `Server: cloudflare` alone isn't evidence; the body and the dedicated header are. That's now part of the procedure
+
+#### 7. Handover — as something that runs, not just something written
+
+- **Five handover documents** — architecture, backup, credentials, decommissioning, and operations
+- **One SSH key for all 18 in-house machines** — consolidating two key types across two accounts into a single file, while leaving existing authentication intact. Ships with deploy, verify and revoke scripts
+- **A dedicated incident-response project** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, arranged so that a successor typing "scan is down" is still walked through **establish facts → isolate cause → act**
+- **Reversed judgements are tracked separately.** On one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact" to keep **a successor from repeating the same mistake**
+
+#### Where it stands
+
+| Area | Status |
 | --- | --- |
-| Live traffic cut over | BaaS API — verified even distribution across two on-prem nodes |
-| Migrated and running | Cache, Scan services, search engine, object storage |
-| Awaiting cutover | Wallet — migrated and verified, pending QA |
-| Not started | 17 WAS applications, 3 relational databases, chain nodes |
-| AWS resources reclaimed | 3 EC2 stopped, 3 elastic IPs released |
+| Edge | **Cloudflare** (DNS · TLS · WAF · Tunnel) — replaced Route 53 + 8 ALBs + WAF |
+| Services | wallet · explorer · baas (2-node HA) · admin · API docs · public RPC — **all in-house** |
+| Data | Redis · Elasticsearch · MinIO ×2 — **all in-house** |
+| Still on AWS | **1 RDS** (production DB, migration being designed) · **1 boot node** (hardcoded in wallets) · one client's legacy entry path |
+| Self-healing | 11 L1 watchdogs + 2 L2 supervisors running |
+| Backup | 3 tiers running · restore drill verified |
 
-**Open item** — net saving (TCO) is not calculated yet; power and hardware depreciation are still excluded, so the percentage alone overstates the result.
+#### What's still open
+
+- **The production database is still on AWS.** Putting the data tier last was deliberate, but the zero-downtime cutover and rollback design isn't finished. There is also no on-premise copy yet, which I track as an open risk
+- **Net TCO is unmeasured.** Power and hardware depreciation aren't in the figure, and 2,874GB of snapshots are retained as recovery insurance, offsetting part of the saving until they expire. **The percentage alone overstates it**
+- **The boot node can't be retired** until wallets are re-released — a business decision, not a technical one
+- **One client still uses the old path.** They pin our IP in their internal DNS, so public DNS changes never reach them. A direct-line path is built and waiting for them to switch
 
 #### Results
 
-- Cut incident troubleshooting from **about a week to under 30 minutes** by building monitoring and alerting from nothing and documenting an RCA for every failure — I inherited this system with no handover
-- **Auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs. When attacks evolved from a single bot to rotating IPs, I hardened a three-layer defense across WAF, Nginx and iptables — **cutting AWS cost by over 20%**
-- Traced repeated mainnet node crashes under transaction spikes to **disk I/O contention plus chain data growth**. Expanded EBS for capacity and split BaaS traffic to the on-premise mainnet (Wallet stayed on AWS), removing the I/O bottleneck **without buying hardware**
+- **AWS spend $1,497 → ~$330/month (−78%, roughly $14,000/year)** — retired 2 OpenSearch domains, WAF, 7 ALBs, all ElastiCache, 2 RDS instances, 9 EC2 instances, and 19 of 23 elastic IPs
+- **Removed the single point of failure at the edge** — replaced an EOL, never-rebooted, unbacked-up reverse proxy with two connectors on separate physical hosts
+- Early on, with no metrics and no incident history, a vague "something's broken" took about a week to trace. Monitoring, alerting and per-incident RCA writeups brought that **under 30 minutes**
+- **Auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs, hardened in stages as attacks moved from a single bot to rotating IPs
+- Traced repeated mainnet node crashes under transaction spikes to **disk I/O contention plus chain data growth**, and resolved it by redistributing traffic **without buying hardware**
+- **Self-healing in production** — most failures now recover before anyone notices
 
 ---
 

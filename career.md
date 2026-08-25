@@ -51,18 +51,20 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
 
 ## Current Operations — 자사 서비스 상시 운영
 
-### ⛓️ Berith 블록체인 서비스(BaaS·Wallet·Scan) 하이브리드 인프라 운영
+### ⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축
 
-**2024.08 ~ 현재 · DevOps / SRE · 인프라 운영 전담** *(2024.08~2025.01 관계사 아이비즈소프트웨어 프로젝트 계약, 2025.02 베리드코리아 정규 입사)*
+**2024.08 ~ 현재 · DevOps / SRE · 인프라 운영 전담 (1인)** *(2024.08~2025.01 관계사 아이비즈소프트웨어 프로젝트 계약, 2025.02 베리드코리아 정규 입사)*
 
-> 기업용 블록체인 기록 서비스(BaaS)와 B2C 지갑·익스플로러 서비스를  
-> **AWS(EC2 7대 + RDS + OpenSearch) + 온프레미스 이중화**의 하이브리드 구성으로 상시 운영하며,  
-> 현재는 **AWS 월 고정비를 줄이기 위한 온프레미스 이관(FinOps)을 단계적으로 진행**하고 있습니다. (실적 약 20% 절감 / 1단계 목표 56~70%)
+> 기업용 블록체인 기록 서비스(BaaS)와 B2C 지갑·익스플로러를 **AWS에서 사내 물리서버로 전량 이관**하고,
+> 진입 계층(Route 53 + ALB 8개 + WAF + 리버스프록시 EC2)을 **Cloudflare Tunnel**로 대체했습니다.
+> **월 청구 $1,497 → 약 $330 (78%↓)**. 담당자 부재를 전제로 **2계층 자가복구 체계**와 백업 3계층을 구축하고,
+> 인수인계 문서 5권과 운영 세션까지 이양했습니다.
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 762" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
     <filter id="brShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
     <marker id="brArrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#7F8C8D"/></marker>
+    <marker id="brArrowO" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#E8890C"/></marker>
     <marker id="brArrowR" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C0392B"/></marker>
     <linearGradient id="brBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4A90D9"/><stop offset="100%" stop-color="#357ABD"/></linearGradient>
     <linearGradient id="brGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#5CB85C"/><stop offset="100%" stop-color="#449D44"/></linearGradient>
@@ -71,196 +73,250 @@ Spring 기반 백엔드 개발자로 커리어를 시작해,
     <linearGradient id="brGray" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C757D"/><stop offset="100%" stop-color="#5A6268"/></linearGradient>
     <linearGradient id="brPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8E6FBF"/><stop offset="100%" stop-color="#7B5BA6"/></linearGradient>
   </defs>
-  <rect width="920" height="762" fill="#FAFBFC" rx="12"/>
-  <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith 하이브리드 인프라 — AWS + 온프레미스 상시 운영</text>
+  <rect width="920" height="790" fill="#FAFBFC" rx="12"/>
+  <text x="460" y="28" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">Berith 인프라 &#8212; AWS 진입 계층 전면 이전 (2026.08 완료)</text>
+  <text x="460" y="46" text-anchor="middle" font-size="10.5" fill="#7F8C8D">Route 53 + ALB 8개 + WAF + 리버스프록시 EC2 &#8594; Cloudflare + 사내 커넥터 2대</text>
 
-  <rect x="48" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="148" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">BaaS 기업 고객 (B2B)</text>
-  <text x="148" y="88" text-anchor="middle" font-size="9" fill="#DDE1E3">보안서약서 · 물품관리 이력 기록</text>
+  <rect x="40" y="60" width="250" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="165" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">일반 이용자 &#183; BaaS 기업고객</text>
+  <text x="165" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">Wallet &#183; Scan &#183; 삼성디스플레이 &#183; 롯데이노베이트</text>
 
-  <rect x="262" y="50" width="200" height="50" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="362" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Wallet · Scan 사용자 (B2C)</text>
-  <text x="362" y="88" text-anchor="middle" font-size="9" fill="#DDE1E3">코인 지갑 · 블록체인 익스플로러</text>
+  <rect x="302" y="60" width="196" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="400" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">PC 지갑 사용자</text>
+  <text x="400" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">풀노드로 체인에 직접 참여</text>
 
-  <rect x="476" y="50" width="230" height="50" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="591" y="72" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">무차별 대입 · 봇 트래픽</text>
-  <text x="591" y="88" text-anchor="middle" font-size="9" fill="#FADBD8">지갑 특성상 계정 탈취 시도 상시 유입</text>
+  <rect x="510" y="60" width="200" height="44" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
+  <text x="610" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">봇 &#183; 무차별 대입</text>
+  <text x="610" y="96" text-anchor="middle" font-size="9" fill="#FADBD8">월 1.4~2억 요청 (WAF 청구로 역산)</text>
 
-  <rect x="720" y="50" width="152" height="50" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="796" y="70" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">트러블슈팅 소요</text>
-  <text x="796" y="88" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1주일 → 30분 이내</text>
+  <rect x="722" y="60" width="158" height="44" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="801" y="79" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">AWS 월 청구</text>
+  <text x="801" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">$1,497 &#8594; 약 $330</text>
 
-  <path d="M148,100 L148,124" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M362,100 L362,124" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M591,100 L591,124" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <path d="M165,104 L165,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <path d="M400,104 L400,126" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <path d="M610,104 L610,126" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
 
-  <rect x="30" y="130" width="860" height="96" rx="10" fill="#FDEDEC" stroke="#E6B0AA" stroke-width="1.5"/>
-  <text x="46" y="150" font-size="11" font-weight="700" fill="#943126">3계층 방어 — 단일 IP 차단으로 시작해 다수 IP 로테이션 공격에 맞춰 단계적으로 고도화</text>
+  <rect x="30" y="132" width="860" height="96" rx="10" fill="#FEF5E7" stroke="#F5CBA7" stroke-width="1.5"/>
+  <text x="46" y="152" font-size="11" font-weight="700" fill="#9C640C">Cloudflare &#8212; 진입 계층 (AWS Route 53 + ALB 8개 + WAF 대체)</text>
 
-  <rect x="48" y="160" width="200" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="148" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">AWS WAF</text>
-  <text x="148" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">엣지 단 규칙 차단</text>
-  <path d="M248,186 L266,186" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <rect x="48" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="146" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">DNS &#183; TLS 종단</text>
+  <text x="146" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">존 5개 &#183; 인증서 자동 갱신</text>
 
-  <rect x="271" y="160" width="200" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="371" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Nginx</text>
-  <text x="371" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">요청 패턴 · 경로 기반 차단</text>
-  <path d="M471,186 L489,186" stroke="#C0392B" stroke-width="2" marker-end="url(#brArrowR)"/>
+  <rect x="254" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="352" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">WAF &#183; 봇 &#183; DDoS</text>
+  <text x="352" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">요청당 과금 &#8594; 정액 (공격량 무관)</text>
 
-  <rect x="494" y="160" width="212" height="52" rx="8" fill="url(#brRed)" filter="url(#brShadow)"/>
-  <text x="600" y="183" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">iptables</text>
-  <text x="600" y="200" text-anchor="middle" font-size="9" fill="#FADBD8">하루 평균 1,000개+ IP 자동 차단</text>
+  <rect x="460" y="162" width="196" height="52" rx="8" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="558" y="184" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">Pages + R2</text>
+  <text x="558" y="201" text-anchor="middle" font-size="9" fill="#FDF2E0">정적 홈페이지 &#183; 지갑 설치본 119MB</text>
 
-  <rect x="726" y="160" width="146" height="52" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="799" y="181" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">AWS 비용 20%↓</text>
-  <text x="799" y="199" text-anchor="middle" font-size="9" fill="#DFF0D8">일 50GB 공격 로그 대응</text>
+  <rect x="666" y="162" width="206" height="52" rx="8" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="769" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#fff">Tunnel</text>
+  <text x="769" y="201" text-anchor="middle" font-size="9" fill="#DFF0D8">아웃바운드 전용 &#8594; 인바운드 개방 0</text>
 
-  <path d="M460,226 L460,248" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <rect x="360" y="252" width="200" height="46" rx="8" fill="url(#brPurple)" filter="url(#brShadow)"/>
-  <text x="460" y="273" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Route 53</text>
-  <text x="460" y="290" text-anchor="middle" font-size="9" fill="#E8DAEF">AWS ↔ 온프레미스 요청 라우팅</text>
+  <path d="M769,214 L769,238 L460,238 L460,258" stroke="#E8890C" stroke-width="2" fill="none" marker-end="url(#brArrowO)"/>
 
-  <path d="M400,298 L280,322" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
-  <path d="M520,298 L680,322" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="230" y="262" width="460" height="66" rx="10" fill="#E9F7EF" stroke="#A9DFBF" stroke-width="1.5"/>
+  <text x="246" y="281" font-size="11" font-weight="700" fill="#186A3B">커넥터 2대 &#8212; 서로 다른 물리 호스트 (1대 장애는 견딤)</text>
+  <rect x="246" y="288" width="200" height="32" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="346" y="308" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">cf-connector-01 (R740-2)</text>
+  <rect x="458" y="288" width="216" height="32" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="566" y="308" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">cf-connector-02 (R740-1)</text>
 
-  <rect x="40" y="330" width="470" height="152" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
-  <text x="56" y="350" font-size="11" font-weight="700" fill="#1B4F72">AWS — EC2 7대 · RDS · OpenSearch</text>
+  <path d="M460,328 L460,348" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <text x="472" y="343" font-size="9" fill="#5A6268">nginx :8080 &#8212; 도메인별 분기 &#183; upstream 헬스체크</text>
 
-  <rect x="56" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="126" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">부트노드 2대</text>
-  <text x="126" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">피어 탐색</text>
+  <rect x="30" y="352" width="600" height="150" rx="10" fill="#EBF5FB" stroke="#AED6F1" stroke-width="1.5"/>
+  <text x="46" y="371" font-size="11" font-weight="700" fill="#1B4F72">사내 물리서버 2대 &#8212; berith VM 11대 (VirtualBox + systemd)</text>
 
-  <rect x="206" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="276" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">메인넷 노드</text>
-  <text x="276" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">자체 이더리움 계열 체인</text>
+  <rect x="46" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="114" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Wallet</text>
+  <text x="114" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">무중단 전환 완료</text>
 
-  <rect x="356" y="360" width="140" height="44" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="426" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Web / WAS</text>
-  <text x="426" y="395" text-anchor="middle" font-size="9" fill="#D6EAF8">Docker 컨테이너 운영</text>
+  <rect x="190" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="258" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Scan</text>
+  <text x="258" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">익스플로러 + 색인</text>
 
-  <rect x="56" y="414" width="215" height="44" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="163" y="434" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">RDS</text>
-  <text x="163" y="449" text-anchor="middle" font-size="9" fill="#FDF2E0">서비스 데이터</text>
+  <rect x="334" y="380" width="136" height="42" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="402" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS API &#215;2</text>
+  <text x="402" y="414" text-anchor="middle" font-size="8.5" fill="#DFF0D8">2노드 HA</text>
 
-  <rect x="281" y="414" width="215" height="44" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="388" y="434" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">OpenSearch</text>
-  <text x="388" y="449" text-anchor="middle" font-size="9" fill="#FDF2E0">체인 데이터 인덱싱 · Scan 연동</text>
+  <rect x="478" y="380" width="136" height="42" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="546" y="399" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Admin</text>
+  <text x="546" y="414" text-anchor="middle" font-size="8.5" fill="#D6EAF8">소스 재빌드로 복구</text>
 
-  <rect x="530" y="330" width="350" height="152" rx="10" fill="#E9F7EF" stroke="#A9DFBF" stroke-width="1.5"/>
-  <text x="546" y="350" font-size="11" font-weight="700" fill="#186A3B">온프레미스 — 이중화 구간</text>
+  <rect x="46" y="430" width="180" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="136" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Redis (ElastiCache 대체)</text>
+  <text x="136" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">12노드 &#8594; 1대</text>
 
-  <rect x="546" y="360" width="160" height="44" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="626" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">이중화 서버</text>
-  <text x="626" y="395" text-anchor="middle" font-size="9" fill="#DFF0D8">AWS 비용 절감 목적 이관</text>
+  <rect x="234" y="430" width="180" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="324" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">MinIO &#215;2 (S3 대체)</text>
+  <text x="324" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">백업 이중화</text>
 
-  <rect x="716" y="360" width="148" height="44" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="790" y="380" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">메인넷 노드</text>
-  <text x="790" y="395" text-anchor="middle" font-size="9" fill="#DFF0D8">BaaS 요청 전담</text>
+  <rect x="422" y="430" width="192" height="42" rx="7" fill="url(#brPurple)" filter="url(#brShadow)"/>
+  <text x="518" y="449" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">Elasticsearch (OpenSearch 대체)</text>
+  <text x="518" y="464" text-anchor="middle" font-size="8.5" fill="#E8DAEF">54GB &#183; 월 $262 회수</text>
 
-  <rect x="546" y="414" width="318" height="44" rx="7" fill="#FFFFFF" stroke="#A9DFBF" stroke-width="1.2"/>
-  <text x="558" y="431" font-size="9.5" fill="#186A3B">대규모 트랜잭션 유입 시 반복되던 노드 다운 — 디스크 I/O 병목 +</text>
-  <text x="558" y="447" font-size="9.5" fill="#186A3B">체인 데이터 용량 부족으로 특정 → BaaS 요청 분산 (Wallet은 AWS 유지)</text>
+  <text x="46" y="490" font-size="9.5" fill="#1B4F72">별도 물리 5대 &#8212; 블록체인 노드 4대(RPC 1 &#183; 검증자 2 &#183; ETH 1) + Elasticsearch 1</text>
 
-  <rect x="30" y="498" width="860" height="86" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
-  <text x="46" y="518" font-size="11" font-weight="700" fill="#9A7D0A">관측성 — 외부 헬스체크와 내부 지표를 결합</text>
+  <rect x="644" y="352" width="246" height="150" rx="10" fill="#FDEDEC" stroke="#E6B0AA" stroke-width="1.5"/>
+  <text x="660" y="371" font-size="11" font-weight="700" fill="#943126">AWS &#8212; 남긴 것 (의도적)</text>
 
-  <rect x="48" y="528" width="185" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="140" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Blackbox Exporter</text>
-  <path d="M233,548 L251,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="660" y="380" width="214" height="40" rx="7" fill="url(#brRed)" filter="url(#brShadow)"/>
+  <text x="767" y="397" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">RDS (운영 DB)</text>
+  <text x="767" y="411" text-anchor="middle" font-size="8.5" fill="#FADBD8">데이터 티어는 최후 &#183; 이관 설계 중</text>
 
-  <rect x="256" y="528" width="200" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="356" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Prometheus · Grafana</text>
-  <path d="M456,548 L474,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="660" y="426" width="214" height="40" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
+  <text x="767" y="443" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">부트노드 1대</text>
+  <text x="767" y="457" text-anchor="middle" font-size="8.5" fill="#FDF2E0">지갑 바이너리에 IP 하드코딩</text>
 
-  <rect x="479" y="528" width="185" height="40" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="571" y="553" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Alertmanager</text>
-  <path d="M664,548 L682,548" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <text x="660" y="482" font-size="9" fill="#943126">끄면 신규 사용자가 체인에 접속 불가</text>
+  <text x="660" y="495" font-size="9" fill="#943126">&#8594; 지갑 재배포 없이는 폐기 불가로 판정</text>
 
-  <rect x="687" y="528" width="185" height="40" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="779" y="547" text-anchor="middle" font-size="11" font-weight="600" fill="#fff">Slack 실시간 알림</text>
-  <text x="779" y="561" text-anchor="middle" font-size="8.5" fill="#DFF0D8">대응 가능한 경보만 남김</text>
+  <rect x="30" y="512" width="430" height="118" rx="10" fill="#FEF9E7" stroke="#F7DC6F" stroke-width="1.5"/>
+  <text x="46" y="531" font-size="11" font-weight="700" fill="#9A7D0A">무인 운영 &#8212; 담당자 부재를 전제로 설계</text>
+  <rect x="46" y="540" width="184" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="138" y="556" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">L1 로컬 워치독 &#215;11</text>
+  <text x="138" y="569" text-anchor="middle" font-size="8.5" fill="#DDE1E3">2분 주기 &#183; 자가 복구</text>
+  <rect x="240" y="540" width="204" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
+  <text x="342" y="556" text-anchor="middle" font-size="10" font-weight="600" fill="#fff">L2 호스트 감시자 &#215;2</text>
+  <text x="342" y="569" text-anchor="middle" font-size="8.5" fill="#DDE1E3">VM 전원 계층 + L1 생존</text>
+  <text x="46" y="594" font-size="9.5" font-weight="600" fill="#9A7D0A">판정 기준 &#8212; &#8220;프로세스가 떠 있는가&#8221; 가 아니라 &#8220;데이터가 진행하는가&#8221;</text>
+  <text x="46" y="609" font-size="9" fill="#7D6608">서비스가 active 인 채 5일간 색인이 멈춘 사고를 겪고 판정 방식을 바꿈</text>
+  <text x="46" y="623" font-size="9" fill="#7D6608">연속 3회 확인 &#183; 30분 쿨다운 &#183; 일일 상한 &#183; 과반 이상 시 전체 조치 중단</text>
 
-  <rect x="30" y="598" width="860" height="146" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
-  <text x="46" y="618" font-size="11" font-weight="700" fill="#1A5276">진행 중 — AWS 월 고정비 절감을 위한 온프레미스 이관 (FinOps) · 실적 약 20% 절감 / 1단계 목표 56~70%</text>
+  <rect x="474" y="512" width="416" height="118" rx="10" fill="#EAF2F8" stroke="#85C1E9" stroke-width="1.5"/>
+  <text x="490" y="531" font-size="11" font-weight="700" fill="#1A5276">백업 3계층 &#8212; AWS OpenSearch 자동 S3 백업 대체</text>
+  <rect x="490" y="540" width="126" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="553" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">스냅샷 6시간</text>
+  <text x="553" y="569" text-anchor="middle" font-size="8" fill="#D6EAF8">&#8594; MinIO #1</text>
+  <path d="M616,558 L628,558" stroke="#7F8C8D" stroke-width="2" marker-end="url(#brArrow)"/>
+  <rect x="632" y="540" width="126" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
+  <text x="695" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">미러 6시간</text>
+  <text x="695" y="569" text-anchor="middle" font-size="8" fill="#D6EAF8">&#8594; MinIO #2 (pull)</text>
+  <rect x="766" y="540" width="110" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
+  <text x="821" y="556" text-anchor="middle" font-size="9.5" font-weight="600" fill="#fff">논리백업 매시간</text>
+  <text x="821" y="569" text-anchor="middle" font-size="8" fill="#DFF0D8">양 호스트 독립</text>
+  <text x="490" y="594" font-size="9.5" font-weight="600" fill="#1A5276">사본 측이 원본 자격증명을 갖지 않도록 pull 방향으로 설계</text>
+  <text x="490" y="609" font-size="9" fill="#21618C">&#8594; 원본 측 사고(오삭제 &#183; 침해)가 사본까지 번지지 않음</text>
+  <text x="490" y="623" font-size="9" fill="#21618C">미러가 9일간 &#8220;완료&#8221; 로그를 찍으며 실패한 사고 후, 판정을 로그에서 객체 수 실대조로 교체</text>
 
-  <rect x="48" y="628" width="256" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="176" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">BaaS API — 실트래픽 전환 완료</text>
+  <rect x="30" y="640" width="860" height="128" rx="10" fill="#F4F6F7" stroke="#D5DBDB" stroke-width="1.5"/>
+  <text x="46" y="659" font-size="11" font-weight="700" fill="#2C3E50">비용 &#8212; 실청구 기준 (정가 추정이 아니라 청구서 확보 후 재산정)</text>
 
-  <rect x="316" y="628" width="268" height="36" rx="7" fill="url(#brGreen)" filter="url(#brShadow)"/>
-  <text x="450" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">캐시 · 스캔 · 검색엔진 · 스토리지 이관</text>
+  <rect x="46" y="668" width="700" height="26" rx="5" fill="#E74C3C"/>
+  <text x="56" y="686" font-size="11" font-weight="700" fill="#fff">이전 $1,497 / 월</text>
+  <text x="700" y="686" font-size="9.5" fill="#FADBD8">2026-08 실청구</text>
 
-  <rect x="596" y="628" width="274" height="36" rx="7" fill="url(#brOrange)" filter="url(#brShadow)"/>
-  <text x="733" y="651" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">지갑 — 이관·검증 완료, 전환 대기</text>
+  <rect x="46" y="700" width="154" height="26" rx="5" fill="#27AE60"/>
+  <text x="56" y="718" font-size="11" font-weight="700" fill="#fff">현재 약 $330 / 월</text>
+  <text x="212" y="718" font-size="9.5" fill="#196F3D">약 78% 감소 &#183; 연 $14,000 규모</text>
 
-  <rect x="48" y="672" width="400" height="36" rx="7" fill="url(#brGray)" filter="url(#brShadow)"/>
-  <text x="248" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">WAS 계열 17개 · RDB 3종 · 블록체인 노드 — 미착수</text>
-
-  <rect x="460" y="672" width="410" height="36" rx="7" fill="url(#brBlue)" filter="url(#brShadow)"/>
-  <text x="665" y="695" text-anchor="middle" font-size="10.5" font-weight="600" fill="#fff">정리한 AWS 리소스 — EC2 3대 정지 · 탄력 IP 3개 반납</text>
-
-  <text x="46" y="722" font-size="9.5" fill="#1A5276">웹 계층은 의도적으로 AWS 유지 — DNS·로드밸런서를 그대로 두고 업스트림 한 줄만 바꾸므로 전환과 롤백이 설정 수준으로 축소되고, 서비스별 점진 전환이 가능</text>
-  <text x="46" y="738" font-size="9.5" fill="#943126">순절감(TCO)은 전력·하드웨어 감가 미반영으로 아직 미산정 — 남은 과제로 관리 중</text>
+  <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 $262 &#183; WAF $104 &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
+  <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
 </svg>
 
 #### 운영 대상
-- **BaaS (주력, B2B)**: 삼성디스플레이 보안서약서, 롯데이노베이츠 물품관리 이력을 블록체인에 기록하는 기업용 서비스
-- **Berith Wallet / Berith Scan (B2C)**: 코인 지갑과 블록체인 익스플로러 — 지갑 서비스 특성상 **계정 탈취를 노리는 무차별 대입·봇 공격이 상시 유입**되는 환경
-- **인프라 구성**: 부트노드 2대·메인넷 노드(이더리움 계열 자체 메인넷) 포함 AWS EC2 7대, RDS, OpenSearch(체인 데이터 인덱싱·Scan 연동), Nginx 웹 계층(Route 53 기반으로 AWS와 온프레미스에 요청 라우팅), 온프레미스 이중화 서버
 
-#### 현재 진행 과제 — AWS 비용 절감을 위한 온프레미스 이관 (FinOps)
+- **BaaS (주력, B2B)**: 삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력을 블록체인에 기록하는 기업용 서비스
+- **Berith Wallet / Berith Scan (B2C)**: 코인 지갑과 블록체인 익스플로러 — 지갑 특성상 **계정 탈취를 노리는 봇 트래픽이 상시 유입**
+- **인프라**: 사내 물리서버 2대 위 berith VM 11대 + 별도 물리 5대(블록체인 노드 4 · Elasticsearch 1). 자체 이더리움 계열 메인넷 포함
 
-매월 나가는 AWS 비용을 줄이기 위해 사내 유휴 물리 서버로 워크로드를 옮기고 있습니다.
-**절감 실적 약 20%, 1단계 목표 56~70%** — 실적과 목표는 분리해서 관리합니다.
+#### 과제 — 두 가지였습니다
 
-**설계 판단**
+**① AWS 월 고정비.** 실청구서를 확보해 보니 **$1,497**로, 그때까지 추정해 온 "$400+"의 3.7배였습니다.
+누락돼 있던 항목이 문제였습니다 — EBS·스냅샷, OpenSearch, 그리고 **한 번도 비용으로 계산된 적 없던 WAF(월 $104)**.
 
-- **웹 계층은 AWS에 남겼습니다.** DNS·로드밸런서를 그대로 두고 업스트림만 바꾸면 되므로, 전환도 롤백도 설정 한 줄입니다. 서비스별로 하나씩 넘길 수 있습니다
-- **원본은 지우지 않고 정지만 시켰습니다.** 문제가 생기면 30초 안에 되돌아갑니다
-- **이관 순번은 리스크 기준입니다.** 상태를 갖지 않는 서비스부터, 의존하는 쪽을 먼저. 데이터 티어는 최후입니다
-- **현재는 VM + systemd, 쿠버네티스는 확장 옵션으로 열어뒀습니다.** 실서비스 트래픽을 받는 중이라 이관 리스크를 낮추는 쪽을 택했고, 컨테이너 자산을 미리 만들어 전환 경로만 확보해 두었습니다
+**② 담당자 부재.** 인수인계 대상이 정해지지 않은 상태에서, 사람이 상주하지 않아도 서비스가 유지되어야 했습니다.
 
-**검증은 "떴다"가 아니라 "이전과 같다"로 했습니다**
+#### 1. 진입 계층을 통째로 Cloudflare로 옮겼습니다
 
-- 재빌드 없이 바이너리를 복사하고 **sha256 전량 대조** — 재빌드하면 두 노드가 서로 다른 코드를 돌 수 있습니다
-- **분산 락 소유자를 0.3초 간격으로 추적**해 두 노드가 실제로 작업을 나눠 갖는지 확인했습니다 (60초간 36:36)
-- 1대를 정지시켜 **실제로 장애를 냈습니다.** 30건 전부 정상 응답, 프로세스 강제 종료 후 2분 34초 만에 자동 복구
+AWS **Route 53 + ALB 8개 + WAF + 리버스프록시 EC2 1대**가 전 서비스의 단일 진입점이었습니다.
+그 EC2는 **Ubuntu 16.04 EOL · 5.5년 무재기동 · 스냅샷 0건** — 비용 이전에 이미 위험 자산이었습니다.
 
-**캐시는 옮기지 않았고, 이중화도 하지 않았습니다**
+- **Cloudflare Tunnel 채택** — 커넥터가 바깥으로 연결을 맺으므로 **사내 방화벽 인바운드 개방이 0**이 되고, 온프레미스 공인 IP도 노출되지 않습니다
+- **커넥터를 서로 다른 물리 호스트에 2대** 배치해 한 호스트 장애를 견디게 했습니다. 커넥터 위 Nginx가 도메인 분기와 upstream 헬스체크를 담당해 **백엔드를 바꿔도 Cloudflare 설정은 건드리지 않습니다**
+- **과금 모델이 바뀐 것이 핵심입니다.** AWS WAF는 요청당 과금이라 봇 트래픽이 곧 청구였습니다(WAF만 월 $104, 역산하면 월 1.4~2억 요청). Cloudflare는 정액 + DDoS 무제한이라 **공격이 늘어도 청구가 오르지 않습니다**
+- **도메인 단위로 하나씩** 전환하고 각 단계마다 되돌릴 값을 먼저 기록했습니다 — 8건 전환 중 회귀 0건
 
-이 캐시는 데이터 저장소가 아니라 **다중 인스턴스의 작업 분배를 조율하는 분산 락 백엔드**입니다. 락 백엔드를 standalone·Redis·ZooKeeper 중에서 고르도록 설계된 자리이고, 상주 키 없이 락 키만 수백 ms 단위로 점유·해제됩니다.
+#### 2. 서비스를 전량 사내로 옮겼습니다
 
-- 영속 데이터가 없으니 **IP만 승계**해 설정 변경도 재시작도 없이 전환했습니다 (중단 약 2분)
-- **이중화는 일부러 하지 않았습니다.** 비동기 복제를 락에 붙이면 마스터 장애 시 두 노드가 같은 작업을 동시에 처리할 수 있습니다. 가용성을 얻으려다 정합성을 잃는 교환입니다. 대신 "안 죽게"가 아니라 **"빨리 살아나게"** 만들었습니다
+- **지갑 — 무중단 전환.** Redis 복제로 세션을 넘겨 **재로그인 없이** 절체했습니다. 구조가 AJP → HTTP + Nginx로 바뀌면서 **AJP 노출(Ghostcat) 문제도 함께 해소**됐습니다
+- **BaaS — 2노드 HA**로 늘려 Nginx upstream 헬스체크로 자동 제외되게 구성했습니다
+- **관리자 콘솔·API 문서 — 소스에서 재빌드해 복구.** "이관 완료"로 기록돼 있었지만 **라우팅만 바뀌어 있고 백엔드가 3년간 없던** 상태였습니다. 같은 패턴이 2건이라, 이후 "완료" 기록을 실제 응답으로 검증하는 절차를 넣었습니다
+- **ElastiCache 12노드 → Redis 1대 · OpenSearch 2도메인 → Elasticsearch 1대 · S3 → MinIO 2대**
 
-**이중화가 숨어 있던 문제를 드러냈습니다**
+#### 3. 폐기 판단은 "안 쓰는 것 같다"가 아니라 실측으로
 
-BaaS API를 2노드로 늘린 직후 신규 노드에서 트랜잭션 처리가 8분간 멈췄습니다. 스레드 덤프에서 스케줄러가 래치 대기 상태임을 확인하고, 소켓 상태로 특정 체인 노드에 대한 SYN-SENT를 짚어 **기존 노드에만 적용돼 있던 DNAT 규칙 누락**으로 원인을 특정했습니다.
+- **ElastiCache** — 14일간 명령 처리량이 **양쪽 모두 0**임을 확인하고, 설정·코드 참조까지 전수 조회한 뒤 폐기 (월 $37)
+- **OpenSearch** — 폐기 전 인덱스를 전수 대조해 **온프레미스가 모든 인덱스에서 동등 이상**임을 확인했습니다. AWS에만 있던 인덱스도 표본 검증으로 부분집합임을 실증했습니다 (월 $262)
+- **탄력 IP 반납은 되돌릴 수 없어** DNS 존 전수 · 온프레 설정 · 블록체인 노드까지 참조를 전부 조회한 뒤 실행했습니다. 그 과정에서 살아 있는 참조가 **미사용 프로파일에만** 있음을 확인해 안전을 판정했습니다
+- **못 끄는 것도 명확히 했습니다.** 부트노드는 **IP가 지갑 바이너리에 컴파일**돼 있어, 끄면 신규 사용자가 체인에 접속하지 못합니다. 지갑 재배포 없이는 폐기 불가로 판정하고 유지 대상으로 문서화했습니다
 
-- 같은 조사에서 **신규 노드에 방화벽 정책이 누락된 것**을 함께 정리했습니다. 원격 작업이므로 240초 자동 롤백 타이머를 먼저 걸고 규칙을 적용한 뒤, 도달성을 확인하고 타이머를 취소했습니다
-- 연결·대기 타임아웃이 모두 없어 **노드 하나가 멈추면 처리기 전체가 멈추는** 구조적 결함도 확인해 수정 과제로 등록했습니다
-- **동일하게 복제했다고 간주한 노드가 실제로는 달랐습니다.** 아티팩트는 해시까지 대조했지만 OS 계층 설정이 비교 항목에 없었습니다. 이후 노드 대조 항목에 포함했습니다
+#### 4. 담당자가 없어도 돌아가도록 — 2계층 자가복구
 
-**메모리 병목은 증설 대신 재배치로 풀었습니다**
+사람 개입을 **정전과 물리 장애로만** 한정하는 것을 목표로 잡았습니다.
+관측 도구(Prometheus·Grafana)의 산출물이 **그래프**라면, 이 시스템의 산출물은 **재시작된 서비스**입니다.
 
-한 호스트가 62GB 중 55GB를 쓰고 스왑까지 들어가 가용 5.9GB였습니다. 다른 호스트는 90GB가 놀고 있었습니다.
-VM 3대를 옮겨 **가용 RAM을 22GB로 회복**했고, 캐시와 앱이 한 호스트에 몰려 있던 동시 장애 지점도 함께 없앴습니다.
+- **L1 로컬 워치독 11대**(2분 주기) — 서비스·데이터·디스크를 점검하고 로컬에서 직접 복구
+- **L2 호스트 감시자 2대**(5분 주기) — VM 전원 계층과 L1 자체의 생존을 확인
+- 🔑 **판정 기준을 "떠 있는가"에서 "데이터가 진행하는가"로 바꿨습니다.** 서비스가 `active (running)`인 채 디스크 포화로 **5일간 색인이 멈춘** 사고를 겪었기 때문입니다. 블록 번호·문서 수를 **두 번 재서 증가를 확인**합니다
+- 안전장치 — 연속 3회 확인 후 조치 · 30분 쿨다운 · 일일 상한 · **의존 대상을 못 읽으면 "판정 불가"로 조치 생략**(남의 장애를 우리 장애로 오인 방지) · **과반이 동시에 이상이면 전체 조치 중단**(공통 원인일 때 대량 오조치 방지)
+- 이 게이트가 실제로 발동해 **VM 6대를 전부 강제 재기동할 뻔한 것을 막았습니다**
 
-**현재 상태**
+#### 5. 백업 — "있다"와 "복원된다"는 다른 명제
 
-| 구분 | 대상 |
+AWS OpenSearch가 자동으로 해 주던 S3 백업이 이관과 함께 사라졌습니다.
+그것이 단일 기능이 아니라 **ⓐ자동 주기 ⓑ매체 분리 ⓒ세대 보존 ⓓ실패 가시성 ⓔ복구가 실제로 된다는 신뢰** 5가지 묶음이었다고 보고, 각각을 대응시켰습니다.
+
+- 3계층 — 6시간 스냅샷 → MinIO #1, 6시간 미러 → MinIO #2(다른 물리 호스트), 재수집 불가능한 인덱스만 **매시간 논리백업**을 양 호스트가 독립적으로
+- **사본이 원본을 당겨오는(pull) 방향으로 설계**했습니다. 원본 측이 사본의 자격증명을 갖지 않으므로 **원본 쪽 사고(오삭제·침해)가 사본까지 번지지 않습니다**
+- 🔴 **미러가 9일간 36회 연속 실패하면서도 로그에는 "완료"를 찍고 있었습니다.** 이후 판정을 로그 시각에서 **원본·사본 객체 수 실대조**로 교체했습니다. 워치독의 판정 원칙이 백업 계층에서 그대로 재현된 사례였습니다
+- **복원 리허설을 실제로 실행**해 건수까지 대조했습니다. 이 과정에서 "움직이는 커서를 담은 인덱스는 내용이 아니라 건수로 판정해야 한다"는 것도 확인했습니다
+
+#### 6. 판단이 틀렸을 때 되돌린 사례
+
+WAF 규칙을 Log에서 Block으로 올리려 했습니다. 24시간 실측에서 **임계치 초과 이벤트가 0건**이라 안전하다고 판단했는데, 전환 직후 실제 차단이 발생했습니다.
+관리형 룰셋에 액션을 덮어쓰면 **점수 합산을 거치지 않고 개별 규칙이 각자 차단**한다는 것을 그때 확인했습니다.
+
+- **3분 만에 되돌리고**, 안전이 확인된 부분만 남겼습니다 — 오탐 유발 규칙 6종 비활성(하루 로그의 81%), 액션은 Log 유지
+- 같은 조사에서 **차단으로 보이던 응답이 실은 애플리케이션의 정상 응답**이었음도 확인했습니다. `Server: cloudflare` 헤더만으로 단정하면 안 되고 본문과 전용 헤더를 봐야 한다는 것을 절차에 넣었습니다
+
+#### 7. 인수인계 — 문서가 아니라 "동작하는 것"으로
+
+- **인수인계 문서 5권** — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영세션
+- **사내 18대 통합 SSH 키** — 키 2종·2계정으로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지). 배포·확인·폐기 스크립트 포함
+- **장애 대응 전용 프로젝트** — 진단 스크립트(전체 상태 9개 축)와 증상별 런북 9종을 묶어, 인수자가 "scan이 안 돼" 수준의 한 줄로 시작해도 **사실 확보 → 원인 특정 → 조치** 순서가 강제되도록 구성했습니다
+- **판단이 뒤집힌 이력을 별도로 관리** — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨 **후임이 같은 오판을 반복하지 않도록** 했습니다
+
+#### 현재 상태
+
+| 구분 | 내용 |
 | --- | --- |
-| 실트래픽 전환 완료 | BaaS API (2노드 균등 분산 실측 확인) |
-| 이관·가동 완료 | 캐시, 스캔, 검색엔진, 오브젝트 스토리지 |
-| 전환 대기 | 지갑 (QA 통과 후 전환) |
-| 미착수 | WAS 17개, RDB 3종, 블록체인 노드 |
-| 정리한 AWS 리소스 | EC2 3대 정지, 탄력 IP 3개 반납 |
+| 진입 계층 | **Cloudflare** (DNS · TLS · WAF · Tunnel) — AWS Route 53 + ALB 8개 + WAF 대체 |
+| 서비스 | wallet · scan · baas(2노드 HA) · admin · API문서 · 공개 RPC — **전량 사내** |
+| 데이터 | Redis · Elasticsearch · MinIO ×2 — **전량 사내** |
+| AWS 잔존 | **RDS 1개**(운영 DB, 이관 설계 중) · **부트노드 1대**(지갑 하드코딩) · 고객사 전용 진입 자원 |
+| 자가복구 | L1 워치독 11대 + L2 감시자 2대 가동 |
+| 백업 | 3계층 가동 · 복원 리허설 실증 완료 |
 
-**남은 과제** — 전력·하드웨어 감가를 넣은 순절감(TCO)은 아직 산정하지 못했습니다. 절감률만 보면 과대평가됩니다.
+#### 남은 과제 (정직하게)
+
+- **운영 DB는 아직 AWS입니다.** 데이터 티어를 최후로 둔 설계였고, 무중단 절체·롤백 방식이 아직 설계 단계입니다. 온프레미스에 사본이 없다는 점도 미해소 리스크로 관리 중입니다
+- **순절감(TCO) 미산정.** 전력·하드웨어 감가를 넣지 않았고, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중이라 만료 전까지는 그만큼이 상쇄됩니다. **절감률만 보면 과대평가**입니다
+- **부트노드 폐기 불가** — 지갑 재배포가 선행돼야 하는 사업 판단 사항입니다
+- **고객사 1곳이 아직 구 경로 사용** — 내부 DNS에 IP를 고정 등록하는 구조라 공개 DNS 변경이 전달되지 않습니다. 회선 직결 경로를 신설해 두고 전환을 기다리는 중입니다
 
 #### 주요 성과
-- 지표도 장애 이력도 없던 초기에는 "뭔가 안 된다" 수준의 신고에서 원인 규명까지 1주일가량 걸렸으나, 모니터링·알림 체계 구축과 장애별 RCA 문서가 쌓이면서 **트러블슈팅 소요 시간을 30분 이내로 단축**
-- **일 50GB 이상의 공격성 트래픽 로그, 하루 평균 1,000개 이상의 IP를 자동 차단** — 단일 봇 차단 이후 다수 IP가 로테이션하며 공격하는 패턴으로 진화하자 WAF·Nginx·iptables 3계층 방어를 단계적으로 고도화, **AWS 비용 20% 이상 절감**
-- 대규모 트랜잭션 유입 시 반복되던 메인넷 노드 다운의 근본 원인을 **디스크 I/O 병목 + 체인 데이터 용량 부족**(블록체인 노드 특성상 전체 체인 데이터를 로컬 디스크에 보관)으로 특정 — EBS 증설로 용량을 해결하고, 장비 증설 없이 **BaaS 요청을 온프레미스 메인넷으로 분산**(Wallet은 AWS 유지)하는 구조 변경으로 I/O 병목까지 해소하여 재발 방지
+
+- **AWS 월 청구 $1,497 → 약 $330 (약 78% 감소, 연 $14,000 규모)** — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리
+- **진입 계층 단일 장애점 제거** — EOL·무재기동·백업 0건이던 리버스프록시 EC2 의존을 걷어내고, 서로 다른 물리 호스트의 커넥터 2대로 이중화
+- 지표도 장애 이력도 없던 초기에는 "뭔가 안 된다" 수준의 신고에서 원인 규명까지 1주일가량 걸렸으나, 모니터링·알림 체계와 RCA 문서가 쌓이면서 **트러블슈팅 소요 시간을 30분 이내로 단축**
+- **일 50GB 이상의 공격성 트래픽 로그, 하루 평균 1,000개 이상의 IP를 자동 차단** — 단일 봇 차단 이후 다수 IP 로테이션 패턴으로 진화하자 3계층 방어를 단계적으로 고도화
+- 대규모 트랜잭션 유입 시 반복되던 메인넷 노드 다운의 근본 원인을 **디스크 I/O 병목 + 체인 데이터 용량 부족**으로 특정 — EBS 증설과 함께 장비 증설 없이 **요청 분산 구조 변경**으로 I/O 병목까지 해소
+- **자가복구 체계 가동** — 서비스 VM 9대 + 커넥터 2대, 대부분의 장애가 사람이 인지하기 전에 복구
 
 ---
 
@@ -853,9 +909,10 @@ VM 3대를 옮겨 **가용 RAM을 22GB로 회복**했고, 캐시와 앱이 한 �
 **Role:** Developer · DevOps · SRE
 
 #### 주요 업무
-- 자사 블록체인 서비스(BaaS·Berith Wallet·Berith Scan)의 AWS·온프레미스 하이브리드 인프라 상시 운영 — 메인넷·부트노드 노드 운영, EC2 7대·RDS·OpenSearch, 온프레미스 이중화
-- AWS(Route 53, ALB, EC2)와 온프레미스를 연동하는 하이브리드 인프라 설계·구축·운영 및 운영 절차 표준화
-- **AWS 월 고정비 절감을 위한 온프레미스 이관(FinOps) 진행 중 (2026.04~)** — 리스크 기준으로 이관 순번 설계, 롤백 경로 확보 후 전환, 이관 절차 스크립트화. BaaS API는 2노드 이중화로 실트래픽 전환 완료(실적 약 20% 절감, 1단계 목표 56~70%)
+- 자사 블록체인 서비스(BaaS·Berith Wallet·Berith Scan) 인프라 **1인 운영** — 자체 메인넷 노드, 사내 물리서버 2대 위 VM 11대 + 별도 물리 5대
+- **진입 계층을 AWS(Route 53 + ALB 8개 + WAF + 리버스프록시 EC2)에서 Cloudflare Tunnel로 전면 이전** — 인바운드 포트 개방 0, 커넥터 2대를 서로 다른 물리 호스트에 배치해 이중화
+- **AWS 월 고정비 절감(FinOps) — $1,497 → 약 $330 (78%↓, 연 $14,000 규모)** — 리스크 기준으로 이관 순번을 설계하고 롤백 경로를 먼저 확보한 뒤 전환. 폐기 판단은 추정이 아니라 14일 실측·인덱스 전수 대조 같은 근거로 수행
+- **담당자 부재를 전제로 한 무인 운영 체계 구축** — L1 워치독 11대 + L2 호스트 감시자 2대의 2계층 자가복구, 백업 3계층(복원 리허설 실증), 인수인계 문서 5권과 장애 대응 세션까지 이양
 - Docker 기반 Web / WAS / DB 컨테이너 운영 체계 구축·운영
 - AWS WAF, Nginx, iptables를 활용한 다층 보안 아키텍처 구축 및 무차별 대입·봇 트래픽 상시 대응
 - 외부 헬스체크와 내부 지표를 결합한 모니터링·알림 체계 구축으로 관측성(Observability) 확보, Slack 실시간 알림 운영
@@ -942,7 +999,8 @@ VM 3대를 옮겨 **가용 RAM을 22GB로 회복**했고, 캐시와 앱이 한 �
 
 ### Hybrid Infrastructure & FinOps
 - AWS와 온프레미스를 연동하는 인프라 설계·구축·운영 경험
-- **클라우드 비용 구조를 근거로 온프레미스 이관을 설계·실행한 경험** — 이관 순번을 리스크 기준으로 정하고, 롤백 경로를 먼저 확보한 뒤 전환하며, 남길 것(웹 계층)과 옮길 것을 분리해 판단
+- **클라우드 비용 구조를 근거로 온프레미스 전량 이관을 설계·완료한 경험 (월 청구 78%↓)** — 이관 순번을 리스크 기준으로 정하고, 롤백 경로를 먼저 확보한 뒤 도메인 단위로 전환. **못 옮기는 것(지갑에 IP가 하드코딩된 부트노드)과 남길 것(데이터 티어)을 근거와 함께 분리해 판단**
+- **과금 모델을 바꿔 비용을 구조적으로 고정한 경험** — 요청당 과금(AWS WAF)이라 공격량이 곧 청구이던 구조를 정액 + DDoS 무제한으로 교체
 - Route 53, ALB, EC2, ECS, Docker, Nginx, On-Premise WAS를 연결한 서비스 아키텍처 운영
 - 클라우드와 내부망을 함께 고려한 실제 운영형 인프라, 비용을 고려한 아키텍처 의사결정 경험
 
