@@ -48,13 +48,13 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 ### ⛓️ Berith Blockchain Services — Migrating off AWS and Running Unattended *(completed)*
 
-**Aug 2024 – Aug 2026 (2 yrs 1 mo) · DevOps / SRE · infrastructure owner · handed over**
+**Aug 2024 – Aug 2026 (2 yrs 1 mo) · DevOps / SRE · infrastructure owner**
 *(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
 
 > I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **for two years**.
 > I moved every service **off AWS onto in-house hardware** and replaced the entire AWS edge with **Cloudflare Tunnel** —
 > bringing monthly spend from **$1,497 to about $330 (−78%)**.
-> With no successor named, I built a platform that **repairs itself without a person on site**, and set it up so an
+> Because it had to run without anyone on site, I built a platform that **repairs itself**, and set it up so an
 > **AI session can carry out incident response** — diagnostics and runbooks included — before handing it over.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
@@ -225,7 +225,7 @@ and being a wallet, it absorbed constant credential-stuffing traffic.
 Two problems had to be solved:
 
 - **① Recurring AWS spend.** The actual invoices came to **$1,497/month** — 3.7× the "$400+" the company believed. The gap was in line items nobody tracked, including WAF at $104/month
-- **② No successor.** With nobody named to take over, the platform had to keep running without anyone on site
+- **② No dedicated operator.** The platform had to keep running without anyone on site
 
 #### What I did
 
@@ -283,16 +283,16 @@ I kept only the verified part: six false-positive-heavy rules disabled, 81% of d
 - **Auto-blocking 1,000+ IPs per day**, hardened in stages as attacks moved from a single bot to rotating IPs
 - **Most failures now recover before anyone notices**
 
-#### Handover
+#### Operational continuity
 
-With no successor named, I focused on leaving **things that run**, not just things that are written.
+So the platform keeps running without someone on site, I focused on leaving **things that run**, not just things that are written.
 
-- **Five handover documents** — architecture, backup, credentials, decommissioning, operations
+- **Five operations documents** — architecture, backup, credentials, decommissioning, incident response
 - **One SSH key covering all 18 in-house machines** — consolidating two key types across two accounts into a single file while leaving existing authentication intact, with deploy, verify and revoke scripts
-- **An AI-driven incident-response set** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, packaged with entry rules so **a Claude Code session reads them and executes directly**. A successor typing "the explorer is down" is still walked through **establish facts → isolate cause → act** — the rules explicitly forbid restarting on a guess
+- **An AI-driven incident-response set** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, packaged with entry rules so **a Claude Code session reads them and executes directly**. An operator typing "the explorer is down" is still walked through **establish facts → isolate cause → act** — the rules explicitly forbid restarting on a guess
 - **A log of reversed judgements** — on one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact"
 
-I also documented **what was still open** at handover:
+I also documented **what was still open**:
 
 | Item | State |
 | --- | --- |
@@ -699,7 +699,7 @@ Front-end changes and back-end deployments had to be verified directly in produc
 
 - **Staging built in full** — every item compared against production via CLI, **zero mismatches**
 - **Removed the practice of verifying deployments in production**
-- Left build guides, checklists and handover documentation so the work survives a change of owner
+- Left build guides, checklists and reference documentation so the work survives a change of owner
 
 **Tech:** AWS ECS (Fargate), ECR, CodeDeploy (blue/green), ALB, CloudFront, CloudFront Functions, Route 53, ACM, S3, DynamoDB (GSI), IAM, AWS CLI
 
@@ -707,7 +707,7 @@ Front-end changes and back-end deployments had to be verified directly in produc
 
 ### 🤖 AI Agent Execution Platform — Kubernetes Isolation *(internal, build complete)*
 
-**May 2026 – Aug 2026 · cluster build and GitOps pipeline · handed over**
+**May 2026 – Aug 2026 · cluster build and GitOps pipeline**
 
 > Built to solve the problem the Samsung POC exposed: **agents modifying their own runtime**.
 > Every agent execution runs as **one Kubernetes Job**, isolated.
@@ -730,9 +730,9 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 
 <p><a class="iso-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ Open the interactive diagram</a></p>
 
-**Status at handover**
+**Scope delivered**
 
-**The build and end-to-end verification were complete when I handed it over.** Launch was scheduled after my departure, so this is not production operating experience.
+**The build and end-to-end verification were complete.** Launch was scheduled after this period, so this is not production operating experience.
 
 - **First end-to-end agent execution completed** (29 May 2026) — all 23 automated checks passed
 - **Egress NetworkPolicy is applied but intentionally disabled.** The allow-list omitted the Linkerd control plane ports (destination 8086 / policy 8090 / identity 8080), so the sidecar blocked the controller's JWKS fetch → the health port never bound → liveness failed → **`Exit 137` (SIGKILL)**. I traced it to that point, documented the conditions for re-enabling it, and it is off under management until then.

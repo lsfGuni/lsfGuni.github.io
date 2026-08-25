@@ -287,7 +287,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 담당자 없이도 돌아가는 <strong>자가복구 체계</strong>까지 만든 DevOps 엔지니어
 </p>
 
-Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 판단이 뒤집힌 이력을 남겨 후임이 같은 오판을 반복하지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들고 인계했습니다.
+Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 판단이 뒤집힌 이력을 남겨 다음 담당자가 같은 오판을 반복하지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들었습니다.
 
 </div>
 
@@ -367,7 +367,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) 인프라 <strong>운영 전담</strong> — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 자동 차단</li>
     <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 청구 $1,497 → 약 $330 (78%↓)</strong></li>
-    <li><strong>담당자 부재 전제의 무인 운영 체계 구축</strong> — 2계층 자가복구(워치독 11대 + 감시자 2대), 백업 3계층(복원 실증), 인수인계 문서 5권 + 장애 대응 세션 이양</li>
+    <li><strong>담당자 부재 전제의 무인 운영 체계 구축</strong> — 2계층 자가복구(워치독 11대 + 감시자 2대), 백업 3계층(복원 실증), 운영 문서 5권 + AI 장애 대응 세트 구축</li>
       <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 Job으로 분리하고 전용 네임스페이스·ServiceAccount·RBAC 부여, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
     <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
     <li>삼성디스플레이 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</li>
@@ -414,8 +414,8 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-berith-ops" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
-    <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 · 인계 완료</p>
-    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성해 인계했습니다.</p>
+    <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담</p>
+    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 상시 담당자 없이도 돌아가야 했기에 <strong>사람 없이 스스로 복구하는 무인 운영 체계</strong>를 만들고, <strong>AI 세션이 장애 대응을 수행할 수 있도록</strong> 진단 스크립트와 런북까지 구성했습니다.</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">Cloudflare</span>
@@ -591,7 +591,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </svg>
     <h5>어떤 일이었나</h5>
     <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라 운영을 맡았습니다. 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
-    <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 $1,497로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다. <strong>② 후임 부재</strong> — 인수인계 대상이 정해지지 않은 상태에서, 사람이 없어도 서비스가 유지되어야 했습니다.</p>
+    <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 $1,497로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다. <strong>② 상시 담당자 부재</strong> — 사람이 붙어 있지 않아도 서비스가 유지되어야 했습니다.</p>
 
     <h5>한 일</h5>
     <ul>
@@ -611,23 +611,23 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <li><strong>대부분의 장애가 사람이 인지하기 전에 자동 복구</strong>되는 상태로 전환</li>
     </ul>
 
-    <h5>인계</h5>
-    <p>후임이 정해지지 않은 채 떠나야 했기 때문에, <strong>문서보다 "동작하는 것"을 남기는 데 무게를 뒀습니다.</strong></p>
+    <h5>운영 지속성 — 담당자가 바뀌어도 돌아가게</h5>
+    <p>담당자가 상주하지 않아도 운영이 이어지도록, <strong>문서보다 "동작하는 것"을 남기는 데 무게를 뒀습니다.</strong></p>
     <ul>
-      <li><strong>인수인계 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션</li>
+      <li><strong>운영 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션</li>
       <li><strong>사내 18대 통합 SSH 키</strong> — 키 2종·계정 2개로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지), 배포·확인·폐기 스크립트 포함</li>
-      <li><strong>AI 기반 장애 대응 세트</strong> — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, <strong>Claude Code 세션이 읽고 그대로 수행하도록</strong> 진입 규칙과 함께 묶었습니다. 인수자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다</li>
-      <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>후임이 같은 오판을 반복하지 않도록</strong> 했습니다</li>
+      <li><strong>AI 기반 장애 대응 세트</strong> — 시스템 상태 9개 축을 한 번에 찍는 진단 스크립트 + 증상별 런북 9종을, <strong>Claude Code 세션이 읽고 그대로 수행하도록</strong> 진입 규칙과 함께 묶었습니다. 담당자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟습니다 — 추측으로 재시작부터 하지 못하게 규칙에 박아 뒀습니다</li>
+      <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>다음 담당자가 같은 오판을 반복하지 않도록</strong> 했습니다</li>
     </ul>
-    <p><strong>인계 시점에 남아 있던 것</strong>도 그대로 적어 넘겼습니다 — 운영 DB는 데이터 티어를 최후로 둔 설계에 따라 아직 AWS에 있고(이관 방식 설계 단계), 전력·하드웨어 감가를 넣은 순절감(TCO)은 미산정이며, 부트노드는 지갑 재배포 전까지 폐기할 수 없습니다.</p>
+    <p><strong>완료하지 못한 것</strong>도 근거와 함께 기록으로 남겼습니다 — 운영 DB는 데이터 티어를 최후로 둔 설계에 따라 아직 AWS에 있고(이관 방식 설계 단계), 전력·하드웨어 감가를 넣은 순절감(TCO)은 미산정이며, 부트노드는 지갑 재배포 전까지 폐기할 수 없습니다.</p>
   </div>
 
   <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (2026.05 ~ 2026.08, 구축 완료·인계) -->
   <div class="project-toggle" data-target="#proj-ai-agent" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라</h4>
-    <p class="proj-meta">2026.05 ~ 2026.08 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 인계 완료</p>
-    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마친 뒤 인계했습니다</p>
+    <p class="proj-meta">2026.05 ~ 2026.08 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당</p>
+    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마쳤습니다</p>
     <div>
       <span class="tech-tag">Kubernetes (k3s)</span>
       <span class="tech-tag">ArgoCD (app-of-apps)</span>
@@ -653,7 +653,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
 
     <h5>인터랙티브 아키텍처 도면 (직접 제작)</h5>
-    <p>클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다. 상단 6개 모드(<strong>일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성</strong>)로 관점을 바꿔 볼 수 있고, 컴포넌트를 클릭하면 역할 설명이 나옵니다. <strong>구현 완료 / 스캐폴드 / 목표</strong>를 색으로 구분해 인계 시점의 범위를 있는 그대로 표시합니다.</p>
+    <p>클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다. 상단 6개 모드(<strong>일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성</strong>)로 관점을 바꿔 볼 수 있고, 컴포넌트를 클릭하면 역할 설명이 나옵니다. <strong>구현 완료 / 스캐폴드 / 목표</strong>를 색으로 구분해 구현 범위를 있는 그대로 표시합니다.</p>
     <div class="demo-embed">
       <iframe src="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" title="DevAX Kubernetes 인프라 아이소메트릭 도면" loading="lazy"></iframe>
     </div>
@@ -661,12 +661,12 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <a class="demo-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ 전체 화면으로 열기</a>
     </p>
 
-    <h5>인계 시점 상태</h5>
-    <p><strong>인프라 구축과 관통 검증을 마치고 인계했습니다.</strong> 서비스 오픈은 제 퇴사 이후 일정이라, 상용 트래픽을 받은 운영 경험은 아닙니다.</p>
+    <h5>구축 범위</h5>
+    <p><strong>인프라 구축과 에이전트 실행 관통 검증까지 완료했습니다.</strong> 서비스 오픈은 이후 일정이라, 상용 트래픽을 받은 운영 경험은 아닙니다.</p>
     <ul>
       <li><strong>에이전트 실행 관통 완료</strong> (2026-05-29) — 자동 검증 23종 전체 통과</li>
-      <li><strong>egress NetworkPolicy는 위 사유로 비활성 상태로 인계</strong> — 재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서로 정의해 넘김</li>
-      <li><strong>실격리(microVM)와 사용자 화면은 범위 밖</strong> — 인계 시점은 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 명시해 인계</li>
+      <li><strong>egress NetworkPolicy는 위 사유로 비활성</strong> — 재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서로 정의</li>
+      <li><strong>실격리(microVM)와 사용자 화면은 범위 밖</strong> — 구축 범위는 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 명시</li>
     </ul>
   </div>
 
@@ -674,7 +674,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <div class="project-toggle" data-target="#proj-devax-drive" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🗂️ 사내 문서관리 시스템 — 스테이징·운영 분리 및 CI/CD 배포 체계 구축</h4>
-    <p class="proj-meta">2026.07 (완료) · 사내 프로젝트 · 서버 구축·CI/CD·인수인계 담당</p>
+    <p class="proj-meta">2026.07 (완료) · 사내 프로젝트 · 서버 구축·CI/CD·문서화 담당</p>
     <p class="proj-summary">검증 환경 없이 운영 서버 한 대에 수작업으로 배포되던 사내 문서관리 시스템(Google Drive 대체)에 <strong>스테이징·운영 2서버 체계와 자동 배포 파이프라인을 신규 구축</strong>. 운영 배포는 재빌드 없이 스테이징이 검증한 이미지를 그대로 승격(Build Once, Promote)하고 직전 DB를 자동 백업 — 배포가 "push 후 2분 + 말 한마디"로 표준화</p>
     <div>
       <span class="tech-tag">Jenkins (JCasC)</span>
