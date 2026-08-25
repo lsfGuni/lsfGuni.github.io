@@ -46,15 +46,16 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
 
 ## Current Operations
 
-### ⛓️ Berith Blockchain Services — Migrating off AWS and Running Unattended
+### ⛓️ Berith Blockchain Services — Migrating off AWS and Running Unattended *(completed)*
 
-**Aug 2024 – Present · DevOps / SRE · sole infrastructure owner** *(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
+**Aug 2024 – Aug 2026 (2 yrs 1 mo) · DevOps / SRE · sole infrastructure owner · handed over**
+*(Aug 2024 – Jan 2025 under affiliate iBiz Software; Berith Korea full-time from Feb 2025)*
 
-> I moved an enterprise blockchain recording service (BaaS) and consumer wallet/explorer services
-> **off AWS onto in-house hardware**, and replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a
-> reverse-proxy EC2 — with **Cloudflare Tunnel**. Monthly spend went from **$1,497 to about $330 (−78%)**.
-> Because no successor was named, I also built a **two-tier self-healing system** and a three-tier backup
-> chain, then handed over five documents and a working incident-response setup.
+> I owned the infrastructure behind a blockchain service suite (BaaS, wallet, explorer) **alone for two years**.
+> I moved every service **off AWS onto in-house hardware** and replaced the entire AWS edge with **Cloudflare Tunnel** —
+> bringing monthly spend from **$1,497 to about $330 (−78%)**.
+> With no successor named, I also built **self-healing and a three-tier backup chain**, then handed over
+> the documentation, access and incident procedures.
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 790" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
   <defs>
@@ -214,105 +215,91 @@ When something breaks I don't stop at restoring service. **Root cause → fix �
   <text x="46" y="757" font-size="9.5" fill="#943126">2,874GB of snapshots are retained as recovery insurance, offsetting part of this until they expire (Feb 2027). Net TCO including power and hardware depreciation is still unmeasured</text>
 </svg>
 
-#### What I operate
+#### What this was
 
-- **BaaS (primary, B2B)** — records Samsung Display security pledges and Lotte Innovate asset-custody history on-chain
-- **Berith Wallet / Berith Explorer (B2C)** — a coin wallet and chain explorer. Being a wallet, it takes **constant credential-stuffing and bot traffic**
-- **Infrastructure** — 11 VMs across 2 in-house physical servers, plus 5 standalone machines (4 chain nodes, 1 Elasticsearch). Includes an in-house Ethereum-based mainnet
+I was the sole owner of the infrastructure for **BaaS** (recording Samsung Display security pledges and Lotte Innovate
+asset-custody history on-chain) and consumer services (**wallet and chain explorer**).
+It ran on AWS — multiple EC2 instances, RDS and OpenSearch — including an in-house Ethereum-based mainnet,
+and being a wallet, it absorbed constant credential-stuffing traffic.
 
-#### The problem was twofold
+Two problems had to be solved:
 
-**① Recurring AWS spend.** Once I pulled the actual invoices, it was **$1,497/month** — 3.7× the "$400+" everyone had assumed.
-The gap was in line items nobody was tracking: EBS and snapshots, OpenSearch, and **WAF at $104/month, which had never once been costed**.
+- **① Recurring AWS spend.** The actual invoices came to **$1,497/month** — 3.7× the "$400+" the company believed. The gap was in line items nobody tracked, including WAF at $104/month
+- **② No successor.** With nobody named to take over, the platform had to keep running without anyone on site
 
-**② No owner.** With no successor named, the platform had to keep running without anyone on site.
+#### What I did
 
-#### 1. Moved the entire edge to Cloudflare
+**Moved the entire edge to Cloudflare**
 
-A single reverse-proxy EC2 sat behind **Route 53 + 8 ALBs + WAF** and was the only entry point for every service.
-That box was **Ubuntu 16.04 (EOL), 5.5 years without a reboot, and had zero snapshots** — a liability before it was ever a cost problem.
+A single reverse-proxy EC2 behind Route 53 + 8 ALBs + WAF was the only entry point for every service —
+and it was **Ubuntu 16.04 (EOL), 5.5 years without a reboot, with zero backups**.
+Cloudflare Tunnel brought inbound firewall exposure to **zero**, with two connectors on separate physical hosts for redundancy.
+Eight domains cut over one at a time, with no regressions.
+Billing shifted from **per-request to flat rate**, so bot traffic no longer drives the invoice.
 
-- **Chose Cloudflare Tunnel.** Connectors dial outbound, so the office firewall needs **zero inbound ports** and the on-premise public IP is never exposed
-- **Two connectors on separate physical hosts**, so one host failing doesn't take the platform down. Nginx on each connector handles per-domain routing and upstream health checks, which means **backends can change without touching Cloudflare config**
-- **The billing model was the real win.** AWS WAF charges per request, so bot traffic *was* the bill — $104/month, implying 140–200M requests. Cloudflare is flat-rate with unmetered DDoS, so **an attack no longer raises the invoice**
-- Cut over **one domain at a time**, recording the rollback value before each step — 8 cutovers, zero regressions
+**Moved every service in-house**
 
-#### 2. Moved every service in-house
+- Wallet — replicated Redis to carry sessions across for a **zero-downtime cutover with no forced re-login**. Moving from AJP to HTTP + Nginx also **closed the exposed AJP (Ghostcat) surface**
+- BaaS — rebuilt as **two-node HA** with unhealthy nodes dropped automatically
+- Admin console and API docs — found both had **routing migrated but no backend for three years**, and rebuilt them from source. Two services shared the defect, so I added a step verifying "done" against a real response
+- ElastiCache 12 nodes → 1 Redis · 2 OpenSearch domains → 1 Elasticsearch · S3 → 2 MinIO
 
-- **Wallet — zero downtime.** Replicated Redis to carry sessions across, so **nobody had to log in again**. The move from AJP to HTTP + Nginx also **closed the exposed AJP (Ghostcat) surface** as a side effect
-- **BaaS — two-node HA**, with unhealthy nodes dropped automatically by Nginx upstream checks
-- **Admin console and API docs — rebuilt from source.** Both were recorded as "migrated," but only the routing had moved; **the backend had been missing for three years**. Two services had the same defect, so I added a step that verifies "done" against an actual response
-- **ElastiCache 12 nodes → 1 Redis · 2 OpenSearch domains → 1 Elasticsearch · S3 → 2 MinIO**
+**Decommissioned on evidence, not assumption**
 
-#### 3. Decommissioning decisions came from measurement, not assumption
+- ElastiCache — confirmed **zero commands on both clusters across 14 days**, then swept configs and code for references
+- OpenSearch — compared every index and confirmed **on-premise held equal or more**; proved the one AWS-only index was a subset by sampling
+- Elastic IP releases are irreversible, so I swept every DNS zone, config and chain node for references first
+- I also documented **what could not be turned off** — the boot node's **IP is compiled into wallet binaries**, so shutting it down would cut new users off from the chain
 
-- **ElastiCache** — confirmed **zero commands on both clusters over 14 days**, then swept configs and code for references before deleting ($37/mo)
-- **OpenSearch** — compared every index first and confirmed **on-premise held equal or more in all of them**. For the one index that existed only on AWS, I sampled and proved it was a subset ($262/mo)
-- **Releasing elastic IPs is irreversible**, so I swept every DNS zone, on-premise config and chain node for references first. That sweep found the only live reference sat in **an unused profile**, which is what made the release safe
-- **I also documented what cannot be turned off.** The boot node's **IP is compiled into wallet binaries** — shutting it down would cut new users off from the chain. I ruled it undecommissionable without a wallet re-release rather than leaving it as an open question
+**Built self-healing for an empty chair**
 
-#### 4. Two-tier self-healing, designed for an empty chair
+Eleven local watchdogs (every 2 min) and two host supervisors (every 5 min) repair the platform without a person.
+Where monitoring tools produce graphs, this system's output is **a restarted service**.
 
-The goal was to narrow human involvement to **power loss and hardware failure**.
-Where Prometheus and Grafana produce **graphs**, this system's output is **a restarted service**.
+- 🔑 The key change was judging health by **"is data advancing"** rather than **"is the process up"** — after indexing stalled for **five days** while the service reported `active (running)`
+- Guardrails — act only after 3 consecutive failures · 30-min cooldown · daily cap · **skip action when a dependency is unreadable** · **halt everything if a majority fails at once**. That last gate fired for real and **prevented a forced restart of all 6 VMs**
 
-- **L1 local watchdogs on 11 hosts** (every 2 min) — check services, data progress and disk, then repair locally
-- **L2 host supervisors on 2 machines** (every 5 min) — cover the VM power tier and whether L1 itself is alive
-- 🔑 **Health is judged by "is data advancing," not "is the process up."** I changed this after indexing stalled for **five days** while the service reported `active (running)`. Block heights and document counts are **sampled twice to confirm they increase**
-- Guardrails — act only after 3 consecutive failures · 30-minute cooldown · daily cap · **skip action when a dependency is unreadable** (so someone else's outage isn't misread as ours) · **halt everything if a majority fails at once** (so a common cause doesn't trigger mass remediation)
-- That last gate fired for real and **prevented a forced restart of all 6 VMs**
+**Built a three-tier backup and proved it restores**
 
-#### 5. Backup — "we have one" and "it restores" are different claims
+Migrating away from OpenSearch removed the automatic snapshots it had been taking for us.
 
-Migrating away from OpenSearch removed the automatic S3 snapshots it had been doing for us.
-I treated that not as one feature but as five guarantees — **automatic cadence, media separation, generation retention, failure visibility, and confidence that a restore actually works** — and replaced each.
+- 6-hourly snapshots to MinIO #1, a 6-hourly mirror to MinIO #2 on a different physical host, and **hourly logical backups** of indices that cannot be re-derived, taken independently by both hosts
+- Built as a **pull**, so the source never holds the replica's credentials and a deletion or compromise cannot propagate
+- 🔴 **The mirror failed 36 times over 9 days while logging "done" each time.** Health moved from log freshness to **actual object-count comparison**
+- **Ran a real restore drill** — "we have a backup" and "it restores" are different claims
 
-- Three tiers — 6-hourly snapshots to MinIO #1, a 6-hourly mirror to MinIO #2 on a different physical host, and **hourly logical backups** of the indices that cannot be re-derived, taken independently by both hosts
-- **Built as a pull**, so the source never holds the replica's credentials. **Deletion or compromise at the source cannot propagate to the copy**
-- 🔴 **The mirror failed 36 times over 9 days while logging "done" each time.** I moved the health check from log freshness to **actual object-count comparison**. The watchdog's own principle had quietly been violated by the backup layer
-- **Ran a real restore drill** and reconciled record counts — which is also how I learned that an index holding a moving cursor has to be judged by count, not content
+**A call I got wrong, and reversed**
 
-#### 6. A call I got wrong, and reversed
-
-I tried promoting the WAF ruleset from Log to Block. Twenty-four hours of data showed **zero threshold-exceeded events**, so it looked safe. Blocking started immediately after the change.
-Overriding the action on a managed ruleset makes **each individual rule block on its own, bypassing score aggregation** — which I only confirmed by doing it.
-
-- **Reverted within three minutes** and kept only the part that was verified — six false-positive-heavy rules disabled (81% of daily log volume), action left at Log
-- The same investigation showed that **a response I had read as a block was actually the application's own 403**. `Server: cloudflare` alone isn't evidence; the body and the dedicated header are. That's now part of the procedure
-
-#### 7. Handover — as something that runs, not just something written
-
-- **Five handover documents** — architecture, backup, credentials, decommissioning, and operations
-- **One SSH key for all 18 in-house machines** — consolidating two key types across two accounts into a single file, while leaving existing authentication intact. Ships with deploy, verify and revoke scripts
-- **A dedicated incident-response project** — a diagnostic script covering nine areas of system state plus nine symptom-based runbooks, arranged so that a successor typing "scan is down" is still walked through **establish facts → isolate cause → act**
-- **Reversed judgements are tracked separately.** On one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact" to keep **a successor from repeating the same mistake**
-
-#### Where it stands
-
-| Area | Status |
-| --- | --- |
-| Edge | **Cloudflare** (DNS · TLS · WAF · Tunnel) — replaced Route 53 + 8 ALBs + WAF |
-| Services | wallet · explorer · baas (2-node HA) · admin · API docs · public RPC — **all in-house** |
-| Data | Redis · Elasticsearch · MinIO ×2 — **all in-house** |
-| Still on AWS | **1 RDS** (production DB, migration being designed) · **1 boot node** (hardcoded in wallets) · one client's legacy entry path |
-| Self-healing | 11 L1 watchdogs + 2 L2 supervisors running |
-| Backup | 3 tiers running · restore drill verified |
-
-#### What's still open
-
-- **The production database is still on AWS.** Putting the data tier last was deliberate, but the zero-downtime cutover and rollback design isn't finished. There is also no on-premise copy yet, which I track as an open risk
-- **Net TCO is unmeasured.** Power and hardware depreciation aren't in the figure, and 2,874GB of snapshots are retained as recovery insurance, offsetting part of the saving until they expire. **The percentage alone overstates it**
-- **The boot node can't be retired** until wallets are re-released — a business decision, not a technical one
-- **One client still uses the old path.** They pin our IP in their internal DNS, so public DNS changes never reach them. A direct-line path is built and waiting for them to switch
+I promoted the WAF ruleset from Log to Block and **reverted within three minutes**.
+Twenty-four hours of data showed zero threshold-exceeded events, but overriding the action on a managed ruleset makes
+**each rule block on its own, bypassing score aggregation** — something I only confirmed by doing it.
+I kept only the verified part: six false-positive-heavy rules disabled, 81% of daily log volume.
 
 #### Results
 
-- **AWS spend $1,497 → ~$330/month (−78%, roughly $14,000/year)** — retired 2 OpenSearch domains, WAF, 7 ALBs, all ElastiCache, 2 RDS instances, 9 EC2 instances, and 19 of 23 elastic IPs
-- **Removed the single point of failure at the edge** — replaced an EOL, never-rebooted, unbacked-up reverse proxy with two connectors on separate physical hosts
-- Early on, with no metrics and no incident history, a vague "something's broken" took about a week to trace. Monitoring, alerting and per-incident RCA writeups brought that **under 30 minutes**
-- **Auto-blocking 1,000+ IPs per day** out of 50GB of daily attack logs, hardened in stages as attacks moved from a single bot to rotating IPs
-- Traced repeated mainnet node crashes under transaction spikes to **disk I/O contention plus chain data growth**, and resolved it by redistributing traffic **without buying hardware**
-- **Self-healing in production** — most failures now recover before anyone notices
+- **AWS spend $1,497 → ~$330/month (−78%, ~$14,000/yr)** — retired 2 OpenSearch domains, WAF, 7 ALBs, all ElastiCache, 2 RDS instances, 9 EC2 instances, and 19 of 23 elastic IPs
+- **Removed the single point of failure at the edge** — replaced an EOL, never-rebooted, unbacked-up proxy with two connectors on separate physical hosts
+- **Incident triage from a week to under 30 minutes** — built from nothing, with monitoring, alerting and per-incident RCA writeups
+- **Auto-blocking 1,000+ IPs per day**, hardened in stages as attacks moved from a single bot to rotating IPs
+- **Most failures now recover before anyone notices**
+
+#### Handover
+
+With no successor named, I focused on leaving **things that run**, not just things that are written.
+
+- **Five handover documents** — architecture, backup, credentials, decommissioning, operations
+- **One SSH key covering all 18 in-house machines** — consolidating two key types across two accounts into a single file while leaving existing authentication intact, with deploy, verify and revoke scripts
+- **An incident-response set** — a diagnostic script that captures full system state, plus nine symptom-based runbooks, arranged so a successor typing "the explorer is down" is still walked through **establish facts → isolate cause → act**
+- **A log of reversed judgements** — on one day eight conclusions were overturned, so each is recorded as "previous understanding → what was actually true → evidence → impact"
+
+I also documented **what was still open** at handover:
+
+| Item | State |
+| --- | --- |
+| Production DB | **Still on AWS** — putting the data tier last was deliberate; the cutover design was unfinished |
+| Net TCO | **Unmeasured** — power and hardware depreciation excluded, and 2,874GB of retained snapshots offset part of the saving |
+| Boot node | **Cannot be retired** until wallets are re-released |
+| One client | Pins our IP in their internal DNS, so still on the old path — a direct-line path was built and left ready |
 
 ---
 
@@ -718,9 +705,9 @@ Front-end changes and back-end deployments had to be verified directly in produc
 
 ---
 
-### 🤖 AI Agent Execution Platform — Kubernetes Isolation (internal, in progress)
+### 🤖 AI Agent Execution Platform — Kubernetes Isolation *(internal, build complete)*
 
-**May 2026 – Present · cluster build and GitOps pipeline · pre-launch**
+**May 2026 – Aug 2026 · cluster build and GitOps pipeline · handed over**
 
 > Built to solve the problem the Samsung POC exposed: **agents modifying their own runtime**.
 > Every agent execution runs as **one Kubernetes Job**, isolated.
@@ -743,7 +730,9 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 
 <p><a class="iso-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ Open the interactive diagram</a></p>
 
-**Status — this is pre-launch, not production**
+**Status at handover**
+
+**The build and end-to-end verification were complete when I handed it over.** Launch was scheduled after my departure, so this is not production operating experience.
 
 - **First end-to-end agent execution completed** (29 May 2026) — all 23 automated checks passed
 - **Egress NetworkPolicy is applied but intentionally disabled.** The allow-list omitted the Linkerd control plane ports (destination 8086 / policy 8090 / identity 8080), so the sidecar blocked the controller's JWKS fetch → the health port never bound → liveness failed → **`Exit 137` (SIGKILL)**. I traced it to that point, documented the conditions for re-enabling it, and it is off under management until then.

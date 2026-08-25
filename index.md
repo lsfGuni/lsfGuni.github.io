@@ -287,7 +287,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 담당자 없이도 돌아가는 <strong>자가복구 체계</strong>까지 만든 DevOps 엔지니어
 </p>
 
-Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 판단이 뒤집힌 이력을 남겨 후임이 같은 오판을 반복하지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축하며, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들고 있습니다(서비스 오픈 전 단계).
+Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 판단이 뒤집힌 이력을 남겨 후임이 같은 오판을 반복하지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들고 인계했습니다.
 
 </div>
 
@@ -343,7 +343,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <strong>CI/CD & Automation</strong> — Jenkins, GitLab CI, Bitbucket Pipelines 기반 CI/CD 파이프라인 구축·개선, CodeDeploy Blue/Green 무중단 배포, 반복 작업 자동화 및 절차 표준화
 </div>
 <div class="strength-item">
-  <strong>Kubernetes &amp; GitOps</strong> — k3s 클러스터 직접 구축(컨트롤플레인·워커 분리), ArgoCD app-of-apps로 루트 1개 + 자식 18개 앱을 Git에서 선언적 관리, 실행 1건 = Job 1개 + 전용 네임스페이스·ServiceAccount·RBAC 격리. 관리형(EKS·GKE)이 아닌 self-managed 기준이며, 서비스 오픈 전 구축 단계
+  <strong>Kubernetes &amp; GitOps</strong> — k3s 클러스터 직접 구축(컨트롤플레인·워커 분리), ArgoCD app-of-apps로 루트 1개 + 자식 18개 앱을 Git에서 선언적 관리, 실행 1건 = Job 1개 + 전용 네임스페이스·ServiceAccount·RBAC 격리. 관리형(EKS·GKE)이 아닌 self-managed 구축 기준이며, 상용 트래픽 운영 경험은 아닙니다
 </div>
 <div class="strength-item">
   <strong>IaC (전환 진행 중)</strong> — Proxmox 3대 홈랩을 Terraform(VM 프로비저닝) + Ansible(k8s 설치·설정)로 코드화, 명령 두 번으로 클러스터 전체 재현
@@ -410,12 +410,12 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
 <div id="projectAccordion">
 
-  <!-- 프로젝트 0-0: Berith 서비스 상시 운영 + AWS 이관 (2024.08 ~ 현재) -->
+  <!-- 프로젝트 0-0: Berith 서비스 운영 + AWS 이관 (2024.08 ~ 2026.08, 완료) -->
   <div class="project-toggle" data-target="#proj-berith-ops" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축</h4>
-    <p class="proj-meta">2024.08 ~ 현재 · DevOps / SRE · 인프라 운영 전담 (1인)</p>
-    <p class="proj-summary">자사 서비스(BaaS·Wallet·Scan)를 <strong>AWS에서 사내 물리서버로 전량 이관</strong>하고, 진입 계층(Route 53 + ALB 8개 + WAF + 리버스프록시 EC2)을 <strong>Cloudflare Tunnel</strong>로 대체 — 월 청구 <strong>$1,497 → 약 $330 (78%↓)</strong>. 담당자 부재를 전제로 <strong>2계층 자가복구 체계</strong>와 백업 3계층을 구축하고, 인수인계 문서 5권 + 운영 세션까지 이양</p>
+    <h4>⛓️ Berith 블록체인 서비스 — AWS 종속 해소 · 무인 운영 체계 구축 <small style="color:#1a7a3a;">완료</small></h4>
+    <p class="proj-meta">2024.08 ~ 2026.08 (2년 1개월) · DevOps / SRE · 인프라 운영 전담 (1인) · 인계 완료</p>
+    <p class="proj-summary">블록체인 서비스(BaaS·Wallet·Explorer) 인프라를 <strong>혼자 맡아 2년간 운영</strong>하며, AWS에 있던 서비스를 <strong>사내 물리서버로 전량 이관</strong>하고 진입 계층을 <strong>Cloudflare Tunnel</strong>로 교체했습니다. <strong>월 청구 $1,497 → 약 $330(78%↓)</strong>. 후임이 정해지지 않은 상태여서 <strong>자가복구 체계와 백업 3계층</strong>을 만들고 문서·키·대응 절차까지 정리해 인계했습니다.</p>
     <div>
       <span class="tech-tag">AWS</span>
       <span class="tech-tag">Cloudflare</span>
@@ -589,94 +589,45 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="742" font-size="9.5" fill="#566573">폐기 &#8212; OpenSearch 2도메인 $262 &#183; WAF $104 &#183; ALB 7개 &#183; ElastiCache 전체 &#183; RDS 2개 &#183; EC2 9대 &#183; 탄력IP 23&#8594;4개</text>
       <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
     </svg>
-    <h5>Background</h5>
-    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>Berith Wallet · Berith Scan</strong>)를 <strong>1인 운영</strong>합니다. 자체 이더리움 계열 메인넷을 포함해 EC2 다수·RDS·OpenSearch로 구성돼 있었고, 지갑 서비스 특성상 <strong>계정 탈취를 노리는 봇 트래픽이 상시 유입</strong>되는 환경입니다.</p>
-    <p>과제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구를 확보해 보니 $1,497로, 그때까지 추정해 온 "$400+"의 3.7배였습니다. <strong>② 담당자 부재</strong> — 인수인계 대상이 정해지지 않은 상태에서, 사람이 상주하지 않아도 서비스가 유지되어야 했습니다.</p>
+    <h5>어떤 일이었나</h5>
+    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라를 <strong>혼자 맡았습니다.</strong> 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
+    <p>풀어야 할 문제는 두 가지였습니다. <strong>① AWS 월 고정비</strong> — 실청구서를 확보해 보니 $1,497로, 회사가 알고 있던 "$400+"의 3.7배였습니다. 추적조차 되지 않던 항목(WAF 월 $104 등)이 원인이었습니다. <strong>② 후임 부재</strong> — 인수인계 대상이 정해지지 않은 상태에서, 사람이 없어도 서비스가 유지되어야 했습니다.</p>
 
-    <h5>What I Did</h5>
-
-    <h6>1. 진입 계층을 통째로 Cloudflare로 옮겼습니다</h6>
-    <p>AWS <strong>Route 53 + ALB 8개 + WAF + 리버스프록시 EC2 1대</strong>가 전 서비스의 단일 진입점이었습니다. 그 EC2는 <strong>Ubuntu 16.04 EOL · 5.5년 무재기동 · 스냅샷 0건</strong>이라, 비용 이전에 이미 위험 자산이었습니다.</p>
+    <h5>한 일</h5>
     <ul>
-      <li><strong>Cloudflare Tunnel 채택</strong> — 커넥터가 바깥으로 연결을 맺는 방식이라 <strong>사내 방화벽 인바운드 개방이 0</strong>이 되고, 온프레미스 공인 IP도 노출되지 않습니다</li>
-      <li><strong>커넥터를 서로 다른 물리 호스트에 2대</strong> — 한 호스트가 죽어도 서비스가 유지됩니다. 커넥터 위 Nginx가 도메인별 분기와 upstream 헬스체크를 담당해, <strong>백엔드를 바꿔도 Cloudflare 설정은 건드리지 않습니다</strong></li>
-      <li><strong>과금 모델이 바뀐 것이 핵심</strong> — AWS WAF는 요청당 과금이라 봇 트래픽이 곧 청구였습니다(WAF만 월 $104, 역산하면 월 1.4~2억 요청). Cloudflare는 정액 + DDoS 무제한이라 <strong>공격이 늘어도 청구가 오르지 않습니다</strong></li>
-      <li><strong>도메인 단위로 하나씩 전환</strong>하고 각 단계마다 되돌릴 값을 먼저 기록 — 8건 전환 중 회귀 0건</li>
+      <li><strong>진입 계층을 통째로 Cloudflare로 이전</strong> — AWS Route 53 + ALB 8개 + WAF + 리버스프록시 EC2가 전 서비스의 단일 진입점이었고, 그 EC2는 <strong>Ubuntu 16.04 EOL · 5.5년 무재기동 · 백업 0건</strong>이었습니다. Cloudflare Tunnel로 바꿔 <strong>방화벽 인바운드 개방을 0으로</strong> 만들고, 커넥터 2대를 서로 다른 물리 호스트에 두어 이중화했습니다. 도메인 단위로 8건을 전환했고 회귀는 없었습니다</li>
+      <li><strong>서비스 전량을 사내 물리서버로 이관</strong> — 지갑은 Redis 복제로 세션을 넘겨 <strong>재로그인 없이 무중단 전환</strong>, BaaS는 2노드 HA로 구성. ElastiCache 12노드 → Redis 1대, OpenSearch 2도메인 → Elasticsearch 1대, S3 → MinIO 2대로 대체했습니다</li>
+      <li><strong>폐기 판단은 실측으로</strong> — "안 쓰는 것 같다"가 아니라 14일간 트래픽 0 확인, 인덱스 전수 대조 같은 근거를 만들고 지웠습니다. 되돌릴 수 없는 조치(탄력 IP 반납) 전에는 DNS·설정·노드까지 참조를 전부 훑었습니다. 반대로 <strong>끌 수 없는 것</strong>(지갑 바이너리에 IP가 박힌 부트노드)도 근거와 함께 명확히 남겼습니다</li>
+      <li><strong>무인 운영 체계 구축</strong> — 로컬 워치독 11대(2분)와 호스트 감시자 2대(5분)로 <strong>사람 없이 스스로 복구</strong>하게 만들었습니다. 판정 기준을 <strong>"프로세스가 떠 있는가"에서 "데이터가 진행하는가"로</strong> 바꾼 것이 핵심입니다 — 서비스가 정상으로 보고하는 채 색인이 5일간 멈춘 사고를 겪었기 때문입니다</li>
+      <li><strong>백업 3계층 구축 + 복원 실증</strong> — AWS가 자동으로 해 주던 백업이 이관과 함께 사라져 직접 만들었습니다. 사본이 원본을 <strong>당겨오는(pull) 방향</strong>으로 설계해 원본 쪽 사고가 사본까지 번지지 않게 했고, 실제 복원 리허설로 동작을 확인했습니다</li>
+      <li><strong>운영 보안 정비</strong> — 봇 트래픽 하루 1,000개 이상 IP 자동 차단, 인터넷에 열려 있던 블록체인 RPC 포트 정리, 지갑 전환 과정에서 AJP 노출(Ghostcat) 해소</li>
     </ul>
 
-    <h6>2. 서비스를 전량 사내로 옮겼습니다</h6>
+    <h5>결과</h5>
     <ul>
-      <li><strong>지갑 — 무중단 전환</strong>. Redis 복제로 세션을 넘겨 <strong>재로그인 없이</strong> 절체했습니다. 구조가 AJP → HTTP + Nginx로 바뀌면서 <strong>AJP 노출(Ghostcat) 문제도 함께 해소</strong>됐습니다</li>
-      <li><strong>BaaS — 2노드 HA</strong>로 늘려 Nginx upstream 헬스체크로 자동 제외되게 구성</li>
-      <li><strong>관리자 콘솔 · API 문서 — 소스에서 재빌드해 복구</strong>. "이관 완료"로 기록돼 있었지만 <strong>라우팅만 바뀌어 있고 백엔드가 3년간 없던</strong> 상태였습니다. 같은 패턴이 2건이라, 이후 "완료" 기록을 실제 응답으로 검증하는 절차를 넣었습니다</li>
-      <li><strong>ElastiCache 12노드 → Redis 1대 · OpenSearch 2도메인 → Elasticsearch 1대 · S3 → MinIO 2대</strong></li>
+      <li><strong>AWS 월 청구 $1,497 → 약 $330 (78%↓, 연 $14,000 규모)</strong> — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리</li>
+      <li><strong>진입 계층 단일 장애점 제거</strong> — EOL·무재기동·백업 0건이던 EC2 의존을 걷어내고 물리 호스트가 다른 커넥터 2대로 이중화</li>
+      <li><strong>장애 트러블슈팅 1주일 → 30분 이내</strong> — 지표도 장애 이력도 없던 상태에서 모니터링·알림과 RCA 문서를 쌓아 만든 결과</li>
+      <li><strong>대부분의 장애가 사람이 인지하기 전에 자동 복구</strong>되는 상태로 전환</li>
     </ul>
 
-    <h6>3. 폐기 판단은 "안 쓰는 것 같다"가 아니라 실측으로</h6>
+    <h5>인계</h5>
+    <p>후임이 정해지지 않은 채 떠나야 했기 때문에, <strong>문서보다 "동작하는 것"을 남기는 데 무게를 뒀습니다.</strong></p>
     <ul>
-      <li><strong>ElastiCache</strong> — 14일간 명령 처리량이 <strong>양쪽 모두 0</strong>임을 확인하고, 설정·코드 참조까지 전수 조회한 뒤 폐기 (월 $37)</li>
-      <li><strong>OpenSearch</strong> — 폐기 전 인덱스를 전수 대조해 <strong>온프레미스가 모든 인덱스에서 동등 이상</strong>임을 확인. AWS에만 있던 인덱스도 표본 검증으로 부분집합임을 실증 (월 $262)</li>
-      <li><strong>탄력 IP 반납은 되돌릴 수 없어</strong> DNS 존 전수 · 온프레 설정 · 블록체인 노드까지 참조를 전부 조회한 뒤 실행. 그 과정에서 살아 있는 참조가 <strong>미사용 프로파일에만</strong> 있음을 확인해 안전을 판정했습니다</li>
-      <li><strong>못 끄는 것도 명확히 했습니다</strong> — 부트노드는 <strong>IP가 지갑 바이너리에 컴파일</strong>돼 있어, 끄면 신규 사용자가 체인에 접속하지 못합니다. 지갑 재배포 없이는 폐기 불가로 판정하고 유지 대상으로 문서화했습니다</li>
+      <li><strong>인수인계 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영 세션</li>
+      <li><strong>사내 18대 통합 SSH 키</strong> — 키 2종·계정 2개로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지), 배포·확인·폐기 스크립트 포함</li>
+      <li><strong>장애 대응 세트</strong> — 시스템 상태를 한 번에 찍는 진단 스크립트와 증상별 런북 9종. 인수자가 "스캔이 안 된다" 수준으로 말해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서를 밟게 구성</li>
+      <li><strong>뒤집힌 판단 이력</strong> — 하루에 8건이 뒤집힌 날도 있었기에 "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨, <strong>후임이 같은 오판을 반복하지 않도록</strong> 했습니다</li>
     </ul>
-
-    <h6>4. 담당자가 없어도 돌아가도록 — 2계층 자가복구</h6>
-    <p>사람 개입을 <strong>정전과 물리 장애로만</strong> 한정하는 것을 목표로 잡았습니다. 관측 도구(Prometheus·Grafana)가 <strong>그래프를 그리는</strong> 것과 달리, 이 시스템의 산출물은 <strong>재시작된 서비스</strong>입니다.</p>
-    <ul>
-      <li><strong>L1 로컬 워치독 11대</strong>(2분) — 서비스·데이터·디스크 점검 후 로컬에서 직접 복구 / <strong>L2 호스트 감시자 2대</strong>(5분) — VM 전원 계층과 L1 자체의 생존</li>
-      <li>🔑 <strong>판정 기준을 "떠 있는가"에서 "데이터가 진행하는가"로 바꿨습니다.</strong> 서비스가 <code>active (running)</code>인 채 디스크 포화로 <strong>5일간 색인이 멈춘</strong> 사고를 겪었기 때문입니다. 블록 번호·문서 수를 <strong>두 번 재서 증가를 확인</strong>합니다</li>
-      <li>안전장치 — 연속 3회 확인 후 조치 · 30분 쿨다운 · 일일 상한 · <strong>의존 대상을 못 읽으면 "판정 불가"로 조치 생략</strong>(남의 장애를 우리 장애로 오인 방지) · <strong>과반이 동시에 이상이면 전체 조치 중단</strong>(공통 원인일 때 대량 오조치 방지)</li>
-      <li>실제로 이 게이트가 발동해 <strong>VM 6대를 전부 강제 재기동할 뻔한 것을 막았습니다</strong></li>
-    </ul>
-
-    <h6>5. 백업 — "있다"와 "복원된다"는 다른 명제</h6>
-    <p>AWS OpenSearch가 자동으로 해 주던 S3 백업이 이관과 함께 사라졌습니다. 그것이 단일 기능이 아니라 <strong>ⓐ자동 주기 ⓑ매체 분리 ⓒ세대 보존 ⓓ실패 가시성 ⓔ복구가 실제로 된다는 신뢰</strong> 5가지 묶음이었다고 보고, 각각을 대응시켰습니다.</p>
-    <ul>
-      <li>3계층 — 6시간 스냅샷 → MinIO #1, 6시간 미러 → MinIO #2(다른 물리 호스트), 재수집 불가능한 인덱스만 <strong>매시간 논리백업</strong>을 양 호스트가 독립적으로</li>
-      <li><strong>사본이 원본을 당겨오는(pull) 방향으로 설계</strong> — 원본 측이 사본의 자격증명을 갖지 않으므로, <strong>원본 쪽 사고(오삭제·침해)가 사본까지 번지지 않습니다</strong></li>
-      <li>🔴 <strong>미러가 9일간 36회 연속 실패하면서도 로그에는 "완료"를 찍고 있었습니다.</strong> 이후 판정을 로그 시각에서 <strong>원본·사본 객체 수 실대조</strong>로 교체했습니다. 워치독의 판정 원칙이 백업 계층에서 그대로 재현된 사례였습니다</li>
-      <li><strong>복원 리허설을 실제로 실행</strong>해 건수까지 대조 — 이 과정에서 "움직이는 커서를 담은 인덱스는 내용이 아니라 건수로 판정해야 한다"는 것도 확인했습니다</li>
-    </ul>
-
-    <h6>6. 판단이 틀렸을 때 되돌린 사례</h6>
-    <p>WAF 규칙을 Log에서 Block으로 올리려 했습니다. 24시간 실측에서 <strong>임계치 초과 이벤트가 0건</strong>이라 안전하다고 판단했는데, 전환 직후 실제 차단이 발생했습니다. 관리형 룰셋에 액션을 덮어쓰면 <strong>점수 합산을 거치지 않고 개별 규칙이 각자 차단</strong>한다는 것을 그때 확인했습니다.</p>
-    <ul>
-      <li><strong>3분 만에 되돌리고</strong>, 안전이 확인된 부분만 남겼습니다 — 오탐 유발 규칙 6종 비활성(하루 로그의 81%), 액션은 Log 유지</li>
-      <li>같은 조사에서 <strong>차단으로 보이던 응답이 실은 애플리케이션의 정상 응답</strong>이었음도 확인 — <code>Server: cloudflare</code> 헤더만으로 단정하면 안 되고 본문과 전용 헤더를 봐야 한다는 것을 절차에 넣었습니다</li>
-    </ul>
-
-    <h6>7. 인수인계 — 문서가 아니라 "동작하는 것"으로</h6>
-    <ul>
-      <li><strong>인수인계 문서 5권</strong> — 아키텍처 · 백업체계 · 계정정보 · 폐기절차 · 운영세션</li>
-      <li><strong>사내 18대 통합 SSH 키</strong> — 키 2종·2계정으로 흩어져 있던 접속을 파일 하나로 통합(기존 인증은 유지). 배포·확인·폐기 스크립트 포함</li>
-      <li><strong>장애 대응 전용 프로젝트</strong> — 진단 스크립트(전체 상태 9개 축)와 증상별 런북 9종을 묶어, 인수자가 "scan이 안 돼" 수준의 한 줄로 시작해도 <strong>사실 확보 → 원인 특정 → 조치</strong> 순서가 강제되도록 구성했습니다</li>
-      <li><strong>판단이 뒤집힌 이력을 별도로 관리</strong> — 하루에 8건이 뒤집힌 날도 있었기에, "이전 이해 → 실제 → 근거 → 영향" 형식으로 남겨 <strong>후임이 같은 오판을 반복하지 않도록</strong> 했습니다</li>
-    </ul>
-
-    <h5>Outcome</h5>
-    <ul>
-      <li><strong>AWS 월 청구 $1,497 → 약 $330 (약 78% 감소, 연 $14,000 규모)</strong> — OpenSearch 2도메인 · WAF · ALB 7개 · ElastiCache 전체 · RDS 2개 · EC2 9대 · 탄력 IP 23→4개 정리</li>
-      <li><strong>진입 계층 단일 장애점 제거</strong> — EOL·무재기동·백업 0건이던 리버스프록시 EC2 의존을 걷어내고, 서로 다른 물리 호스트의 커넥터 2대로 이중화</li>
-      <li><strong>장애 트러블슈팅 1주일 → 30분 이내</strong>, 봇 트래픽 하루 평균 1,000개 이상 IP 자동 차단</li>
-      <li><strong>자가복구 체계 가동</strong> — 서비스 VM 9대 + 커넥터 2대, 대부분의 장애가 사람이 인지하기 전에 복구</li>
-      <li><strong>복구 가능성을 실증</strong> — 백업 복원 리허설과 AMI 복원을 실제로 수행해 확인</li>
-    </ul>
-
-    <h5>남은 과제 (정직하게)</h5>
-    <ul>
-      <li><strong>운영 DB는 아직 AWS</strong> — 데이터 티어를 최후로 둔 설계였고, 무중단 절체·롤백 방식이 아직 설계 단계입니다. 온프레미스에 사본이 없다는 점도 미해소 리스크로 관리 중입니다</li>
-      <li><strong>순절감(TCO) 미산정</strong> — 전력·하드웨어 감가를 넣지 않았고, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중이라 만료 전까지는 그만큼이 상쇄됩니다. <strong>절감률만 보면 과대평가</strong>입니다</li>
-      <li><strong>부트노드 폐기 불가</strong> — 지갑 재배포가 선행돼야 하는 사업 판단 사항</li>
-      <li><strong>고객사 1곳이 아직 구 경로 사용</strong> — 내부 DNS에 IP를 고정 등록하는 구조라 공개 DNS 변경이 전달되지 않습니다. 회선 직결 경로를 신설해 두고 전환을 기다리는 중입니다</li>
-    </ul>
+    <p><strong>인계 시점에 남아 있던 것</strong>도 그대로 적어 넘겼습니다 — 운영 DB는 데이터 티어를 최후로 둔 설계에 따라 아직 AWS에 있고(이관 방식 설계 단계), 전력·하드웨어 감가를 넣은 순절감(TCO)은 미산정이며, 부트노드는 지갑 재배포 전까지 폐기할 수 없습니다.</p>
   </div>
 
-  <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (진행 중) -->
+  <!-- 프로젝트 0-0b: AI 에이전트 실행 플랫폼 (2026.05 ~ 2026.08, 구축 완료·인계) -->
   <div class="project-toggle" data-target="#proj-ai-agent" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라 (구축 중)</h4>
-    <p class="proj-meta">2026.05 ~ 진행 중 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 서비스 오픈 전 단계</p>
-    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, 실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축 중. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱 선언적 배포</p>
+    <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라 <small style="color:#1a7a3a;">구축 완료</small></h4>
+    <p class="proj-meta">2026.05 ~ 2026.08 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당 · 인계 완료</p>
+    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마친 뒤 인계했습니다</p>
     <div>
       <span class="tech-tag">Kubernetes (k3s)</span>
       <span class="tech-tag">ArgoCD (app-of-apps)</span>
@@ -702,7 +653,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
 
     <h5>인터랙티브 아키텍처 도면 (직접 제작)</h5>
-    <p>클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다. 상단 6개 모드(<strong>일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성</strong>)로 관점을 바꿔 볼 수 있고, 컴포넌트를 클릭하면 역할 설명이 나옵니다. <strong>구현 완료 / 스캐폴드 / 목표</strong>를 색으로 구분해 진행 상황을 있는 그대로 표시합니다.</p>
+    <p>클러스터 구조를 설명하고 진행 상황을 공유하기 위해 직접 만든 아이소메트릭 도면입니다. 상단 6개 모드(<strong>일반 K8s · DevAX 구조 · 자연어 실행 · Sandbox · GitOps · 관측성</strong>)로 관점을 바꿔 볼 수 있고, 컴포넌트를 클릭하면 역할 설명이 나옵니다. <strong>구현 완료 / 스캐폴드 / 목표</strong>를 색으로 구분해 인계 시점의 범위를 있는 그대로 표시합니다.</p>
     <div class="demo-embed">
       <iframe src="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" title="DevAX Kubernetes 인프라 아이소메트릭 도면" loading="lazy"></iframe>
     </div>
@@ -710,11 +661,12 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <a class="demo-btn" href="{{ '/assets/diagrams/k8s-iso-city.html' | relative_url }}" target="_blank" rel="noopener">🖥️ 전체 화면으로 열기</a>
     </p>
 
-    <h5>현재 상태 — 서비스 오픈 전 단계입니다</h5>
+    <h5>인계 시점 상태</h5>
+    <p><strong>인프라 구축과 관통 검증을 마치고 인계했습니다.</strong> 서비스 오픈은 제 퇴사 이후 일정이라, 상용 트래픽을 받은 운영 경험은 아닙니다.</p>
     <ul>
-      <li><strong>에이전트 실행 1차 관통 완료</strong> (2026-05-29) — 자동 검증 23종 전체 통과</li>
-      <li><strong>egress NetworkPolicy는 위 사유로 현재 비활성</strong> — 재활성 조건을 정의해 두고 관리 중</li>
-      <li><strong>실격리(microVM)와 사용자 화면은 미착수</strong> — 현재는 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 리스크에 명시 관리 중</li>
+      <li><strong>에이전트 실행 관통 완료</strong> (2026-05-29) — 자동 검증 23종 전체 통과</li>
+      <li><strong>egress NetworkPolicy는 위 사유로 비활성 상태로 인계</strong> — 재활성 조건(Linkerd 3포트 + OTel 4317 + JWKS)을 문서로 정의해 넘김</li>
+      <li><strong>실격리(microVM)와 사용자 화면은 범위 밖</strong> — 인계 시점은 네임스페이스·RBAC 수준의 논리 격리까지이며, 컨테이너 탈출까지 막는 실격리는 다음 과제로 명시해 인계</li>
     </ul>
   </div>
 
