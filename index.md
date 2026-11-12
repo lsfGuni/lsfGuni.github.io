@@ -301,7 +301,7 @@ subtitle: 담당자가 없어도, AI가 이어받아도 돌아가는 인프라�
   </div>
   <div class="stat-box">
     <div class="stat-num">DevOps · SRE</div>
-    <div class="stat-label">현재 역할</div>
+    <div class="stat-label">주요 역할</div>
   </div>
 </div>
 
@@ -407,7 +407,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
 <div class="exp-card">
   <h4>(주)베리드코리아 <small style="color:#008AFF;">Developer · DevOps · SRE</small></h4>
-  <div class="exp-meta">개발팀 / 주임 · 2025.02 ~ Present</div>
+  <div class="exp-meta">개발팀 / 주임 · 2025.02 ~ 2026.08</div>
   <ul>
     <li>자사 블록체인 서비스(BaaS·Wallet·Scan) 인프라 <strong>운영 전담</strong> — 장애 트러블슈팅 1주일 → 30분 단축, 봇 트래픽 하루 평균 1,000+ IP 자동 차단</li>
     <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 고정비 78% 절감</strong></li>
