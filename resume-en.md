@@ -66,7 +66,7 @@ Most of my work has been in environments where the usual tools are unavailable �
 
 ## Experience
 
-### Berith Korea <span class="meta">| DevOps · SRE · infrastructure owner | Feb 2025 – Present</span>
+### Berith Korea <span class="meta">| DevOps · SRE · infrastructure owner | Feb 2025 – Aug 2026</span>
 
 Owned the infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer), migrated from AWS to in-house hardware.
 

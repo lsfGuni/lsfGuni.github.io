@@ -745,7 +745,7 @@ I built an isometric diagram to explain the cluster and share progress. Six mode
 ## Professional Experience
 
 ### Berith Korea — Developer · DevOps · SRE
-**Feb 2025 – Present**
+**Feb 2025 – Aug 2026**
 
 - **Owned the infrastructure** for the company's blockchain services (BaaS, Wallet, Explorer) — an in-house Ethereum-based mainnet, 11 VMs across 2 physical servers, and 5 standalone machines
 - **Replaced the entire AWS edge — Route 53, 8 ALBs, WAF and a reverse-proxy EC2 — with Cloudflare Tunnel**, removing inbound firewall exposure and putting two connectors on separate physical hosts for redundancy

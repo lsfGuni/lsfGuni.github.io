@@ -64,7 +64,7 @@ React·Spring 풀스택 개발로 시작해 **AI 서비스 구축·LLM 연동, �
 
 ## 경력
 
-### 베리드코리아 <span class="meta">| Software Engineer · DevOps | 2025.02 ~ 현재</span>
+### 베리드코리아 <span class="meta">| Software Engineer · DevOps | 2025.02 ~ 2026.08</span>
 
 AI 플랫폼 구축 프로젝트와 자사 블록체인 서비스(B2B BaaS · B2C 지갑·익스플로러)의 개발·운영을 담당.
 
