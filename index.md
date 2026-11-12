@@ -1,7 +1,7 @@
 ---
 layout: page
 title: 한권희 | DevOps Engineer
-subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
+subtitle: 담당자가 없어도, AI가 이어받아도 돌아가는 인프라를 만듭니다
 ---
 
 <style>
@@ -204,6 +204,29 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
   .floating-contact a:hover { background: #f1f5fb; color: #008AFF; text-decoration: none; }
   .floating-contact .fc-primary { background: #008AFF; color: #fff; }
   .floating-contact .fc-primary:hover { background: #0069d9; color: #fff; }
+  /* 해결하는 문제 3가지 */
+  .solve-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 1rem;
+  }
+  .solve-card {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 18px 14px;
+    border: 1px solid #dee2e6;
+    border-top: 3px solid #008AFF;
+    border-radius: 10px;
+    background: #fff;
+  }
+  .solve-card .solve-q { font-size: 0.98rem; font-weight: 700; color: #2C3E50; margin: 0 0 8px 0; line-height: 1.5; }
+  .solve-card .solve-a { font-size: 0.88rem; color: #444; line-height: 1.7; margin: 0 0 12px 0; flex: 1; }
+  .solve-card .solve-link { font-size: 0.85rem; font-weight: 600; color: #008AFF; text-decoration: none; }
+  .solve-card .solve-link:hover { text-decoration: underline; }
+  @media (max-width: 767px) {
+    .solve-grid { grid-template-columns: 1fr; }
+  }
   /* PDF 인쇄용 */
   @media print {
     .intro-header, nav, footer, .contact-bar, .toggle-wrap, .floating-contact { display: none !important; }
@@ -264,7 +287,7 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 <div class="profile-summary">
 
 <div style="text-align:center;">
-  <span class="open-to-work">DevOps · AI 플랫폼 / SRE 포지션에 관심이 있습니다</span>
+  <span class="open-to-work">인프라 운영 · AI 도입 관련 협업 문의를 받습니다</span>
 </div>
 
 <div style="text-align:center; margin-bottom: 1.2rem;">
@@ -289,6 +312,27 @@ subtitle: 근본 원인까지 해결하는 DevOps 엔지니어
 
 Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브리드 인프라, CI/CD 파이프라인 구축·개선, 모니터링·알림 체계(관측성), 보안 대응까지 확장했습니다. 장애 발생 시 근본 원인 분석(RCA) → 해결 → 고도화 → 문서화까지 이어가며, 재현 가능한 운영 체계를 만듭니다. <strong>"떠 있는가"가 아니라 "데이터가 진행하는가"로 판정</strong>하는 감시 체계, 되돌릴 수 없는 조치 전 참조를 전수 검증하는 습관, 결정의 근거와 변경 이력을 남겨 다음 사람이 배경을 모른 채 손대지 않게 하는 문서화가 그 결과물입니다. 사내 AI 에이전트 실행 플랫폼에서는 k3s 클러스터와 ArgoCD GitOps 배포 체계를 직접 구축해, 실행 1건 = Job 1개로 신뢰할 수 없는 워크로드를 격리하는 인프라를 만들었습니다.
 
+</div>
+
+<!-- ====== 해결하는 문제 ====== -->
+<div class="section-title">이런 문제를 해결합니다</div>
+
+<div class="solve-grid">
+  <div class="solve-card">
+    <p class="solve-q">클라우드 비용이 서비스 규모에 비해 너무 큽니다</p>
+    <p class="solve-a">AWS에 있던 서비스를 사내 인프라로 중단 없이 옮겨 <strong>월 고정비를 78% 줄였습니다.</strong> 무엇을 끄고 무엇을 남길지는 추측이 아니라 실측 근거로 정합니다.</p>
+    <a class="solve-link" href="#proj-berith-ops" onclick="openProject(event, '#proj-berith-ops')">비용 절감 사례 보기 →</a>
+  </div>
+  <div class="solve-card">
+    <p class="solve-q">담당자가 자리를 비우면 운영이 멈춥니다</p>
+    <p class="solve-a">사람 없이 스스로 복구하는 감시 체계와 복원까지 실증한 백업을 만들고, 배포를 <strong>"push 후 2분 + 말 한마디"</strong>로 표준화했습니다. 다음 담당자가 첫날부터 운영할 수 있게 넘깁니다.</p>
+    <a class="solve-link" href="#proj-devax-drive" onclick="openProject(event, '#proj-devax-drive')">배포 · 인수인계 사례 보기 →</a>
+  </div>
+  <div class="solve-card">
+    <p class="solve-q">AI를 업무에 안전하게 붙이고 싶습니다</p>
+    <p class="solve-a">인터넷이 차단된 폐쇄망에 AI 서비스 5종을 배포했고, AI 에이전트가 만든 코드를 <strong>실행 1건마다 격리</strong>해 돌리는 인프라를 구축했습니다. 운영 문서는 AI가 읽고 수행할 수 있는 형태로도 남깁니다.</p>
+    <a class="solve-link" href="#proj-ai-agent" onclick="openProject(event, '#proj-ai-agent')">AI 인프라 사례 보기 →</a>
+  </div>
 </div>
 
 <!-- ====== 핵심 기술 ====== -->
@@ -1846,6 +1890,16 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       toggle.setAttribute('aria-expanded', 'true');
     }
   });
+
+  // 상단 "해결하는 문제" 카드에서 해당 프로젝트를 펼치고 그 위치로 이동
+  function openProject(e, targetId) {
+    e.preventDefault();
+    var toggle = document.querySelector('.project-toggle[data-target="' + targetId + '"]');
+    if (!toggle) return;
+    if (toggle.getAttribute('aria-expanded') !== 'true') toggle.click();
+    var top = toggle.getBoundingClientRect().top + window.pageYOffset - 80;
+    window.scrollTo({ top: top, behavior: 'smooth' });
+  }
 
   // 이메일 클립보드 복사 — 상단 고정 Contact와 하단 Contact 양쪽에서 호출
   function copyEmail(e) {
