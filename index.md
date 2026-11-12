@@ -413,16 +413,16 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <li><strong>AWS 종속 해소 (FinOps)</strong> — 진입 계층을 Cloudflare Tunnel로 전면 이전하고 서비스를 사내로 전량 이관, <strong>월 고정비 78% 절감</strong></li>
     <li><strong>담당자 부재 전제의 무인 운영 체계 구축</strong> — 2계층 자가복구(워치독 11대 + 감시자 2대), 백업 3계층(복원 실증), 운영 문서 5권 + AI 장애 대응 세트 구축</li>
       <li>사내 AI 에이전트 실행 플랫폼 인프라 구축(2026.05~): AI가 스스로 작성한 코드를 안전하게 실행하기 위한 격리 환경 구축 — 실행 1건마다 일회용 Job으로 분리하고 전용 네임스페이스·ServiceAccount·RBAC 부여, 쿠버네티스 클러스터 직접 구축 + ArgoCD GitOps 배포 자동화</li>
-    <li>하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
-    <li>삼성디스플레이 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</li>
-    <li>KBS 재난방송 STG 인프라(2026.04~06): 검증 환경이 없던 대국민 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 신규 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
+    <li>증권사 AI 협업솔루션 POC — 그룹웨어 어댑터(2026.05~07, 완료): 금융권 망분리 환경 SSO·DRM 어댑터 구축, 다단계 연동 구간의 통신 장애 진단 및 다자간 업무 조율</li>
+    <li>제조 대기업 폐쇄망 AI 플랫폼 구축(2026.05~06): USB 단방향 반입 환경에 AI 서비스 5종 배포, "내부에서는 빌드하지 않는다"로 전략 전환해 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</li>
+    <li>방송사 재난정보 서비스 STG 인프라(2026.04~06): 검증 환경이 없던 대국민 서비스에 AWS CLI로 운영 구성을 확인해 동등한 스테이징 신규 구축 — ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한, PRD-STG 대조 검증 불일치 0건</li>
     <li>AWS + 온프레미스 하이브리드 인프라 운영 절차 표준화 → 팀 누구나 동일한 절차로 배포·운영 가능</li>
     <li>AWS WAF + Nginx + iptables 3계층 방어 아키텍처 구축 → 2일 1회 서버 중단을 장애 제로화</li>
     <li>Prometheus/Grafana 모니터링·알림 체계 구축(관측성 확보) + Slack 실시간 알림 → 장애 인지 시간 대폭 단축</li>
     <li>Jenkins 기반 CI/CD 파이프라인 구축 + Blue/Green 무중단 배포 → 서비스 중단 없는 배포 체계 확립</li>
     <li>온프레미스 서버실 구축, VM 백업·복원 자동화 → 재해복구(DR) 체계 확립</li>
     <li>MCP + OpenSearch + Lambda 기반 AI 실행 인프라 → 재현 가능한 질의응답 파이프라인 구축</li>
-    <li>삼성SDR 파견(2025.09~2026.03): 내방객 관리시스템 풀스택 개발 + 카드사 연동 REST API 설계·개발</li>
+    <li>대기업 사업장 파견(2025.09~2026.03): 내방객 관리시스템 풀스택 개발 + 카드사 연동 REST API 설계·개발</li>
   </ul>
 </div>
 
@@ -430,7 +430,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   <h4>(주)아이비즈소프트웨어 <small style="color:#008AFF;">Backend Developer · DevOps</small></h4>
   <div class="exp-meta">프로젝트 계약 · 2024.08 ~ 2025.01 (베리드코리아 관계사 — 2025.02 정규 입사)</div>
   <ul>
-    <li>NIPA 블록체인 정부과제 — 의약품 이력관리 시스템 백엔드·인프라 담당</li>
+    <li>블록체인 정부과제 — 의약품 이력관리 시스템 백엔드·인프라 담당</li>
     <li>Spring Boot REST API 설계·개발 — Flutter 모바일 앱(iOS 개발자 협업) 연동</li>
     <li>관리자 페이지(Thymeleaf) 개발, MariaDB 데이터 모델링, 블록체인 연계 이력 기록·조회 기능 개발</li>
     <li>AWS EC2 서버 구축·운영 및 배포 자동화</li>
@@ -495,7 +495,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
 
       <rect x="40" y="60" width="250" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
       <text x="165" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">일반 이용자 &#183; BaaS 기업고객</text>
-      <text x="165" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">Wallet &#183; Scan &#183; 삼성디스플레이 &#183; 롯데이노베이트</text>
+      <text x="165" y="96" text-anchor="middle" font-size="9" fill="#DDE1E3">Wallet &#183; Scan &#183; 제조 대기업 &#183; IT서비스 기업</text>
 
       <rect x="302" y="60" width="196" height="44" rx="8" fill="url(#brGray)" filter="url(#brShadow)"/>
       <text x="400" y="80" text-anchor="middle" font-size="11.5" font-weight="600" fill="#fff">PC 지갑 사용자</text>
@@ -634,7 +634,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="757" font-size="9.5" fill="#943126">단, 폐기분 스냅샷 2,874GB를 복구 보험으로 보존 중 &#8212; 만료(2027-02)까지는 그만큼이 상쇄됨. 전력 &#183; 하드웨어 감가를 넣은 순절감(TCO)은 여전히 미산정</text>
     </svg>
     <h5>어떤 일이었나</h5>
-    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(삼성디스플레이 보안서약서, 롯데이노베이트 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라 운영을 맡았습니다. 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
+    <p>기업용 블록체인 기록 서비스 <strong>BaaS</strong>(제조 대기업 보안서약서, IT서비스 기업 물품관리 이력)와 B2C 서비스(<strong>지갑 · 블록체인 익스플로러</strong>)의 인프라 운영을 맡았습니다. 자체 이더리움 계열 메인넷을 포함해 AWS EC2 다수 · RDS · OpenSearch로 돌아가고 있었고, 지갑 특성상 계정 탈취를 노리는 봇 트래픽이 상시 유입되는 환경이었습니다.</p>
     <p>과제는 두 가지였습니다. <strong>① 비용 구조 — FinOps 관점의 온프레미스 이관.</strong> 실사용자 규모에 비해 AWS 자원이 <strong>과다 프로비저닝된 상태</strong>라고 판단하고, 사내 유휴 물리서버로 워크로드를 옮기는 방향을 잡았습니다. <strong>② 안전한 이관과 운영.</strong> 실서비스 트래픽을 받는 중이라 <strong>중단 없이 옮기고, 옮긴 뒤에도 안정적으로 유지</strong>되어야 했습니다.</p>
 
     <h5>한 일</h5>
@@ -671,7 +671,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
     <h4>🤖 AI 에이전트 실행 플랫폼 — Kubernetes 격리 실행 인프라</h4>
     <p class="proj-meta">2026.05 ~ 2026.08 · 사내 프로젝트 · 클러스터 구축·GitOps 배포 파이프라인 담당</p>
-    <p class="proj-summary">삼성 폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마쳤습니다</p>
+    <p class="proj-summary">폐쇄망 POC에서 드러난 "에이전트가 자기 실행 환경을 수정하는" 문제를 풀기 위해, <strong>실행 1건 = Job 1개로 격리하는 k3s 인프라를 구축</strong>했습니다. ArgoCD app-of-apps로 루트 1 + 자식 18개 앱을 선언적으로 배포하고, 에이전트 실행 관통 검증까지 마쳤습니다</p>
     <div>
       <span class="tech-tag">Kubernetes (k3s)</span>
       <span class="tech-tag">ArgoCD (app-of-apps)</span>
@@ -685,7 +685,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   </div>
   <div id="proj-ai-agent" class="project-detail">
     <h5>Background</h5>
-    <p><strong>삼성디스플레이 폐쇄망 POC에서 이어진 과제입니다.</strong> 그때 DevAX는 격리 인프라 없이 systemd로 구동했는데, 에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 발생했습니다. 에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, <strong>실행 단위를 격리하는 sandbox 인프라가 필요했습니다.</strong></p>
+    <p><strong>제조 대기업 폐쇄망 POC에서 이어진 과제입니다.</strong> 그때 DevAX는 격리 인프라 없이 systemd로 구동했는데, 에이전트가 호스트 파일을 건드려 자기 실행 환경을 망가뜨리는 일이 발생했습니다. 에이전트에는 모델 API 키와 사내 서비스 토큰이 주입되기 때문에, <strong>실행 단위를 격리하는 sandbox 인프라가 필요했습니다.</strong></p>
 
     <h5>What I Did</h5>
     <ul>
@@ -860,10 +860,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
   </div>
 
-  <!-- 프로젝트 0-1: 하나증권 그룹웨어 어댑터 (2026.05 ~ 진행중) -->
-  <div class="project-toggle" data-target="#proj-hana" aria-expanded="false">
+  <!-- 프로젝트 0-1: 증권사 그룹웨어 어댑터 (2026.05 ~ 진행중) -->
+  <div class="project-toggle" data-target="#proj-fin-poc" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🏦 하나증권 AI 협업솔루션 POC — 그룹웨어 어댑터 엔지니어링</h4>
+    <h4>🏦 증권사 AI 협업솔루션 POC — 그룹웨어 어댑터 엔지니어링</h4>
     <p class="proj-meta">2026.05 ~ 2026.07 (완료) · 2026.07.15 정상 오픈 · 어댑터 엔지니어 (총 6인)</p>
     <p class="proj-summary">업체가 모두 다른 시스템이 다단계로 이어지는 금융권 망분리 환경에서 SSO·DRM 어댑터를 구축하고, 구간별 통신 검증으로 연동 장애 원인을 특정·조율하여 해결</p>
     <div>
@@ -876,7 +876,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <span class="tech-tag">금융권 망분리</span>
     </div>
   </div>
-  <div id="proj-hana" class="project-detail">
+  <div id="proj-fin-poc" class="project-detail">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
       <defs>
         <filter id="hnShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
@@ -894,7 +894,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="68" font-size="11" font-weight="700" fill="#1B4F72">연동 경로 — 구간마다 담당 업체가 모두 다르고, 어느 한 곳도 전체 흐름을 알지 못하는 상태</text>
 
       <rect x="44" y="80" width="152" height="56" rx="8" fill="url(#hnGray)" filter="url(#hnShadow)"/>
-      <text x="120" y="104" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">Dooray</text>
+      <text x="120" y="104" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">그룹웨어</text>
       <text x="120" y="121" text-anchor="middle" font-size="9" fill="#DDE1E3">외부망 그룹웨어 SaaS</text>
       <text x="120" y="152" text-anchor="middle" font-size="9" fill="#5D6D7E">그룹웨어사</text>
       <path d="M198,108 L218,108" stroke="#7F8C8D" stroke-width="2" marker-end="url(#hnArrow)"/>
@@ -906,7 +906,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <path d="M346,108 L366,108" stroke="#7F8C8D" stroke-width="2" marker-end="url(#hnArrow)"/>
 
       <rect x="370" y="80" width="152" height="56" rx="8" fill="url(#hnGray)" filter="url(#hnShadow)"/>
-      <text x="446" y="104" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">하나증권 인프라</text>
+      <text x="446" y="104" text-anchor="middle" font-size="12" font-weight="600" fill="#fff">고객사 인프라</text>
       <text x="446" y="121" text-anchor="middle" font-size="9" fill="#DDE1E3">DNS · 방화벽 · HA 구성</text>
       <text x="446" y="152" text-anchor="middle" font-size="9" fill="#5D6D7E">인프라팀 · HA 업체</text>
       <path d="M524,108 L544,108" stroke="#7B5BA6" stroke-width="2" marker-end="url(#hnArrowP)"/>
@@ -963,7 +963,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <text x="46" y="468" font-size="9.5" fill="#145A32">애플리케이션 · OS · 네트워크를 관통하는 통신 구조 분석과, 여러 업체가 얽힌 장애의 진단·조율 프로세스를 경험</text>
     </svg>
     <h5>Background</h5>
-    <p>하나증권 <strong>AI 협업솔루션 POC</strong> 프로젝트의 세부 과제로, 그룹웨어(SaaS) 연동용 SSO·DRM 어댑터의 구축과 연동 트러블슈팅을 담당했습니다. <strong>Dooray(외부망) → VPN → 하나증권 인프라 → SSO·DRM 어댑터 → 내부 SSO·DRM 애플리케이션</strong>으로 이어지는 다단계 연동 구간에서 통신 장애가 발생했는데, 구간마다 담당 업체가 모두 달라 어느 한 곳도 전체 흐름을 알지 못하는 상태로 원인 규명이 정체되는 상황이었습니다.</p>
+    <p>증권사 <strong>AI 협업솔루션 POC</strong> 프로젝트의 세부 과제로, 그룹웨어(SaaS) 연동용 SSO·DRM 어댑터의 구축과 연동 트러블슈팅을 담당했습니다. <strong>그룹웨어 SaaS(외부망) → VPN → 고객사 인프라 → SSO·DRM 어댑터 → 내부 SSO·DRM 애플리케이션</strong>으로 이어지는 다단계 연동 구간에서 통신 장애가 발생했는데, 구간마다 담당 업체가 모두 달라 어느 한 곳도 전체 흐름을 알지 못하는 상태로 원인 규명이 정체되는 상황이었습니다.</p>
 
     <h5>What I Did</h5>
     <h6>어댑터 구축 및 구간별 장애 진단</h6>
@@ -974,7 +974,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
     <h6>다자간 업무 조율</h6>
     <ul>
-      <li>HA 업체, VPN 업체, 하나증권 인프라팀·현업, Dooray 등 구간별 담당 업체 간 업무 조율</li>
+      <li>HA 업체, VPN 업체, 고객사 인프라팀·현업, 그룹웨어사 등 구간별 담당 업체 간 업무 조율</li>
       <li>고객사 IT 현업과 주간 정례 미팅으로 이슈·일정 직접 협의</li>
     </ul>
 
@@ -986,10 +986,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
   </div>
 
-  <!-- 프로젝트 0-2: 삼성디스플레이 폐쇄망 AI POC (2026.05 ~ 2026.06) -->
-  <div class="project-toggle" data-target="#proj-sdc-poc" aria-expanded="false">
+  <!-- 프로젝트 0-2: 제조 대기업 폐쇄망 AI POC (2026.05 ~ 2026.06) -->
+  <div class="project-toggle" data-target="#proj-airgap-poc" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>🔒 삼성디스플레이 폐쇄망 AI 플랫폼 구축 (AI POC)</h4>
+    <h4>🔒 제조 대기업 폐쇄망 AI 플랫폼 구축 (AI POC)</h4>
     <p class="proj-meta">2026.05 ~ 2026.06 · 폐쇄망 인프라 담당 (총 5인)</p>
     <p class="proj-summary">인터넷 차단 + USB 단방향 반입(반출 불가) 환경에 AI 서비스 5종 배포. "내부에서는 빌드하지 않는다"로 전략을 바꿔 반입-배포 1사이클 5시간+ → 30분 단축, 9월 후속 단계 확정</p>
     <div>
@@ -1005,7 +1005,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <span class="tech-tag">Linux</span>
     </div>
   </div>
-  <div id="proj-sdc-poc" class="project-detail">
+  <div id="proj-airgap-poc" class="project-detail">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 600" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
       <defs>
         <filter id="agShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
@@ -1103,7 +1103,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </svg>
 
     <h5>Background</h5>
-    <p>인터넷·패키지 저장소·CI/CD가 모두 없는 삼성디스플레이 폐쇄망에 AI 서비스 5종(DevAX 멀티 에이전트 플랫폼, WrenAI, 보안성검토 에이전트, ai-gateway, chat-bot)과 litellm 게이트웨이를 구동해야 했습니다. 1사이클은 빌드 → USB 적재 → 물리 반입 → 기동인데, USB는 한 번 반입하면 반출할 수 없습니다. 기동 단계에서 번들 누락이 발견되면 사외로 나가 처음부터 다시 돌려야 했고, 초기에는 한 사이클에 5시간 이상이 걸렸습니다. 사전 조사도 제한돼 워크스테이션 사양을 미리 확인할 수 없었고, 결정적으로 개발 환경(ARM)과 실제 배정된 워크스테이션(x86_64)의 CPU 아키텍처가 달랐다는 사실이 반입 후에야 드러났습니다.</p>
+    <p>인터넷·패키지 저장소·CI/CD가 모두 없는 제조 대기업 폐쇄망에 AI 서비스 5종(DevAX 멀티 에이전트 플랫폼, WrenAI, 보안성검토 에이전트, ai-gateway, chat-bot)과 litellm 게이트웨이를 구동해야 했습니다. 1사이클은 빌드 → USB 적재 → 물리 반입 → 기동인데, USB는 한 번 반입하면 반출할 수 없습니다. 기동 단계에서 번들 누락이 발견되면 사외로 나가 처음부터 다시 돌려야 했고, 초기에는 한 사이클에 5시간 이상이 걸렸습니다. 사전 조사도 제한돼 워크스테이션 사양을 미리 확인할 수 없었고, 결정적으로 개발 환경(ARM)과 실제 배정된 워크스테이션(x86_64)의 CPU 아키텍처가 달랐다는 사실이 반입 후에야 드러났습니다.</p>
 
     <h5>What I Did</h5>
     <ul>
@@ -1124,10 +1124,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </ul>
   </div>
 
-  <!-- 프로젝트 0-3: KBS 재난방송 STG 인프라 (2026.04 ~ 2026.06) -->
-  <div class="project-toggle" data-target="#proj-kbs-stg" aria-expanded="false">
+  <!-- 프로젝트 0-3: 방송사 재난정보 서비스 STG 인프라 (2026.04 ~ 2026.06) -->
+  <div class="project-toggle" data-target="#proj-broadcast-stg" aria-expanded="false">
     <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-    <h4>📡 KBS 통합재난방송시스템 STG 인프라 구축</h4>
+    <h4>📡 방송사 재난정보 시스템 STG 인프라 구축</h4>
     <p class="proj-meta">2026.04 ~ 2026.06 · 인프라 설계·구축 담당</p>
     <p class="proj-summary">운영만 있고 검증 환경이 없던 대국민 서비스에, AWS CLI로 운영 구성을 확인해 가며 동등한 스테이징을 신규 구축. ECS Fargate·CodeDeploy Blue/Green, CloudFront 7경로 분기, IAM 최소권한. PRD-STG 전 항목을 CLI로 대조 검증해 불일치 0건으로 마무리</p>
     <div>
@@ -1149,7 +1149,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
       <span class="tech-tag">Jenkins</span>
     </div>
   </div>
-  <div id="proj-kbs-stg" class="project-detail">
+  <div id="proj-broadcast-stg" class="project-detail">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 700" font-family="'Segoe UI', Arial, sans-serif" style="max-width:100%; border-radius:8px; margin:16px 0;">
       <defs>
         <filter id="kbShadow" x="-4%" y="-4%" width="108%" height="108%"><feDropShadow dx="1" dy="2" stdDeviation="2" flood-opacity="0.12"/></filter>
@@ -1163,7 +1163,7 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
         <linearGradient id="kbTeal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3AAFA9"/><stop offset="100%" stop-color="#2B8A85"/></linearGradient>
       </defs>
       <rect width="920" height="700" fill="#FAFBFC" rx="12"/>
-      <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">KBS 재난방송 STG — 운영 환경과 동등하게 구축한 스테이징</text>
+      <text x="460" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#2C3E50">방송사 재난정보 서비스 STG — 운영 환경과 동등하게 구축한 스테이징</text>
 
       <rect x="30" y="48" width="860" height="122" rx="10" fill="#F4ECF7" stroke="#BB8FCE" stroke-width="1.5"/>
       <text x="46" y="68" font-size="11" font-weight="700" fill="#6C3483">진입 계층 — 단일 도메인</text>
@@ -1447,10 +1447,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
     </p>
   </div>
 
-<!-- Project 2: Samsung SDR (2025.09 ~ 2026.03) -->
-<div class="project-toggle" data-target="#proj-sdr" aria-expanded="false">
+<!-- Project 2: 대기업 사업장 방문자 관리 (2025.09 ~ 2026.03) -->
+<div class="project-toggle" data-target="#proj-visitor" aria-expanded="false">
   <span class="toggle-wrap"><span class="toggle-arrow">▼</span></span>
-  <h4>Samsung SDR 방문자 관리 시스템</h4>
+  <h4>대기업 사업장 방문자 관리 시스템</h4>
   <p class="proj-meta">2025.09 ~ 2026.03 · 풀스택 개발자 · 배포/운영 담당</p>
   <p class="proj-summary">
     카드 발급/회수 자동화와 데이터 정합성 개선을 통해 방문자 출입 관리 시스템을 구축하고,
@@ -1468,10 +1468,10 @@ Spring 백엔드 개발로 시작하여 Linux 서버 구축·운영, 하이브�
   </div>
 </div>
 
-<div id="proj-sdr" class="project-detail">
+<div id="proj-visitor" class="project-detail">
   <h5>프로젝트 배경</h5>
   <p>
-    삼성 SDR 사업장의 방문자 출입 관리를 수기/반자동 방식에서 웹 기반 시스템으로 전환하고,
+    대기업 사업장의 방문자 출입 관리를 수기/반자동 방식에서 웹 기반 시스템으로 전환하고,
     카드 발급·회수 및 출입 이력 관리까지 통합하여 운영 효율성과 데이터 신뢰성을 개선하는 것이 목적이었음
   </p>
 
