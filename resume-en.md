@@ -66,14 +66,6 @@ Most of my work has been in environments where the usual tools are unavailable �
 
 ## Experience
 
-### Wherepoint <span class="meta">| Cloud Infrastructure Engineer · infrastructure operations | Sep 2026 – Present</span>
-
-Member of the Samsung Cloud operations team, responsible for running cloud infrastructure and for designing and provisioning new resources.
-
-- **Design and provision required resources** — account permissions (IAM, Keycloak) and network resources defined and provisioned as code on Terraform Enterprise (TFE)
-- **Automation of repetitive operations as the main focus** — certificate management automation and other manual, recurring procedures
-- Day-to-day cloud infrastructure operations
-
 ### Berith Korea <span class="meta">| DevOps · SRE · infrastructure owner | Feb 2025 – Aug 2026</span>
 
 Owned the infrastructure behind the company's blockchain services (BaaS, wallet, chain explorer), migrated from AWS to in-house hardware.
